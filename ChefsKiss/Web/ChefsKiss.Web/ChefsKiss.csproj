@@ -13,6 +13,26 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.16" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.16" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Controllers\" />
+    <Folder Include="Areas\Administration\Data\" />
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\" />
+    <Folder Include="Areas\Comments\Controllers\" />
+    <Folder Include="Areas\Comments\Data\" />
+    <Folder Include="Areas\Comments\Models\" />
+    <Folder Include="Areas\Comments\Views\" />
+    <Folder Include="Areas\Home\Controllers\" />
+    <Folder Include="Areas\Home\Data\" />
+    <Folder Include="Areas\Home\Models\" />
+    <Folder Include="Areas\Home\Views\" />
+    <Folder Include="Areas\Recipes\Controllers\" />
+    <Folder Include="Areas\Recipes\Data\" />
+    <Folder Include="Areas\Recipes\Models\" />
+    <Folder Include="Areas\Recipes\Views\" />
   </ItemGroup>
 
 </Project>

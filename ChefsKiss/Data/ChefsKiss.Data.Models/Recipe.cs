@@ -1,8 +1,10 @@
-﻿using System;
-
-namespace ChefsKiss.Data.Models
+﻿namespace ChefsKiss.Data.Models
 {
-    public class Recipe
+    using System.ComponentModel.DataAnnotations;
+
+    using ChefsKiss.Data.Common.Models;
+
+    public class Recipe : BaseModel<int>
     {
     }
 }

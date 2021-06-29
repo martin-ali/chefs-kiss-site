@@ -1,7 +1,10 @@
 namespace ChefsKiss.Data.Models
 {
-    public class Ingredient
-    {
+    using System.ComponentModel.DataAnnotations;
 
+    using ChefsKiss.Data.Common.Models;
+
+    public class Ingredient : BaseModel<int>
+    {
     }
 }

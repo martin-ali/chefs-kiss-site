@@ -1,7 +1,10 @@
 namespace ChefsKiss.Data.Models
 {
-    public class Comment
-    {
+    using System.ComponentModel.DataAnnotations;
 
+    using ChefsKiss.Data.Common.Models;
+
+    public class Comment : BaseModel<int>
+    {
     }
 }

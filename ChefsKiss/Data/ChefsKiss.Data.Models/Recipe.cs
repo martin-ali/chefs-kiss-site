@@ -6,5 +6,8 @@
 
     public class Recipe : BaseModel<int>
     {
+        public string AuthorId { get; init; }
+
+        public ApplicationUser Author { get; init; }
     }
 }

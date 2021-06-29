@@ -28,5 +28,11 @@ namespace ChefsKiss.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public IEnumerable<Recipe> Recipes { get; init; } = new List<Recipe>();
+
+        public IEnumerable<Vote> Votes { get; init; } = new List<Vote>();
+
+        public IEnumerable<Comment> Comments { get; init; } = new List<Comment>();
     }
 }

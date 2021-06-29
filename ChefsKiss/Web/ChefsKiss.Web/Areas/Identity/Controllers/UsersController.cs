@@ -2,13 +2,12 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
 
-    // using ChefsKiss.Common;
+    using ChefsKiss.Common;
     using ChefsKiss.Web.Areas.Identity.Services;
+
     using System;
 
-    // using ChefsKiss.Web.Controllers;
-
-    // [Area(GlobalConstants.IdentityArea)]
+    [Area(GlobalConstants.IdentityArea)]
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;

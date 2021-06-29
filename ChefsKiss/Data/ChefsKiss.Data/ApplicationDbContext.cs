@@ -23,6 +23,7 @@
             : base(options) { }
 
         // FIXME: Hard-coded connection string
+        // FIXME: Database update should be automated
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

@@ -1,4 +1,4 @@
-namespace ChefsKiss
+namespace ChefsKiss.Web
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

@@ -1,4 +1,4 @@
-﻿using ChefsKiss.Models;
+﻿using ChefsKiss.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ChefsKiss.Controllers
+namespace ChefsKiss.Web.Controllers
 {
     public class HomeController : Controller
     {

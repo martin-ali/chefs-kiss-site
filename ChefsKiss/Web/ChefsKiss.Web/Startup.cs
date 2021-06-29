@@ -1,4 +1,4 @@
-namespace ChefsKiss
+namespace ChefsKiss.Web
 {
     using ChefsKiss.Data;
     using Microsoft.AspNetCore.Builder;

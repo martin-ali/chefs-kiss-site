@@ -1,6 +1,6 @@
 using System;
 
-namespace ChefsKiss.Models
+namespace ChefsKiss.Web.Models
 {
     public class ErrorViewModel
     {

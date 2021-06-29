@@ -28,8 +28,7 @@ namespace ChefsKiss.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -39,6 +38,19 @@ namespace ChefsKiss.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Seed data on application startup
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                // if (env.IsDevelopment())
+                // {
+                //     dbContext.Database.EnsureDeleted();
+                // }
+
+                dbContext.Database.Migrate();
+                // new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

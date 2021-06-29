@@ -38,4 +38,9 @@
     <Folder Include="Areas\Recipes\Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Models\ChefsKiss.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

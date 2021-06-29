@@ -7,5 +7,11 @@ namespace ChefsKiss.Data.Models
         public string AuthorId { get; init; }
 
         public ApplicationUser Author { get; init; }
+
+        public int RecipeId { get; init; }
+
+        public Recipe Recipe { get; init; }
+
+        public float Rating { get; init; }
     }
 }

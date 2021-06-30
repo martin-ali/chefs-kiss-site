@@ -13,18 +13,18 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Models\ChefsKiss.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Common\ChefsKiss.Common\ChefsKiss.Common.csproj" />
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data\ChefsKiss.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Areas\Administration\Controllers\" />
-    <Folder Include="Areas\Administration\Data\" />
-    <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\" />
-    <Folder Include="Areas\Comments\Controllers\" />
-    <Folder Include="Areas\Comments\Data\" />
-    <Folder Include="Areas\Comments\Models\" />
-    <Folder Include="Areas\Comments\Views\" />
     <Folder Include="Areas\Home\Controllers\" />
     <Folder Include="Areas\Home\Data\" />
     <Folder Include="Areas\Home\Models\" />
@@ -33,17 +33,6 @@
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Areas\Identity\Models\" />
     <Folder Include="Areas\Identity\Views\" />
-    <Folder Include="Areas\Recipes\Controllers\" />
-    <Folder Include="Areas\Recipes\Data\" />
-    <Folder Include="Areas\Recipes\Models\" />
-    <Folder Include="Areas\Recipes\Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
-    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Models\ChefsKiss.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Common\ChefsKiss.Common\ChefsKiss.Common.csproj" />
-    <ProjectReference Include="..\..\Data\ChefsKiss.Data\ChefsKiss.Data.csproj" />
   </ItemGroup>
 
 </Project>

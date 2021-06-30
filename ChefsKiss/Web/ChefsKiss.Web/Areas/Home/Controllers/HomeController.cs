@@ -1,15 +1,17 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using ChefsKiss.Web.Models;
-using ChefsKiss.Common;
-
-namespace ChefsKiss.Web.Areas.Home.Controllers
+﻿namespace ChefsKiss.Web.Areas.Home.Controllers
 {
+    using ChefsKiss.Common;
+    using ChefsKiss.Web.Models;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     [Area(GlobalConstants.HomeArea)]
     public class HomeController : Controller
     {
@@ -20,6 +22,8 @@ namespace ChefsKiss.Web.Areas.Home.Controllers
             _logger = logger;
         }
 
+        [HttpGet("/")]
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             return View();

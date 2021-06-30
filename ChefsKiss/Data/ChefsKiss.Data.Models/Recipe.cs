@@ -13,6 +13,6 @@
 
         public string Content { get; init; }
 
-        public IEnumerable<Ingredient> Ingredients { get; init; } = new List<Ingredient>();
+        public IEnumerable<RecipeIngredient> RecipeIngredients { get; init; } = new List<RecipeIngredient>();
     }
 }

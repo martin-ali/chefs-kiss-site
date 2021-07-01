@@ -1,5 +1,6 @@
 ﻿# Tasks
 
+- [ ] Integrate a Bootstrap theme
 - [ ] Fix usings
 - [ ] Remove commented out code
 - [ ] Comply to Stylecop
@@ -15,6 +16,10 @@
 - [ ] Controllers
 - [ ] Comment system
 - [ ] Do something with the ingredients now that they're separate
+- [ ] Fix hard-coded connection string
+- [ ] Soft delete?
+- [ ] Favicon
+- [ ] SmarterASP.NET or Azure deployment
 
 # Pages
 # Controllers
@@ -29,3 +34,5 @@
 - Comment
 - User
 - Ingredient
+
+- View Component for categories?

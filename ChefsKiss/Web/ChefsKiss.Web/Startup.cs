@@ -33,28 +33,24 @@ namespace ChefsKiss.Web
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-
-            services.Configure<IdentityOptions>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
             {
-                // Default Password settings.
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 1;
                 options.Password.RequiredUniqueChars = 0;
-            });
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Default SignIn settings.
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
-            });
+
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews();
+
+            // services.Configure<IdentityOptions>(options => { });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

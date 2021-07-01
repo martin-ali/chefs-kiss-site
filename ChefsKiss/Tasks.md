@@ -1,13 +1,28 @@
 ﻿# Tasks
 
+- [x] Download Azure Data Studio
 - [x] Automatic migration
 - [ ] Model constraints
 - [x] Persistence
 - [x] Registration and login
-- [ ] Do something with the ingredients now that they're separate
 - [ ] Views
+- [ ] Automapping
 - [ ] Services
-- [ ] Controllers
 - [ ] Validation
-- [ ] Azure Data Studio
+- [ ] Controllers
 - [ ] Comment system
+- [ ] Do something with the ingredients now that they're separate
+
+# Pages
+# Controllers
+- Home
+- Recipes
+- Comments
+- Users
+- Ingredients
+# Models
+- Category?
+- Recipe
+- Comment
+- User
+- Ingredient

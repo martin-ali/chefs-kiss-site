@@ -1,5 +1,8 @@
 ﻿# Tasks
 
+- [ ] Fix usings
+- [ ] Remove commented out code
+- [ ] Comply to Stylecop
 - [x] Download Azure Data Studio
 - [x] Automatic migration
 - [ ] Model constraints

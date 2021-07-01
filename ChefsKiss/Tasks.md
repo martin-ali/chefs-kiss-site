@@ -1,11 +1,13 @@
 ﻿# Tasks
 
-- Do something with the ingredients now that they're separate
-- Model constraints
-- Automatic migration
-- Views
-- Services
-- Controllers
-- Persistence
-- Validation
-- Azure Data Studio
+- [x] Automatic migration
+- [ ] Model constraints
+- [x] Persistence
+- [x] Registration and login
+- [ ] Do something with the ingredients now that they're separate
+- [ ] Views
+- [ ] Services
+- [ ] Controllers
+- [ ] Validation
+- [ ] Azure Data Studio
+- [ ] Comment system

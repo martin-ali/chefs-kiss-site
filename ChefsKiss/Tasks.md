@@ -1,6 +1,7 @@
 ﻿# Tasks
 
-- [ ] Integrate a Bootstrap theme
+## Mandatory
+
 - [ ] Fix usings
 - [ ] Remove commented out code
 - [ ] Comply to Stylecop
@@ -15,24 +16,43 @@
 - [ ] Validation
 - [ ] Controllers
 - [ ] Comment system
-- [ ] Do something with the ingredients now that they're separate
 - [ ] Fix hard-coded connection string
 - [ ] Soft delete?
 - [ ] Favicon
-- [ ] SmarterASP.NET or Azure deployment
+- [ ] Roles - User, Administrator
+- [ ] AJAX
 
-# Pages
-# Controllers
+## Optional
+
+- [ ] Integrate a Bootstrap theme
+- [ ] Do something with the ingredients now that they're separate
+- [ ] SmarterASP.NET or Azure deployment/hosting
+- [ ] Unit tests - >=65%
+- [ ] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
+- [ ] Caching
+- [ ] Responsive design
+- [ ] File storage API
+- [ ] HTML5 features - geolocation, local storage, SGV, Canvas
+
+## Pages
+
+### Controllers
+
 - Home
 - Recipes
 - Comments
-- Users
+- Identity
 - Ingredients
-# Models
+- Administration
+
+### Models
+
 - Category?
 - Recipe
 - Comment
 - User
 - Ingredient
+
+## Misc
 
 - View Component for categories?

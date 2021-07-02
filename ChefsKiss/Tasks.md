@@ -13,6 +13,7 @@
 - [ ] Views
 - [x] Automapping
 - [ ] Services
+- [ ] Authentication
 - [ ] Validation
 - [ ] Controllers
 - [ ] Comment system

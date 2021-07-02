@@ -57,7 +57,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             var recipeId = await this.recipesService.CreateAsync(model, author.Id);
 
-            return this.RedirectToAction(nameof(this.Details), recipeId);
+            return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
     }
 }

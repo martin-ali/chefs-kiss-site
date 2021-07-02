@@ -1,10 +1,12 @@
 namespace ChefsKiss.Web.Areas.Recipes.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.ViewModels;
 
     public class RecipesService : IRecipesService
@@ -41,20 +43,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             throw new System.NotImplementedException();
         }
-
         public T GetById<T>(int id)
         {
-            throw new System.NotImplementedException();
+            var recipe = this.recipesRepository
+                .All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return recipe;
         }
-
-        // public T GetById<T>(int id)
-        // {
-        //     var recipe = this.recipesRepository
-        //         .All()
-        //         .FirstOrDefault(x => x.Id == id);
-
-        //     return recipe;
-        // }
 
         public IEnumerable<T> GetByUserId<T>(string userId)
         {

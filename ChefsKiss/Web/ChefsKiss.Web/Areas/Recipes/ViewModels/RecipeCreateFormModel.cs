@@ -9,7 +9,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels
 
         [Required]
         [MaxLength(10000)]
-        [MinLength(1000)]
+        // [MinLength(1000)]
         public string Content { get; init; }
     }
 }

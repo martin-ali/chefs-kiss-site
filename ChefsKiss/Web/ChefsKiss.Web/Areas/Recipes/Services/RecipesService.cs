@@ -16,7 +16,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.recipesRepository = recipesRepository;
         }
 
-        public Task<int> CreateAsync(RecipeCreateInputModel input, string authorId)
+        public Task<int> CreateAsync(RecipeCreateFormModel input, string authorId)
         {
             throw new System.NotImplementedException();
         }

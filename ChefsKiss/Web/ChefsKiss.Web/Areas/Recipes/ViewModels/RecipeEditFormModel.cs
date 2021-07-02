@@ -1,6 +1,6 @@
 namespace ChefsKiss.Web.Areas.Recipes.ViewModels
 {
-    public class RecipeCreateInputModel
+    public class RecipeEditFormModel
     {
     }
 }

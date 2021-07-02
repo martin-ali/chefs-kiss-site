@@ -11,7 +11,7 @@
 - [x] Persistence
 - [x] Registration and login
 - [ ] Views
-- [ ] Automapping
+- [x] Automapping
 - [ ] Services
 - [ ] Validation
 - [ ] Controllers

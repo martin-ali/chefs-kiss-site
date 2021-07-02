@@ -98,14 +98,13 @@ namespace ChefsKiss.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-           {
-               endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-               endpoints.MapRazorPages();
-           });
+            app.UseEndpoints(
+               endpoints =>
+                   {
+                       endpoints.MapControllerRoute("areasRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                       endpoints.MapControllerRoute("defaultRoute", "{controller=Home}/{action=Index}/{id?}");
+                       endpoints.MapRazorPages();
+                   });
         }
     }
 }

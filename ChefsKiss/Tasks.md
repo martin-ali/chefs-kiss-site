@@ -2,12 +2,12 @@
 
 ## Mandatory
 
-- [ ] Fix usings
+- [x] Fix usings
 - [ ] Remove commented out code
 - [ ] Comply with Stylecop
 - [x] Download Azure Data Studio
 - [x] Automatic migration
-- [ ] Model constraints
+- [x] Model constraints
 - [x] Persistence
 - [x] Registration and login
 - [ ] Views

@@ -30,12 +30,12 @@
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="Areas\Home\Controllers\" />
-    <Folder Include="Areas\Home\Data\" />
-    <Folder Include="Areas\Home\Models\" />
+    <Folder Include="Areas\Home\Services\" />
+    <Folder Include="Areas\Home\ViewModels\" />
     <Folder Include="Areas\Home\Views\" />
     <Folder Include="Areas\Recipes\Controllers\" />
-    <Folder Include="Areas\Recipes\Data\" />
-    <Folder Include="Areas\Recipes\Models\" />
+    <Folder Include="Areas\Recipes\Services\" />
+    <Folder Include="Areas\Recipes\ViewModels\" />
     <Folder Include="Areas\Recipes\Views\" />
   </ItemGroup>
 

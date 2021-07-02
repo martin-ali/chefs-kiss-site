@@ -51,6 +51,12 @@ namespace ChefsKiss.Web
             services.AddControllersWithViews();
 
             // services.Configure<IdentityOptions>(options => { });
+
+            // Data repositories
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+            // Application services
+            services.AddTransient<IRecipesService, RecipesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

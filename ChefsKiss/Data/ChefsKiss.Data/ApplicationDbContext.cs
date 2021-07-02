@@ -22,13 +22,19 @@
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
 
-        // FIXME: Hard-coded connection string
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=TestChef;Integrated Security=true;");
+                optionsBuilder.UseSqlServer("Server=.;Database=ChefsKiss;Integrated Security=true;");
             }
+        }
+
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
         }
 
         public override int SaveChanges() => this.SaveChanges(true);

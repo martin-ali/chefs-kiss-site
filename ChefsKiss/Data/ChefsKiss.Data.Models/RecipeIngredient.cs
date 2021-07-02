@@ -6,12 +6,12 @@ namespace ChefsKiss.Data.Models
 
     public class RecipeIngredient : BaseModel<int>
     {
-        [Required]
+        // [Required]
         public int RecipeId { get; init; }
 
         public Recipe Recipe { get; init; }
 
-        [Required]
+        // [Required]
         public int IngredientId { get; init; }
 
         public Ingredient Ingredient { get; init; }

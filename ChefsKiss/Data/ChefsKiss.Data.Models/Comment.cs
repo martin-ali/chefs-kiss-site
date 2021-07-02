@@ -6,12 +6,12 @@ namespace ChefsKiss.Data.Models
 
     public class Comment : BaseModel<int>
     {
-        [Required]
+        // [Required]
         public string AuthorId { get; init; }
 
         public ApplicationUser Author { get; init; }
 
-        [Required]
+        // [Required]
         public int RecipeId { get; init; }
 
         public Recipe Recipe { get; init; }

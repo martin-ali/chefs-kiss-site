@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChefsKiss.Common
+﻿namespace ChefsKiss.Common
 {
     public class GlobalConstants
     {
@@ -15,6 +13,8 @@ namespace ChefsKiss.Common
         public const string AdministrationArea = "Administration";
 
         public const string IdentityArea = "Identity";
+
+        public const string RecipesArea = "Recipes";
 
         public const string HomeArea = "Home";
 

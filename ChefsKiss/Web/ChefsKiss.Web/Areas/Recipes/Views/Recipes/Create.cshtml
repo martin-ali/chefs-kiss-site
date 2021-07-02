@@ -2,16 +2,38 @@
 
 @model RecipeCreateFormModel
 
-<form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" asp-method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Name">Recipe name</label>
-        <input asp-for="Name" placeholder="Recipe name">
-        <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container card card-body">
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" method="post" enctype="multipart/form-data" class="col-md-8">
+                <div class="row card-title">
+                    <h2>Create a new recipe</h2>
+                </div>
+                <div class="row">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control w-100" placeholder="Enter the name here" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label asp-for="Content"></label>
+                    <input asp-for="Content" class="form-control" placeholder="Enter the content here" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label asp-for="ImageUrl">Image</label>
+                    <input id="image-upload" asp-for="ImageUrl" accept="image/jpeg, image/png" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="row">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <img id="image-preview" class="w-100 card-img">
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Content">Recipe text</label>
-        <textarea asp-for="Content" placeholder="Describe your recipe here"></textarea>
-        <span asp-validation-for="Content" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>
+@* FIXME: Find a better place for this script *@
+<script src="~/js/image-preview.js" asp-append-version="true"></script>

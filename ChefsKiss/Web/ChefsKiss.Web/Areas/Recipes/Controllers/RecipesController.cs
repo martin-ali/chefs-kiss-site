@@ -5,8 +5,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +28,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [HttpGet]
         public IActionResult All()
         {
-            return this.View();
+            var recipes = this.recipesService.GetAll<RecipeInListViewModel>();
+
+            return this.View(recipes);
         }
 
         [HttpGet]
@@ -38,12 +41,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.View(recipe);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
             return this.View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(RecipeCreateFormModel model)
         {

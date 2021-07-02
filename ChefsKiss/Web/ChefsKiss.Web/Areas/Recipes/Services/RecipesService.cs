@@ -7,7 +7,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
     public class RecipesService : IRecipesService
     {
@@ -34,9 +34,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipe.Id;
         }
 
-        public IEnumerable<Recipe> GetAll<T>()
+        public IEnumerable<T> GetAll<T>()
         {
-            throw new System.NotImplementedException();
+            var recipes = this.recipesRepository
+                .All()
+                .To<T>()
+                .ToList();
+
+            return recipes;
         }
 
         public IEnumerable<T> GetByCategory<T>(int category)

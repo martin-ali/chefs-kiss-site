@@ -1,1 +1,12 @@
-﻿Howdy!
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
+
+@model IEnumerable<RecipeInListViewModel>
+
+<div class="container">
+    <div class="row">
+        @foreach (var recipe in Model)
+        {
+            <partial name="_PostInList" model="recipe" />
+        }
+    </div>
+</div>

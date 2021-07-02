@@ -1,6 +1,51 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Comments
 
 @model RecipeDetailsViewModel
 
-<h1>@Model.Name</h1>
-<h1>@Model.Content</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 row-md-12">
+            <h2 class="card-title text-center">
+                @Model.Name
+            </h2>
+            @* <img class="card-img-top" src="@Model.ImagePath"> *@
+            <p class="card-text">
+                <span> Author:
+                    @* <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                        <span> @Model.AuthorUsername </span>
+                        </a> *@
+                </span>
+                @* <span> Tags:
+                    @foreach (var tag in Model.Tags)
+                    {
+                    <a asp-action="ByTagId" asp-route-id="@tag.Id"> @tag.Name </a>
+                    }
+                    </span> *@
+            </p>
+            @* <div class="row">
+                @await Html.PartialAsync("_VotingPanel", Model)
+                </div> *@
+        </div>
+    </div>
+    @* @if (User.IsInRole("Administrator"))
+        {
+        <div class="row">
+        @await Html.PartialAsync("_AdminPanel", Model)
+        </div>
+        } *@
+    <div class="row">
+        @Model.Content
+    </div>
+    <div class="row">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @await Html.PartialAsync("_CommentCreateForm", new CommentCreateFormModel{ RecipeId=Model.Id })
+        }
+        @* @foreach (var comment in Model.Comments)
+            {
+            @await Html.PartialAsync("_CommentsList", comment)
+            } *@
+    </div>
+</div>

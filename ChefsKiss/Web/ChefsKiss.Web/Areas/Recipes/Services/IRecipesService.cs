@@ -4,11 +4,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
     public interface IRecipesService
     {
-        IEnumerable<Recipe> GetAll<T>();
+        IEnumerable<T> GetAll<T>();
 
         T GetById<T>(int id);
 

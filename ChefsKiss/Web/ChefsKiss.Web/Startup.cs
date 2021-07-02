@@ -12,7 +12,7 @@ namespace ChefsKiss.Web
     using ChefsKiss.Data.Repositories;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
     using ChefsKiss.Web.Models;
 
     using Microsoft.AspNetCore.Builder;

@@ -1,0 +1,32 @@
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
+
+<article class="card col-md-12 m-2 box-shadow">
+    <div class="card-body">
+        <h2 class="card-title text-center">
+            <a asp-action="Details" asp-route-id="@Model.Id">
+                @Model.Name
+            </a>
+        </h2>
+        @* <a asp-action="Details" asp-route-id="@Model.Id">
+            <img src="@Model.ImagePath" alt="Post image" class="card-img-top" />
+            </a> *@
+        <p class="card-text">
+            <span> Author:
+                <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                    <span> @Model.AuthorUsername </span>
+                </a>
+            </span>
+            @* <span> Tags:
+                @foreach (var tag in Model.Tags)
+                {
+                <a asp-action="ByTagId" asp-route-id="@tag.Id">
+                @tag.Name
+                </a>
+                }
+                </span> *@
+        </p>
+        @* <div class="row">
+            @await Html.PartialAsync("_VotingPanel", Model)
+            </div> *@
+    </div>
+</article>

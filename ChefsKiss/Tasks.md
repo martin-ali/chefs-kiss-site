@@ -4,7 +4,7 @@
 
 - [ ] Fix usings
 - [ ] Remove commented out code
-- [ ] Comply to Stylecop
+- [ ] Comply with Stylecop
 - [x] Download Azure Data Studio
 - [x] Automatic migration
 - [ ] Model constraints
@@ -17,13 +17,14 @@
 - [ ] Controllers
 - [ ] Comment system
 - [ ] Fix hard-coded connection string
-- [ ] Soft delete?
 - [ ] Favicon
 - [ ] Roles - User, Administrator
 - [ ] AJAX
+- [ ] Infinite scrolling
 
 ## Optional
 
+- [ ] Soft delete?
 - [ ] Integrate a Bootstrap theme
 - [ ] Do something with the ingredients now that they're separate
 - [ ] SmarterASP.NET or Azure deployment/hosting

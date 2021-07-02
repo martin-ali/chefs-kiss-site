@@ -41,11 +41,11 @@
     <div class="row">
         @if (User.Identity.IsAuthenticated)
         {
-            @await Html.PartialAsync("_CommentCreateForm", new CommentCreateFormModel{ RecipeId=Model.Id })
+            <partial name="_CommentCreateForm" model=@(new CommentCreateFormModel{ RecipeId = Model.Id }) />
         }
-        @* @foreach (var comment in Model.Comments)
-            {
-            @await Html.PartialAsync("_CommentsList", comment)
-            } *@
+        @foreach (var comment in Model.Comments)
+        {
+            <partial name="_CommentsList" model="comment" />
+        }
     </div>
 </div>

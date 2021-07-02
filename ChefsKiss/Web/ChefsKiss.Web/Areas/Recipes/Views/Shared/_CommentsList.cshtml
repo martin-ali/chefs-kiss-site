@@ -1,0 +1,8 @@
+﻿@model ChefsKiss.Web.Areas.Recipes.ViewModels.Comments.CommentListViewModel
+
+<div class="w-100 card card-body m-2">
+    <p>@Model.Content</p>
+    <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+        <h6 class="h6"> @Model.AuthorUsername </h6>
+    </a>
+</div>

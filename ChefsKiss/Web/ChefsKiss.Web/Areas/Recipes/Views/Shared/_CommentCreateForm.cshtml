@@ -4,7 +4,7 @@
 
 <form asp-controller="Comments" asp-action="Create" method="post" class="w-100 card card-body m-2">
     <textarea asp-for="Content" placeholder="Type your comment here" rows="3" class="w-100 border-0"></textarea>
-    <input type="hidden" name="PostId" value="@Model.RecipeId" />
-    <span asp-validation-for="Content" class="text-danger"></span>
+    <input type="hidden" name="RecipeId" value="@Model.RecipeId" />
     <button type="submit" class="btn btn-primary col-md-2">Post comment</button>
+    <span asp-validation-for="Content" class="text-danger"></span>
 </form>

@@ -4,14 +4,16 @@ using ChefsKiss.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChefsKiss.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210702184954_ProbablyNothing")]
+    partial class ProbablyNothing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -407,7 +409,7 @@ namespace ChefsKiss.Data.Migrations
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("ChefsKiss.Data.Models.Recipe", "Recipe")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -542,8 +544,6 @@ namespace ChefsKiss.Data.Migrations
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("RecipeIngredients");
                 });
 #pragma warning restore 612, 618

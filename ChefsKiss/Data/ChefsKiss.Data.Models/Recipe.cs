@@ -13,6 +13,9 @@
         public ApplicationUser Author { get; init; }
 
         [Required]
+        public string Name { get; init; }
+
+        [Required]
         [MaxLength(10000)]
         [MinLength(1000)]
         public string Content { get; init; }

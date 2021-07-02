@@ -3,13 +3,18 @@ namespace ChefsKiss.Web
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
 
     using ChefsKiss.Data;
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Data.Repositories;
+    using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.Services;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels;
+    using ChefsKiss.Web.Models;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -51,6 +56,7 @@ namespace ChefsKiss.Web
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
 
             // services.Configure<IdentityOptions>(options => { });
@@ -65,6 +71,10 @@ namespace ChefsKiss.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(
+                typeof(ErrorViewModel).GetTypeInfo().Assembly,
+                typeof(RecipeCreateFormModel).GetTypeInfo().Assembly);
+
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {

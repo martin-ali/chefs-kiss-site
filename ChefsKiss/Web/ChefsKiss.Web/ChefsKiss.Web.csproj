@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\Data\ChefsKiss.Data.Models\ChefsKiss.Data.Models.csproj" />
     <ProjectReference Include="..\..\Common\ChefsKiss.Common\ChefsKiss.Common.csproj" />
     <ProjectReference Include="..\..\Data\ChefsKiss.Data\ChefsKiss.Data.csproj" />
+    <ProjectReference Include="..\..\Services\ChefsKiss.Services.Mapping\ChefsKiss.Services.Mapping.csproj" />
   </ItemGroup>
 
   <ItemGroup>

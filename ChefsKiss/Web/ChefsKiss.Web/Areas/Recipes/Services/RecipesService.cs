@@ -16,9 +16,20 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.recipesRepository = recipesRepository;
         }
 
-        public Task<int> CreateAsync(RecipeCreateFormModel input, string authorId)
+        public async Task<int> CreateAsync(RecipeCreateFormModel input, string authorId)
         {
-            throw new System.NotImplementedException();
+            var recipe = new Recipe
+            {
+                Name = input.Name,
+                Content = input.Content,
+                AuthorId = authorId,
+            };
+
+            await this.recipesRepository.AddAsync(recipe);
+
+            await this.recipesRepository.SaveChangesAsync();
+
+            return recipe.Id;
         }
 
         public IEnumerable<Recipe> GetAll<T>()
@@ -35,6 +46,15 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             throw new System.NotImplementedException();
         }
+
+        // public T GetById<T>(int id)
+        // {
+        //     var recipe = this.recipesRepository
+        //         .All()
+        //         .FirstOrDefault(x => x.Id == id);
+
+        //     return recipe;
+        // }
 
         public IEnumerable<T> GetByUserId<T>(string userId)
         {

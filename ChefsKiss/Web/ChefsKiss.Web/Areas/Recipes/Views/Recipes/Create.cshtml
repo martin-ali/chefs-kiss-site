@@ -2,7 +2,7 @@
 
 @model RecipeCreateFormModel
 
-<form asp-area="Recipes" asp-method="post" asp-controller="Recipes" asp-action="Create" enctype="multipart/form-data">
+<form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" asp-method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Name">Recipe name</label>
         <input asp-for="Name" placeholder="Recipe name">

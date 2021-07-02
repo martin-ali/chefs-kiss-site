@@ -1,19 +1,27 @@
 namespace ChefsKiss.Web.Areas.Recipes.Controllers
 {
+    using System.Threading.Tasks;
+
     using ChefsKiss.Common;
+    using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Areas.Recipes.ViewModels;
 
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     [Area(GlobalConstants.RecipesArea)]
     public class RecipesController : Controller
     {
         private readonly IRecipesService recipesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public RecipesController(IRecipesService recipesService)
+        public RecipesController(
+            IRecipesService recipesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.recipesService = recipesService;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -23,15 +31,33 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var recipe = this.recipesService.GetById<RecipeDetailsViewModel>(id);
+
+            return this.View(recipe);
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
-        public IActionResult Create(RecipeCreateFormModel model)
+        public async Task<IActionResult> Create(RecipeCreateFormModel model)
         {
-            return this.Redirect("Home");
+            // FIXME: Make it show a proper error message
+            if (this.ModelState.IsValid == false)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var author = await this.userManager.GetUserAsync(this.User);
+
+            var recipeId = await this.recipesService.CreateAsync(model, author.Id);
+
+            return this.RedirectToAction(nameof(this.Details), recipeId);
         }
     }
 }

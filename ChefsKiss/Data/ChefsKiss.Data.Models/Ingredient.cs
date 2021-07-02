@@ -6,6 +6,8 @@ namespace ChefsKiss.Data.Models
 
     public class Ingredient : BaseModel<int>
     {
+        [Required]
+        [MaxLength(50)]
         public string Name { get; init; }
     }
 }

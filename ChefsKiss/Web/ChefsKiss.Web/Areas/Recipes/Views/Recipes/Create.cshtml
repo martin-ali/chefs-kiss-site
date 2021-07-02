@@ -1,0 +1,17 @@
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels
+
+@model RecipeCreateFormModel
+
+<form asp-area="Recipes" asp-method="post" asp-controller="Recipes" asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name">Recipe name</label>
+        <input asp-for="Name" placeholder="Recipe name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content">Recipe text</label>
+        <textarea asp-for="Content" placeholder="Describe your recipe here"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

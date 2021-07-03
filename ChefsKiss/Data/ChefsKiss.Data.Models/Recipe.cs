@@ -21,8 +21,10 @@
         [MinLength(1000)]
         public string Content { get; init; }
 
-        [Required]
-        public string ImageUrl { get; init; }
+        // [Required]
+        public int ImageId { get; init; }
+
+        public Image Image { get; init; }
 
         public IEnumerable<Comment> Comments { get; init; } = new List<Comment>();
 

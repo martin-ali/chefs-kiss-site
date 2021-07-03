@@ -15,6 +15,6 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
         public string Content { get; init; }
 
         [Required]
-        public IFormFile ImageUrl { get; init; }
+        public IFormFile Image { get; init; }
     }
 }

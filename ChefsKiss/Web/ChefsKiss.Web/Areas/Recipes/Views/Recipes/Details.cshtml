@@ -10,7 +10,7 @@
             <h2 class="card-title text-center">
                 @Model.Name
             </h2>
-            @* <img class="card-img-top" src="@Model.ImagePath"> *@
+            <img class="card-img-top" src="@Model.ImageUrl">
             <p class="card-text">
                 <span> Author:
                     @* <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
@@ -38,14 +38,15 @@
     <div class="row">
         @Model.Content
     </div>
+    <hr>
     <div class="row">
         @if (User.Identity.IsAuthenticated)
         {
-            <partial name="_CommentCreateForm" model=@(new CommentCreateFormModel{ RecipeId = Model.Id }) />
+            <partial name="../Comments/_CommentCreateForm" model=@(new CommentCreateFormModel{ RecipeId = Model.Id }) />
         }
         @foreach (var comment in Model.Comments)
         {
-            <partial name="_CommentsList" model="comment" />
+            <partial name="../Comments/_CommentsList" model="comment" />
         }
     </div>
 </div>

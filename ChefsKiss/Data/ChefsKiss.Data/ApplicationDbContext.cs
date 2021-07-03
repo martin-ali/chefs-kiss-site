@@ -13,8 +13,10 @@
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-        public DbSet<Comment> Comments { get; init; }
+        public DbSet<Image> Images { get; init; }
+        public DbSet<Vote> Votes { get; init; }
         public DbSet<Ingredient> Ingredients { get; init; }
+        public DbSet<Comment> Comments { get; init; }
         public DbSet<Recipe> Recipes { get; init; }
 
         public ApplicationDbContext() { }

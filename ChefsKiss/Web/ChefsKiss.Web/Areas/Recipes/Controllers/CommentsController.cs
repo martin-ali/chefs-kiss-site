@@ -29,7 +29,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             if (this.ModelState.IsValid == false)
             {
-                return this.BadRequest(this.ModelState);
+                return this.RedirectToAction(
+                    nameof(RecipesController.Details),
+                    Helpers.GetControllerName<RecipesController>(),
+                    new
+                    {
+                        id = input.RecipeId,
+                    });
             }
 
             var author = await this.userManager.GetUserAsync(this.User);
@@ -38,10 +44,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),
-                ControllerHelpers.GetControllerName(nameof(RecipesController)),
+                Helpers.GetControllerName<RecipesController>(),
                 new
                 {
-                    area = GlobalConstants.RecipesArea,
                     id = input.RecipeId,
                 });
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ChefsKiss.Data.Migrations
 {
-    public partial class CascadingFix : Migration
+    public partial class ResettingMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,22 @@ namespace ChefsKiss.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -201,6 +217,7 @@ namespace ChefsKiss.Data.Migrations
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
+                    ImageId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -213,6 +230,12 @@ namespace ChefsKiss.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Recipes_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +298,7 @@ namespace ChefsKiss.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vote",
+                name: "Votes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -288,15 +311,15 @@ namespace ChefsKiss.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vote", x => x.Id);
+                    table.PrimaryKey("PK_Votes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vote_AspNetUsers_AuthorId",
+                        name: "FK_Votes_AspNetUsers_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Vote_Recipes_RecipeId",
+                        name: "FK_Votes_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
@@ -383,13 +406,18 @@ namespace ChefsKiss.Data.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vote_AuthorId",
-                table: "Vote",
+                name: "IX_Recipes_ImageId",
+                table: "Recipes",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_AuthorId",
+                table: "Votes",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vote_RecipeId",
-                table: "Vote",
+                name: "IX_Votes_RecipeId",
+                table: "Votes",
                 column: "RecipeId");
         }
 
@@ -417,7 +445,7 @@ namespace ChefsKiss.Data.Migrations
                 name: "RecipeIngredient");
 
             migrationBuilder.DropTable(
-                name: "Vote");
+                name: "Votes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -430,6 +458,9 @@ namespace ChefsKiss.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Images");
         }
     }
 }

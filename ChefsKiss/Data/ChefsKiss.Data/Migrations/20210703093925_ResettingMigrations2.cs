@@ -2,7 +2,7 @@
 
 namespace ChefsKiss.Data.Migrations
 {
-    public partial class ProbablyNothing : Migration
+    public partial class ResettingMigrations2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

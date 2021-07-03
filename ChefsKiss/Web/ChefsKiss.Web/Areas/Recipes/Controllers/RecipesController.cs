@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web.Areas.Recipes.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ChefsKiss.Common;
@@ -55,7 +56,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             // FIXME: Make it show a proper error message
             if (this.ModelState.IsValid == false)
             {
-                return this.BadRequest(this.ModelState);
+                return this.View(model);
             }
 
             var author = await this.userManager.GetUserAsync(this.User);

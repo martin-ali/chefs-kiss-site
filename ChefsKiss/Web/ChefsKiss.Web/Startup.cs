@@ -10,7 +10,9 @@ namespace ChefsKiss.Web
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Data.Repositories;
+    using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Services.Validation;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
     using ChefsKiss.Web.Models;
@@ -67,6 +69,9 @@ namespace ChefsKiss.Web
             // Application services
             services.AddTransient<IRecipesService, RecipesService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IImagesService, ImagesService>();
+            services.AddTransient<IImageOperator, ImageOperator>();
+            services.AddTransient<IFileValidator, FileValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +85,7 @@ namespace ChefsKiss.Web
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
                 // if (env.IsDevelopment())
                 // {
                 //     dbContext.Database.EnsureDeleted();

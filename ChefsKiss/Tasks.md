@@ -23,6 +23,7 @@
 - [ ] Roles - User, Administrator
 - [ ] AJAX
 - [ ] Infinite scrolling
+- [ ] Voting
 
 ## Optional
 

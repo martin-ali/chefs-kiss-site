@@ -15,10 +15,11 @@
 - [ ] Services
 - [ ] Authentication
 - [ ] Validation
+- [ ] Inline validation
 - [ ] Controllers
 - [ ] Comment system
 - [ ] Fix hard-coded connection string
-- [ ] Favicon
+- [x] Favicon
 - [ ] Roles - User, Administrator
 - [ ] AJAX
 - [ ] Infinite scrolling

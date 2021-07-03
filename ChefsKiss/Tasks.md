@@ -15,7 +15,8 @@
 - [ ] Services
 - [ ] Authentication
 - [ ] Validation
-- [ ] Inline validation
+- [x] Inline validation
+- [ ] Validation with user-friendly messages
 - [ ] Controllers
 - [ ] Comment system
 - [ ] Fix hard-coded connection string

@@ -1,5 +1,5 @@
 ﻿# Today's tasks
 
-[ ] Inline validation
+[x] Inline validation
 [ ] Images
 [ ] Finish recipe views

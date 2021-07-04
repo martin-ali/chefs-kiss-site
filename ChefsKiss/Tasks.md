@@ -4,7 +4,7 @@
 
 - [x] Fix usings
 - [ ] Remove commented out code
-- [ ] Comply with Stylecop
+- [x] Comply with Stylecop
 - [x] Download Azure Data Studio
 - [x] Automatic migration
 - [x] Model constraints
@@ -35,6 +35,7 @@
 - [ ] Unit tests - >=65%
 - [ ] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
 - [ ] Caching
+- [ ] Breadcrumbs
 - [ ] Responsive design
 - [ ] File storage API
 - [ ] HTML5 features - geolocation, local storage, SGV, Canvas

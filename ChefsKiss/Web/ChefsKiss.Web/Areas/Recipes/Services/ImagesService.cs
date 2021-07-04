@@ -32,6 +32,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public async Task<Image> CreateImage(IFormFile input, string authorId)
         {
             var extension = Path.GetExtension(input.FileName).TrimStart('.');
+
             // FIXME: Validation in service, move it out
             this.fileValidator.ThrowIfExtensionIsInvalid(extension);
 

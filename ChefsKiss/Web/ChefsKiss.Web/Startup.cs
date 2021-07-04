@@ -90,7 +90,6 @@ namespace ChefsKiss.Web
                 // {
                 //     dbContext.Database.EnsureDeleted();
                 // }
-
                 dbContext.Database.Migrate();
 
                 // new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();

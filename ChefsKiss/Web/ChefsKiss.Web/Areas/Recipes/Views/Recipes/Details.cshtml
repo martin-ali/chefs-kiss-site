@@ -1,5 +1,5 @@
 ﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
-@using ChefsKiss.Web.Areas.Recipes.ViewModels.Comments
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
 @model RecipeDetailsViewModel
 
@@ -42,11 +42,11 @@
     <div class="row">
         @if (User.Identity.IsAuthenticated)
         {
-            <partial name="../Comments/_CommentCreateForm" model=@(new CommentCreateFormModel{ RecipeId = Model.Id }) />
+            <partial name="_ReviewCreateForm" model=@(new ReviewCreateFormModel{ RecipeId = Model.Id }) />
         }
-        @foreach (var comment in Model.Comments)
+        @foreach (var review in Model.Reviews)
         {
-            <partial name="../Comments/_CommentsList" model="comment" />
+            <partial name="_ReviewsList" model="review" />
         }
     </div>
 </div>

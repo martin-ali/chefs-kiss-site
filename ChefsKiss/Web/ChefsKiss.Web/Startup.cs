@@ -68,7 +68,7 @@ namespace ChefsKiss.Web
 
             // Application services
             services.AddTransient<IRecipesService, RecipesService>();
-            services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IReviewsService, ReviewsService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IImageOperator, ImageOperator>();
             services.AddTransient<IFileValidator, FileValidator>();

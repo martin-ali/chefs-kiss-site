@@ -4,7 +4,7 @@ namespace ChefsKiss.Data.Models
 
     using ChefsKiss.Data.Common.Models;
 
-    public class Vote : BaseModel<int>
+    public class Review : BaseModel<int>
     {
         // [Required]
         public string AuthorId { get; init; }
@@ -17,7 +17,10 @@ namespace ChefsKiss.Data.Models
         public Recipe Recipe { get; init; }
 
         [Required]
-        [Range(1, 5)]
-        public float Rating { get; init; }
+        [MaxLength(500)]
+        public string Content { get; init; }
+
+        [Required]
+        public int Rating { get; init; }
     }
 }

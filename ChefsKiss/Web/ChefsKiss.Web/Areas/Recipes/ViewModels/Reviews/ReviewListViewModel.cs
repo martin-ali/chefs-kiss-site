@@ -1,11 +1,11 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Comments
+namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 {
     using System;
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
-    public class CommentListViewModel : IMapFrom<Comment>
+    public class ReviewListViewModel : IMapFrom<Review>
     {
         public string AuthorId { get; init; }
 

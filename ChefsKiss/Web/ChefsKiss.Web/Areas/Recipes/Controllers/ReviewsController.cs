@@ -5,27 +5,27 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Comments;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     [Area(GlobalConstants.RecipesArea)]
-    public class CommentsController : Controller
+    public class ReviewsController : Controller
     {
-        private readonly ICommentsService commentsService;
+        private readonly IReviewsService reviewsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public CommentsController(ICommentsService commentsService, UserManager<ApplicationUser> userManager)
+        public ReviewsController(IReviewsService reviewsService, UserManager<ApplicationUser> userManager)
         {
-            this.commentsService = commentsService;
+            this.reviewsService = reviewsService;
             this.userManager = userManager;
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CommentCreateFormModel input)
+        public async Task<IActionResult> Create(ReviewCreateFormModel input)
         {
             if (this.ModelState.IsValid == false)
             {
@@ -40,7 +40,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             var author = await this.userManager.GetUserAsync(this.User);
 
-            await this.commentsService.CreateAsync(input, author.Id);
+            await this.reviewsService.CreateAsync(input, author.Id);
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),
@@ -60,7 +60,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(CommentCreateFormModel input)
+        public IActionResult Edit(ReviewCreateFormModel input)
         {
             return this.View();
         }

@@ -26,7 +26,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
             // FIXME: THIS SHOULD NOT BE HERE
             configuration
                 .CreateMap<Recipe, RecipeDetailsViewModel>()
-                .ForMember(vm => vm.Comments, opt => opt.MapFrom(r => r.Comments.OrderByDescending(c => c.CreatedOn)));
+                .ForMember(vm => vm.Reviews, opt => opt.MapFrom(r => r.Reviews.OrderByDescending(c => c.CreatedOn)));
         }
     }
 }

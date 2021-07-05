@@ -31,8 +31,6 @@ namespace ChefsKiss.Data.Models
 
         public IEnumerable<Recipe> Recipes { get; init; } = new List<Recipe>();
 
-        public IEnumerable<Vote> Votes { get; init; } = new List<Vote>();
-
-        public IEnumerable<Comment> Comments { get; init; } = new List<Comment>();
+        public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
     }
 }

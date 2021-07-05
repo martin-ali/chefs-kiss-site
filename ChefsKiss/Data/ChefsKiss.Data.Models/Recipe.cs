@@ -26,7 +26,7 @@
 
         public Image Image { get; init; }
 
-        public IEnumerable<Comment> Comments { get; init; } = new List<Comment>();
+        public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
 
         public IEnumerable<RecipeIngredient> RecipeIngredients { get; init; } = new List<RecipeIngredient>();
     }

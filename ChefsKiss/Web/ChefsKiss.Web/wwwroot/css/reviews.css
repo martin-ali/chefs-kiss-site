@@ -1,0 +1,22 @@
+﻿/* default link color is blue */
+.rating-parent label {
+    color: lightgray;
+}
+
+/* prev siblings should be red */
+.rating-parent:hover label {
+    color: orange;
+}
+
+.rating-parent label:hover,
+.rating-parent label:hover~label {
+    color: lightgray;
+}
+
+.rating-parent input {
+    display: none;
+}
+
+.rating-parent label .checked {
+    color: green !important;
+}

@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Common\ChefsKiss.Common\ChefsKiss.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

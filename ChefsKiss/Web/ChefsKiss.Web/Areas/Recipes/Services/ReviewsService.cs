@@ -22,6 +22,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 AuthorId = authorId,
                 RecipeId = input.RecipeId,
                 Content = input.Content,
+                Rating = input.Rating,
             };
 
             await this.reviewsRepository.AddAsync(review);

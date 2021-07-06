@@ -14,5 +14,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
         public string Content { get; init; }
 
         public DateTime CreatedOn { get; init; }
+
+        public int Rating { get; init; }
     }
 }

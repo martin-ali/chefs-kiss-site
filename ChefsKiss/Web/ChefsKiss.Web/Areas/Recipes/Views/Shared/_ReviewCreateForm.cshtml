@@ -1,13 +1,16 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
+﻿@using ChefsKiss.Common
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
 @model ReviewCreateFormModel
 
 <form asp-controller="Reviews" asp-action="Create" method="post" class="w-100 card card-body m-2">
     <h5 class="rating-parent">
-        @for (int rating = 1; rating <= 5; rating++)
+        @for (int rating = GlobalConstants.RatingMinValue; rating <= GlobalConstants.RatingMaxValue; rating++)
         {
+            var checkedStatus = rating == GlobalConstants.RatingMaxValue ? "checked" : string.Empty;
+
+            <input type="radio" name="rating" id="rating@(rating)" value="@rating" title="@rating" checked="@checkedStatus">
             <label for="rating@(rating)" class="rating-element fa fa-star"></label>
-            <input type="radio" name="rating" id="rating@(rating)" value="@rating">
         }
     </h5>
     <textarea asp-for="Content" placeholder="Type your review here" rows="3" class="w-100 border-0"></textarea>

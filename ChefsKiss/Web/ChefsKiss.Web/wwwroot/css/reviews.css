@@ -1,22 +1,38 @@
-﻿/* default link color is blue */
-.rating-parent label {
-    color: lightgray;
+﻿:root {
+    --review-element-checked-color: orange;
+    --review-element-unchecked-color: lightgray;
 }
 
-/* prev siblings should be red */
-.rating-parent:hover label {
-    color: orange;
+/* Light up on hover */
+.rating-parent:hover>label.fa:hover~label {
+    color: var(--review-element-unchecked-color);
 }
 
-.rating-parent label:hover,
-.rating-parent label:hover~label {
-    color: lightgray;
+.rating-parent:hover>label.fa.rating-element:hover,
+.rating-parent:hover>label.fa.rating-element {
+    color: var(--review-element-checked-color);
+}
+
+/* Light up on radio button press */
+.rating-parent>label,
+.rating-parent>input[type='radio']:checked+label~label {
+    color: var(--review-element-unchecked-color);
+}
+
+.rating-parent input[type='radio']:checked+label,
+.rating-parent input[type='radio']+label {
+    color: var(--review-element-checked-color);
+}
+
+/* Lights up rating bars when viewing reviews */
+.rating-bar>span.rating-element.checked {
+    color: var(--review-element-checked-color);
+}
+
+.rating-bar>span.rating-element.unchecked {
+    color: var(--review-element-unchecked-color);
 }
 
 .rating-parent input {
     display: none;
-}
-
-.rating-parent label .checked {
-    color: green !important;
 }

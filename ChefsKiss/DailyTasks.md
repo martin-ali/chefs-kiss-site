@@ -1,4 +1,5 @@
 ﻿# Today's tasks
 
-[ ] Votes
+[ ] Reviews
 [ ] Finish recipe views
+[ ] Ingredients in recipe creation

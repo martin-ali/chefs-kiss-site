@@ -1,8 +1,17 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
+﻿@using ChefsKiss.Common
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
 @model ReviewListViewModel
 
 <div class="w-100 card card-body m-2">
+    <p class="rating-bar">
+        @for (int rating = GlobalConstants.RatingMinValue; rating <= GlobalConstants.RatingMaxValue; rating++)
+        {
+            var checkedStatus = rating <= Model.Rating ? "checked" : "unchecked";
+
+            <span class="rating-element fa fa-star @checkedStatus"></span>
+        }
+    </p>
     <p>@Model.Content</p>
     <h6>
         <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">

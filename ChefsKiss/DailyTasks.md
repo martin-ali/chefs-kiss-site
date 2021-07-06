@@ -1,5 +1,5 @@
 ﻿# Today's tasks
 
-[ ] Reviews
+[x] Reviews
 [ ] Finish recipe views
 [ ] Ingredients in recipe creation

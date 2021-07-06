@@ -39,6 +39,7 @@
 - [ ] Responsive design
 - [ ] File storage API
 - [ ] HTML5 features - geolocation, local storage, SGV, Canvas
+- [ ] Re-implement CSS star rating system with :not()
 
 ## Pages
 

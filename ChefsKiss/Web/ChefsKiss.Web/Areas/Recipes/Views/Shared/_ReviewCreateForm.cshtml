@@ -15,6 +15,10 @@
     </h5>
     <textarea asp-for="Content" placeholder="Type your review here" rows="3" class="w-100 border-0"></textarea>
     <input type="hidden" name="RecipeId" value="@Model.RecipeId" />
-    <button type="submit" class="btn btn-primary col-md-2">Post review</button>
+    <div class="row user-indicator">
+        <button type="submit" class="btn btn-primary col-md-2 ml-2 p-2">Post review</button>
+        <span class="text-secondary align- col-md-4 p-2">Posting as @User.Identity.Name</span>
+    </div>
+    @* <span>Posting as @UserManager.ToString()</span> *@
     <span asp-validation-for="Content" class="text-danger"></span>
 </form>

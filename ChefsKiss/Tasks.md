@@ -24,7 +24,8 @@
 - [ ] Roles - User, Administrator
 - [ ] AJAX
 - [ ] Infinite scrolling
-- [ ] Voting
+- [ ] Rating with showcase
+- [ ] Only one review per person
 
 ## Optional
 
@@ -63,3 +64,4 @@
 ## Misc
 
 - View Component for categories?
+- Experiment with IHaveCustomMappings

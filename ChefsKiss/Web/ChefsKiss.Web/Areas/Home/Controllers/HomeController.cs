@@ -1,18 +1,15 @@
 ﻿namespace ChefsKiss.Web.Areas.Home.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
-    using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
     using ChefsKiss.Web.Models;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
-    [Area(GlobalConstants.HomeArea)]
+    using static ChefsKiss.Common.GlobalConstants;
+
+    [Area(HomeArea)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;

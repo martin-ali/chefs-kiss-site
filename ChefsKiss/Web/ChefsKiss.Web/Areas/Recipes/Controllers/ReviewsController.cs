@@ -11,7 +11,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    [Area(GlobalConstants.RecipesArea)]
+    using static ChefsKiss.Common.GlobalConstants;
+    [Area(RecipesArea)]
     public class ReviewsController : Controller
     {
         private readonly IReviewsService reviewsService;

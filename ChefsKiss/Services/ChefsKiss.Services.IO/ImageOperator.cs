@@ -3,10 +3,10 @@ namespace ChefsKiss.Services.IO
     using System.IO;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
-
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+
+    using static ChefsKiss.Common.GlobalConstants;
 
     public class ImageOperator : IImageOperator
     {
@@ -17,7 +17,7 @@ namespace ChefsKiss.Services.IO
         public ImageOperator(IWebHostEnvironment environment)
         {
             this.environment = environment;
-            this.imagesPath = Path.Combine(this.environment.WebRootPath, GlobalConstants.ImagesDirectory);
+            this.imagesPath = Path.Combine(this.environment.WebRootPath, ImagesDirectory);
 
             Directory.CreateDirectory(this.imagesPath);
         }

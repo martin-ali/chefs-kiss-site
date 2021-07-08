@@ -1,11 +1,11 @@
-﻿@using ChefsKiss.Common
+@using static ChefsKiss.Common.GlobalConstants
 @using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
 @model ReviewListViewModel
 
 <div class="w-100 card card-body m-2">
     <p class="rating-bar">
-        @for (int rating = GlobalConstants.RatingMinValue; rating <= GlobalConstants.RatingMaxValue; rating++)
+        @for (int rating = RatingMinValue; rating <= RatingMaxValue; rating++)
         {
             var checkedStatus = rating <= Model.Rating ? "checked" : "unchecked";
 

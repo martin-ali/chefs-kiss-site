@@ -4,7 +4,7 @@ namespace ChefsKiss.Data.Models
 
     using ChefsKiss.Data.Common.Models;
 
-    using ChefsKiss.Common;
+    using static ChefsKiss.Common.GlobalConstants;
 
     public class Review : BaseModel<int>
     {
@@ -23,7 +23,7 @@ namespace ChefsKiss.Data.Models
         public string Content { get; init; }
 
         [Required]
-        [Range(GlobalConstants.RatingMinValue, GlobalConstants.RatingMaxValue)]
+        [Range(RatingMinValue, RatingMaxValue)]
         public int Rating { get; init; }
     }
 }

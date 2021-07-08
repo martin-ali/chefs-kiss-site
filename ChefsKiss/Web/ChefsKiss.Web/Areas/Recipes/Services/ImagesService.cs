@@ -5,13 +5,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Validation;
 
     using Microsoft.AspNetCore.Http;
+
+    using static ChefsKiss.Common.GlobalConstants;
 
     public class ImagesService : IImagesService
     {
@@ -62,7 +63,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public string GetRelativeImagePath(int imageId)
         {
             string fileName = this.GetFileName(imageId);
-            var path = Path.Combine(GlobalConstants.ImagesDirectory, fileName);
+            var path = Path.Combine(ImagesDirectory, fileName);
 
             return path;
         }

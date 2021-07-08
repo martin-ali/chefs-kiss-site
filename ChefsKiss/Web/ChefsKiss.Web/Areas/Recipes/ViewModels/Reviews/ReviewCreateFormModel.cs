@@ -1,7 +1,8 @@
 namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 {
     using System.ComponentModel.DataAnnotations;
-    using ChefsKiss.Common;
+
+    using static ChefsKiss.Common.GlobalConstants;
 
     public class ReviewCreateFormModel
     {
@@ -14,7 +15,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
         public string Content { get; init; }
 
         [Required]
-        [Range(GlobalConstants.RatingMinValue, GlobalConstants.RatingMaxValue)]
+        [Range(RatingMinValue, RatingMaxValue)]
         public int Rating { get; init; }
     }
 }

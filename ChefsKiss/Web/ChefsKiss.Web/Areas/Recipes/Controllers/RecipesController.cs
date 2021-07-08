@@ -1,9 +1,7 @@
 namespace ChefsKiss.Web.Areas.Recipes.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
@@ -12,7 +10,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    [Area(GlobalConstants.RecipesArea)]
+    using static ChefsKiss.Common.GlobalConstants;
+
+    [Area(RecipesArea)]
     public class RecipesController : Controller
     {
         private readonly IRecipesService recipesService;

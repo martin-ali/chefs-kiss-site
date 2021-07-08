@@ -3,7 +3,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
     public interface IRecipesService

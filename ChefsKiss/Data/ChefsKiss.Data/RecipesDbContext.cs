@@ -11,16 +11,16 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+    public class RecipesDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public DbSet<Image> Images { get; init; }
         public DbSet<Ingredient> Ingredients { get; init; }
         public DbSet<Review> Reviews { get; init; }
         public DbSet<Recipe> Recipes { get; init; }
 
-        public ApplicationDbContext() { }
+        public RecipesDbContext() { }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public RecipesDbContext(DbContextOptions<RecipesDbContext> options)
             : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChefsKiss.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(RecipesDbContext))]
     [Migration("20210706133631_AddedRatingToReview")]
     partial class AddedRatingToReview
     {

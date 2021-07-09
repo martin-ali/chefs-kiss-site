@@ -11,7 +11,7 @@ namespace ChefsKiss.Data.Repositories
     public class EfRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        public EfRepository(ApplicationDbContext context)
+        public EfRepository(RecipesDbContext context)
         {
             this.Context = context ?? throw new ArgumentNullException(nameof(context));
             this.DbSet = this.Context.Set<TEntity>();
@@ -19,7 +19,7 @@ namespace ChefsKiss.Data.Repositories
 
         protected DbSet<TEntity> DbSet { get; set; }
 
-        protected ApplicationDbContext Context { get; set; }
+        protected RecipesDbContext Context { get; set; }
 
         public virtual IQueryable<TEntity> All() => this.DbSet;
 

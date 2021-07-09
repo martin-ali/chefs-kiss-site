@@ -15,7 +15,5 @@
         public const string RecipesArea = "Recipes";
 
         public const string HomeArea = "Home";
-
-        public static readonly string[] AllowedImageExtensions = new[] { "png", "jpg" };
     }
 }

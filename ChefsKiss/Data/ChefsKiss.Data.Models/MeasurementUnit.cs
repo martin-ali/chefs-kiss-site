@@ -1,11 +1,9 @@
 namespace ChefsKiss.Data.Models
 {
-    public enum MeasurementUnit
+    using ChefsKiss.Data.Common.Models;
+
+    public class MeasurementUnit : BaseModel<int>
     {
-        Micrograms,
-        Milligrams,
-        Grams,
-        Kilograms,
-        Teaspoons,
+        public string Name { get; init}
     }
 }

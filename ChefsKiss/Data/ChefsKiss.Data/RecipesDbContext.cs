@@ -14,6 +14,7 @@
     public class RecipesDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public DbSet<Image> Images { get; init; }
+        public DbSet<MeasurementUnit> MeasurementUnits { get; init; }
         public DbSet<Ingredient> Ingredients { get; init; }
         public DbSet<Review> Reviews { get; init; }
         public DbSet<Recipe> Recipes { get; init; }

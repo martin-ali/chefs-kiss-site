@@ -18,11 +18,13 @@ namespace ChefsKiss.Data.Models
 
         public Ingredient Ingredient { get; init; }
 
+        // [Required]
+        public int MeasurementUnitId { get; set; }
+
+        public MeasurementUnit MeasurementUnit { get; set; }
+
         [Required]
         [Range(RecipeIngredientMinQuantity, RecipeIngredientMaxQuantity)]
         public double Quantity { get; init; }
-
-        [Required]
-        public MeasurementUnit MeasurementUnit { get; set; }
     }
 }

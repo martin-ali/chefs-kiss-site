@@ -4,14 +4,16 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
     using Microsoft.AspNetCore.Http;
 
+    using static ChefsKiss.Common.DataConstants;
+
     public class RecipeCreateFormModel
     {
         [Required]
         public string Name { get; init; }
 
         [Required]
-        [MaxLength(10000)]
-        [MinLength(100)]
+        [MinLength(RecipeContentMinLength)]
+        [MaxLength(RecipeContentMaxLength)]
         public string Content { get; init; }
 
         [Required]

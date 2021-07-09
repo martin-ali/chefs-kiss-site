@@ -6,8 +6,6 @@
 
         public const string AdministratorRoleName = "Administrator";
 
-        public const string TagsSeparator = " ";
-
         public const string ImagesDirectory = "images";
 
         public const string AdministrationArea = "Administration";
@@ -19,8 +17,5 @@
         public const string HomeArea = "Home";
 
         public static readonly string[] AllowedImageExtensions = new[] { "png", "jpg" };
-
-        public const int RatingMinValue = 1;
-        public const int RatingMaxValue = 5;
     }
 }

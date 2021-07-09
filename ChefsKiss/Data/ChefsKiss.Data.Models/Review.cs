@@ -4,7 +4,7 @@ namespace ChefsKiss.Data.Models
 
     using ChefsKiss.Data.Common.Models;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.DataConstants;
 
     public class Review : BaseModel<int>
     {
@@ -19,11 +19,12 @@ namespace ChefsKiss.Data.Models
         public Recipe Recipe { get; init; }
 
         [Required]
-        [MaxLength(500)]
+        [MinLength(ReviewContentMinLength)]
+        [MaxLength(ReviewContentMaxLength)]
         public string Content { get; init; }
 
         [Required]
-        [Range(RatingMinValue, RatingMaxValue)]
+        [Range(ReviewRatingMinValue, ReviewContentMaxLength)]
         public int Rating { get; init; }
     }
 }

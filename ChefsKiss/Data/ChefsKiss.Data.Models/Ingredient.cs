@@ -4,10 +4,14 @@ namespace ChefsKiss.Data.Models
 
     using ChefsKiss.Data.Common.Models;
 
+    using static ChefsKiss.Common.DataConstants;
+
     public class Ingredient : BaseModel<int>
     {
+
         [Required]
-        [MaxLength(50)]
+        [MinLength(IngredientNameMinLength)]
+        [MaxLength(IngredientNameMaxLength)]
         public string Name { get; init; }
     }
 }

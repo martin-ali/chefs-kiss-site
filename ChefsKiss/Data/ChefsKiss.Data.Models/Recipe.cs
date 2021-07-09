@@ -5,6 +5,8 @@
 
     using ChefsKiss.Data.Common.Models;
 
+    using static ChefsKiss.Common.DataConstants;
+
     public class Recipe : BaseModel<int>
     {
         // [Required]
@@ -13,12 +15,13 @@
         public ApplicationUser Author { get; init; }
 
         [Required]
-        [MaxLength(100)]
+        [MinLength(RecipeNameMinLength)]
+        [MaxLength(RecipeNameMaxLength)]
         public string Name { get; init; }
 
         [Required]
-        [MaxLength(10000)]
-        [MinLength(1000)]
+        [MinLength(RecipeContentMinLength)]
+        [MaxLength(RecipeContentMaxLength)]
         public string Content { get; init; }
 
         // [Required]

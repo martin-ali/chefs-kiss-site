@@ -4,6 +4,8 @@ namespace ChefsKiss.Data.Models
 
     using ChefsKiss.Data.Common.Models;
 
+    using static ChefsKiss.Common.DataConstants;
+
     public class RecipeIngredient : BaseModel<int>
     {
         // [Required]
@@ -17,6 +19,7 @@ namespace ChefsKiss.Data.Models
         public Ingredient Ingredient { get; init; }
 
         [Required]
+        [Range(RecipeIngredientMinQuantity, RecipeIngredientMaxQuantity)]
         public double Quantity { get; init; }
 
         [Required]

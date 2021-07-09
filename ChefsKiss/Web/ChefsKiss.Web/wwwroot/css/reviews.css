@@ -33,6 +33,7 @@
     color: var(--review-element-unchecked-color);
 }
 
+/* Only the rating elements should be seen */
 .rating-parent input {
     display: none;
 }

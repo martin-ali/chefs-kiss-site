@@ -4,6 +4,6 @@ namespace ChefsKiss.Data.Models
 
     public class MeasurementUnit : BaseModel<int>
     {
-        public string Name { get; init}
+        public string Name { get; init; }
     }
 }

@@ -13,16 +13,16 @@
 
     public class RecipesDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
+        public RecipesDbContext() { }
+
+        public RecipesDbContext(DbContextOptions<RecipesDbContext> options)
+            : base(options) { }
+
         public DbSet<Image> Images { get; init; }
         public DbSet<MeasurementUnit> MeasurementUnits { get; init; }
         public DbSet<Ingredient> Ingredients { get; init; }
         public DbSet<Review> Reviews { get; init; }
         public DbSet<Recipe> Recipes { get; init; }
-
-        public RecipesDbContext() { }
-
-        public RecipesDbContext(DbContextOptions<RecipesDbContext> options)
-            : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

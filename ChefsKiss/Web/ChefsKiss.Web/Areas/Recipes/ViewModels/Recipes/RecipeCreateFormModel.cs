@@ -1,6 +1,9 @@
 namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients;
 
     using Microsoft.AspNetCore.Http;
 
@@ -19,5 +22,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
         [Required]
         [FileExtensions(Extensions = AllowedImageExtensions)]
         public IFormFile Image { get; init; }
+
+        [Required]
+        public IEnumerable<IngredientFormModel> Ingredients { get; init; } = new List<IngredientFormModel>();
     }
 }

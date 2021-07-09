@@ -4,35 +4,40 @@
 
 <div class="container card card-body">
     <div class="row">
-        <div class="col-md-6">
-            <form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" method="post" enctype="multipart/form-data" class="col-md-8">
-                <div class="row card-title">
-                    <h2>Create a new recipe</h2>
+        <h2 class="text-center col-md-12">Create recipe</h2>
+    </div>
+    <div class="row">
+        <img id="image-preview" class="w-100 card-img">
+    </div>
+    <div class="row">
+        <form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" method="post" enctype="multipart/form-data" class="col-md-12">
+            <div class="row">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control w-100" placeholder="Enter the name here" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Content"></label>
+                <input asp-for="Content" class="form-control" placeholder="Enter the content here" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Image"></label>
+                <input id="image-upload" asp-for="Image" accept="image/jpeg, image/png" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Ingredients"></label>
+                <div class="ingredients-container col-12">
+                    <partial name="_IngredientAddForm" />
                 </div>
-                <div class="row">
-                    <label asp-for="Name"></label>
-                    <input asp-for="Name" class="form-control w-100" placeholder="Enter the name here" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="row">
-                    <label asp-for="Content"></label>
-                    <input asp-for="Content" class="form-control" placeholder="Enter the content here" />
-                    <span asp-validation-for="Content" class="text-danger"></span>
-                </div>
-                <div class="row">
-                    <label asp-for="Image">Image</label>
-                    <input id="image-upload" asp-for="Image" accept="image/jpeg, image/png" class="form-control" />
-                    <span asp-validation-for="Image" class="text-danger"></span>
-                </div>
-                <br />
-                <div class="row">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <img id="image-preview" class="w-100 card-img">
-        </div>
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
 @* FIXME: Find a better place for this script *@

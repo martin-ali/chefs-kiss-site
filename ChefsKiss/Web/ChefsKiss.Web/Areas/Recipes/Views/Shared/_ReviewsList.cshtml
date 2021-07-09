@@ -1,10 +1,10 @@
-@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
 @using static ChefsKiss.Common.DataConstants
 
 @model ReviewListViewModel
 
-<div class="w-100 card card-body m-2">
+<div class="w-100 card card-body m-2 col-md-12">
     <p class="rating-bar">
         @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
         {

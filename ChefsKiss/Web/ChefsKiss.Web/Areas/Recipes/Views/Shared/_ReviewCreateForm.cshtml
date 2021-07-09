@@ -1,10 +1,10 @@
-@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
 @using static ChefsKiss.Common.DataConstants
 
 @model ReviewCreateFormModel
 
-<form asp-controller="Reviews" asp-action="Create" method="post" class="w-100 card card-body m-2">
+<form asp-controller="Reviews" asp-action="Create" method="post" class="card card-body m-2 col-md-12">
     <h5 class="rating-parent">
         @for (int rating = ReviewContentMinLength; rating <= ReviewRatingMaxValue; rating++)
         {

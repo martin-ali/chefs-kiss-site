@@ -18,7 +18,7 @@
 - [x] Inline validation
 - [ ] Validation with user-friendly messages
 - [ ] Controllers
-- [ ] Comment system
+- [ ] Review system
 - [ ] Fix hard-coded connection string
 - [x] Favicon
 - [ ] Roles - User, Administrator
@@ -26,6 +26,7 @@
 - [ ] Infinite scrolling
 - [ ] Rating with showcase
 - [ ] Only one review per person
+- [ ] Image size limit
 
 ## Optional
 

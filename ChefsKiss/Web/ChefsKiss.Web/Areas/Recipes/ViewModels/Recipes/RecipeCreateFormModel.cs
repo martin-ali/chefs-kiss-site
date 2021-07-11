@@ -12,6 +12,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
     public class RecipeCreateFormModel
     {
         [Required]
+        [MinLength(RecipeNameMinLength)]
+        [MaxLength(RecipeNameMaxLength)]
         public string Name { get; init; }
 
         [Required]

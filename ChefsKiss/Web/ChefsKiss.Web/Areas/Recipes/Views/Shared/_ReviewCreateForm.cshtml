@@ -6,7 +6,7 @@
 
 <form asp-controller="Reviews" asp-action="Create" method="post" class="card card-body m-2 col-md-12">
     <h5 class="rating-parent">
-        @for (int rating = ReviewContentMinLength; rating <= ReviewRatingMaxValue; rating++)
+        @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
         {
             var checkedStatus = rating == ReviewRatingMaxValue ? "checked" : string.Empty;
 

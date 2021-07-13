@@ -71,7 +71,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
 
-        // [Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult IngredientAddForm(int id)
         {
@@ -89,6 +89,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 MeasurementUnitOptions = units,
             };
 
+            // FIXME: Hard-coded
             return this.PartialView("_IngredientAddForm", viewModel);
         }
     }

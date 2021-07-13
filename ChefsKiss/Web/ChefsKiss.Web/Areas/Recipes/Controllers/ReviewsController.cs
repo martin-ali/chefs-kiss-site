@@ -12,6 +12,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     using static ChefsKiss.Common.GlobalConstants;
+
     [Area(RecipesArea)]
     public class ReviewsController : Controller
     {

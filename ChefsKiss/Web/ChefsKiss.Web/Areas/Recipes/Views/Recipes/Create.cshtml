@@ -29,8 +29,9 @@
             <div class="row">
                 <label asp-for="Ingredients"></label>
                 <div class="ingredients-container col-12">
-                    <partial name="_IngredientAddForm" />
+                    @* <partial name="_IngredientAddForm" model="new IngredientFormDataModel{Index=0}" /> *@
                 </div>
+                <button class="add-ingredient btn btn-success" type="button">Add new ingredient</button>
                 <span asp-validation-for="Ingredients" class="text-danger"></span>
             </div>
             <br />
@@ -40,5 +41,6 @@
         </form>
     </div>
 </div>
-@* FIXME: Find a better place for this script *@
+@* FIXME: Find a better place for these scripts *@
 <script src="~/js/image-preview.js" asp-append-version="true"></script>
+<script src="~/js/ingredient-form-add.js" asp-append-version="true"></script>

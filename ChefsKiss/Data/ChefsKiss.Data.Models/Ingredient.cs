@@ -8,7 +8,6 @@ namespace ChefsKiss.Data.Models
 
     public class Ingredient : BaseModel<int>
     {
-
         [Required]
         [MinLength(IngredientNameMinLength)]
         [MaxLength(IngredientNameMaxLength)]

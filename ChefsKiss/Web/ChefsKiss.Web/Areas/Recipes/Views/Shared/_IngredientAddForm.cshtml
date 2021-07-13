@@ -1,9 +1,15 @@
 ﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
 
-@model IngredientFormModel
+@model IngredientFormDataModel
 
-<div class="row ingredient">
-    <input class="form-control col-3" placeholder="Ingredient" />
-    <input class="form-control col-3" placeholder="Quantity" />
-    <input class="form-control col-3" placeholder="Measurement" />
+<div class="row ingredient pb-2">
+    <input name="Model.Ingredients[@Model.Index].Name" class="form-control col-3" placeholder="Ingredient" />
+    <input name="Model.Ingredients[@Model.Index].Quantity" class="form-control col-3 ml-1" placeholder="Quantity" />
+    @* <input name="Ingredient[0].MeasurementUnit" class="form-control col-3" placeholder="Measurement" /> *@
+    <select name="Model.Ingredients[@Model.Index].MeasurementUnit" class="form-control col-3 ml-1">
+        @foreach (var unit in Model.MeasurementUnitOptions)
+        {
+            <option value="@unit">@unit</option>
+        }
+    </select>
 </div>

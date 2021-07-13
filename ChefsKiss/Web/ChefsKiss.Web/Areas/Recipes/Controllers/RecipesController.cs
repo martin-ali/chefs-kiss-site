@@ -4,6 +4,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients;
+    using ChefsKiss.Web.Areas.Recipes.ViewModels.MeasurementUnits;
     using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
     using Microsoft.AspNetCore.Authorization;
@@ -17,13 +19,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     {
         private readonly IRecipesService recipesService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IMeasurementUnitsService measurementUnitsService;
 
         public RecipesController(
             IRecipesService recipesService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IMeasurementUnitsService measurementUnitsService)
         {
             this.recipesService = recipesService;
             this.userManager = userManager;
+            this.measurementUnitsService = measurementUnitsService;
         }
 
         [HttpGet]
@@ -64,6 +69,27 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var recipeId = await this.recipesService.CreateAsync(model, author.Id);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
+        }
+
+        // [Authorize]
+        [HttpGet]
+        public IActionResult IngredientAddForm(int id)
+        {
+            // FIXME: WTF is this validation? Temporary
+            var idIsValid = 0 <= id && id <= int.MaxValue;
+            if (idIsValid == false)
+            {
+                return this.BadRequest();
+            }
+
+            var units = this.measurementUnitsService.GetAll<MeasurementUnitViewModel>();
+            var viewModel = new IngredientFormDataModel
+            {
+                Index = id,
+                MeasurementUnitOptions = units,
+            };
+
+            return this.PartialView("_IngredientAddForm", viewModel);
         }
     }
 }

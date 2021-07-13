@@ -1,38 +1,13 @@
-﻿(function start() {
-    function setupPostPreview() {
+﻿window.addEventListener('load', setupPostPreview)
 
-        const preview = document.getElementById('image-preview');
-        const input = document.getElementById('image-upload');
+function setupPostPreview() {
 
-        if (input && preview) {
-            input.addEventListener('change', (event) => {
-                preview.src = URL.createObjectURL(event.target.files[0]);
-            });
-        }
-    }
+    const preview = document.getElementById('image-preview');
+    const input = document.getElementById('image-upload');
 
-    function setupVoting() {
-        let container = document.getElementById("main");
-
-        container.addEventListener('click', (event) => {
-
-            if (event.target.classList
-                && (event.target.classList.contains('upvote')
-                    || event.target.classList.contains('downvote'))) {
-
-                event.preventDefault();
-
-                const parent = event.target.parentElement;
-                const ratingDisplay = parent.getElementsByClassName("rating")[0];
-
-                $.ajax({
-                    url: event.target.href,
-                    success: (newRating) => ratingDisplay.innerText = newRating,
-                });
-            }
+    if (input && preview) {
+        input.addEventListener('change', (event) => {
+            preview.src = URL.createObjectURL(event.target.files[0]);
         });
     }
-
-    setupPostPreview();
-    setupVoting();
-}())
+}

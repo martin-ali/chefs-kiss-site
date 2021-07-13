@@ -30,6 +30,5 @@ namespace ChefsKiss.Common
 
         // Images
         public const int ImageMaxSize = 10 * 1024 * 1024; // 10MB
-        public const string AllowedImageExtensions = "png,jpg,jpeg";
     }
 }

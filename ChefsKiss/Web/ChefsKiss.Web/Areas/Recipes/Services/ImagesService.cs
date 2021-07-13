@@ -8,7 +8,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.IO;
-    using ChefsKiss.Services.Validation;
 
     using Microsoft.AspNetCore.Http;
 
@@ -18,24 +17,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     {
         private readonly IRepository<Image> imagesRepository;
         private readonly IImageOperator imageOperator;
-        private readonly IFileValidator fileValidator;
 
         public ImagesService(
             IRepository<Image> imagesRepository,
-            IImageOperator imageOperator,
-            IFileValidator fileValidator)
+            IImageOperator imageOperator)
         {
             this.imagesRepository = imagesRepository;
             this.imageOperator = imageOperator;
-            this.fileValidator = fileValidator;
         }
 
         public async Task<Image> CreateImage(IFormFile input, string authorId)
         {
             var extension = Path.GetExtension(input.FileName).TrimStart('.');
-
-            // FIXME: Validation in service, move it out
-            this.fileValidator.ThrowIfExtensionIsInvalid(extension);
 
             var image = new Image
             {

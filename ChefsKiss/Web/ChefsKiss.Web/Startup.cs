@@ -8,7 +8,6 @@ namespace ChefsKiss.Web
     using ChefsKiss.Data.Repositories;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Services.Validation;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
     using ChefsKiss.Web.Models;
@@ -64,7 +63,6 @@ namespace ChefsKiss.Web
             services.AddTransient<IReviewsService, ReviewsService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IImageOperator, ImageOperator>();
-            services.AddTransient<IFileValidator, FileValidator>();
             services.AddTransient<IMeasurementUnitsService, MeasurementUnitsService>();
         }
 

@@ -35,6 +35,16 @@
         @await Html.PartialAsync("_AdminPanel", Model)
         </div>
         } *@
+    <hr>
+    <div class="row">
+        <ul>
+            @foreach (var ingredient in Model.Ingredients)
+            {
+                <li>@ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit</li>
+            }
+        </ul>
+    </div>
+    <hr>
     <div class="row">
         @Model.Content
     </div>

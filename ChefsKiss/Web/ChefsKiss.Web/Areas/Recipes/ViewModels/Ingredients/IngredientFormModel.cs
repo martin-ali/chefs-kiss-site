@@ -16,8 +16,6 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
         public double Quantity { get; init; }
 
         [Required]
-        [MinLength(MeasurementUnitNameMinLength)]
-        [MaxLength(MeasurementUnitNameMaxLength)]
-        public string MeasurementUnit { get; init; }
+        public int MeasurementUnitId { get; init; }
     }
 }

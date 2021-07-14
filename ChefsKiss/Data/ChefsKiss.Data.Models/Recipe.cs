@@ -31,6 +31,6 @@
 
         public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
 
-        public IEnumerable<RecipeIngredient> RecipeIngredients { get; init; } = new List<RecipeIngredient>();
+        public IEnumerable<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
     }
 }

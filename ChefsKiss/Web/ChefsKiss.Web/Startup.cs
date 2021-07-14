@@ -6,6 +6,7 @@ namespace ChefsKiss.Web
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Data.Repositories;
+    using ChefsKiss.Data.Seeding;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.Services;
@@ -78,13 +79,17 @@ namespace ChefsKiss.Web
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<RecipesDbContext>();
 
-                // if (env.IsDevelopment())
-                // {
-                //     dbContext.Database.EnsureDeleted();
-                // }
+                if (env.IsDevelopment())
+                {
+                    // dbContext.Database.EnsureDeleted();
+                }
+
                 dbContext.Database.Migrate();
 
-                // new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+                new ApplicationDbContextSeeder()
+                    .SeedAsync(dbContext, serviceScope.ServiceProvider)
+                    .GetAwaiter()
+                    .GetResult();
             }
 
             if (env.IsDevelopment())

@@ -12,13 +12,13 @@
 - [x] Registration and login
 - [ ] Views
 - [x] Automapping
-- [ ] Services
+- [x] Services
 - [ ] Authentication
-- [ ] Validation
+- [x] Validation
 - [x] Inline validation
 - [ ] Validation with user-friendly messages
-- [ ] Controllers
-- [ ] Review system
+- [x] Controllers
+- [x] Review system
 - [ ] Fix hard-coded connection string
 - [x] Favicon
 - [ ] Roles - User, Administrator
@@ -27,6 +27,7 @@
 - [ ] Rating with showcase
 - [ ] Only one review per person
 - [ ] Image size limit
+- [ ] Decouple the ingredient form add JS script
 
 ## Optional
 

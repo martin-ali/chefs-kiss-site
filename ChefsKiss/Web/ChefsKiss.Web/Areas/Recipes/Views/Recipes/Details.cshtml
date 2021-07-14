@@ -13,9 +13,9 @@
             <img class="card-img-top" src="@Model.ImageUrl">
             <p class="card-text">
                 <span> Author:
-                    @* <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                    <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
                         <span> @Model.AuthorUsername </span>
-                        </a> *@
+                    </a>
                 </span>
                 @* <span> Tags:
                     @foreach (var tag in Model.Tags)

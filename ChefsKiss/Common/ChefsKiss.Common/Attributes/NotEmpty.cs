@@ -9,7 +9,7 @@ namespace ChefsKiss.Common.Attributes
         public NotEmpty()
             : base()
         {
-            this.ErrorMessage = ErrorMessages.EmptyCollection;
+            this.ErrorMessage = "Collection cannot be empty.";
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)

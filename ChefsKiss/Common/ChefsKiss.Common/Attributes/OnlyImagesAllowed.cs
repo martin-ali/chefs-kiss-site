@@ -22,7 +22,7 @@ namespace ChefsKiss.Common.Attributes
             {
                 var contentData = contentType.Split('/');
 
-                if (contentData.Length < 2)
+                if (contentData.Length != 2)
                 {
                     break;
                 }

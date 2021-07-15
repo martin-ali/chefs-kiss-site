@@ -10,7 +10,7 @@ namespace ChefsKiss.Common.Attributes
 
         public OnlyImagesAllowed()
         {
-            this.ErrorMessage = $"This file type is not allowed. Allowed types are: {string.Join(", ", this.AllowedExtensions)}";
+            this.ErrorMessage = $"This file type is not allowed. Allowed types are: {string.Join(", ", this.AllowedExtensions)}.";
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)

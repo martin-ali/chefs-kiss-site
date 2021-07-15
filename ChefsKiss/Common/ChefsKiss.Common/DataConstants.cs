@@ -29,6 +29,6 @@ namespace ChefsKiss.Common
         public const int MeasurementUnitNameMaxLength = 10;
 
         // Images
-        public const int ImageMaxSize = 10 * 1024 * 1024; // 10MB
+        public const int ImageMaxSizeBytes = 10 * 1024 * 1024; // 10MB
     }
 }

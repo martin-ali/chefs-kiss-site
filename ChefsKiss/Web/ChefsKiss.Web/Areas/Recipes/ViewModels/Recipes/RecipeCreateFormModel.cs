@@ -25,6 +25,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
         [Required]
         [OnlyImagesAllowed]
+        [MaxFileSize(ImageMaxSizeBytes, ErrorMessage = ImageOverMaxSize)]
         public IFormFile Image { get; init; }
 
         [Required]

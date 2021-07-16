@@ -8,9 +8,12 @@ namespace ChefsKiss.Common.Attributes
         private readonly int maxAllowedBytes;
 
         public MaxFileSize(int bytes)
+            : base()
         {
             this.maxAllowedBytes = bytes;
-            this.ErrorMessage = "File size has exceeded the allowed maximum.";
+
+            var size = Helpers.GetReadableFileSize(bytes);
+            this.ErrorMessage = $"File size has exceeded the allowed maximum of {size}";
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -22,7 +25,7 @@ namespace ChefsKiss.Common.Attributes
                 return new ValidationResult(this.ErrorMessage);
             }
 
-            return new ValidationResult(this.ErrorMessage);
+            return ValidationResult.Success;
         }
     }
 }

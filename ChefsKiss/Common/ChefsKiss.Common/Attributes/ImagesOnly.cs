@@ -1,14 +1,15 @@
 namespace ChefsKiss.Common.Attributes
 {
     using System.ComponentModel.DataAnnotations;
-
+    using System.Linq;
     using Microsoft.AspNetCore.Http;
 
-    public class OnlyImagesAllowed : ValidationAttribute
+    public class ImagesOnly : ValidationAttribute
     {
         private readonly string[] AllowedExtensions = new[] { "png", "jpg", "jpeg" };
 
-        public OnlyImagesAllowed()
+        public ImagesOnly()
+            : base()
         {
             this.ErrorMessage = $"This file type is not allowed. Allowed types are: {string.Join(", ", this.AllowedExtensions)}.";
         }
@@ -17,22 +18,18 @@ namespace ChefsKiss.Common.Attributes
         {
             var file = (IFormFile)value;
             var contentType = file.ContentType.ToLower();
+            var contentData = contentType.Split('/');
 
-            foreach (var allowedExtension in this.AllowedExtensions)
+            if (contentData.Length != 2)
             {
-                var contentData = contentType.Split('/');
+                return new ValidationResult(this.ErrorMessage);
+            }
 
-                if (contentData.Length != 2)
-                {
-                    break;
-                }
+            var extension = contentData[1].Trim();
 
-                var extension = contentData[1].Trim();
-
-                if (allowedExtension == extension)
-                {
-                    return ValidationResult.Success;
-                }
+            if (AllowedExtensions.Contains(extension))
+            {
+                return ValidationResult.Success;
             }
 
             return new ValidationResult(this.ErrorMessage);

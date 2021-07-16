@@ -24,12 +24,12 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
         public string Content { get; init; }
 
         [Required]
-        [OnlyImagesAllowed]
-        [MaxFileSize(ImageMaxSizeBytes, ErrorMessage = ImageOverMaxSize)]
+        [ImagesOnly]
+        [MaxFileSize(ImageMaxSizeBytes)]
         public IFormFile Image { get; init; }
 
         [Required]
-        [NotEmpty(ErrorMessage = NoIngredients)]
+        [NotEmptyCollection(ErrorMessage = NoIngredients)]
         public IEnumerable<IngredientFormModel> Ingredients { get; init; } = new List<IngredientFormModel>();
     }
 }

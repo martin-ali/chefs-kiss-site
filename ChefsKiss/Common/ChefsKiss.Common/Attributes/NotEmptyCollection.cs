@@ -4,9 +4,9 @@ namespace ChefsKiss.Common.Attributes
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
-    public class NotEmpty : ValidationAttribute
+    public class NotEmptyCollection : ValidationAttribute
     {
-        public NotEmpty()
+        public NotEmptyCollection()
             : base()
         {
             this.ErrorMessage = "Collection cannot be empty.";

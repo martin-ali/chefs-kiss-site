@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChefsKiss.Data.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20210706133631_AddedRatingToReview")]
-    partial class AddedRatingToReview
+    [Migration("20210717162508_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -174,6 +174,27 @@ namespace ChefsKiss.Data.Migrations
                     b.ToTable("Ingredients");
                 });
 
+            modelBuilder.Entity("ChefsKiss.Data.Models.MeasurementUnit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MeasurementUnits");
+                });
+
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
                 {
                     b.Property<int>("Id")
@@ -186,7 +207,7 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(10000)
+                        .HasMaxLength(100000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -225,7 +246,7 @@ namespace ChefsKiss.Data.Migrations
                     b.Property<int>("IngredientId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MeasurementUnit")
+                    b.Property<int>("MeasurementUnitId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -240,6 +261,8 @@ namespace ChefsKiss.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IngredientId");
+
+                    b.HasIndex("MeasurementUnitId");
 
                     b.HasIndex("RecipeId");
 
@@ -258,8 +281,8 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -426,6 +449,12 @@ namespace ChefsKiss.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ChefsKiss.Data.Models.MeasurementUnit", "MeasurementUnit")
+                        .WithMany()
+                        .HasForeignKey("MeasurementUnitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ChefsKiss.Data.Models.Recipe", "Recipe")
                         .WithMany("RecipeIngredients")
                         .HasForeignKey("RecipeId")
@@ -433,6 +462,8 @@ namespace ChefsKiss.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Ingredient");
+
+                    b.Navigation("MeasurementUnit");
 
                     b.Navigation("Recipe");
                 });

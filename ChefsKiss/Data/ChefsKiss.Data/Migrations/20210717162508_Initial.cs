@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ChefsKiss.Data.Migrations
 {
-    public partial class ResettingMigrations : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,6 +79,21 @@ namespace ChefsKiss.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ingredients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MeasurementUnits",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MeasurementUnits", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,7 +231,7 @@ namespace ChefsKiss.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", maxLength: 100000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -239,35 +254,6 @@ namespace ChefsKiss.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    RecipeId = table.Column<int>(type: "int", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Comments_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RecipeIngredient",
                 columns: table => new
                 {
@@ -275,8 +261,8 @@ namespace ChefsKiss.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RecipeId = table.Column<int>(type: "int", nullable: false),
                     IngredientId = table.Column<int>(type: "int", nullable: false),
+                    MeasurementUnitId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<double>(type: "float", nullable: false),
-                    MeasurementUnit = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -290,6 +276,12 @@ namespace ChefsKiss.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_RecipeIngredient_MeasurementUnits_MeasurementUnitId",
+                        column: x => x.MeasurementUnitId,
+                        principalTable: "MeasurementUnits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_RecipeIngredient_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
@@ -298,28 +290,29 @@ namespace ChefsKiss.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Votes",
+                name: "Reviews",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     RecipeId = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<float>(type: "real", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Votes_AspNetUsers_AuthorId",
+                        name: "FK_Reviews_AspNetUsers_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Votes_Recipes_RecipeId",
+                        name: "FK_Reviews_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
@@ -381,19 +374,14 @@ namespace ChefsKiss.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_AuthorId",
-                table: "Comments",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_RecipeId",
-                table: "Comments",
-                column: "RecipeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RecipeIngredient_IngredientId",
                 table: "RecipeIngredient",
                 column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredient_MeasurementUnitId",
+                table: "RecipeIngredient",
+                column: "MeasurementUnitId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeIngredient_RecipeId",
@@ -411,13 +399,13 @@ namespace ChefsKiss.Data.Migrations
                 column: "ImageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Votes_AuthorId",
-                table: "Votes",
+                name: "IX_Reviews_AuthorId",
+                table: "Reviews",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Votes_RecipeId",
-                table: "Votes",
+                name: "IX_Reviews_RecipeId",
+                table: "Reviews",
                 column: "RecipeId");
         }
 
@@ -439,19 +427,19 @@ namespace ChefsKiss.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comments");
-
-            migrationBuilder.DropTable(
                 name: "RecipeIngredient");
 
             migrationBuilder.DropTable(
-                name: "Votes");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");
+
+            migrationBuilder.DropTable(
+                name: "MeasurementUnits");
 
             migrationBuilder.DropTable(
                 name: "Recipes");

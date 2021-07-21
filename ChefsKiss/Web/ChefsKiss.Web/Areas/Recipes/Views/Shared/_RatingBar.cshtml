@@ -1,0 +1,12 @@
+﻿@using static ChefsKiss.Common.DataConstants
+
+@model int
+
+<p class="rating-bar">
+    @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
+    {
+        var checkedStatus = rating <= Model ? "checked" : "unchecked";
+
+        <span class="rating-element fa fa-star @checkedStatus"></span>
+    }
+</p>

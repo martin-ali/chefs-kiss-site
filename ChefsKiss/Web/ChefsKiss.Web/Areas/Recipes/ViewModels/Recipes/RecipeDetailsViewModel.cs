@@ -19,7 +19,6 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
         public IEnumerable<ReviewListViewModel> Reviews { get; init; } = new List<ReviewListViewModel>();
 
-        [SourceMember(nameof(Recipe.RecipeIngredients))]
         public IEnumerable<IngredientViewModel> Ingredients { get; init; } = new List<IngredientViewModel>();
     }
 }

@@ -14,14 +14,20 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
         public string Name { get; init; }
 
+        public int Rating { get; init; }
+
         public string ImageUrl { get; init; }
+
+        public string Summary { get; init; } = "aasda";
 
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration
                 .CreateMap<Recipe, RecipeInListViewModel>()
                 .Include<Recipe, RecipeDetailsViewModel>()
-                .ForMember(vm => vm.ImageUrl, opt => opt.MapFrom(r => Path.Combine(@"\images", $"{r.Image.Name}.{r.Image.Extension}")));
+                .ForMember(vm => vm.ImageUrl, opt => opt.MapFrom(r => Path.Combine(@"\images", $"{r.Image.Name}.{r.Image.Extension}")))
+                .ForMember(vm => vm.Summary, opt => opt.MapFrom(r => $"{r.Content.Substring(0, 97)}..."));
+            // .ForMember(vm => vm.Rating, opt => opt.MapFrom(r => (int)r.Reviews.Average(x => x.Rating)))
 
             // FIXME: THIS SHOULD NOT BE HERE
             configuration

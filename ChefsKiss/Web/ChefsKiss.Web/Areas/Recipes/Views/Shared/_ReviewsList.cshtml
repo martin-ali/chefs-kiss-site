@@ -1,18 +1,9 @@
 ﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
-@using static ChefsKiss.Common.DataConstants
-
 @model ReviewListViewModel
 
 <div class="w-100 card card-body m-2 col-md-12">
-    <p class="rating-bar">
-        @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
-        {
-            var checkedStatus = rating <= Model.Rating ? "checked" : "unchecked";
-
-            <span class="rating-element fa fa-star @checkedStatus"></span>
-        }
-    </p>
+    <partial name="_RatingBar" model="@Model.Rating" />
     <p>@Model.Content</p>
     <h6>
         <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">

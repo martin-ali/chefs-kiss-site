@@ -3,7 +3,6 @@
 @using static ChefsKiss.Common.DataConstants
 
 @model ReviewCreateFormModel
-
 <form asp-controller="Reviews" asp-action="Create" method="post" class="card card-body m-2 col-md-12">
     <h5 class="rating-parent">
         @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
@@ -16,10 +15,32 @@
     </h5>
     <textarea asp-for="Content" placeholder="Type your review here" rows="3" class="w-100 border-0"></textarea>
     <input type="hidden" name="RecipeId" value="@Model.RecipeId" />
+    <span asp-validation-for="Content" class="text-danger"></span>
     <div class="row user-indicator">
         <button type="submit" class="btn btn-primary col-md-2 ml-2 p-2">Post review</button>
         <span class="text-secondary align- col-md-4 p-2">Posting as @User.Identity.Name</span>
     </div>
     @* <span>Posting as @UserManager.ToString()</span> *@
-    <span asp-validation-for="Content" class="text-danger"></span>
 </form>
+
+
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+    </div>
+</div>

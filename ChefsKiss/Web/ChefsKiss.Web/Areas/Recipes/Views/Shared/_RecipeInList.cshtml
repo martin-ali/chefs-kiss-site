@@ -2,27 +2,13 @@
 
 @model RecipeInListViewModel
 
-<article class="card col-md-12 m-2 box-shadow">
-    <a asp-action="Details" asp-route-id="@Model.Id">
+<article class="card col-xs-12 col-sm-5 col-md-3 p-0 m-2 box-shadow">
+    <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+        <img class="card-img-top img-fluid" src="@Model.ImageUrl" alt="Card image cap">
         <div class="card-body">
-            <h2 class="card-title text-center">
-                @Model.Name
-            </h2>
-            @* <img src="@Model.ImageUrl" alt="Post image" class="card-img-top" /> *@
-            <img class="card-img-top" src="@Model.ImageUrl">
-            <p class="card-text">
-                @* <span> Tags:
-                    @foreach (var tag in Model.Tags)
-                    {
-                    <a asp-action="ByTagId" asp-route-id="@tag.Id">
-                    @tag.Name
-                    </a>
-                    }
-                    </span> *@
-            </p>
-            @* <div class="row">
-                @await Html.PartialAsync("_VotingPanel", Model)
-                </div> *@
+            <partial name="_RatingBar" model="@Model.Rating" />
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Summary</p>
         </div>
     </a>
 </article>

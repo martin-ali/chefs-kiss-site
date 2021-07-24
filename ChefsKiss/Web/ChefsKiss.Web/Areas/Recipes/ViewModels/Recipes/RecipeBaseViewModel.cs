@@ -5,6 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
     using AutoMapper;
 
+    using ChefsKiss.Common.Extensions;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
@@ -22,8 +23,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
         {
             configuration
                 .CreateMap<Recipe, RecipeBaseViewModel>()
-                .ForMember(vm => vm.ImageUrl, opt => opt.MapFrom(r => Path.Combine(@"\images", $"{r.Image.Name}.{r.Image.Extension}")));
-            // .ForMember(vm => vm.Rating, opt => opt.MapFrom(r => r.Reviews.Average(x => x.Rating)))
+                .ForMember(vm => vm.ImageUrl, opt => opt.MapFrom(r => Path.Combine(@"\images", $"{r.Image.Name}.{r.Image.Extension}")))
+                .ForMember(vm => vm.Rating, opt => opt.MapFrom(r => (int)r.Reviews.Select(x => x.Rating).AverageOrDefault()));
         }
     }
 }

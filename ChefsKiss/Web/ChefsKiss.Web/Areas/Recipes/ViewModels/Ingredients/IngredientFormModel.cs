@@ -7,6 +7,9 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
     public class IngredientFormModel
     {
         [Required]
+        public int Index { get; init; }
+
+        [Required]
         [MinLength(IngredientNameMinLength)]
         [MaxLength(IngredientNameMaxLength)]
         public string Name { get; init; }

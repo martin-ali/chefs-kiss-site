@@ -1,0 +1,8 @@
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.MeasurementUnits
+
+@model IEnumerable<MeasurementUnitViewModel>
+
+@foreach (var unit in Model)
+{
+    <option value="@unit.Id">@unit.Name</option>
+}

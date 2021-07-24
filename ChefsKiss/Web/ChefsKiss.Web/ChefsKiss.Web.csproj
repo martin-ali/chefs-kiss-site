@@ -35,6 +35,7 @@
     <Folder Include="Areas\" />
     <Folder Include="Areas\Home\Controllers\" />
     <Folder Include="Areas\Home\Services\" />
+    <Folder Include="Areas\Home\ViewComponents\" />
     <Folder Include="Areas\Home\ViewModels\" />
     <Folder Include="Areas\Home\Views\" />
     <Folder Include="Areas\Recipes\Controllers\" />

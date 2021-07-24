@@ -83,10 +83,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             }
 
             var units = this.measurementUnitsService.GetAll<MeasurementUnitViewModel>();
-            var viewModel = new IngredientFormDataModel
+            var viewModel = new IngredientFormModel
             {
                 Index = id,
-                MeasurementUnitOptions = units,
             };
 
             // FIXME: Hard-coded

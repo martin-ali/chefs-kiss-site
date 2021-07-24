@@ -1,39 +1,24 @@
 namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 {
-    using System.IO;
-    using System.Linq;
-
     using AutoMapper;
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
-    public class RecipeInListViewModel : IMapFrom<Recipe>, IHaveCustomMappings
+    using static ChefsKiss.Common.DataConstants;
+
+    public class RecipeInListViewModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
     {
-        public int Id { get; init; }
+        public string Summary { get; init; }
 
-        public string Name { get; init; }
-
-        public int Rating { get; init; }
-
-        public string ImageUrl { get; init; }
-
-        public string Summary { get; init; } = "aasda";
-
-        public void CreateMappings(IProfileExpression configuration)
+        public override void CreateMappings(IProfileExpression configuration)
         {
+            base.CreateMappings(configuration);
+
             configuration
                 .CreateMap<Recipe, RecipeInListViewModel>()
-                .Include<Recipe, RecipeDetailsViewModel>()
-                .ForMember(vm => vm.ImageUrl, opt => opt.MapFrom(r => Path.Combine(@"\images", $"{r.Image.Name}.{r.Image.Extension}")))
-                .ForMember(vm => vm.Summary, opt => opt.MapFrom(r => $"{r.Content.Substring(0, 97)}..."));
-            // .ForMember(vm => vm.Rating, opt => opt.MapFrom(r => (int)r.Reviews.Average(x => x.Rating)))
-
-            // FIXME: THIS SHOULD NOT BE HERE
-            configuration
-                .CreateMap<Recipe, RecipeDetailsViewModel>()
-                .ForMember(vm => vm.Reviews, opt => opt.MapFrom(r => r.Reviews.OrderByDescending(c => c.CreatedOn)))
-                .ForMember(vm => vm.Ingredients, opt => opt.MapFrom(r => r.RecipeIngredients));
+                .IncludeBase<Recipe, RecipeBaseViewModel>()
+                .ForMember(vm => vm.Summary, opt => opt.MapFrom(r => $"{r.Content.Substring(0, RecipeSummaryLength - 3)}..."));
         }
     }
 }

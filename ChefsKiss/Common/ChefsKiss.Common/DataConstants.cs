@@ -12,6 +12,7 @@ namespace ChefsKiss.Common
 
         public const int RecipeContentMinLength = 500;
         public const int RecipeContentMaxLength = 100000;
+        public const int RecipeSummaryLength = 100;
 
         // RecipeIngredients
         public const double RecipeIngredientMinQuantity = 0.001;

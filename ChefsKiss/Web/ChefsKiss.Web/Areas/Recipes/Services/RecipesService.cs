@@ -127,9 +127,31 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipe;
         }
 
-        public IEnumerable<T> GetByUserId<T>(string userId)
+        public IEnumerable<T> GetByAuthorId<T>(string authorId)
         {
-            throw new System.NotImplementedException();
+            var recipes = this.recipesRepository
+                .All()
+                .Where(x => x.AuthorId == authorId)
+                .To<T>()
+                .ToList();
+
+            return recipes;
+        }
+
+        public T GetRandom<T>()
+        {
+            var count = this.recipesRepository.Count;
+
+            var random = new Random();
+            var randomId = random.Next(1, count);
+
+            var randomRecipe = this.recipesRepository
+                .All()
+                .Where(x => x.Id == randomId)
+                .To<T>()
+                .First();
+
+            return randomRecipe;
         }
     }
 }

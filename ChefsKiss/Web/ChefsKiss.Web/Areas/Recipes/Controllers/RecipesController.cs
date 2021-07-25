@@ -60,7 +60,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(RecipeCreateFormModel model)
         {
-            // FIXME: Make it show a proper error message
             if (this.ModelState.IsValid == false)
             {
                 return this.View(model);
@@ -69,6 +68,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var author = await this.userManager.GetUserAsync(this.User);
 
             var recipeId = await this.recipesService.CreateAsync(model, author.Id);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Random()
+        {
+            var recipeId = this.recipesService.GetRandom<RecipeDetailsViewModel>().Id;
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }

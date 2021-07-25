@@ -7,6 +7,8 @@ namespace ChefsKiss.Data.Common.Repositories
     public interface IRepository<TEntity> : IDisposable
         where TEntity : class
     {
+        int Count { get; }
+
         IQueryable<TEntity> All();
 
         IQueryable<TEntity> AllAsNoTracking();

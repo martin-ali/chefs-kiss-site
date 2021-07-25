@@ -21,6 +21,11 @@ namespace ChefsKiss.Data.Repositories
 
         protected RecipesDbContext Context { get; set; }
 
+        public int Count
+        {
+            get => this.DbSet.Count();
+        }
+
         public virtual IQueryable<TEntity> All() => this.DbSet;
 
         public virtual IQueryable<TEntity> AllAsNoTracking() => this.DbSet.AsNoTracking();

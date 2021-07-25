@@ -4,7 +4,7 @@ function addIngredientEventListener() {
 
     const container = '.ingredients-container';
     const button = '.add-ingredient';
-    let index = 0;
+    let index = $('#ingredients-count').val();
 
     function addNewIngredientForm() {
 

@@ -10,6 +10,7 @@
         <img id="image-preview" class="w-100 card-img">
     </div>
     <div class="row">
+        <input type="hidden" id="ingredients-count" value="@Model.Ingredients.Count()" />
         <form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" method="post" enctype="multipart/form-data" class="col-md-12">
             <div class="row">
                 <label asp-for="Title"></label>

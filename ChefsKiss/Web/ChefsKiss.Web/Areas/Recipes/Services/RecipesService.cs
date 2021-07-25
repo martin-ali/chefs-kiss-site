@@ -38,7 +38,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
             var recipe = new Recipe
             {
-                Name = input.Name,
+                Title = input.Title,
                 Content = input.Content,
                 AuthorId = authorId,
                 Image = image,

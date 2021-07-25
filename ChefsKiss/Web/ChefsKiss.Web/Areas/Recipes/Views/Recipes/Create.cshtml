@@ -1,4 +1,4 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
 @model RecipeCreateFormModel
 
@@ -12,9 +12,9 @@
     <div class="row">
         <form asp-area="Recipes" asp-controller="Recipes" asp-action="Create" method="post" enctype="multipart/form-data" class="col-md-12">
             <div class="row">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control w-100" placeholder="Enter the name here" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control w-100" placeholder="Enter the name here" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="row">
                 <label asp-for="Content"></label>

@@ -7,8 +7,8 @@ namespace ChefsKiss.Common
         public const int IngredientNameMaxLength = 50;
 
         // Recipes
-        public const int RecipeNameMinLength = 5;
-        public const int RecipeNameMaxLength = 100;
+        public const int RecipeTitleMinLength = 5;
+        public const int RecipeTitleMaxLength = 100;
 
         public const int RecipeContentMinLength = 500;
         public const int RecipeContentMaxLength = 100000;

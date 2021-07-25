@@ -15,9 +15,9 @@
         public ApplicationUser Author { get; init; }
 
         [Required]
-        [MinLength(RecipeNameMinLength)]
-        [MaxLength(RecipeNameMaxLength)]
-        public string Name { get; init; }
+        [MinLength(RecipeTitleMinLength)]
+        [MaxLength(RecipeTitleMaxLength)]
+        public string Title { get; init; }
 
         [Required]
         [MinLength(RecipeContentMinLength)]

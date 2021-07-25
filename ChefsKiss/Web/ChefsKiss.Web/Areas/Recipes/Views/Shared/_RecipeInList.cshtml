@@ -1,15 +1,15 @@
-@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
 @model RecipeInListViewModel
 
-<article class="card col-xs-12 col-sm-5 col-md-3 p-0 m-2 box-shadow">
+<article class="card col-xs-12 col-s-5 col-md-3 offset-md-5 p-0 box-shadow mb-2 ml-1 mr-auto">
     <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
         <img class="card-img-top img-fluid" src="@Model.ImageUrl" alt="Card image cap">
         <div class="card-body">
             <h4 class="card-title text-body">@Model.Title</h4>
             <partial name="_RatingBar" model="@Model.Rating" />
             <p class="card-text text-body">@Model.Summary</p>
-            <p class="card-text">@Model.Summary</p>
+            <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" class="card-subtitle text-info">By: @Model.AuthorUsername</a>
         </div>
     </a>
 </article>

@@ -12,10 +12,6 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
     public class RecipeDetailsViewModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
     {
-        public string AuthorId { get; init; }
-
-        public string AuthorUsername { get; init; }
-
         public string Content { get; init; }
 
         public IEnumerable<ReviewListViewModel> Reviews { get; init; } = new List<ReviewListViewModel>();

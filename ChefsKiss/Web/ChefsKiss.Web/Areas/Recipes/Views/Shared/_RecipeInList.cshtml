@@ -1,4 +1,4 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
 @model RecipeInListViewModel
 
@@ -6,8 +6,9 @@
     <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
         <img class="card-img-top img-fluid" src="@Model.ImageUrl" alt="Card image cap">
         <div class="card-body">
+            <h4 class="card-title text-body">@Model.Title</h4>
             <partial name="_RatingBar" model="@Model.Rating" />
-            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text text-body">@Model.Summary</p>
             <p class="card-text">@Model.Summary</p>
         </div>
     </a>

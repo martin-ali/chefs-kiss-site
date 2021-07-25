@@ -15,6 +15,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
         public string Name { get; init; }
 
+        public string Title { get; init; }
+
         public int Rating { get; init; }
 
         public string ImageUrl { get; init; }

@@ -3,9 +3,10 @@
 @model IngredientFormModel
 
 <div class="row ingredient pb-2">
-    <input name="Ingredients[@Model.Index].Name" class="form-control col-4" placeholder="Ingredient" />
-    <input name="Ingredients[@Model.Index].Quantity" class="form-control col-2 ml-1" placeholder="Quantity" />
-    <select name="Ingredients[@Model.Index].MeasurementUnitId" class="form-control col-2 ml-1">
-        @await Component.InvokeAsync("MeasurementUnitsList")
+    <input type="hidden" name="Ingredients[@Model.Index].Index" asp-for="@Model.Index">
+    <input name="Ingredients[@Model.Index].Name" class="form-control col-4" placeholder="Ingredient" asp-for="@Model.Name" />
+    <input name="Ingredients[@Model.Index].Quantity" class="form-control col-2 ml-1" placeholder="Quantity" asp-for="Quantity" />
+    <select name="Ingredients[@Model.Index].MeasurementUnitId" class="form-control col-2 ml-1" asp-for="MeasurementUnitId">
+        <vc:measurement-units-list selected="@Model.MeasurementUnitId"></vc:measurement-units-list>
     </select>
 </div>

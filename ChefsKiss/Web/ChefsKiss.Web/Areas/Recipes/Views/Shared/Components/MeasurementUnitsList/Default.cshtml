@@ -1,8 +1,11 @@
 ﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.MeasurementUnits
 
-@model IEnumerable<MeasurementUnitViewModel>
+@model MeasurementUnitsComponentModel
 
-@foreach (var unit in Model)
+@foreach (var unit in Model.Units)
 {
-    <option value="@unit.Id">@unit.Name</option>
+    var isSelected = unit.Id == Model.Selected ? "selected" : string.Empty;
+
+    @* NOTE: Added ! so it's not considered a tag helper. The tag helper variant does not allow C# inside it' *@
+    <!option value="@unit.Id" @isSelected>@unit.Name</!option>
 }

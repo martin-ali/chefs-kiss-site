@@ -1,4 +1,4 @@
-@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
 @model RecipeCreateFormModel
 
@@ -29,7 +29,10 @@
             <div class="row">
                 <label asp-for="Ingredients"></label>
                 <div class="ingredients-container col-12">
-                    @* <partial name="_IngredientAddForm" model="new IngredientFormDataModel{Index=0}" /> *@
+                    @foreach (var ingredient in Model.Ingredients)
+                    {
+                        <partial name="_IngredientAddForm" model="@ingredient" />
+                    }
                 </div>
                 <button class="add-ingredient btn btn-success" type="button">Add new ingredient</button>
                 <span asp-validation-for="Ingredients" class="text-danger"></span>

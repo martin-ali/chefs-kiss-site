@@ -51,7 +51,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return this.View();
+            var model = new RecipeCreateFormModel();
+
+            return this.View(model);
         }
 
         [Authorize]

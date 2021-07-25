@@ -19,11 +19,16 @@
             this.measurementUnitsService = measurementUnitsService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int selected = 0)
         {
             var items = this.measurementUnitsService.GetAll<MeasurementUnitViewModel>();
+            var model = new MeasurementUnitsComponentModel
+            {
+                Selected = selected,
+                Units = items,
+            };
 
-            return View(items);
+            return this.View(model);
         }
     }
 }

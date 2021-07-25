@@ -2,11 +2,12 @@
 
 @model int
 
-<p class="rating-bar">
+<p class="rating-bar p-0 m-0 form-control-lg">
     @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
     {
         var checkedStatus = rating <= Model ? "checked" : "unchecked";
+        var marginLeft = rating >= 2 ? "ml-2" : string.Empty;
 
-        <span class="rating-element fa fa-star @checkedStatus"></span>
+        <span class="rating-element fa fa-star @checkedStatus p-0 m-0 @marginLeft"></span>
     }
 </p>

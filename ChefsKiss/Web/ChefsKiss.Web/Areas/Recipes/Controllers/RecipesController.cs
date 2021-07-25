@@ -70,26 +70,5 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult IngredientAddForm(int id)
-        {
-            // FIXME: WTF is this validation? Temporary
-            var idIsValid = 0 <= id && id <= int.MaxValue;
-            if (idIsValid == false)
-            {
-                return this.BadRequest();
-            }
-
-            var units = this.measurementUnitsService.GetAll<MeasurementUnitViewModel>();
-            var viewModel = new IngredientFormModel
-            {
-                Index = id,
-            };
-
-            // FIXME: Hard-coded
-            return this.PartialView("_IngredientAddForm", viewModel);
-        }
     }
 }

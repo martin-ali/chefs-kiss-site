@@ -8,7 +8,7 @@ function addIngredientEventListener() {
 
     function addNewIngredientForm() {
 
-        const url = `/Recipes/Recipes/IngredientAddForm/${index++}`;
+        const url = `/Recipes/Ingredients/IngredientAddForm/${index++}`;
 
         $.get(url, function (data) {
             $(container).append(data);

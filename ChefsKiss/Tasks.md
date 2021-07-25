@@ -14,8 +14,9 @@
 - [x] Automapping
 - [x] Services
 - [ ] Authentication
-- [x] Validation
+- [x] Validation groundwork
 - [x] Inline validation
+- [ ] Ingredient validation
 - [ ] Validation with user-friendly messages
 - [x] Controllers
 - [x] Review system

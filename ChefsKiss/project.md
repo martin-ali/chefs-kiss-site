@@ -1,8 +1,11 @@
-﻿Main page
+﻿# Project
+
+Main page with carousel
 All recipes
 Recipe details
-Recipe search
+Recipe search with recipe list
 Recipe edit/delete
+My recipes
 Register
 Login
 Profile
@@ -15,7 +18,10 @@ Favorite recipes
 Random recipe
 Measurement converter tool page
 Current/7 days/monthly most popular recipes
+Top by category in own lines - top weekly, top desserts, top fish, etc...
+Admin - always have crud buttons shown?
 
+Remove repositories
 Salty vs sweet categorization?
 Recipe type categories (vegan, vegetarian, fish, no meat, desserts, pasta, pizza, main course, soups, salads, appetizers, others)
 Sort by rating, date added, most comments

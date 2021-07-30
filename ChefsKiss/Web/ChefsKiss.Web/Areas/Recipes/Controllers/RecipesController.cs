@@ -73,7 +73,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Random()
+        public IActionResult Random()
         {
             var recipeId = this.recipesService.GetRandom<RecipeDetailsViewModel>().Id;
 

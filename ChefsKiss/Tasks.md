@@ -27,7 +27,7 @@
 - [ ] Infinite scrolling
 - [ ] Rating with showcase
 - [ ] Only one review per person
-- [ ] Image size limit
+- [x] Image size limit
 - [ ] Decouple the ingredient form add JS script
 
 ## Optional

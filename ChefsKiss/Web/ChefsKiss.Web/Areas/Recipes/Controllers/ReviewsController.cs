@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web.Areas.Recipes.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ChefsKiss.Common;
@@ -34,37 +35,23 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.RedirectToAction(
                     nameof(RecipesController.Details),
                     Helpers.GetControllerName<RecipesController>(),
-                    new
-                    {
-                        id = input.RecipeId,
-                    });
+                    new { id = input.RecipeId });
             }
 
             var author = await this.userManager.GetUserAsync(this.User);
+
+            var reviews = this.reviewsService.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
+            if (reviews.Any(x => x.AuthorId == author.Id))
+            {
+                return BadRequest();
+            }
 
             await this.reviewsService.CreateAsync(input, author.Id);
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),
                 Helpers.GetControllerName<RecipesController>(),
-                new
-                {
-                    id = input.RecipeId,
-                });
-        }
-
-        [HttpGet]
-        [Authorize]
-        public IActionResult Edit()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        [Authorize]
-        public IActionResult Edit(ReviewFormModel input)
-        {
-            return this.View();
+                new { id = input.RecipeId });
         }
 
         [HttpGet]

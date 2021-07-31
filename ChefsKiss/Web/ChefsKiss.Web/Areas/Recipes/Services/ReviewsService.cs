@@ -1,5 +1,7 @@
 namespace ChefsKiss.Web.Areas.Recipes.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Common.Repositories;
@@ -28,6 +30,17 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
             await this.reviewsRepository.AddAsync(review);
             await this.reviewsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetByRecipeId<T>(int id)
+        {
+            var reviews = this.reviewsRepository
+                .All()
+                .Where(x => x.RecipeId == id)
+                .To<T>()
+                .ToList();
+
+            return reviews;
         }
     }
 }

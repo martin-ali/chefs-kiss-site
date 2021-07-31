@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web.Areas.Recipes.Services
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
@@ -7,5 +8,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     public interface IReviewsService
     {
         Task CreateAsync(ReviewFormModel input, string authorId);
+
+        IEnumerable<T> GetByRecipeId<T>(int id);
     }
 }

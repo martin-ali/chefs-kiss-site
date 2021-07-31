@@ -1,4 +1,4 @@
-@using ChefsKiss.Web.Areas.Recipes.Models.Recipes
+﻿@using ChefsKiss.Web.Areas.Recipes.Models.Recipes
 @using ChefsKiss.Web.Areas.Recipes.Models.Reviews
 
 @model RecipeDetailsViewModel
@@ -49,7 +49,7 @@
     </div>
     <hr>
     <div class="row">
-        @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated && @Model.UserHasReviewed == false)
         {
             <partial name="_ReviewFormPartial" model=@(new ReviewFormModel{ RecipeId = Model.Id }) />
         }

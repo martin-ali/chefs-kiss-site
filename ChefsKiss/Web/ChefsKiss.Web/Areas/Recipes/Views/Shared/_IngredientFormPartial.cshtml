@@ -1,4 +1,4 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
+@using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
 
 @model IngredientFormModel
 
@@ -9,4 +9,5 @@
     <select name="Ingredients[@Model.Index].MeasurementUnitId" class="form-control col-2 ml-1" asp-for="MeasurementUnitId">
         <vc:measurement-units-list selected="@Model.MeasurementUnitId"></vc:measurement-units-list>
     </select>
+    <button type="button" class="remove-ingredient btn btn-danger ml-1">X</button>
 </div>

@@ -15,5 +15,13 @@ function addIngredientEventListener() {
         });
     }
 
+    function RemoveIngredient(ev) {
+        if (ev.target.classList.contains('remove-ingredient')) {
+            const deleteButton = ev.target;
+            deleteButton.parentNode.parentNode.removeChild(deleteButton.parentNode);
+        }
+    }
+
     $(button).on('click', addNewIngredientForm);
+    $(container).on('click', RemoveIngredient);
 }

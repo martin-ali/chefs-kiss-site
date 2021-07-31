@@ -10,6 +10,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.ErrorMessages;
+    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
 
     [Area(RecipesArea)]
     public class RecipesController : Controller
@@ -46,9 +48,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(model);
             }
 
-            var author = await this.userManager.GetUserAsync(this.User);
+            var authorId = this.userManager.GetUserId(this.User);
 
-            var recipeId = await this.recipesService.CreateAsync(model, author.Id);
+            var recipeId = await this.recipesService.CreateAsync(model, authorId);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
@@ -59,31 +61,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var recipes = this.recipesService.GetAll<RecipeInListViewModel>();
 
             return this.View(recipes);
-        }
-
-        [HttpGet]
-        [Authorize]
-        public IActionResult Edit(int id)
-        {
-            var recipe = this.recipesService.GetById<RecipeFormModel>(id);
-
-            return this.View(recipe);
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Edit(int id, RecipeFormModel model)
-        {
-            if (this.ModelState.IsValid == false)
-            {
-                return this.View(model);
-            }
-
-            var author = await this.userManager.GetUserAsync(this.User);
-
-            await this.recipesService.EditAsync(model, id);
-
-            return this.RedirectToAction(nameof(this.Details), new { id = id });
         }
 
         [HttpGet]
@@ -100,6 +77,44 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var recipeId = this.recipesService.GetRandom<RecipeDetailsViewModel>().Id;
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var recipe = this.recipesService.GetById<RecipeFormModel>(id);
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (recipe.AuthorId != user.Id)
+            {
+                return this.RedirectToAction(nameof(this.Details), new { id = id });
+            }
+
+            return this.View(recipe);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, RecipeFormModel model)
+        {
+            if (this.ModelState.IsValid == false)
+            {
+                return this.View(model);
+            }
+
+            var recipe = this.recipesService.GetById<Recipe>(id);
+            var userId = this.userManager.GetUserId(this.User);
+
+            if (recipe.AuthorId != userId)
+            {
+                return this.Unauthorized(NotAuthorized);
+            }
+
+            await this.recipesService.EditAsync(model, id);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = id });
         }
     }
 }

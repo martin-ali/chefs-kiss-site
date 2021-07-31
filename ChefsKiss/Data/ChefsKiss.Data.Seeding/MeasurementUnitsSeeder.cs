@@ -23,6 +23,8 @@ namespace ChefsKiss.Data.Seeding
 
                 await dbContext.MeasurementUnits.AddAsync(measurementUnit);
             }
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,5 +1,9 @@
 ﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
+@{
+    var ingredientIndex = 0;
+}
+
 @model RecipeFormModel
 
 <div class="container card card-body">
@@ -32,6 +36,7 @@
                 <div class="ingredients-container col-12">
                     @foreach (var ingredient in Model.Ingredients)
                     {
+                        ingredient.Index = ingredientIndex++;
                         <partial name="_IngredientFormPartial" model="@ingredient" />
                     }
                 </div>

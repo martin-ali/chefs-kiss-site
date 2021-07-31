@@ -17,6 +17,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         Task<int> CreateAsync(RecipeFormModel input, string authorId);
 
+        Task EditAsync(RecipeFormModel input, int recipeId);
+
         T GetRandom<T>();
 
         // Task UpdateAsync(RecipeEditInputModel input, int RecipeId)

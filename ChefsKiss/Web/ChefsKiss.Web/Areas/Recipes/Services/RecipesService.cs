@@ -62,19 +62,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
             foreach (var ingredient in ingredients)
             {
-                var ingredientData = ingredientModels.FirstOrDefault(im => im.Name == ingredient.Name);
-
-                var newRecipeIngredient = new RecipeIngredient
+                var ingredientFormData = ingredientModels.FirstOrDefault(im => im.Name == ingredient.Name);
+                var recipeIngredient = new RecipeIngredient
                 {
                     Recipe = recipe,
                     Ingredient = ingredient,
-                    MeasurementUnitId = ingredientData.MeasurementUnitId,
-                    Quantity = ingredientData.Quantity,
+                    MeasurementUnitId = ingredientFormData.MeasurementUnitId,
+                    Quantity = ingredientFormData.Quantity,
                 };
 
-                recipeIngredients.Add(newRecipeIngredient);
+                recipeIngredients.Add(recipeIngredient);
 
-                await this.recipeIngredientsRepository.AddAsync(newRecipeIngredient);
+                await this.recipeIngredientsRepository.AddAsync(recipeIngredient);
             }
 
             return recipeIngredients;
@@ -153,6 +152,45 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 .First();
 
             return randomRecipe;
+        }
+
+        public async Task EditAsync(RecipeFormModel input, int recipeId)
+        {
+            var recipe = this.recipesRepository
+                .All()
+                .FirstOrDefault(x => x.Id == recipeId);
+
+            // Re-generate members
+            var image = await this.imagesService.CreateImageAsync(input.Image);
+
+            var oldRecipeIngredients = this.recipeIngredientsRepository
+                .All()
+                .Where(x => x.RecipeId == recipe.Id);
+            await this.DeleteRecipeIngredients(oldRecipeIngredients);
+
+            var ingredients = await this.EnsureIngredientsAsync(input.Ingredients.Select(i => i.Name));
+            var recipeIngredients = await this.CreateRecipeIngredientsAsync(ingredients, input.Ingredients, recipe);
+
+            // Re-fill all necessary members
+            recipe.Title = input.Title;
+            recipe.Content = input.Content;
+            recipe.Image = image;
+            recipe.RecipeIngredients = recipeIngredients;
+
+            // Delete old image because it is no longer used
+            await this.imagesService.DeleteAsync(recipe.ImageId);
+
+            await this.recipesRepository.SaveChangesAsync();
+        }
+
+        private async Task DeleteRecipeIngredients(IEnumerable<RecipeIngredient> recipeIngredients)
+        {
+            foreach (var recipeIngredient in recipeIngredients)
+            {
+                this.recipeIngredientsRepository.Delete(recipeIngredient);
+            }
+
+            await this.recipeIngredientsRepository.SaveChangesAsync();
         }
     }
 }

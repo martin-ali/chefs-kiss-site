@@ -1,12 +1,12 @@
-@using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
 
 @model IngredientFormModel
 
 <div class="row ingredient pb-2">
-    <input type="hidden" name="Ingredients[@Model.Index].Index" asp-for="Index">
-    <input name="Ingredients[@Model.Index].Name" class="form-control col-4" placeholder="Ingredient" asp-for="Name" />
-    <input name="Ingredients[@Model.Index].Quantity" class="form-control col-2 ml-1" placeholder="Quantity" asp-for="Quantity" />
-    <select name="Ingredients[@Model.Index].MeasurementUnitId" class="form-control col-2 ml-1" asp-for="MeasurementUnitId">
+    <input type="hidden" name="ingredients.Index" value="@Model.Index">
+    <input name="ingredients[@Model.Index].Name" class="form-control col-6" placeholder="Ingredient" asp-for="Name" />
+    <input name="ingredients[@Model.Index].Quantity" class="form-control col-2 ml-1" placeholder="Quantity" asp-for="Quantity" />
+    <select name="ingredients[@Model.Index].MeasurementUnitId" class="form-control col-2 ml-1" asp-for="MeasurementUnitId">
         <vc:measurement-units-list selected="@Model.MeasurementUnitId"></vc:measurement-units-list>
     </select>
     <button type="button" class="remove-ingredient btn btn-danger ml-1">X</button>

@@ -57,6 +57,31 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var recipe = this.recipesService.GetById<RecipeFormModel>(id);
+
+            return this.View(recipe);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, RecipeFormModel model)
+        {
+            if (this.ModelState.IsValid == false)
+            {
+                return this.View(model);
+            }
+
+            var author = await this.userManager.GetUserAsync(this.User);
+
+            await this.recipesService.EditAsync(model, id);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = id });
+        }
+
+        [HttpGet]
         public IActionResult All()
         {
             var recipes = this.recipesService.GetAll<RecipeInListViewModel>();

@@ -57,6 +57,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
+        public IActionResult All()
+        {
+            var recipes = this.recipesService.GetAll<RecipeInListViewModel>();
+
+            return this.View(recipes);
+        }
+
+        [HttpGet]
         [Authorize]
         public IActionResult Edit(int id)
         {
@@ -79,14 +87,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             await this.recipesService.EditAsync(model, id);
 
             return this.RedirectToAction(nameof(this.Details), new { id = id });
-        }
-
-        [HttpGet]
-        public IActionResult All()
-        {
-            var recipes = this.recipesService.GetAll<RecipeInListViewModel>();
-
-            return this.View(recipes);
         }
 
         [HttpGet]

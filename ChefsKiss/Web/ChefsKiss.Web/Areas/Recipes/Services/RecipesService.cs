@@ -140,14 +140,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         //FIXME: Should work even when recipes are deleted
         public T GetRandom<T>()
         {
-            var count = this.recipesRepository.Count;
-
-            var random = new Random();
-            var randomId = random.Next(1, count);
-
             var randomRecipe = this.recipesRepository
                 .All()
-                .Where(x => x.Id == randomId)
+                .OrderBy(o => Guid.NewGuid())
                 .To<T>()
                 .First();
 

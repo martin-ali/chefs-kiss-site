@@ -26,7 +26,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.imageOperator = imageOperator;
         }
 
-        public async Task<Image> CreateImage(IFormFile input, string authorId)
+        public async Task<Image> CreateImageAsync(IFormFile input)
         {
             var extension = Path.GetExtension(input.FileName).TrimStart('.');
 
@@ -36,7 +36,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 Extension = extension,
             };
 
-            await this.imageOperator.Write(input, image.Name, extension);
+            await this.imageOperator.WriteAsync(input, image.Name, extension);
             await this.imagesRepository.AddAsync(image);
 
             await this.imagesRepository.SaveChangesAsync();
@@ -44,7 +44,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return image;
         }
 
-        public async Task DeleteImage(int imageId)
+        public async Task DeleteImageAsync(int imageId)
         {
             var image = this.imagesRepository.All()
                 .FirstOrDefault(i => i.Id == imageId);

@@ -6,10 +6,10 @@ namespace ChefsKiss.Services.IO
 
     public interface IFileOperator
     {
-        Task Write(IFormFile file, string fileName, string extension);
+        Task WriteAsync(IFormFile file, string fileName, string extension);
 
-        Task Write(byte[] file, string name, string extension);
+        Task WriteAsync(byte[] file, string name, string extension);
 
-        void Delete(string id, string extension);
+        void Delete(string name, string extension);
     }
 }

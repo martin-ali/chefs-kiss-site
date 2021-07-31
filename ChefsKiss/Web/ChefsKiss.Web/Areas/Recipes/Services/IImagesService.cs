@@ -8,9 +8,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public interface IImagesService
     {
-        Task<Image> CreateImage(IFormFile input, string authorId);
+        Task<Image> CreateImageAsync(IFormFile input);
 
-        Task DeleteImage(int imageId);
+        Task DeleteImageAsync(int imageId);
 
         string GetRelativeImagePath(int imageId);
     }

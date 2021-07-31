@@ -22,7 +22,7 @@ namespace ChefsKiss.Services.IO
             Directory.CreateDirectory(this.imagesPath);
         }
 
-        public async Task Write(IFormFile file, string fileName, string extension)
+        public async Task WriteAsync(IFormFile file, string fileName, string extension)
         {
             var fileNameAndExtension = $"{fileName}.{extension}";
 
@@ -31,15 +31,15 @@ namespace ChefsKiss.Services.IO
             await file.CopyToAsync(fileStream);
         }
 
-        public async Task Write(byte[] file, string name, string extension)
+        public async Task WriteAsync(byte[] file, string name, string extension)
         {
             var path = Path.Combine(this.imagesPath, $"{name}.{extension}");
             await File.WriteAllBytesAsync(path, file);
         }
 
-        public void Delete(string id, string extension)
+        public void Delete(string name, string extension)
         {
-            var fileName = $"{id}.{extension}";
+            var fileName = $"{name}.{extension}";
             var path = Path.Combine(this.imagesPath, fileName);
 
             File.Delete(path);

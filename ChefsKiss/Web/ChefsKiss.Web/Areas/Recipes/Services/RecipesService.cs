@@ -32,9 +32,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         public async Task<int> CreateAsync(RecipeFormModel input, string authorId)
         {
-            var image = await this.imagesService.CreateImage(input.Image, authorId);
+            var image = await this.imagesService.CreateImageAsync(input.Image);
 
-            var ingredients = await this.EnsureIngredients(input.Ingredients.Select(i => i.Name));
+            var ingredients = await this.EnsureIngredientsAsync(input.Ingredients.Select(i => i.Name));
 
             var recipe = new Recipe
             {
@@ -44,7 +44,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 Image = image,
             };
 
-            var recipeIngredients = await this.EnsureRecipeIngredients(ingredients, input.Ingredients, recipe);
+            var recipeIngredients = await this.CreateRecipeIngredientsAsync(ingredients, input.Ingredients, recipe);
             recipe.RecipeIngredients = recipeIngredients;
 
             await this.recipesRepository.AddAsync(recipe);
@@ -53,7 +53,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipe.Id;
         }
 
-        private async Task<IEnumerable<RecipeIngredient>> EnsureRecipeIngredients(
+        private async Task<IEnumerable<RecipeIngredient>> CreateRecipeIngredientsAsync(
             IEnumerable<Ingredient> ingredients,
             IEnumerable<IngredientFormModel> ingredientModels,
             Recipe recipe)
@@ -80,7 +80,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipeIngredients;
         }
 
-        private async Task<IEnumerable<Ingredient>> EnsureIngredients(IEnumerable<string> ingredientNames)
+        private async Task<IEnumerable<Ingredient>> EnsureIngredientsAsync(IEnumerable<string> ingredientNames)
         {
             var ingredients = this.ingredientsRepository.All()
                 .Where(i => ingredientNames.Contains(i.Name))

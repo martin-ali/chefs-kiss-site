@@ -32,6 +32,31 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        public IActionResult Create()
+        {
+            var model = new RecipeCreateFormModel();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create(RecipeCreateFormModel model)
+        {
+            if (this.ModelState.IsValid == false)
+            {
+                return this.View(model);
+            }
+
+            var author = await this.userManager.GetUserAsync(this.User);
+
+            var recipeId = await this.recipesService.CreateAsync(model, author.Id);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
+        }
+
+        [HttpGet]
         public IActionResult All()
         {
             var recipes = this.recipesService.GetAll<RecipeInListViewModel>();
@@ -45,31 +70,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var recipe = this.recipesService.GetById<RecipeDetailsViewModel>(id);
 
             return this.View(recipe);
-        }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult Create()
-        {
-            var model = new RecipeCreateFormModel();
-
-            return this.View(model);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Create(RecipeCreateFormModel model)
-        {
-            if (this.ModelState.IsValid == false)
-            {
-                return this.View(model);
-            }
-
-            var author = await this.userManager.GetUserAsync(this.User);
-
-            var recipeId = await this.recipesService.CreateAsync(model, author.Id);
-
-            return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
 
         [HttpGet]

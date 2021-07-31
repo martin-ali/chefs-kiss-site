@@ -18,8 +18,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             this.measurementUnitsService = measurementUnitsService;
         }
 
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public IActionResult IngredientAddForm(int id)
         {
             // FIXME: WTF is this validation? Temporary

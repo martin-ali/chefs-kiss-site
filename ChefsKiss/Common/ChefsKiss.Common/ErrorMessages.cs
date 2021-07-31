@@ -6,6 +6,8 @@ namespace ChefsKiss.Common
     {
         public const string NoIngredients = "Ingredients must be present.";
 
+        public const string NotAuthorized = "You are not authorized to access this resource.";
+
         public static string LengthBetween(int minLength, int maxLength, string parameterName) => $"{parameterName} must be between {minLength} and {maxLength} characters long.";
 
         public static string LengthMin(int minLength, string parameterName) => $"{parameterName} cannot be less than {minLength} characters long.";

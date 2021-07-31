@@ -1,15 +1,11 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewComponents
+﻿namespace ChefsKiss.Web.Areas.Recipes.ViewComponents
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.MeasurementUnits;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
     public class MeasurementUnitsListViewComponent : ViewComponent
     {

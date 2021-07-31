@@ -35,14 +35,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            var model = new RecipeCreateFormModel();
+            var model = new RecipeFormModel();
 
             return this.View(model);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(RecipeCreateFormModel model)
+        public async Task<IActionResult> Create(RecipeFormModel model)
         {
             if (this.ModelState.IsValid == false)
             {

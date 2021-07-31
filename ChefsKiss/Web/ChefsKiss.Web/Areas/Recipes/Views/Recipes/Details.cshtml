@@ -51,7 +51,7 @@
     <div class="row">
         @if (User.Identity.IsAuthenticated)
         {
-            <partial name="_ReviewFormPartial" model=@(new ReviewCreateFormModel{ RecipeId = Model.Id }) />
+            <partial name="_ReviewFormPartial" model=@(new ReviewFormModel{ RecipeId = Model.Id }) />
         }
         @foreach (var review in Model.Reviews)
         {

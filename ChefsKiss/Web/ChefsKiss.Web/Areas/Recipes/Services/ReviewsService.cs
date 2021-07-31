@@ -15,7 +15,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.reviewsRepository = reviewsRepository;
         }
 
-        public async Task CreateAsync(ReviewCreateFormModel input, string authorId)
+        public async Task CreateAsync(ReviewFormModel input, string authorId)
         {
             var review = new Review
             {

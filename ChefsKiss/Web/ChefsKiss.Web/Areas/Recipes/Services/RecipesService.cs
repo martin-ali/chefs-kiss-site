@@ -30,7 +30,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.imagesService = imagesService;
         }
 
-        public async Task<int> CreateAsync(RecipeCreateFormModel input, string authorId)
+        public async Task<int> CreateAsync(RecipeFormModel input, string authorId)
         {
             var image = await this.imagesService.CreateImage(input.Image, authorId);
 
@@ -138,6 +138,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
+        //FIXME: Should work even when recipes are deleted
         public T GetRandom<T>()
         {
             var count = this.recipesRepository.Count;

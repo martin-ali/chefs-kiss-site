@@ -2,7 +2,7 @@
 
 @using static ChefsKiss.Common.DataConstants
 
-@model ReviewCreateFormModel
+@model ReviewFormModel
 <form asp-controller="Reviews" asp-action="Create" method="post" class="card card-body m-2 col-md-12">
     <h5 class="rating-parent">
         @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)

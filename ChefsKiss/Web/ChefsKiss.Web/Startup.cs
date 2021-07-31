@@ -72,7 +72,7 @@ namespace ChefsKiss.Web
         {
             AutoMapperConfig.RegisterMappings(
                 typeof(ErrorViewModel).GetTypeInfo().Assembly,
-                typeof(RecipeCreateFormModel).GetTypeInfo().Assembly);
+                typeof(RecipeFormModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())

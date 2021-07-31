@@ -27,7 +27,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(ReviewCreateFormModel input)
+        public async Task<IActionResult> Create(ReviewFormModel input)
         {
             if (this.ModelState.IsValid == false)
             {
@@ -62,7 +62,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(ReviewCreateFormModel input)
+        public IActionResult Edit(ReviewFormModel input)
         {
             return this.View();
         }

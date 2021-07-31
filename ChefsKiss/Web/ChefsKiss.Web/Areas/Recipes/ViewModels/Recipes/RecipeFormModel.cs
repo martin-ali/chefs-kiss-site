@@ -11,7 +11,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
     using static ChefsKiss.Common.DataConstants;
     using static ChefsKiss.Common.ErrorMessages;
 
-    public class RecipeCreateFormModel
+    public class RecipeFormModel
     {
         [Required]
         [MinLength(RecipeTitleMinLength)]

@@ -15,7 +15,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         IEnumerable<T> GetByAuthorId<T>(string authorId);
 
-        Task<int> CreateAsync(RecipeCreateFormModel input, string authorId);
+        Task<int> CreateAsync(RecipeFormModel input, string authorId);
 
         T GetRandom<T>();
 

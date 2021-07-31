@@ -4,7 +4,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
 
     using static ChefsKiss.Common.DataConstants;
 
-    public class ReviewCreateFormModel
+    public class ReviewFormModel
     {
         [Required]
         public int RecipeId { get; init; }

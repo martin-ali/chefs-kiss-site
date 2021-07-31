@@ -10,7 +10,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     {
         Task<Image> CreateImageAsync(IFormFile input);
 
-        Task DeleteImageAsync(int imageId);
+        Task DeleteAsync(int imageId);
 
         string GetRelativeImagePath(int imageId);
     }

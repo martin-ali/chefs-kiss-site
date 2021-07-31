@@ -44,12 +44,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return image;
         }
 
-        public async Task DeleteImageAsync(int imageId)
+        public async Task DeleteAsync(int imageId)
         {
             var image = this.imagesRepository.All()
                 .FirstOrDefault(i => i.Id == imageId);
 
             this.imagesRepository.Delete(image);
+            this.imageOperator.Delete(image.Name, image.Extension);
+
             await this.imagesRepository.SaveChangesAsync();
         }
 

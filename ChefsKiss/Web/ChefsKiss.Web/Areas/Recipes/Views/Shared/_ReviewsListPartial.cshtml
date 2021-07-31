@@ -3,7 +3,7 @@
 @model ReviewListViewModel
 
 <div class="w-100 card card-body m-2 col-md-12">
-    <partial name="_RatingBar" model="@Model.Rating" />
+    <partial name="_RatingBarPartial" model="@Model.Rating" />
     <p>@Model.Content</p>
     <h6>
         <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">

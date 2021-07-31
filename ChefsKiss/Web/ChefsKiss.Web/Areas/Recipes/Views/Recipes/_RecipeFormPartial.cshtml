@@ -1,0 +1,47 @@
+﻿@using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
+
+@model RecipeCreateFormModel
+
+<div class="container card card-body">
+    <div class="row">
+        <h2 class="text-center col-md-12">Create recipe</h2>
+    </div>
+    <div class="row">
+        <img id="image-preview" class="w-100 card-img">
+    </div>
+    <div class="row">
+        <input type="hidden" id="ingredients-count" value="@Model.Ingredients.Count()" />
+        <form method="post" enctype="multipart/form-data" class="col-md-12">
+            <div class="row">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control w-100" placeholder="Enter the name here" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Content"></label>
+                <textarea rows="10" asp-for="Content" class="form-control" placeholder="Enter the content here"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Image"></label>
+                <input id="image-upload" asp-for="Image" accept="image/jpeg, image/png" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Ingredients"></label>
+                <div class="ingredients-container col-12">
+                    @foreach (var ingredient in Model.Ingredients)
+                    {
+                        <partial name="_IngredientFormPartial" model="@ingredient" />
+                    }
+                </div>
+                <button class="add-ingredient btn btn-success" type="button">Add new ingredient</button>
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

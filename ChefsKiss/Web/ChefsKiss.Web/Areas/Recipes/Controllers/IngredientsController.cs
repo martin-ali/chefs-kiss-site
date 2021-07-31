@@ -36,7 +36,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             };
 
             // FIXME: Hard-coded
-            return this.PartialView("_IngredientAddForm", viewModel);
+            return this.PartialView("_IngredientFormPartial", viewModel);
         }
     }
 }

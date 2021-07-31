@@ -27,8 +27,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
         {
             configuration
                 .CreateMap<Recipe, RecipeBaseViewModel>()
-                .ForMember(vm => vm.ImageUrl, opt => opt.MapFrom(r => Path.Combine(@"\images", $"{r.Image.Name}.{r.Image.Extension}")))
-                .ForMember(vm => vm.Rating, opt => opt.MapFrom(r => (int)r.Reviews.Select(x => x.Rating).AverageOrDefault())); // NOTE: .Average() does not like empty collections
+                .ForMember(vm => vm.ImageUrl, cfg => cfg.MapFrom(m => Path.Combine(@"\images", $"{m.Image.Name}.{m.Image.Extension}")))
+                .ForMember(vm => vm.Rating, cfg => cfg.MapFrom(m => (int)m.Reviews.Select(x => x.Rating).AverageOrDefault())); // NOTE: .Average() does not like empty collections
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
             configuration
                 .CreateMap<Recipe, RecipeInListViewModel>()
                 .IncludeBase<Recipe, RecipeBaseViewModel>()
-                .ForMember(vm => vm.Summary, opt => opt.MapFrom(r => $"{r.Content.Substring(0, RecipeSummaryLength - 3)}..."));
+                .ForMember(vm => vm.Summary, cfg => cfg.MapFrom(m => $"{m.Content.Substring(0, RecipeSummaryLength - 3)}..."));
         }
     }
 }

@@ -25,8 +25,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
             configuration
                 .CreateMap<Recipe, RecipeDetailsViewModel>()
                 .IncludeBase<Recipe, RecipeBaseViewModel>()
-                .ForMember(vm => vm.Reviews, opt => opt.MapFrom(r => r.Reviews.OrderByDescending(c => c.CreatedOn)))
-                .ForMember(vm => vm.Ingredients, opt => opt.MapFrom(r => r.RecipeIngredients));
+                .ForMember(vm => vm.Reviews, cfg => cfg.MapFrom(m => m.Reviews.OrderByDescending(c => c.CreatedOn)))
+                .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients));
         }
 
     }

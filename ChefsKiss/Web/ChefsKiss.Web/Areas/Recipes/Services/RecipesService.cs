@@ -8,7 +8,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients;
     using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
     public class RecipesService : IRecipesService
@@ -17,6 +16,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         private readonly IRepository<Ingredient> ingredientsRepository;
         private readonly IRepository<RecipeIngredient> recipeIngredientsRepository;
         private readonly IRecipeIngredientsService recipeIngredientsService;
+        private readonly IIngredientsService ingredientsService;
         private readonly IImagesService imagesService;
 
         public RecipesService(
@@ -24,12 +24,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             IRepository<Ingredient> ingredientsRepository,
             IRepository<RecipeIngredient> recipeIngredientsRepository,
             IRecipeIngredientsService recipeIngredientsService,
+            IIngredientsService ingredientsService,
             IImagesService imagesService)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.recipeIngredientsRepository = recipeIngredientsRepository;
             this.recipeIngredientsService = recipeIngredientsService;
+            this.ingredientsService = ingredientsService;
             this.imagesService = imagesService;
         }
 
@@ -37,7 +39,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var image = await this.imagesService.CreateImageAsync(input.Image);
 
-            var ingredients = await this.EnsureIngredientsAsync(input.Ingredients.Select(i => i.Name));
+            var ingredients = await this.ingredientsService.EnsureAllAsync(input.Ingredients.Select(i => i.Name));
 
             var recipe = new Recipe
             {
@@ -54,27 +56,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             await this.recipesRepository.SaveChangesAsync();
 
             return recipe.Id;
-        }
-
-        private async Task<IEnumerable<Ingredient>> EnsureIngredientsAsync(IEnumerable<string> ingredientNames)
-        {
-            var ingredients = this.ingredientsRepository.All()
-                .Where(i => ingredientNames.Contains(i.Name))
-                .ToList();
-
-            foreach (var ingredientName in ingredientNames)
-            {
-                var ingredient = ingredients.FirstOrDefault(i => i.Name == ingredientName);
-                if (ingredient == null)
-                {
-                    var newIngredient = new Ingredient { Name = ingredientName };
-                    ingredients.Add(newIngredient);
-
-                    await this.ingredientsRepository.AddAsync(newIngredient);
-                }
-            }
-
-            return ingredients;
         }
 
         public IEnumerable<T> GetAll<T>()
@@ -140,7 +121,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 .Where(x => x.RecipeId == recipe.Id);
             await this.recipeIngredientsService.DeleteAllAsync(oldRecipeIngredients);
 
-            var ingredients = await this.EnsureIngredientsAsync(input.Ingredients.Select(i => i.Name));
+            var ingredients = await this.ingredientsService.EnsureAllAsync(input.Ingredients.Select(i => i.Name));
             var recipeIngredients = await this.recipeIngredientsService.CreateAsync(ingredients, input.Ingredients, recipe);
 
             // Re-fill all necessary members

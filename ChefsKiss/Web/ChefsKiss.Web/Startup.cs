@@ -66,6 +66,7 @@ namespace ChefsKiss.Web
             services.AddTransient<IImageOperator, ImageOperator>();
             services.AddTransient<IMeasurementUnitsService, MeasurementUnitsService>();
             services.AddTransient<IRecipeIngredientsService, RecipeIngredientsService>();
+            services.AddTransient<IIngredientsService, IngredientsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

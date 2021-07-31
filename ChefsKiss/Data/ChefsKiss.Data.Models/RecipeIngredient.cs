@@ -9,14 +9,14 @@ namespace ChefsKiss.Data.Models
     public class RecipeIngredient : BaseModel<int>
     {
         // [Required]
-        public int RecipeId { get; init; }
+        public int RecipeId { get; set; }
 
-        public Recipe Recipe { get; init; }
+        public Recipe Recipe { get; set; }
 
         // [Required]
-        public int IngredientId { get; init; }
+        public int IngredientId { get; set; }
 
-        public Ingredient Ingredient { get; init; }
+        public Ingredient Ingredient { get; set; }
 
         // [Required]
         public int MeasurementUnitId { get; set; }
@@ -25,6 +25,6 @@ namespace ChefsKiss.Data.Models
 
         [Required]
         [Range(RecipeIngredientMinQuantity, RecipeIngredientMaxQuantity)]
-        public double Quantity { get; init; }
+        public double Quantity { get; set; }
     }
 }

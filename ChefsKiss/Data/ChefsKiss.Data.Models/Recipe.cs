@@ -17,17 +17,17 @@
         [Required]
         [MinLength(RecipeTitleMinLength)]
         [MaxLength(RecipeTitleMaxLength)]
-        public string Title { get; init; }
+        public string Title { get; set; }
 
         [Required]
         [MinLength(RecipeContentMinLength)]
         [MaxLength(RecipeContentMaxLength)]
-        public string Content { get; init; }
+        public string Content { get; set; }
 
         // [Required]
-        public int ImageId { get; init; }
+        public int ImageId { get; set; }
 
-        public Image Image { get; init; }
+        public Image Image { get; set; }
 
         public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
 

@@ -29,6 +29,7 @@ namespace ChefsKiss.Data.Seeding
             {
                 new MeasurementUnitsSeeder(),
                 new IngredientsSeeder(),
+                new ReviewsSeeder(),
             };
 
             foreach (var seeder in seeders)

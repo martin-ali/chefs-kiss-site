@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ChefsKiss.Data\ChefsKiss.Data.csproj" />
     <ProjectReference Include="..\ChefsKiss.Data.Models\ChefsKiss.Data.Models.csproj" />
+    <ProjectReference Include="..\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
   </ItemGroup>
 
 </Project>

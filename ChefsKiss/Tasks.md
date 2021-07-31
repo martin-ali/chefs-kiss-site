@@ -3,7 +3,7 @@
 ## Mandatory
 
 - [x] Fix usings
-- [ ] Remove commented out code
+- [x] Remove commented out code
 - [x] Comply with Stylecop
 - [x] Download Azure Data Studio
 - [x] Automatic migration
@@ -13,10 +13,10 @@
 - [ ] Views
 - [x] Automapping
 - [x] Services
-- [ ] Authentication
+- [x] Authentication
 - [x] Validation groundwork
 - [x] Inline validation
-- [ ] Ingredient validation
+- [x] Ingredient validation
 - [ ] Validation with user-friendly messages
 - [x] Controllers
 - [x] Review system
@@ -26,7 +26,7 @@
 - [ ] AJAX
 - [ ] Infinite scrolling
 - [ ] Rating with showcase
-- [ ] Only one review per person
+- [x] Only one review per person
 - [x] Image size limit
 - [ ] Decouple the ingredient form add JS script
 

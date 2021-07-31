@@ -8,7 +8,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
+    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
 
     public class RecipesService : IRecipesService
     {

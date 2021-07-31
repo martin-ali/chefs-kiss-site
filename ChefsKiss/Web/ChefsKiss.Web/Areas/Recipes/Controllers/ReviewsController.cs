@@ -4,8 +4,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
     using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;

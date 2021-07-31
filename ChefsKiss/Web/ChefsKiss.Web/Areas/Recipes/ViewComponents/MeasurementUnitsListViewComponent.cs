@@ -1,4 +1,4 @@
-﻿namespace ChefsKiss.Web.Areas.Recipes.ViewComponents
+namespace ChefsKiss.Web.Areas.Recipes.ViewComponents
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -6,7 +6,8 @@
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.MeasurementUnits;
+    using ChefsKiss.Web.Areas.Recipes.Models.MeasurementUnits;
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 

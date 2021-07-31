@@ -1,4 +1,4 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients
+namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
 {
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;

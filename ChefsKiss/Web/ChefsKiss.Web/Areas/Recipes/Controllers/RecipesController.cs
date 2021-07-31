@@ -4,9 +4,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.MeasurementUnits;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;

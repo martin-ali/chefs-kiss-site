@@ -4,7 +4,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews;
+    using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
 
     public class ReviewsService : IReviewsService
     {

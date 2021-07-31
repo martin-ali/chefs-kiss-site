@@ -1,4 +1,4 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewModels.MeasurementUnits
+namespace ChefsKiss.Web.Areas.Recipes.Models.MeasurementUnits
 {
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;

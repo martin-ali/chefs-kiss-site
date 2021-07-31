@@ -1,4 +1,4 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
+namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 {
     using System.IO;
     using System.Linq;

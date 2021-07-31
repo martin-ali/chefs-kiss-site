@@ -1,12 +1,14 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
+namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using AutoMapper;
+
     using ChefsKiss.Common.Attributes;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients;
+    using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
 
     using Microsoft.AspNetCore.Http;
 
@@ -15,6 +17,8 @@ namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes
 
     public class RecipeFormModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
+        public string AuthorId { get; init; }
+
         [Required]
         [MinLength(RecipeTitleMinLength)]
         [MaxLength(RecipeTitleMaxLength)]

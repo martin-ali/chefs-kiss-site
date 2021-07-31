@@ -9,8 +9,8 @@ namespace ChefsKiss.Web
     using ChefsKiss.Data.Seeding;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Recipes;
     using ChefsKiss.Web.Models;
 
     using Microsoft.AspNetCore.Builder;

@@ -6,7 +6,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Ingredients;
+    using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
 
     public class RecipeIngredientsService : IRecipeIngredientsService
     {

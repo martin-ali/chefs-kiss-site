@@ -2,7 +2,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 {
     using System.Threading.Tasks;
 
-    using ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews;
+    using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
 
     public interface IReviewsService
     {

@@ -1,4 +1,4 @@
-namespace ChefsKiss.Web.Areas.Recipes.ViewModels.Reviews
+namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 {
     using System;
 

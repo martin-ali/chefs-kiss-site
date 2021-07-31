@@ -16,17 +16,20 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         private readonly IRepository<Recipe> recipesRepository;
         private readonly IRepository<Ingredient> ingredientsRepository;
         private readonly IRepository<RecipeIngredient> recipeIngredientsRepository;
+        private readonly IRecipeIngredientsService recipeIngredientsService;
         private readonly IImagesService imagesService;
 
         public RecipesService(
             IRepository<Recipe> recipesRepository,
             IRepository<Ingredient> ingredientsRepository,
             IRepository<RecipeIngredient> recipeIngredientsRepository,
+            IRecipeIngredientsService recipeIngredientsService,
             IImagesService imagesService)
         {
             this.recipesRepository = recipesRepository;
             this.ingredientsRepository = ingredientsRepository;
             this.recipeIngredientsRepository = recipeIngredientsRepository;
+            this.recipeIngredientsService = recipeIngredientsService;
             this.imagesService = imagesService;
         }
 
@@ -44,39 +47,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 Image = image,
             };
 
-            var recipeIngredients = await this.CreateRecipeIngredientsAsync(ingredients, input.Ingredients, recipe);
+            var recipeIngredients = await this.recipeIngredientsService.CreateAsync(ingredients, input.Ingredients, recipe);
             recipe.RecipeIngredients = recipeIngredients;
 
             await this.recipesRepository.AddAsync(recipe);
             await this.recipesRepository.SaveChangesAsync();
 
             return recipe.Id;
-        }
-
-        private async Task<IEnumerable<RecipeIngredient>> CreateRecipeIngredientsAsync(
-            IEnumerable<Ingredient> ingredients,
-            IEnumerable<IngredientFormModel> ingredientModels,
-            Recipe recipe)
-        {
-            var recipeIngredients = new List<RecipeIngredient>();
-
-            foreach (var ingredient in ingredients)
-            {
-                var ingredientFormData = ingredientModels.FirstOrDefault(im => im.Name == ingredient.Name);
-                var recipeIngredient = new RecipeIngredient
-                {
-                    Recipe = recipe,
-                    Ingredient = ingredient,
-                    MeasurementUnitId = ingredientFormData.MeasurementUnitId,
-                    Quantity = ingredientFormData.Quantity,
-                };
-
-                recipeIngredients.Add(recipeIngredient);
-
-                await this.recipeIngredientsRepository.AddAsync(recipeIngredient);
-            }
-
-            return recipeIngredients;
         }
 
         private async Task<IEnumerable<Ingredient>> EnsureIngredientsAsync(IEnumerable<string> ingredientNames)
@@ -121,7 +98,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 .All()
                 .Where(x => x.Id == id)
                 .To<T>()
-                .FirstOrDefault();
+                .First();
 
             return recipe;
         }
@@ -153,7 +130,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var recipe = this.recipesRepository
                 .All()
-                .FirstOrDefault(x => x.Id == recipeId);
+                .First(x => x.Id == recipeId);
 
             // Re-generate members
             var image = await this.imagesService.CreateImageAsync(input.Image);
@@ -161,10 +138,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             var oldRecipeIngredients = this.recipeIngredientsRepository
                 .All()
                 .Where(x => x.RecipeId == recipe.Id);
-            await this.DeleteRecipeIngredients(oldRecipeIngredients);
+            await this.recipeIngredientsService.DeleteAllAsync(oldRecipeIngredients);
 
             var ingredients = await this.EnsureIngredientsAsync(input.Ingredients.Select(i => i.Name));
-            var recipeIngredients = await this.CreateRecipeIngredientsAsync(ingredients, input.Ingredients, recipe);
+            var recipeIngredients = await this.recipeIngredientsService.CreateAsync(ingredients, input.Ingredients, recipe);
 
             // Re-fill all necessary members
             recipe.Title = input.Title;
@@ -176,16 +153,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             await this.imagesService.DeleteAsync(recipe.ImageId);
 
             await this.recipesRepository.SaveChangesAsync();
-        }
-
-        private async Task DeleteRecipeIngredients(IEnumerable<RecipeIngredient> recipeIngredients)
-        {
-            foreach (var recipeIngredient in recipeIngredients)
-            {
-                this.recipeIngredientsRepository.Delete(recipeIngredient);
-            }
-
-            await this.recipeIngredientsRepository.SaveChangesAsync();
         }
     }
 }

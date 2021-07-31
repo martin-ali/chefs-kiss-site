@@ -17,5 +17,7 @@
         public const string RecipesArea = "Recipes";
 
         public const string HomeArea = "Home";
+
+        public const int RecipesPerPage = 3;
     }
 }

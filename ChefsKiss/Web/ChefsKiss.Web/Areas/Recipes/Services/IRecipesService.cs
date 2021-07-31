@@ -9,6 +9,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     {
         IEnumerable<T> GetAll<T>();
 
+        IEnumerable<T> GetPaged<T>(int page, int itemsPerPage);
+
         T GetById<T>(int id);
 
         IEnumerable<T> GetByCategory<T>(int category);

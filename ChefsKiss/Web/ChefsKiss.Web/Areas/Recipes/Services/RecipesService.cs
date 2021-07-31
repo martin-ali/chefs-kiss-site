@@ -68,6 +68,19 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
+        public IEnumerable<T> GetPaged<T>(int page, int itemsPerPage)
+        {
+            var itemsToSkip = page * itemsPerPage;
+            var recipes = this.recipesRepository
+                .All()
+                .Skip(itemsToSkip)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+
+            return recipes;
+        }
+
         public IEnumerable<T> GetByCategory<T>(int category)
         {
             throw new System.NotImplementedException();

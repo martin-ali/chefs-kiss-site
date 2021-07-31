@@ -2,9 +2,13 @@
 
 @model IEnumerable<RecipeInListViewModel>
 
-<div class="row">
+<div id="recipes-list" class="row">
     @foreach (var recipe in Model)
     {
         <partial name="_RecipeInListPartial" model="recipe" />
     }
 </div>
+
+@section Scripts{
+<script src="~/js/infinite-scrolling.js" asp-append-version="true"></script>
+}

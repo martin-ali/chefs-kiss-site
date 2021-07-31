@@ -56,11 +56,19 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
-        public IActionResult All()
+        public IActionResult List()
         {
-            var recipes = this.recipesService.GetAll<RecipeInListViewModel>();
+            var recipes = this.recipesService.GetPaged<RecipeInListViewModel>(0, RecipesPerPage);
 
             return this.View(recipes);
+        }
+
+        [HttpGet]
+        public IActionResult Page(int id = 0) // FIXME: Parameter name id makes no sense in the context
+        {
+            var recipes = this.recipesService.GetPaged<RecipeInListViewModel>(id, RecipesPerPage);
+
+            return this.PartialView("_PagePartial", recipes);
         }
 
         [HttpGet]

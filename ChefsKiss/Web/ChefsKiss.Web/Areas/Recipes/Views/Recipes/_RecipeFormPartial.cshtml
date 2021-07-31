@@ -33,14 +33,14 @@
             </div>
             <div class="row">
                 <label asp-for="Ingredients"></label>
-                <div class="ingredients-container col-12">
+                <div id="ingredients-container" class="col-12">
                     @foreach (var ingredient in Model.Ingredients)
                     {
                         ingredient.Index = ingredientIndex++;
                         <partial name="_IngredientFormPartial" model="@ingredient" />
                     }
                 </div>
-                <button class="add-ingredient btn btn-success" type="button">Add new ingredient</button>
+                <button id="add-ingredient" class="btn btn-success" type="button">Add new ingredient</button>
                 <span asp-validation-for="Ingredients" class="text-danger"></span>
             </div>
             <br />

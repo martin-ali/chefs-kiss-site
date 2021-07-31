@@ -1,14 +1,16 @@
-﻿window.addEventListener('load', setupPostPreview)
+﻿(function () {
+    function setupPostPreview() {
 
-function setupPostPreview() {
+        const preview = document.getElementById('image-preview');
+        const input = document.getElementById('image-upload');
 
-    const preview = document.getElementById('image-preview');
-    const input = document.getElementById('image-upload');
+        if (input && preview) {
 
-    if (input && preview) {
-
-        input.addEventListener('change', (event) => {
-            preview.src = URL.createObjectURL(event.target.files[0]);
-        });
+            input.addEventListener('change', (event) => {
+                preview.src = URL.createObjectURL(event.target.files[0]);
+            });
+        }
     }
-}
+
+    window.addEventListener('load', setupPostPreview)
+})();

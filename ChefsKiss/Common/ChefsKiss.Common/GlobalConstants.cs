@@ -4,6 +4,8 @@
     {
         public const string SystemName = "ChefsKiss";
 
+        public const string UserRoleName = "User";
+
         public const string AdministratorRoleName = "Administrator";
 
         public const string ImagesDirectory = "images";

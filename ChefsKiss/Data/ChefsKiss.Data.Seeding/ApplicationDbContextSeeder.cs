@@ -30,6 +30,7 @@ namespace ChefsKiss.Data.Seeding
                 new UsersSeeder(),
                 new MeasurementUnitsSeeder(),
                 new IngredientsSeeder(),
+                new RecipesSeeder(),
                 new ReviewsSeeder(),
             };
 

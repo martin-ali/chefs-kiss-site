@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
   </ItemGroup>
@@ -14,6 +15,7 @@
     <ProjectReference Include="..\ChefsKiss.Data\ChefsKiss.Data.csproj" />
     <ProjectReference Include="..\ChefsKiss.Data.Models\ChefsKiss.Data.Models.csproj" />
     <ProjectReference Include="..\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Services\ChefsKiss.Services.IO\ChefsKiss.Services.IO.csproj" />
   </ItemGroup>
 
 </Project>

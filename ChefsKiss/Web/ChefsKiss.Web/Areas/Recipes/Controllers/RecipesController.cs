@@ -12,6 +12,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using static ChefsKiss.Common.GlobalConstants;
     using static ChefsKiss.Common.ErrorMessages;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
+    using System.Linq;
 
     [Area(RecipesArea)]
     public class RecipesController : Controller
@@ -75,6 +76,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         public IActionResult Details(int id)
         {
             var recipe = this.recipesService.GetById<RecipeDetailsViewModel>(id);
+
+            var userId = this.userManager.GetUserId(this.User);
+            recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
 
             return this.View(recipe);
         }

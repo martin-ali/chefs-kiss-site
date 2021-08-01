@@ -14,7 +14,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
     {
         public string Content { get; init; }
 
-        public bool UserHasReviewed { get; init; }
+        public bool UserHasPostedReview { get; set; }
 
         public IEnumerable<ReviewListViewModel> Reviews { get; init; } = new List<ReviewListViewModel>();
 
@@ -28,8 +28,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
                 .CreateMap<Recipe, RecipeDetailsViewModel>()
                 .IncludeBase<Recipe, RecipeBaseViewModel>()
                 .ForMember(vm => vm.Reviews, cfg => cfg.MapFrom(m => m.Reviews.OrderByDescending(c => c.CreatedOn)))
-                .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients))
-                .ForMember(vm => vm.UserHasReviewed, cfg => cfg.MapFrom(m => m.Reviews.Any(x => x.AuthorId == m.AuthorId)));
+                .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients));
         }
 
     }

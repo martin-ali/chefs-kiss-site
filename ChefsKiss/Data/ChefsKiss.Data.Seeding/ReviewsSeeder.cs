@@ -23,7 +23,7 @@ namespace ChefsKiss.Data.Seeding
             var authors = dbContext.Users.ToList();
             var random = new Random();
 
-            for (int i = 1; i <= ReviewsCount; i++)
+            for (int current = 1; current <= ReviewsCount; current++)
             {
                 var randomAuthor = authors[random.Next(0, authors.Count)];
                 var randomRecipe = recipes[random.Next(0, recipes.Count)];
@@ -31,7 +31,7 @@ namespace ChefsKiss.Data.Seeding
 
                 var review = new Review
                 {
-                    Content = $"Review number {i}",
+                    Content = $"Review number {current}",
                     Author = randomAuthor,
                     Recipe = randomRecipe,
                     Rating = randomRating,

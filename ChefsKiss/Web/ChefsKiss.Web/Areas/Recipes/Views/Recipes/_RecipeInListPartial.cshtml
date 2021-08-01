@@ -9,7 +9,7 @@
             <h4 class="card-title text-body">@Model.Title</h4>
             <partial name="_RatingBarPartial" model="@Model.Rating" />
             <p class="card-text text-body">@Model.Summary</p>
-            <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" class="card-subtitle text-info">By: @Model.AuthorUsername</a>
+            <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" class="card-subtitle text-info">By: @Model.AuthorFullname</a>
         </div>
     </a>
 </article>

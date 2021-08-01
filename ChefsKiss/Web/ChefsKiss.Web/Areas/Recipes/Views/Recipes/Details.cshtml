@@ -13,7 +13,7 @@
             <p class="card-text">
                 <span> Author:
                     <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
-                        <span> @Model.AuthorUsername </span>
+                        <span> @Model.AuthorFullname (@Model.AuthorUsername) </span>
                     </a>
                 </span>
                 @* <span> Tags:

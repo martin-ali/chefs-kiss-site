@@ -23,6 +23,11 @@ namespace ChefsKiss.Data.Models
 
         public DateTime? ModifiedOn { get; set; }
 
+        // FIXME: Required
+        public string FirstName { get; init; }
+
+        public string LastName { get; init; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }

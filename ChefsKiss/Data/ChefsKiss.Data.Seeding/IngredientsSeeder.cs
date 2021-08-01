@@ -17,11 +17,11 @@ namespace ChefsKiss.Data.Seeding
                 return;
             }
 
-            for (int i = 1; i <= IngredientsCount; i++)
+            for (int current = 1; current <= IngredientsCount; current++)
             {
                 var ingredient = new Ingredient
                 {
-                    Name = $"Ingredient {i}",
+                    Name = $"Ingredient {current}",
                 };
 
                 dbContext.Ingredients.Add(ingredient);

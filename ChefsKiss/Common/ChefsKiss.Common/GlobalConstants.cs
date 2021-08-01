@@ -18,6 +18,6 @@
 
         public const string HomeArea = "Home";
 
-        public const int RecipesPerPage = 3;
+        public const int RecipesPerPage = 9;
     }
 }

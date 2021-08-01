@@ -12,6 +12,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
     public class RecipeDetailsViewModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
     {
+        public string AuthorUsername { get; set; }
+
         public string Content { get; init; }
 
         public bool UserHasPostedReview { get; set; }

@@ -15,8 +15,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public string AuthorId { get; init; }
 
-        public string AuthorUsername { get; init; }
-
         public string AuthorFullname { get; init; }
 
         public string Title { get; init; }

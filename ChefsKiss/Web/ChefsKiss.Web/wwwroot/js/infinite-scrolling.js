@@ -1,6 +1,6 @@
 ﻿(function () {
     const bottomLenience = 100;
-    const debounceTimeout = 300;
+    const debounceTimeout = 150;
     const processChange = debounce(() => AlertMe());
     const container = "#recipes-list";
     let index = 1;

@@ -9,6 +9,6 @@
         <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
             @Model.AuthorFullname (@Model.AuthorUsername)
         </a>
-        <span class="text-secondary">(Posted on: @Model.CreatedOn.ToString("dd/MM/yyyy"))</span>
+        <span class="text-secondary">Posted on: @Model.CreatedOn.ToString("dd/MM/yyyy")</span>
     </h6>
 </div>

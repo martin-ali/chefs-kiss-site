@@ -27,6 +27,7 @@ namespace ChefsKiss.Data.Seeding
 
             var seeders = new List<IDataSeeder>
             {
+                new UsersSeeder(),
                 new MeasurementUnitsSeeder(),
                 new IngredientsSeeder(),
                 new ReviewsSeeder(),

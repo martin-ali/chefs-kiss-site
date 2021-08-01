@@ -2,7 +2,7 @@
 
 @model IEnumerable<RecipeInListViewModel>
 
-<div id="recipes-list" class="row">
+<div id="recipes-list" class="row mx-auto">
     @foreach (var recipe in Model)
     {
         <partial name="_RecipeInListPartial" model="recipe" />

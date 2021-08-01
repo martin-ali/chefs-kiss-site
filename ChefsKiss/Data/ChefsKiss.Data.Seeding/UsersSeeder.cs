@@ -92,7 +92,7 @@ namespace ChefsKiss.Data.Seeding
 
             for (int i = 0; i < UsersCount; i++)
             {
-                var username = $"User-{i}@user.com";
+                var username = $"User-{i}@seeded.com";
                 var firstName = FirstNames[random.Next(0, FirstNames.Length)];
                 var lastName = LastNames[random.Next(0, LastNames.Length)];
 

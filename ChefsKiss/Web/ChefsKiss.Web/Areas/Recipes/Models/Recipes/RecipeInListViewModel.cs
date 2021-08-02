@@ -5,7 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
-    using static ChefsKiss.Common.DataConstants;
+    using static ChefsKiss.Common.GlobalConstants;
 
     public class RecipeInListViewModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
     {
@@ -13,12 +13,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public override void CreateMappings(IProfileExpression configuration)
         {
-            base.CreateMappings(configuration);
-
             configuration
                 .CreateMap<Recipe, RecipeInListViewModel>()
-                .IncludeBase<Recipe, RecipeBaseViewModel>()
-                .ForMember(vm => vm.Summary, cfg => cfg.MapFrom(m => $"{m.Content.Substring(0, RecipeSummaryLength - 3)}..."));
+                .ForMember(vm => vm.Summary, cfg => cfg.MapFrom(m => m.Content.Substring(0, RecipeSummaryLength)));
         }
     }
 }

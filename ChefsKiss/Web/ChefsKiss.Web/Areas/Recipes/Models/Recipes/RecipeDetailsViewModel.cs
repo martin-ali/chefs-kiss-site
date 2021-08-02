@@ -24,11 +24,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public override void CreateMappings(IProfileExpression configuration)
         {
-            base.CreateMappings(configuration);
-
             configuration
                 .CreateMap<Recipe, RecipeDetailsViewModel>()
-                .IncludeBase<Recipe, RecipeBaseViewModel>()
                 .ForMember(vm => vm.Reviews, cfg => cfg.MapFrom(m => m.Reviews.OrderByDescending(c => c.CreatedOn)))
                 .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients));
         }

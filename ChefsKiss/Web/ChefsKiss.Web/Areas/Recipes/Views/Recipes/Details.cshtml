@@ -16,12 +16,12 @@
                 <img class="card-img-top col-sm-12 col-md-6" src="@Model.ImageUrl">
                 <div class="col-sm-12 col-md-6">
                     <h3>Ingredients:</h3>
-                    <ul>
+                    <ol>
                         @foreach (var ingredient in Model.Ingredients)
                         {
-                            <li>@ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit</li>
+                            <li class="p-1 m-1">@ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit</li>
                         }
-                    </ul>
+                    </ol>
                 </div>
             </div>
             <hr>

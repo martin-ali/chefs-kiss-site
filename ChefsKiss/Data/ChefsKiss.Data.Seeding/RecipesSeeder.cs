@@ -102,7 +102,7 @@ namespace ChefsKiss.Data.Seeding
             {
                 var randomIngredient = ingredientsRandomized[i];
                 var randomMeasurementUnit = measurementUnits[random.Next(0, measurementUnits.Count)];
-                var randomQuantity = random.Next((int)RecipeIngredientMinQuantity, (int)RecipeIngredientMaxQuantity);
+                var randomQuantity = random.Next((int)RecipeIngredients.MinQuantity, (int)RecipeIngredients.MaxQuantity);
 
                 var recipeIngredient = new RecipeIngredient
                 {

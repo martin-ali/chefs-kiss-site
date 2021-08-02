@@ -20,18 +20,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
         public string AuthorId { get; init; }
 
         [Required]
-        [MinLength(RecipeTitleMinLength)]
-        [MaxLength(RecipeTitleMaxLength)]
+        [MinLength(Recipes.TitleMinLength)]
+        [MaxLength(Recipes.TitleMaxLength)]
         public string Title { get; init; }
 
         [Required]
-        [MinLength(RecipeContentMinLength)]
-        [MaxLength(RecipeContentMaxLength)]
+        [MinLength(Recipes.ContentMinLength)]
+        [MaxLength(Recipes.ContentMaxLength)]
         public string Content { get; init; }
 
         [Required]
         [ImagesOnly]
-        [MaxFileSize(ImageMaxSizeBytes)]
+        [MaxFileSize(Images.MaxSizeBytes)]
         public IFormFile Image { get; init; }
 
         [Required]

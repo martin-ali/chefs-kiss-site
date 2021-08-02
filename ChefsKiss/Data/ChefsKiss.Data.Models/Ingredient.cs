@@ -9,8 +9,8 @@ namespace ChefsKiss.Data.Models
     public class Ingredient : BaseModel<int>
     {
         [Required]
-        [MinLength(IngredientNameMinLength)]
-        [MaxLength(IngredientNameMaxLength)]
+        [MinLength(Ingredients.NameMinLength)]
+        [MaxLength(Ingredients.NameMaxLength)]
         public string Name { get; init; }
     }
 }

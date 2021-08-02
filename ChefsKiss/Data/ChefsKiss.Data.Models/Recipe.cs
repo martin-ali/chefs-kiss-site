@@ -15,13 +15,13 @@
         public ApplicationUser Author { get; init; }
 
         [Required]
-        [MinLength(RecipeTitleMinLength)]
-        [MaxLength(RecipeTitleMaxLength)]
+        [MinLength(Recipes.TitleMinLength)]
+        [MaxLength(Recipes.TitleMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(RecipeContentMinLength)]
-        [MaxLength(RecipeContentMaxLength)]
+        [MinLength(Recipes.ContentMinLength)]
+        [MaxLength(Recipes.ContentMaxLength)]
         public string Content { get; set; }
 
         // [Required]

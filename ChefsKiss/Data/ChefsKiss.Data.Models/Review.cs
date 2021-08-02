@@ -19,12 +19,12 @@ namespace ChefsKiss.Data.Models
         public Recipe Recipe { get; init; }
 
         [Required]
-        [MinLength(ReviewContentMinLength)]
-        [MaxLength(ReviewContentMaxLength)]
+        [MinLength(Reviews.ContentMinLength)]
+        [MaxLength(Reviews.ContentMaxLength)]
         public string Content { get; init; }
 
         [Required]
-        [Range(ReviewRatingMinValue, ReviewContentMaxLength)]
+        [Range(Reviews.RatingMinValue, Reviews.ContentMaxLength)]
         public int Rating { get; init; }
     }
 }

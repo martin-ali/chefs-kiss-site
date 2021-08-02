@@ -24,7 +24,7 @@ namespace ChefsKiss.Data.Models
         public MeasurementUnit MeasurementUnit { get; set; }
 
         [Required]
-        [Range(RecipeIngredientMinQuantity, RecipeIngredientMaxQuantity)]
+        [Range(RecipeIngredients.MinQuantity, RecipeIngredients.MaxQuantity)]
         public double Quantity { get; set; }
     }
 }

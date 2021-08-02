@@ -12,12 +12,12 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
         public int Index { get; set; }
 
         [Required]
-        [MinLength(IngredientNameMinLength)]
-        [MaxLength(IngredientNameMaxLength)]
+        [MinLength(Ingredients.NameMinLength)]
+        [MaxLength(Ingredients.NameMaxLength)]
         public string Name { get; init; }
 
         [Required]
-        [Range(RecipeIngredientMinQuantity, RecipeIngredientMaxQuantity)]
+        [Range(RecipeIngredients.MinQuantity, RecipeIngredients.MaxQuantity)]
         public double Quantity { get; init; }
 
         [Required]

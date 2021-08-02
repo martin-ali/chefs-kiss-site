@@ -10,12 +10,12 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
         public int RecipeId { get; init; }
 
         [Required]
-        [MinLength(ReviewContentMinLength)]
-        [MaxLength(ReviewContentMaxLength)]
+        [MinLength(Reviews.ContentMinLength)]
+        [MaxLength(Reviews.ContentMaxLength)]
         public string Content { get; init; }
 
         [Required]
-        [Range(ReviewRatingMinValue, ReviewRatingMaxValue)]
+        [Range(Reviews.RatingMinValue, Reviews.RatingMaxValue)]
         public int Rating { get; init; }
     }
 }

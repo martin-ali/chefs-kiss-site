@@ -2,33 +2,45 @@ namespace ChefsKiss.Common
 {
     public class DataConstants
     {
-        // Ingredients
-        public const int IngredientNameMinLength = 2;
-        public const int IngredientNameMaxLength = 50;
+        public class Ingredients
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 50;
+        }
 
-        // Recipes
-        public const int RecipeTitleMinLength = 5;
-        public const int RecipeTitleMaxLength = 100;
+        public class Recipes
+        {
+            public const int TitleMinLength = 5;
+            public const int TitleMaxLength = 100;
 
-        public const int RecipeContentMinLength = 500;
-        public const int RecipeContentMaxLength = 100000;
+            public const int ContentMinLength = 500;
+            public const int ContentMaxLength = 100000;
+        }
 
-        // RecipeIngredients
-        public const double RecipeIngredientMinQuantity = 0.001;
-        public const double RecipeIngredientMaxQuantity = 1000;
+        public class RecipeIngredients
+        {
+            public const double MinQuantity = 0.001;
+            public const double MaxQuantity = 1000;
+        }
 
-        // Reviews
-        public const int ReviewContentMinLength = 10;
-        public const int ReviewContentMaxLength = 1000;
+        public class Reviews
+        {
+            public const int ContentMinLength = 10;
+            public const int ContentMaxLength = 500;
 
-        public const int ReviewRatingMinValue = 1;
-        public const int ReviewRatingMaxValue = 5;
+            public const int RatingMinValue = 1;
+            public const int RatingMaxValue = 5;
+        }
 
-        // MeasurementUnits
-        public const int MeasurementUnitNameMinLength = 1;
-        public const int MeasurementUnitNameMaxLength = 10;
+        public class MeasurementUnits
+        {
+            public const int NameMinLength = 1;
+            public const int NameMaxLength = 10;
+        }
 
-        // Images
-        public const int ImageMaxSizeBytes = 10 * 1024 * 1024; // 10MB
+        public class Images
+        {
+            public const int MaxSizeBytes = 10 * 1024 * 1024; // 10MB
+        }
     }
 }

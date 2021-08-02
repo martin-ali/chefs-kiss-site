@@ -3,7 +3,7 @@
 @model int
 
 <p class="rating-bar p-0 m-0 form-control-lg">
-    @for (int rating = ReviewRatingMinValue; rating <= ReviewRatingMaxValue; rating++)
+    @for (int rating = Reviews.RatingMinValue; rating <= Reviews.RatingMaxValue; rating++)
     {
         var checkedStatus = rating <= Model ? "checked" : "unchecked";
         var marginLeft = rating >= 2 ? "ml-2" : string.Empty;

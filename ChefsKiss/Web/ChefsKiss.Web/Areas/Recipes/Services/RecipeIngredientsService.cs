@@ -25,7 +25,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
             foreach (var ingredient in ingredients)
             {
-                var ingredientFormData = ingredientModels.First(im => im.Name == ingredient.Name);
+                var ingredientFormData = ingredientModels.First(x => x.Name == ingredient.Name);
                 var recipeIngredient = new RecipeIngredient
                 {
                     Recipe = recipe,

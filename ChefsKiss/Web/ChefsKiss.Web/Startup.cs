@@ -83,7 +83,7 @@ namespace ChefsKiss.Web
 
                 if (env.IsDevelopment())
                 {
-                    // dbContext.Database.EnsureDeleted();
+                    dbContext.Database.EnsureDeleted();
                 }
 
                 dbContext.Database.Migrate();

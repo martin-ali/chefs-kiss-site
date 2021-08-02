@@ -1,7 +1,5 @@
 namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 {
-    using AutoMapper;
-
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 

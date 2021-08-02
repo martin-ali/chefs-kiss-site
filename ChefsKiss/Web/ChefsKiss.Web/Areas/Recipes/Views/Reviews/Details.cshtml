@@ -1,0 +1,19 @@
+﻿@using ChefsKiss.Web.Areas.Recipes.Models.Reviews
+
+@model ReviewDetailsViewModel
+
+<div class="row">
+    <div class="card card-body">
+        <partial name="_RatingBarPartial" model="@Model.Rating" />
+        <p>@Model.Content </p>
+        <h6>
+            <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                @Model.AuthorFullname
+            </a>
+            <span class="text-secondary">posted on: @Model.CreatedOn.ToString("dd/MM/yyyy")</span>
+        </h6>
+    </div>
+</div>
+<div class="row">
+    <a class="btn btn-primary my-1" asp-area="recipes" asp-controller="recipes" asp-action="details" asp-route-id="@Model.RecipeId">Back to recipe</a>
+</div>

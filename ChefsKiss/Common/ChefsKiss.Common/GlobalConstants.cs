@@ -19,5 +19,9 @@
         public const string HomeArea = "Home";
 
         public const int RecipesPerPage = 8;
+
+        public const int RecipeSummaryLength = 70;
+
+        public const int ReviewSummaryLength = 100;
     }
 }

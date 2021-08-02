@@ -9,6 +9,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 
     public class ReviewListViewModel : ReviewBaseViewModel, IMapFrom<Review>, IHaveCustomMappings
     {
+        public int Id { get; init; }
+
         public string Summary { get; init; }
 
         public override void CreateMappings(IProfileExpression configuration)

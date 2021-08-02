@@ -10,5 +10,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         Task CreateAsync(ReviewFormModel input, string authorId);
 
         IEnumerable<T> GetByRecipeId<T>(int id);
+
+        T GetById<T>(int id);
     }
 }

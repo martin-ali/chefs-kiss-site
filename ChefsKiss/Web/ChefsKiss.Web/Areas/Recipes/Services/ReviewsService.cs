@@ -42,5 +42,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
             return reviews;
         }
+
+        public T GetById<T>(int id)
+        {
+            var review = this.reviewsRepository
+                .All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .First();
+
+            return review;
+        }
     }
 }

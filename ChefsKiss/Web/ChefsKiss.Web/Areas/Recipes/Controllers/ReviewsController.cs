@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web.Areas.Recipes.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -52,6 +53,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 nameof(RecipesController.Details),
                 Helpers.GetControllerName<RecipesController>(),
                 new { id = input.RecipeId });
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var review = this.reviewsService.GetById<ReviewDetailsViewModel>(id);
+
+            return this.View(review);
         }
 
         [HttpGet]

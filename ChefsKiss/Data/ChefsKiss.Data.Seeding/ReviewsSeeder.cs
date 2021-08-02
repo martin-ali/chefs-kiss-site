@@ -25,16 +25,20 @@ namespace ChefsKiss.Data.Seeding
 
             for (int current = 1; current <= ReviewsCount; current++)
             {
-                var randomAuthor = authors[random.Next(0, authors.Count)];
-                var randomRecipe = recipes[random.Next(0, recipes.Count)];
-                var randomRating = random.Next(ReviewRatingMinValue, ReviewRatingMaxValue + 1);
+                var baseContent = $"Review number {current}";
+                var contentExtracharacters = new string('-', random.Next(0, (ReviewContentMaxLength - baseContent.Length)));
+                var content = $"Review number {current}" + contentExtracharacters;
+
+                var author = authors[random.Next(0, authors.Count)];
+                var recipe = recipes[random.Next(0, recipes.Count)];
+                var rating = random.Next(ReviewRatingMinValue, ReviewRatingMaxValue + 1);
 
                 var review = new Review
                 {
-                    Content = $"Review number {current}",
-                    Author = randomAuthor,
-                    Recipe = randomRecipe,
-                    Rating = randomRating,
+                    Content = content,
+                    Author = author,
+                    Recipe = recipe,
+                    Rating = rating,
                 };
 
                 dbContext.Reviews.Add(review);

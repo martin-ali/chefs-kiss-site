@@ -15,7 +15,13 @@ namespace ChefsKiss.Data.Seeding
                 return;
             }
 
-            var units = new string[] { "mg", "kg", "tsp", "tcp" };
+            var units = new string[] {
+                "mg",
+                "kg",
+                "tsp",
+                "tcp",
+                "whole",
+            };
 
             foreach (var unit in units)
             {

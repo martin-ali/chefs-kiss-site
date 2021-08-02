@@ -55,7 +55,7 @@ namespace ChefsKiss.Data.Seeding
         //     }
         // }
         private const string ImagesSeedingRelativeDirectory = @"Data\ChefsKiss.Data.Seeding\Images";
-        private const int RecipesCount = 99;
+        private const int RecipesCount = 98;
         private const string RecipeContent = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Na";
 
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
@@ -71,17 +71,17 @@ namespace ChefsKiss.Data.Seeding
 
             for (int i = 0; i < RecipesCount; i++)
             {
-                var randomRecipeIngredients = CreateRandomRecipeIngredients(dbContext, random);
-                var randomAuthor = authors[random.Next(0, authors.Count)];
+                var recipeIngredients = CreateRandomRecipeIngredients(dbContext, random);
+                var author = authors[random.Next(0, authors.Count)];
                 var image = images[i];
 
                 var recipe = new Recipe
                 {
-                    Author = randomAuthor,
+                    Author = author,
                     Title = $"Recipe with title {i}",
                     Content = $"{i} - {RecipeContent}",
                     Image = image,
-                    RecipeIngredients = randomRecipeIngredients,
+                    RecipeIngredients = recipeIngredients,
                 };
 
                 dbContext.Recipes.Add(recipe);

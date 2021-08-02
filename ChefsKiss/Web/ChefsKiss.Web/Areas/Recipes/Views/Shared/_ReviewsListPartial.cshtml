@@ -2,13 +2,17 @@
 
 @model ReviewListViewModel
 
-<div class="w-100 card card-body m-2 col-md-12">
-    <partial name="_RatingBarPartial" model="@Model.Rating" />
-    <p>@Model.Content</p>
-    <h6>
-        <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
-            @Model.AuthorFullname (@Model.AuthorUsername)
-        </a>
-        <span class="text-secondary">Posted on: @Model.CreatedOn.ToString("dd/MM/yyyy")</span>
-    </h6>
+<div class="col-sm-12 col-md-6 col-lg-4 p-0">
+    <div class="card card-body m-1">
+        <partial name="_RatingBarPartial" model="@Model.Rating" />
+        <p>@Model.Summary...
+            <a asp-area="recipes" asp-controller="reviews" asp-action="details" asp-route-id="@Model.Id"> Read More</a>
+        </p>
+        <h6>
+            <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                @Model.AuthorFullname
+            </a>
+            <span class="text-secondary">posted on: @Model.CreatedOn.ToString("dd/MM/yyyy")</span>
+        </h6>
+    </div>
 </div>

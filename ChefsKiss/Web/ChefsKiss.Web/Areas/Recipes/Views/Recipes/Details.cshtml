@@ -6,48 +6,47 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 row-md-12">
-            <h2 class="card-title text-center">
-                @Model.Title
-            </h2>
-            <img class="card-img-top" src="@Model.ImageUrl">
-            <p class="card-text">
-                <span> Author:
-                    <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
-                        <span> @Model.AuthorFullname (@Model.AuthorUsername) </span>
-                    </a>
-                </span>
-                @* <span> Tags:
-                    @foreach (var tag in Model.Tags)
-                    {
-                    <a asp-action="ByTagId" asp-route-id="@tag.Id"> @tag.Name </a>
-                    }
-                    </span> *@
-            </p>
-            @* <div class="row">
-                @await Html.PartialAsync("_VotingPanel", Model)
-                </div> *@
+            <div class="row">
+                <h1 class="card-title text-center mx-auto">
+                    @Model.Title
+                </h1>
+            </div>
+            <hr>
+            <div class="row">
+                <img class="card-img-top col-sm-12 col-md-6" src="@Model.ImageUrl">
+                <div class="col-sm-12 col-md-6">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        @foreach (var ingredient in Model.Ingredients)
+                        {
+                            <li>@ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <p class="card-text">
+                    <span class="span"> Written by:
+                        <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                            <span> @Model.AuthorFullname (@Model.AuthorUsername) </span>
+                        </a>
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
+    <br>
     @* @if (User.IsInRole("Administrator"))
         {
         <div class="row">
         @await Html.PartialAsync("_AdminPanel", Model)
         </div>
         } *@
-    <hr>
-    <div class="row">
-        <ul>
-            @foreach (var ingredient in Model.Ingredients)
-            {
-                <li>@ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit</li>
-            }
-        </ul>
-    </div>
-    <hr>
     <div class="row">
         @Model.Content
     </div>
-    <hr>
+    <br>
     <div class="row">
         @if (User.Identity.IsAuthenticated && @Model.UserHasPostedReview == false)
         {

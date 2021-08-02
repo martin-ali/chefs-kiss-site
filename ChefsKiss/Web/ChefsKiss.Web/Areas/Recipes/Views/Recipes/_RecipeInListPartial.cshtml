@@ -2,16 +2,20 @@
 
 @model RecipeInListViewModel
 
-<div class="col-sm-12 col-md-4 col-lg-3 mb-4">
+<div class="col-sm-12 col-md-6 col-lg-4 mb-4">
     <article class="card p-0 shadow">
         <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
             <img style="width: 100%; height: 200px; overflow: hidden;" class="card-img-top img-fluid" src="@Model.ImageUrl" alt="Recipe image">
-            <div class="card-body">
-                <h4 class="card-title text-body">@Model.Title</h4>
-                <partial name="_RatingBarPartial" model="@Model.Rating" />
-                <p class="card-text text-body">@Model.Summary</p>
-                <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" class="card-subtitle text-info">By: @Model.AuthorFullname</a>
-            </div>
         </a>
+        <div class="card-body">
+            <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+                <h4 class="card-title text-body">@Model.Title</h4>
+            </a>
+            <partial name="_RatingBarPartial" model="@Model.Rating" />
+            <p class="card-text text-body text-danger">@Model.Summary...
+                <a asp-action="details" asp-route-id="@Model.Id"> Read More</a>
+            </p>
+            <a asp-area="identity" asp-controller="identity" asp-action="profile" asp-route-id="@Model.AuthorId" class="card-subtitle">By: @Model.AuthorFullname</a>
+        </div>
     </article>
 </div>

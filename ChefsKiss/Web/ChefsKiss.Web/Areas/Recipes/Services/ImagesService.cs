@@ -5,7 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Data.Common.Repositories;
+    using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.IO;
 
@@ -15,14 +15,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public class ImagesService : IImagesService
     {
-        private readonly IRepository<Image> imagesRepository;
+        private readonly RecipesDbContext data;
         private readonly IImageOperator imageOperator;
 
         public ImagesService(
-            IRepository<Image> imagesRepository,
+            RecipesDbContext data,
             IImageOperator imageOperator)
         {
-            this.imagesRepository = imagesRepository;
+            this.data = data;
             this.imageOperator = imageOperator;
         }
 
@@ -37,22 +37,22 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             };
 
             await this.imageOperator.WriteAsync(input, image.Name, extension);
-            await this.imagesRepository.AddAsync(image);
+            this.data.Images.Add(image);
 
-            await this.imagesRepository.SaveChangesAsync();
+            this.data.SaveChanges();
 
             return image;
         }
 
-        public async Task DeleteAsync(int imageId)
+        public void Delete(int imageId)
         {
-            var image = this.imagesRepository.All()
+            var image = this.data.Images
                 .FirstOrDefault(i => i.Id == imageId);
 
-            this.imagesRepository.Delete(image);
+            this.data.Images.Remove(image);
             this.imageOperator.Delete(image.Name, image.Extension);
 
-            await this.imagesRepository.SaveChangesAsync();
+            this.data.SaveChanges();
         }
 
         public string GetRelativeImagePath(int imageId)
@@ -65,7 +65,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         private string GetFileName(int imageId)
         {
-            var extension = this.imagesRepository.All()
+            var extension = this.data.Images
                 .Where(i => i.Id == imageId)
                 .Select(i => $"{i.Id}.{i.Extension}")
                 .FirstOrDefault();

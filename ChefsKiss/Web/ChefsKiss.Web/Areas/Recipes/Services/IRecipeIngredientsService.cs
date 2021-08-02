@@ -8,9 +8,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public interface IRecipeIngredientsService
     {
-        Task DeleteAllAsync(IEnumerable<RecipeIngredient> recipeIngredients);
+        void DeleteAll(IEnumerable<RecipeIngredient> recipeIngredients);
 
-        Task<IEnumerable<RecipeIngredient>> CreateAsync(
+        IEnumerable<RecipeIngredient> Create(
              IEnumerable<Ingredient> ingredients,
              IEnumerable<IngredientFormModel> ingredientModels,
              Recipe recipe);

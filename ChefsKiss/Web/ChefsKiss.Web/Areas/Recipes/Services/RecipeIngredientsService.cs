@@ -2,22 +2,21 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
-    using ChefsKiss.Data.Common.Repositories;
+    using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
 
     public class RecipeIngredientsService : IRecipeIngredientsService
     {
-        private readonly IRepository<RecipeIngredient> recipeIngredientsRepository;
+        private readonly RecipesDbContext data;
 
-        public RecipeIngredientsService(IRepository<RecipeIngredient> recipeIngredientsRepository)
+        public RecipeIngredientsService(RecipesDbContext data)
         {
-            this.recipeIngredientsRepository = recipeIngredientsRepository;
+            this.data = data;
         }
 
-        public async Task<IEnumerable<RecipeIngredient>> CreateAsync(
+        public IEnumerable<RecipeIngredient> Create(
             IEnumerable<Ingredient> ingredients,
             IEnumerable<IngredientFormModel> ingredientModels,
             Recipe recipe)
@@ -37,20 +36,20 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
                 recipeIngredients.Add(recipeIngredient);
 
-                await this.recipeIngredientsRepository.AddAsync(recipeIngredient);
+                this.data.RecipeIngredients.Add(recipeIngredient);
             }
 
             return recipeIngredients;
         }
 
-        public async Task DeleteAllAsync(IEnumerable<RecipeIngredient> recipeIngredients)
+        public void DeleteAll(IEnumerable<RecipeIngredient> recipeIngredients)
         {
             foreach (var recipeIngredient in recipeIngredients)
             {
-                this.recipeIngredientsRepository.Delete(recipeIngredient);
+                this.data.RecipeIngredients.Remove(recipeIngredient);
             }
 
-            await this.recipeIngredientsRepository.SaveChangesAsync();
+            this.data.SaveChanges();
         }
     }
 }

@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.MeasurementUnits;
+    using ChefsKiss.Web.Areas.Recipes.Services;
 
     using Microsoft.AspNetCore.Mvc;
 

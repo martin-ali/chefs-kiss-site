@@ -2,23 +2,22 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
-    using ChefsKiss.Data.Common.Repositories;
+    using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
 
     public class ReviewsService : IReviewsService
     {
-        private readonly IRepository<Review> reviewsRepository;
+        private readonly RecipesDbContext data;
 
-        public ReviewsService(IRepository<Review> reviewsRepository)
+        public ReviewsService(RecipesDbContext data)
         {
-            this.reviewsRepository = reviewsRepository;
+            this.data = data;
         }
 
-        public async Task CreateAsync(ReviewFormModel input, string authorId)
+        public void Create(ReviewFormModel input, string authorId)
         {
             var review = new Review
             {
@@ -28,14 +27,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 Rating = input.Rating,
             };
 
-            await this.reviewsRepository.AddAsync(review);
-            await this.reviewsRepository.SaveChangesAsync();
+            this.data.Add(review);
+            this.data.SaveChanges();
         }
 
         public IEnumerable<T> GetByRecipeId<T>(int id)
         {
-            var reviews = this.reviewsRepository
-                .All()
+            var reviews = this.data.Reviews
                 .Where(x => x.RecipeId == id)
                 .To<T>()
                 .ToList();
@@ -45,8 +43,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         public T GetById<T>(int id)
         {
-            var review = this.reviewsRepository
-                .All()
+            var review = this.data.Reviews
                 .Where(x => x.Id == id)
                 .To<T>()
                 .First();

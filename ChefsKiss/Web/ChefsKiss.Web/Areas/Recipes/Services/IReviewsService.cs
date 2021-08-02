@@ -7,7 +7,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public interface IReviewsService
     {
-        Task CreateAsync(ReviewFormModel input, string authorId);
+        void Create(ReviewFormModel input, string authorId);
 
         IEnumerable<T> GetByRecipeId<T>(int id);
 

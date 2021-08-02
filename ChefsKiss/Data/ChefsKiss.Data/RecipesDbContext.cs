@@ -22,6 +22,7 @@
         public DbSet<MeasurementUnit> MeasurementUnits { get; init; }
         public DbSet<Ingredient> Ingredients { get; init; }
         public DbSet<Review> Reviews { get; init; }
+        public DbSet<RecipeIngredient> RecipeIngredients { get; init; }
         public DbSet<Recipe> Recipes { get; init; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,8 +32,6 @@
                 optionsBuilder.UseSqlServer("Server=.;Database=ChefsKiss;Integrated Security=true;");
             }
         }
-
-
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

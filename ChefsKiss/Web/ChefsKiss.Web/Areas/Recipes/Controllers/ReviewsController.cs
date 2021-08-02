@@ -1,6 +1,5 @@
 namespace ChefsKiss.Web.Areas.Recipes.Controllers
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -44,10 +43,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var reviews = this.reviewsService.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
             if (reviews.Any(x => x.AuthorId == author.Id))
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            await this.reviewsService.CreateAsync(input, author.Id);
+            this.reviewsService.Create(input, author.Id);
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),

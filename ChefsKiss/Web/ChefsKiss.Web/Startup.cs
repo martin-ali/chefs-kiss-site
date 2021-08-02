@@ -3,9 +3,7 @@ namespace ChefsKiss.Web
     using System.Reflection;
 
     using ChefsKiss.Data;
-    using ChefsKiss.Data.Common.Repositories;
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Data.Repositories;
     using ChefsKiss.Data.Seeding;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
@@ -15,6 +13,7 @@ namespace ChefsKiss.Web
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -52,12 +51,12 @@ namespace ChefsKiss.Web
             })
                 .AddEntityFrameworkStores<RecipesDbContext>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
 
             // services.Configure<IdentityOptions>(options => { });
-
-            // Data repositories
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
             // Application services
             services.AddTransient<IRecipesService, RecipesService>();

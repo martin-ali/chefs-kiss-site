@@ -5,31 +5,25 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Data.Common.Repositories;
+    using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
 
     public class RecipesService : IRecipesService
     {
-        private readonly IRepository<Recipe> recipesRepository;
-        private readonly IRepository<Ingredient> ingredientsRepository;
-        private readonly IRepository<RecipeIngredient> recipeIngredientsRepository;
+        private readonly RecipesDbContext data;
         private readonly IRecipeIngredientsService recipeIngredientsService;
         private readonly IIngredientsService ingredientsService;
         private readonly IImagesService imagesService;
 
         public RecipesService(
-            IRepository<Recipe> recipesRepository,
-            IRepository<Ingredient> ingredientsRepository,
-            IRepository<RecipeIngredient> recipeIngredientsRepository,
+            RecipesDbContext data,
             IRecipeIngredientsService recipeIngredientsService,
             IIngredientsService ingredientsService,
             IImagesService imagesService)
         {
-            this.recipesRepository = recipesRepository;
-            this.ingredientsRepository = ingredientsRepository;
-            this.recipeIngredientsRepository = recipeIngredientsRepository;
+            this.data = data;
             this.recipeIngredientsService = recipeIngredientsService;
             this.ingredientsService = ingredientsService;
             this.imagesService = imagesService;
@@ -39,7 +33,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var image = await this.imagesService.CreateImageAsync(input.Image);
 
-            var ingredients = await this.ingredientsService.EnsureAllAsync(input.Ingredients.Select(i => i.Name));
+            var ingredients = this.ingredientsService.EnsureAll(input.Ingredients.Select(i => i.Name));
 
             var recipe = new Recipe
             {
@@ -49,19 +43,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 Image = image,
             };
 
-            var recipeIngredients = await this.recipeIngredientsService.CreateAsync(ingredients, input.Ingredients, recipe);
+            var recipeIngredients = this.recipeIngredientsService.Create(ingredients, input.Ingredients, recipe);
             recipe.RecipeIngredients = recipeIngredients;
 
-            await this.recipesRepository.AddAsync(recipe);
-            await this.recipesRepository.SaveChangesAsync();
+            this.data.Recipes.Add(recipe);
+            this.data.SaveChanges();
 
             return recipe.Id;
         }
 
         public IEnumerable<T> GetAll<T>()
         {
-            var recipes = this.recipesRepository
-                .All()
+            var recipes = this.data.Recipes
                 .To<T>()
                 .ToList();
 
@@ -71,8 +64,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public IEnumerable<T> GetPaged<T>(int page, int itemsPerPage)
         {
             var itemsToSkip = page * itemsPerPage;
-            var recipes = this.recipesRepository
-                .All()
+            var recipes = this.data.Recipes
                 .Skip(itemsToSkip)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -88,8 +80,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         public T GetById<T>(int id)
         {
-            var recipe = this.recipesRepository
-                .All()
+            var recipe = this.data.Recipes
                 .Where(x => x.Id == id)
                 .To<T>()
                 .First();
@@ -99,8 +90,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         public IEnumerable<T> GetByAuthorId<T>(string authorId)
         {
-            var recipes = this.recipesRepository
-                .All()
+            var recipes = this.data.Recipes
                 .Where(x => x.AuthorId == authorId)
                 .To<T>()
                 .ToList();
@@ -108,11 +98,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        //FIXME: Should work even when recipes are deleted
+        // FIXME: Should work even when recipes are deleted
         public T GetRandom<T>()
         {
-            var randomRecipe = this.recipesRepository
-                .All()
+            var randomRecipe = this.data.Recipes
                 .OrderBy(o => Guid.NewGuid())
                 .To<T>()
                 .First();
@@ -122,20 +111,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         public async Task EditAsync(RecipeFormModel input, int recipeId)
         {
-            var recipe = this.recipesRepository
-                .All()
+            var recipe = this.data.Recipes
                 .First(x => x.Id == recipeId);
 
             // Re-generate members
             var image = await this.imagesService.CreateImageAsync(input.Image);
 
-            var oldRecipeIngredients = this.recipeIngredientsRepository
-                .All()
+            var oldRecipeIngredients = this.data.RecipeIngredients
                 .Where(x => x.RecipeId == recipe.Id);
-            await this.recipeIngredientsService.DeleteAllAsync(oldRecipeIngredients);
+            this.recipeIngredientsService.DeleteAll(oldRecipeIngredients);
 
-            var ingredients = await this.ingredientsService.EnsureAllAsync(input.Ingredients.Select(i => i.Name));
-            var recipeIngredients = await this.recipeIngredientsService.CreateAsync(ingredients, input.Ingredients, recipe);
+            var ingredients = this.ingredientsService.EnsureAll(input.Ingredients.Select(i => i.Name));
+            var recipeIngredients = this.recipeIngredientsService.Create(ingredients, input.Ingredients, recipe);
 
             // Re-fill all necessary members
             recipe.Title = input.Title;
@@ -144,9 +131,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             recipe.RecipeIngredients = recipeIngredients;
 
             // Delete old image because it is no longer used
-            await this.imagesService.DeleteAsync(recipe.ImageId);
+            this.imagesService.Delete(recipe.ImageId);
 
-            await this.recipesRepository.SaveChangesAsync();
+            this.data.SaveChanges();
         }
     }
 }

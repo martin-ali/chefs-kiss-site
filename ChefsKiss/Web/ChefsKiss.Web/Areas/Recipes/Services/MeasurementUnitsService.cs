@@ -2,23 +2,21 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 {
     using System.Collections.Generic;
 
-    using ChefsKiss.Data.Common.Repositories;
-    using ChefsKiss.Data.Models;
+    using ChefsKiss.Data;
     using ChefsKiss.Services.Mapping;
 
     public class MeasurementUnitsService : IMeasurementUnitsService
     {
-        private readonly IRepository<MeasurementUnit> measurementUnitsRepository;
+        private readonly RecipesDbContext data;
 
-        public MeasurementUnitsService(
-            IRepository<MeasurementUnit> measurementUnitsRepository)
+        public MeasurementUnitsService(RecipesDbContext data)
         {
-            this.measurementUnitsRepository = measurementUnitsRepository;
+            this.data = data;
         }
 
         public IEnumerable<T> GetAll<T>()
         {
-            var units = this.measurementUnitsRepository.All()
+            var units = this.data.MeasurementUnits
                 .To<T>();
 
             return units;

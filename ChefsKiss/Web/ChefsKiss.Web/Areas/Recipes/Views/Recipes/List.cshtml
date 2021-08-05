@@ -1,11 +1,11 @@
 ﻿@using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
 
-@model IEnumerable<RecipeInListViewModel>
+@model IEnumerable<RecipeListModel>
 
 <div id="recipes-list" class="row mx-auto">
     @foreach (var recipe in Model)
     {
-        <partial name="_RecipeInListPartial" model="recipe" />
+        <partial name="_RecipeListPartial" model="recipe" />
     }
 </div>
 

@@ -73,7 +73,7 @@ namespace ChefsKiss.Data.Seeding
             {
                 var recipeIngredients = CreateRandomRecipeIngredients(dbContext, random);
                 var author = authors[random.Next(0, authors.Count)];
-                var image = images[i];
+                var image = images[i % images.Count];
 
                 var recipe = new Recipe
                 {

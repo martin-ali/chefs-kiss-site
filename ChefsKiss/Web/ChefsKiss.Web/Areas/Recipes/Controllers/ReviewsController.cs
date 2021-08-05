@@ -12,7 +12,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
 
     [Area(RecipesArea)]
     public class ReviewsController : Controller
@@ -63,7 +63,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize(Roles = WebConstants.AdministratorRoleName)]
         public IActionResult Delete()
         {
             return this.View();

@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
 
     [Area(HomeArea)]
     public class HomeController : Controller

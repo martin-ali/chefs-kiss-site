@@ -5,7 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
 
     public class RecipeInListViewModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
     {

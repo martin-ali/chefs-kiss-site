@@ -6,7 +6,7 @@ namespace ChefsKiss.Services.IO
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
 
     public class ImageOperator : IImageOperator
     {

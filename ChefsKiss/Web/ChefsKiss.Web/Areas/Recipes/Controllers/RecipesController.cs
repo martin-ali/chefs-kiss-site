@@ -11,7 +11,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
     using static ChefsKiss.Common.ErrorMessages;
 
     [Area(RecipesArea)]

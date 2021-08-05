@@ -1,6 +1,6 @@
 ﻿namespace ChefsKiss.Common
 {
-    public class GlobalConstants
+    public class WebConstants
     {
         public const string SystemName = "ChefsKiss";
 

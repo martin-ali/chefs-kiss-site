@@ -5,7 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
 
     public class ReviewListViewModel : ReviewBaseViewModel, IMapFrom<Review>, IHaveCustomMappings
     {

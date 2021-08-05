@@ -11,7 +11,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     using Microsoft.AspNetCore.Http;
 
-    using static ChefsKiss.Common.GlobalConstants;
+    using static ChefsKiss.Common.WebConstants;
 
     public class ImagesService : IImagesService
     {

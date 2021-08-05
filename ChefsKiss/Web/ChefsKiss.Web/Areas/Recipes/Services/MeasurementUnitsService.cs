@@ -17,7 +17,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public IEnumerable<T> GetAll<T>()
         {
             var units = this.data.MeasurementUnits
-                .To<T>();
+                .MapTo<T>();
 
             return units;
         }

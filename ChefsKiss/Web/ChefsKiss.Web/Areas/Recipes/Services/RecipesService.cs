@@ -55,7 +55,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public IEnumerable<T> GetAll<T>()
         {
             var recipes = this.data.Recipes
-                .To<T>()
+                .MapTo<T>()
                 .ToList();
 
             return recipes;
@@ -67,7 +67,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             var recipes = this.data.Recipes
                 .Skip(itemsToSkip)
                 .Take(itemsPerPage)
-                .To<T>()
+                .MapTo<T>()
                 .ToList();
 
             return recipes;
@@ -82,7 +82,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var recipe = this.data.Recipes
                 .Where(x => x.Id == id)
-                .To<T>()
+                .MapTo<T>()
                 .First();
 
             return recipe;
@@ -92,7 +92,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var recipes = this.data.Recipes
                 .Where(x => x.AuthorId == authorId)
-                .To<T>()
+                .MapTo<T>()
                 .ToList();
 
             return recipes;
@@ -103,7 +103,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var randomRecipe = this.data.Recipes
                 .OrderBy(o => Guid.NewGuid())
-                .To<T>()
+                .MapTo<T>()
                 .First();
 
             return randomRecipe;

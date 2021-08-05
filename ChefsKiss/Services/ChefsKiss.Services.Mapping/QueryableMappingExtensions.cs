@@ -8,7 +8,7 @@
 
     public static class QueryableMappingExtensions
     {
-        public static IQueryable<TDestination> To<TDestination>(
+        public static IQueryable<TDestination> MapTo<TDestination>(
             this IQueryable source,
             params Expression<Func<TDestination, object>>[] membersToExpand)
         {
@@ -20,7 +20,7 @@
             return source.ProjectTo(AutoMapperConfig.MapperInstance.ConfigurationProvider, null, membersToExpand);
         }
 
-        public static IQueryable<TDestination> To<TDestination>(
+        public static IQueryable<TDestination> MapTo<TDestination>(
             this IQueryable source,
             object parameters)
         {

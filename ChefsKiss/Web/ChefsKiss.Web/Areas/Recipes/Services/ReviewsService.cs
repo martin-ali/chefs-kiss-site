@@ -35,7 +35,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var reviews = this.data.Reviews
                 .Where(x => x.RecipeId == id)
-                .To<T>()
+                .MapTo<T>()
                 .ToList();
 
             return reviews;
@@ -45,7 +45,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         {
             var review = this.data.Reviews
                 .Where(x => x.Id == id)
-                .To<T>()
+                .MapTo<T>()
                 .First();
 
             return review;

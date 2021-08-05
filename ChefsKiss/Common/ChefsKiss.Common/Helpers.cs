@@ -4,7 +4,7 @@ namespace ChefsKiss.Common
 
     public class Helpers
     {
-        // TODO: This is ugly code, make it better
+        // TODO: This is ugly code. Make it better
         public static string GetControllerName<ControllerType>()
         {
             var type = typeof(ControllerType).Name;

@@ -29,6 +29,5 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
                 .ForMember(vm => vm.Reviews, cfg => cfg.MapFrom(m => m.Reviews.OrderByDescending(c => c.CreatedOn)))
                 .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients));
         }
-
     }
 }

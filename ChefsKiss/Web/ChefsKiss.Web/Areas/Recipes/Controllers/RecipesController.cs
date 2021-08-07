@@ -124,7 +124,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.Unauthorized(NotAuthorized);
             }
 
-            await this.recipesService.EditAsync(model, id);
+            await this.recipesService.EditAsync(id, model);
 
             return this.RedirectToAction(nameof(this.Details), new { id = id });
         }

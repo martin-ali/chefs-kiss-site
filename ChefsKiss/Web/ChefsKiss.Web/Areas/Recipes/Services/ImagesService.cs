@@ -55,7 +55,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.data.SaveChanges();
         }
 
-        public string GetRelativeImagePath(int imageId)
+        public string GetImagePath(int imageId)
         {
             string fileName = this.GetFileName(imageId);
             var path = Path.Combine(ImagesDirectory, fileName);

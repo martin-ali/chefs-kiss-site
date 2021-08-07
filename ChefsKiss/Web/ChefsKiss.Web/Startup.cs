@@ -13,6 +13,7 @@ namespace ChefsKiss.Web
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -49,7 +50,8 @@ namespace ChefsKiss.Web
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             })
-                .AddEntityFrameworkStores<RecipesDbContext>();
+            .AddRoles<ApplicationRole>()
+            .AddEntityFrameworkStores<RecipesDbContext>();
 
             services.AddControllersWithViews(options =>
             {

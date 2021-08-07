@@ -5,6 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Mapping;
 
     public class IngredientsService : IIngredientsService
     {
@@ -13,6 +14,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public IngredientsService(RecipesDbContext data)
         {
             this.data = data;
+        }
+
+        public T ById<T>(int id)
+        {
+            var ingredient = this.data.Ingredients
+                .Where(x => x.Id == id)
+                .MapTo<T>()
+                .First();
+
+            return ingredient;
         }
 
         public IEnumerable<Ingredient> EnsureAll(IEnumerable<string> ingredientNames)

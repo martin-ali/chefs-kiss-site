@@ -6,6 +6,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
 
     public class IngredientViewModel : IMapFrom<RecipeIngredient>, IHaveCustomMappings
     {
+        public int Id { get; init; }
+
         public string Name { get; init; }
 
         public double Quantity { get; init; }
@@ -17,7 +19,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
             configuration
             .CreateMap<RecipeIngredient, IngredientViewModel>()
             .ForMember(vm => vm.MeasurementUnit, cfg => cfg.MapFrom(m => m.MeasurementUnit.Name))
-            .ForMember(vm => vm.Name, cfg => cfg.MapFrom(m => m.Ingredient.Name));
+            .ForMember(vm => vm.Name, cfg => cfg.MapFrom(m => m.Ingredient.Name))
+            .ForMember(vm => vm.Id, cfg => cfg.MapFrom(m => m.IngredientId));
         }
     }
 }

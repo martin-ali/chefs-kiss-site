@@ -73,9 +73,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        public IEnumerable<T> GetByCategory<T>(int category)
+        public IEnumerable<T> ByIngredientId<T>(int id)
         {
-            throw new System.NotImplementedException();
+            var recipes = this.data.Recipes
+                .Where(x => x.RecipeIngredients.Any(y => y.IngredientId == id))
+                .MapTo<T>()
+                .ToList();
+
+            return recipes;
         }
 
         public T GetById<T>(int id)
@@ -109,10 +114,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return randomRecipe;
         }
 
-        public async Task EditAsync(RecipeFormModel input, int recipeId)
+        public async Task EditAsync(int id, RecipeFormModel input)
         {
-            var recipe = this.data.Recipes
-                .First(x => x.Id == recipeId);
+            var recipe = this.data.Recipes.Find(id);
 
             // Re-generate members
             var image = await this.imagesService.CreateImageAsync(input.Image);

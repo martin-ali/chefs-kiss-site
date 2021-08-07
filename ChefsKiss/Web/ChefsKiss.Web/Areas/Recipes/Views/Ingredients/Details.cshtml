@@ -1,1 +1,19 @@
-﻿Shows the ingredient and recipes where it's used
+﻿@* Shows the ingredient and recipes where it's used *@
+@using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
+
+@model IngredientDetailsModel
+
+<h2 class="text-center">All recipes with ingredient @Model.Name</h2>
+
+<h3 class="text-center">Here are some recipes with this ingredient</h3>
+
+<div id="recipes-list" class="row mx-auto">
+    @foreach (var recipe in Model.Recipes)
+    {
+        <partial name="_RecipeListPartial" model="recipe" />
+    }
+</div>
+
+@section Scripts{
+<script src="~/js/infinite-scrolling.js" asp-append-version="true"></script>
+}

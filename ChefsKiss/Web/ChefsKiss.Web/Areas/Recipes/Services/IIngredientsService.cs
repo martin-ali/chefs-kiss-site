@@ -7,5 +7,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     public interface IIngredientsService
     {
         IEnumerable<Ingredient> EnsureAll(IEnumerable<string> ingredientNames);
+
+        T ById<T>(int id);
     }
 }

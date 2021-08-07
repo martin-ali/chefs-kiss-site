@@ -13,13 +13,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         T GetById<T>(int id);
 
-        IEnumerable<T> GetByCategory<T>(int category);
+        IEnumerable<T> ByIngredientId<T>(int id);
 
         IEnumerable<T> GetByAuthorId<T>(string authorId);
 
         Task<int> CreateAsync(RecipeFormModel input, string authorId);
 
-        Task EditAsync(RecipeFormModel input, int recipeId);
+        Task EditAsync(int id, RecipeFormModel input);
 
         T GetRandom<T>();
 

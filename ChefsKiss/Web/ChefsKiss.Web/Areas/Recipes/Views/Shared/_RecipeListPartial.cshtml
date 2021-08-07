@@ -3,19 +3,19 @@
 @model RecipeListModel
 
 <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-    <article class="card p-0 shadow">
-        <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+    <article class="card p-0">
+        <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
             <img style="width: 100%; height: 200px; overflow: hidden;" class="card-img-top img-fluid" src="@Model.ImageUrl" alt="Recipe image">
         </a>
         <div class="card-body">
-            <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+            <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
                 <h4 class="card-title text-body">@Model.Title</h4>
             </a>
             <partial name="_RatingBarPartial" model="@Model.Rating" />
             <p class="card-text text-body text-danger">@Model.Summary...
-                <a asp-action="details" asp-route-id="@Model.Id"> Read More</a>
+                <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id"> Read More</a>
             </p>
-            <a asp-area="identity" asp-controller="identity" asp-action="profile" asp-route-id="@Model.AuthorId" class="card-subtitle">By: @Model.AuthorFullname</a>
+            <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" asp-route-id="@Model.AuthorId" class="card-subtitle">By: @Model.AuthorFullname</a>
         </div>
     </article>
 </div>

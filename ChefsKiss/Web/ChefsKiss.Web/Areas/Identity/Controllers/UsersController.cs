@@ -3,12 +3,11 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using System.Threading.Tasks;
 
     using ChefsKiss.Common;
-    using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Users;
+    using ChefsKiss.Web.Areas.Identity.Services;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     using static ChefsKiss.Common.WebConstants;
@@ -16,24 +15,21 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     [Area(IdentityArea)]
     public class UsersController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly RoleManager<ApplicationRole> rolesManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IUsersService usersService;
 
-        public UsersController(
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager,
-            RoleManager<ApplicationRole> rolesManager)
+        public UsersController(IUsersService usersService)
         {
-            this.userManager = userManager;
-            this.rolesManager = rolesManager;
-            this.signInManager = signInManager;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
             return this.View();
+        }
+
+        private IActionResult RedirectToHome()
+        {
+            return this.RedirectToAction(nameof(HomeController.Index), Helpers.GetControllerName<HomeController>());
         }
 
         [HttpPost]
@@ -44,13 +40,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            var user = new ApplicationUser
-            {
-                UserName = input.Email,
-                Email = input.Email,
-            };
-
-            var result = await this.userManager.CreateAsync(user, input.Password);
+            var result = await this.usersService.RegisterAsync(input);
 
             if (result.Succeeded == false)
             {
@@ -62,10 +52,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            await this.signInManager.SignInAsync(user, false);
-
-            // return this.RedirectToAction(Helpers.GetControllerName<HomeController>(), nameof(HomeController.Index));
-            return this.RedirectToAction(Helpers.GetControllerName<HomeController>(), nameof(HomeController.Index));
+            return this.RedirectToHome();
         }
 
         [HttpGet]
@@ -82,7 +69,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            var result = await this.signInManager.PasswordSignInAsync(input.Email, input.Password, input.RememberMe, lockoutOnFailure: false);
+            var result = await this.usersService.LoginAsync(input.Email, input.Password, input.RememberMe);
 
             if (result.Succeeded == false)
             {
@@ -91,16 +78,16 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            return this.RedirectToAction(Helpers.GetControllerName<HomeController>(), nameof(HomeController.Index));
+            return this.RedirectToHome();
         }
 
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await this.signInManager.SignOutAsync();
+            await this.usersService.LogoutAsync();
 
-            return this.RedirectToAction(Helpers.GetControllerName<HomeController>(), nameof(HomeController.Index));
+            return this.RedirectToHome();
         }
     }
 }

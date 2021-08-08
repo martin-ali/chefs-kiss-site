@@ -7,6 +7,7 @@ namespace ChefsKiss.Web
     using ChefsKiss.Data.Seeding;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Models;
@@ -68,6 +69,7 @@ namespace ChefsKiss.Web
             services.AddTransient<IMeasurementUnitsService, MeasurementUnitsService>();
             services.AddTransient<IRecipeIngredientsService, RecipeIngredientsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
+            services.AddTransient<IUsersService, UsersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

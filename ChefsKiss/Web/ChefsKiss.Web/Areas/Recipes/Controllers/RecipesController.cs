@@ -42,16 +42,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(RecipeFormModel model)
+        public async Task<IActionResult> Create(RecipeFormModel input)
         {
             if (this.ModelState.IsValid == false)
             {
-                return this.View(model);
+                return this.View(input);
             }
 
             var authorId = this.userManager.GetUserId(this.User);
 
-            var recipeId = await this.recipesService.CreateAsync(model, authorId);
+            var recipeId = await this.recipesService.CreateAsync(input, authorId);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }

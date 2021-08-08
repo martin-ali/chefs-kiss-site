@@ -35,13 +35,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             foreach (var ingredientName in ingredientNames)
             {
                 var ingredient = ingredients.FirstOrDefault(x => x.Name == ingredientName);
-                if (ingredient == null)
-                {
-                    var newIngredient = new Ingredient { Name = ingredientName };
-                    ingredients.Add(newIngredient);
+                ingredient ??= new Ingredient { Name = ingredientName };
 
-                    this.data.Ingredients.Add(newIngredient);
-                }
+                ingredients.Add(ingredient);
+
+                this.data.Ingredients.Add(ingredient);
             }
 
             return ingredients;

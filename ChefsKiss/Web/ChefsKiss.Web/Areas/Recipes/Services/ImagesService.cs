@@ -47,7 +47,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public void Delete(int imageId)
         {
             var image = this.data.Images
-                .FirstOrDefault(i => i.Id == imageId);
+                .First(i => i.Id == imageId);
 
             this.data.Images.Remove(image);
             this.imageOperator.Delete(image.Name, image.Extension);
@@ -68,7 +68,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             var extension = this.data.Images
                 .Where(i => i.Id == imageId)
                 .Select(i => $"{i.Id}.{i.Extension}")
-                .FirstOrDefault();
+                .First();
 
             return extension;
         }

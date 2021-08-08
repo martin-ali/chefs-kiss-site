@@ -6,6 +6,8 @@
 
         public const string UserRoleName = "User";
 
+        public const string WriterRoleName = "Writer";
+
         public const string AdministratorRoleName = "Administrator";
 
         public const string ImagesDirectory = "images";

@@ -8,20 +8,21 @@ namespace ChefsKiss.Data.Seeding
 
     public class MeasurementUnitsSeeder : IDataSeeder
     {
+
+        private static readonly string[] units = new[] {
+            "mg",
+            "kg",
+            "tsp",
+            "tcp",
+            "whole",
+        };
+
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.MeasurementUnits.Any())
             {
                 return;
             }
-
-            var units = new string[] {
-                "mg",
-                "kg",
-                "tsp",
-                "tcp",
-                "whole",
-            };
 
             foreach (var unit in units)
             {

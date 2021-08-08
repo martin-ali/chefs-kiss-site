@@ -23,15 +23,15 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             this.rolesManager = rolesManager;
         }
 
-        public async Task<IdentityResult> RegisterAsync(UserRegisterFormModel input)
+        public async Task<IdentityResult> RegisterAsync(string email, string password)
         {
             var user = new ApplicationUser
             {
-                UserName = input.Email,
-                Email = input.Email,
+                UserName = email,
+                Email = email,
             };
 
-            var result = await this.userManager.CreateAsync(user, input.Password);
+            var result = await this.userManager.CreateAsync(user, password);
 
             if (result.Succeeded == false)
             {

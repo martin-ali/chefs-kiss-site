@@ -40,7 +40,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            var result = await this.usersService.RegisterAsync(input);
+            var result = await this.usersService.RegisterAsync(input.Email, input.Password);
 
             if (result.Succeeded == false)
             {

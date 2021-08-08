@@ -19,6 +19,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
         public UsersController(IUsersService usersService)
         {
+            this.usersService = usersService;
         }
 
         [HttpGet]

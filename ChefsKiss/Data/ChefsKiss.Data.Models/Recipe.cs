@@ -12,7 +12,7 @@
         // [Required]
         public string AuthorId { get; init; }
 
-        public ApplicationUser Author { get; init; }
+        public Writer Author { get; init; }
 
         [Required]
         [MinLength(Recipes.TitleMinLength)]

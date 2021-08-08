@@ -13,7 +13,7 @@ namespace ChefsKiss.Data.Models
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Roles = new HashSet<IdentityUserRole<string>>();
+            this.Roles = new HashSet<ApplicationRole>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
@@ -23,18 +23,11 @@ namespace ChefsKiss.Data.Models
 
         public DateTime? ModifiedOn { get; set; }
 
-        // FIXME: Required
-        public string FirstName { get; init; }
-
-        public string LastName { get; init; }
-
-        public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
+        public virtual ICollection<ApplicationRole> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
-
-        public IEnumerable<Recipe> Recipes { get; init; } = new List<Recipe>();
 
         public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
     }

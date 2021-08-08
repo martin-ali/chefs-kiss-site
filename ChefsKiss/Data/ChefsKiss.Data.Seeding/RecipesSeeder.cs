@@ -66,7 +66,7 @@ namespace ChefsKiss.Data.Seeding
             }
 
             var random = new Random();
-            var authors = dbContext.Users.ToList();
+            var authors = dbContext.Writers.ToList();
             var images = await GetImages(random, serviceProvider);
 
             for (int i = 0; i < RecipesCount; i++)

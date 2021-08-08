@@ -15,8 +15,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 
         public string AuthorUsername { get; init; }
 
-        public string AuthorFullname { get; init; }
-
         public DateTime CreatedOn { get; init; }
 
         public int Rating { get; init; }
@@ -25,7 +23,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
         {
             configuration
             .CreateMap<Review, ReviewBaseViewModel>()
-            .ForMember(vm => vm.AuthorFullname, cfg => cfg.MapFrom(m => $"{m.Author.FirstName} {m.Author.LastName}"))
             .IncludeAllDerived();
         }
     }

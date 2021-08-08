@@ -2,6 +2,12 @@ namespace ChefsKiss.Common
 {
     public class DataConstants
     {
+        public class Writers
+        {
+            public const int NameMinLength = 1;
+            public const int NameMaxLength = 100;
+        }
+
         public class Ingredients
         {
             public const int NameMinLength = 2;

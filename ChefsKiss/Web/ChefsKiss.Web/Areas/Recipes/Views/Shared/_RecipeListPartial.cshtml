@@ -15,7 +15,7 @@
             <p class="card-text text-body text-danger">@Model.Summary...
                 <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id"> Read More</a>
             </p>
-            <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" asp-route-id="@Model.AuthorId" class="card-subtitle">By: @Model.AuthorFullname</a>
+            <a asp-area="Identity" asp-controller="Identity" asp-action="Profile" asp-route-id="@Model.AuthorId" class="card-subtitle">By: @Model.AuthorFullName</a>
         </div>
     </article>
 </div>

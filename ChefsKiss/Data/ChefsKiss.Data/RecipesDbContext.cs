@@ -18,6 +18,7 @@
         public RecipesDbContext(DbContextOptions<RecipesDbContext> options)
             : base(options) { }
 
+        public DbSet<Writer> Writers { get; init; }
         public DbSet<Image> Images { get; init; }
         public DbSet<MeasurementUnit> MeasurementUnits { get; init; }
         public DbSet<Ingredient> Ingredients { get; init; }

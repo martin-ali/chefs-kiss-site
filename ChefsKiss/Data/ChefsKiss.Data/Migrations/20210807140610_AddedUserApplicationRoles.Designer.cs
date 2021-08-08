@@ -4,14 +4,16 @@ using ChefsKiss.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChefsKiss.Data.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    partial class RecipesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210807140610_AddedUserApplicationRoles")]
+    partial class AddedUserApplicationRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,12 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -206,10 +214,7 @@ namespace ChefsKiss.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("AuthorId1")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -232,7 +237,7 @@ namespace ChefsKiss.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("ImageId");
 
@@ -309,39 +314,6 @@ namespace ChefsKiss.Data.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("ChefsKiss.Data.Models.Writer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Writers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -467,9 +439,9 @@ namespace ChefsKiss.Data.Migrations
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
                 {
-                    b.HasOne("ChefsKiss.Data.Models.Writer", "Author")
+                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", "Author")
                         .WithMany("Recipes")
-                        .HasForeignKey("AuthorId1");
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("ChefsKiss.Data.Models.Image", "Image")
                         .WithMany()
@@ -524,15 +496,6 @@ namespace ChefsKiss.Data.Migrations
                     b.Navigation("Author");
 
                     b.Navigation("Recipe");
-                });
-
-            modelBuilder.Entity("ChefsKiss.Data.Models.Writer", b =>
-                {
-                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -600,6 +563,8 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Navigation("Logins");
 
+                    b.Navigation("Recipes");
+
                     b.Navigation("Reviews");
 
                     b.Navigation("Roles");
@@ -610,11 +575,6 @@ namespace ChefsKiss.Data.Migrations
                     b.Navigation("RecipeIngredients");
 
                     b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("ChefsKiss.Data.Models.Writer", b =>
-                {
-                    b.Navigation("Recipes");
                 });
 #pragma warning restore 612, 618
         }

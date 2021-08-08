@@ -4,14 +4,16 @@ using ChefsKiss.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChefsKiss.Data.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    partial class RecipesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210808171545_AddedWriterEntity")]
+    partial class AddedWriterEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,12 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -206,10 +214,7 @@ namespace ChefsKiss.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("AuthorId1")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -230,11 +235,16 @@ namespace ChefsKiss.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("WriterId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("ImageId");
+
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Recipes");
                 });
@@ -322,14 +332,10 @@ namespace ChefsKiss.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -467,15 +473,19 @@ namespace ChefsKiss.Data.Migrations
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
                 {
-                    b.HasOne("ChefsKiss.Data.Models.Writer", "Author")
-                        .WithMany("Recipes")
-                        .HasForeignKey("AuthorId1");
+                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("ChefsKiss.Data.Models.Image", "Image")
                         .WithMany()
                         .HasForeignKey("ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ChefsKiss.Data.Models.Writer", null)
+                        .WithMany("Recipes")
+                        .HasForeignKey("WriterId");
 
                     b.Navigation("Author");
 

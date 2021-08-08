@@ -3,7 +3,6 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Web.Areas.Identity.Models.Users;
 
     using Microsoft.AspNetCore.Identity;
 

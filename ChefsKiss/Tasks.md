@@ -22,9 +22,9 @@
 - [x] Review system
 - [ ] Fix hard-coded connection string
 - [x] Favicon
-- [ ] Roles - User, Administrator
-- [ ] AJAX
-- [ ] Infinite scrolling
+- [ ] Roles - User, Administrator, Writer
+- [x] AJAX
+- [x] Infinite scrolling
 - [ ] Rating with showcase
 - [x] Only one review per person
 - [x] Image size limit
@@ -33,8 +33,9 @@
 ## Optional
 
 - [ ] Soft delete?
+- [ ] Forgotten password?
 - [ ] Integrate a Bootstrap theme
-- [ ] Do something with the ingredients now that they're separate
+- [x] Do something with the ingredients now that they're separate
 - [ ] SmarterASP.NET or Azure deployment/hosting
 - [ ] Unit tests - >=65%
 - [ ] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...

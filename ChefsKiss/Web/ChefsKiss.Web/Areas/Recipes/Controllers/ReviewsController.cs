@@ -5,6 +5,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
     using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
     using ChefsKiss.Web.Areas.Recipes.Services;
 
@@ -19,9 +20,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     {
         private readonly IReviewsService reviewsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IRecipesService recipesService;
 
-        public ReviewsController(IReviewsService reviewsService, UserManager<ApplicationUser> userManager)
+        public ReviewsController(
+            IReviewsService reviewsService,
+            IRecipesService recipesService,
+            UserManager<ApplicationUser> userManager)
         {
+            this.recipesService = recipesService;
             this.reviewsService = reviewsService;
             this.userManager = userManager;
         }
@@ -38,15 +44,20 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                     new { id = input.RecipeId });
             }
 
-            var author = await this.userManager.GetUserAsync(this.User);
+            var user = await this.userManager.GetUserAsync(this.User);
 
+            var recipe = this.recipesService.GetById<RecipeServiceModel>(input.RecipeId);
             var reviews = this.reviewsService.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
-            if (reviews.Any(x => x.AuthorId == author.Id))
+
+            var userHasCommented = reviews.Any(x => x.AuthorId == user.Id);
+            var userIsRecipeAuthor = recipe.AuthorId == user.Id;
+
+            if (userHasCommented || userIsRecipeAuthor)
             {
-                return this.BadRequest();
+                return this.Unauthorized();
             }
 
-            this.reviewsService.Create(input, author.Id);
+            this.reviewsService.Create(input, user.Id);
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),

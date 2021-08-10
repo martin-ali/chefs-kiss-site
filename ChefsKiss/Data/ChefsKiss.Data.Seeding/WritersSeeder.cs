@@ -334,6 +334,7 @@ namespace ChefsKiss.Data.Seeding
                     FirstName = firstName,
                     LastName = lastName,
                     User = user,
+                    IsApproved = true,
                 };
 
                 dbContext.Writers.Add(writer);

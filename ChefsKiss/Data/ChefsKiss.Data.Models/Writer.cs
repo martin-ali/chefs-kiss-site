@@ -23,6 +23,8 @@ namespace ChefsKiss.Data.Models
         [MaxLength(Writers.NameMaxLength)]
         public string LastName { get; init; }
 
+        public bool IsApproved { get; set; }
+
         public IEnumerable<Recipe> Recipes { get; init; } = new List<Recipe>();
     }
 }

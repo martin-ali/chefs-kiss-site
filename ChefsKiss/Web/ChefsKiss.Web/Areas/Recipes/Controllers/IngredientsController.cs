@@ -13,21 +13,20 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     [Area(RecipesArea)]
     public class IngredientsController : Controller
     {
-        private readonly IMeasurementUnitsService measurementUnitsService;
-        private readonly IRecipesService recipesService;
-        private readonly IIngredientsService ingredientsService;
+        private readonly IMeasurementUnitsService measurementUnits;
+        private readonly IRecipesService recipes;
+        private readonly IIngredientsService ingredients;
 
         public IngredientsController(
-            IMeasurementUnitsService measurementUnitsService,
-            IRecipesService recipesService,
-            IIngredientsService ingredientsService)
+            IMeasurementUnitsService measurementUnits,
+            IRecipesService recipes,
+            IIngredientsService ingredients)
         {
-            this.measurementUnitsService = measurementUnitsService;
-            this.recipesService = recipesService;
-            this.ingredientsService = ingredientsService;
+            this.measurementUnits = measurementUnits;
+            this.recipes = recipes;
+            this.ingredients = ingredients;
         }
 
-        [HttpGet]
         [Authorize]
         public IActionResult IngredientAddForm(int id)
         {
@@ -38,7 +37,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.BadRequest();
             }
 
-            var units = this.measurementUnitsService.GetAll<MeasurementUnitViewModel>();
+            var units = this.measurementUnits.GetAll<MeasurementUnitViewModel>();
             var ingredient = new IngredientFormModel
             {
                 Index = id,
@@ -48,11 +47,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.PartialView("_IngredientFormPartial", ingredient);
         }
 
-        [HttpGet]
         public IActionResult Details(int id)
         {
-            var ingredient = this.ingredientsService.ById<IngredientServiceModel>(id);
-            var recipes = this.recipesService.ByIngredientId<RecipeListModel>(id);
+            var ingredient = this.ingredients.ById<IngredientServiceModel>(id);
+            var recipes = this.recipes.ByIngredientId<RecipeListModel>(id);
 
             var model = new IngredientDetailsModel
             {

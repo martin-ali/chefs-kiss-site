@@ -4,6 +4,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
 
@@ -11,27 +12,26 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.WebConstants;
     using static ChefsKiss.Common.ErrorMessages;
+    using static ChefsKiss.Common.WebConstants;
 
     [Area(RecipesArea)]
     public class RecipesController : Controller
     {
-        private readonly IRecipesService recipesService;
+        private readonly IRecipesService recipes;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IMeasurementUnitsService measurementUnitsService;
+        private readonly IMeasurementUnitsService measurementUnits;
 
         public RecipesController(
-            IRecipesService recipesService,
+            IRecipesService recipes,
             UserManager<ApplicationUser> userManager,
-            IMeasurementUnitsService measurementUnitsService)
+            IMeasurementUnitsService measurementUnits)
         {
-            this.recipesService = recipesService;
+            this.recipes = recipes;
             this.userManager = userManager;
-            this.measurementUnitsService = measurementUnitsService;
+            this.measurementUnits = measurementUnits;
         }
 
-        [HttpGet]
         [Authorize]
         public IActionResult Create()
         {
@@ -49,33 +49,30 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(input);
             }
 
-            var authorId = this.userManager.GetUserId(this.User);
+            var userId = this.userManager.GetUserId(this.User);
 
-            var recipeId = await this.recipesService.CreateAsync(input, authorId);
+            var recipeId = await this.recipes.CreateAsync(input, userId);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
 
-        [HttpGet]
         public IActionResult List()
         {
-            var recipes = this.recipesService.GetPaged<RecipeListModel>(0, RecipesPerPage);
+            var recipes = this.recipes.GetPaged<RecipeListModel>(0, RecipesPerPage);
 
             return this.View(recipes);
         }
 
-        [HttpGet]
-        public IActionResult Page(int id = 0) // FIXME: Parameter name id makes no sense in the context
+        public IActionResult Page(int id = 0) // FIXME: Parameter name id makes no sense in this context
         {
-            var recipes = this.recipesService.GetPaged<RecipeListModel>(id, RecipesPerPage);
+            var recipes = this.recipes.GetPaged<RecipeListModel>(id, RecipesPerPage);
 
             return this.PartialView("_PagePartial", recipes);
         }
 
-        [HttpGet]
         public IActionResult Details(int id)
         {
-            var recipe = this.recipesService.GetById<RecipeDetailsViewModel>(id);
+            var recipe = this.recipes.GetById<RecipeDetailsViewModel>(id);
 
             var userId = this.userManager.GetUserId(this.User);
             recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
@@ -83,19 +80,17 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.View(recipe);
         }
 
-        [HttpGet]
         public IActionResult Random()
         {
-            var recipeId = this.recipesService.GetRandom<RecipeDetailsViewModel>().Id;
+            var recipeId = this.recipes.GetRandom<RecipeDetailsViewModel>().Id;
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
 
-        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            var recipe = this.recipesService.GetById<RecipeFormModel>(id);
+            var recipe = this.recipes.GetById<RecipeFormModel>(id);
 
             var user = await this.userManager.GetUserAsync(this.User);
 
@@ -116,7 +111,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(model);
             }
 
-            var recipe = this.recipesService.GetById<Recipe>(id);
+            var recipe = this.recipes.GetById<Recipe>(id);
             var userId = this.userManager.GetUserId(this.User);
 
             if (recipe.AuthorId != userId)
@@ -124,7 +119,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.Unauthorized(NotAuthorized);
             }
 
-            await this.recipesService.EditAsync(id, model);
+            await this.recipes.EditAsync(id, model);
 
             return this.RedirectToAction(nameof(this.Details), new { id = id });
         }

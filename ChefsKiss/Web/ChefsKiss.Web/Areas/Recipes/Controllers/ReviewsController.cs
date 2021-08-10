@@ -18,17 +18,17 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     [Area(RecipesArea)]
     public class ReviewsController : Controller
     {
-        private readonly IReviewsService reviewsService;
+        private readonly IReviewsService reviews;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IRecipesService recipesService;
+        private readonly IRecipesService recipes;
 
         public ReviewsController(
-            IReviewsService reviewsService,
-            IRecipesService recipesService,
+            IReviewsService reviews,
+            IRecipesService recipes,
             UserManager<ApplicationUser> userManager)
         {
-            this.recipesService = recipesService;
-            this.reviewsService = reviewsService;
+            this.recipes = recipes;
+            this.reviews = reviews;
             this.userManager = userManager;
         }
 
@@ -46,8 +46,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var recipe = this.recipesService.GetById<RecipeServiceModel>(input.RecipeId);
-            var reviews = this.reviewsService.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
+            var recipe = this.recipes.GetById<RecipeServiceModel>(input.RecipeId);
+            var reviews = this.reviews.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
 
             var userHasCommented = reviews.Any(x => x.AuthorId == user.Id);
             var userIsRecipeAuthor = recipe.AuthorId == user.Id;
@@ -57,7 +57,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.Unauthorized();
             }
 
-            this.reviewsService.Create(input, user.Id);
+            this.reviews.Create(input, user.Id);
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),
@@ -65,15 +65,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 new { id = input.RecipeId });
         }
 
-        [HttpGet]
         public IActionResult Details(int id)
         {
-            var review = this.reviewsService.GetById<ReviewDetailsViewModel>(id);
+            var review = this.reviews.GetById<ReviewDetailsViewModel>(id);
 
             return this.View(review);
         }
 
-        [HttpGet]
         [Authorize(Roles = WebConstants.AdministratorRoleName)]
         public IActionResult Delete()
         {

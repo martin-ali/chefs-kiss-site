@@ -21,7 +21,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             this.writersService = writersService;
         }
 
-        [HttpGet]
+        [Authorize]
         public IActionResult Apply()
         {
             return this.View();

@@ -29,6 +29,11 @@
 - [x] Only one review per person
 - [x] Image size limit
 - [ ] Decouple the ingredient form add JS script
+- [x] Author shouldn't be able to review their own recipe
+- [ ] Remove all web models from the services
+- [ ] Profile picture
+- [ ] Caching
+- [ ] Admins approve writer applications
 
 ## Optional
 

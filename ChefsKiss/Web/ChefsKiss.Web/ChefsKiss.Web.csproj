@@ -29,6 +29,7 @@
     <ProjectReference Include="..\..\Services\ChefsKiss.Services.IO\ChefsKiss.Services.IO.csproj" />
     <ProjectReference Include="..\..\Services\ChefsKiss.Services.Validation\ChefsKiss.Services.Validation.csproj" />
     <ProjectReference Include="..\..\Data\ChefsKiss.Data.Seeding\ChefsKiss.Data.Seeding.csproj" />
+    <ProjectReference Include="..\ChefsKiss.Web.Infrastructure\ChefsKiss.Web.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +47,10 @@
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Areas\Identity\Models\" />
     <Folder Include="Areas\Identity\Views\" />
+    <Folder Include="Areas\Administration\Controllers\" />
+    <Folder Include="Areas\Administration\Services\" />
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\" />
   </ItemGroup>
 
 </Project>

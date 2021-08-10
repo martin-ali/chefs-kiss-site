@@ -40,26 +40,19 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
             await this.userManager.AddToRoleAsync(user, UserRoleName);
 
-            if (result.Succeeded == false)
+            if (result.Succeeded)
             {
-                return result;
+                await this.signInManager.SignInAsync(user, false);
             }
 
-            await this.signInManager.SignInAsync(user, false);
-
-            return IdentityResult.Success;
+            return result;
         }
 
         public async Task<SignInResult> LoginAsync(string email, string password, bool rememberMe)
         {
             var result = await this.signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: false);
 
-            if (result.Succeeded == false)
-            {
-                return result;
-            }
-
-            return SignInResult.Success;
+            return result;
         }
 
         public async Task LogoutAsync()

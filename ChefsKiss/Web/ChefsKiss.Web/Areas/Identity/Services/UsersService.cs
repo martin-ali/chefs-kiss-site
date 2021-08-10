@@ -35,10 +35,9 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
             var result = await this.userManager.CreateAsync(user, password);
 
-            await this.userManager.AddToRoleAsync(user, UserRoleName);
-
             if (result.Succeeded)
             {
+                await this.userManager.AddToRoleAsync(user, UserRoleName);
                 await this.signInManager.SignInAsync(user, false);
             }
 

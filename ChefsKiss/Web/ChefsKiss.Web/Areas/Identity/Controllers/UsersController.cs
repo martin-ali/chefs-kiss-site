@@ -90,5 +90,12 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             return this.RedirectToHome();
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Profile()
+        {
+            return this.View();
+        }
     }
 }

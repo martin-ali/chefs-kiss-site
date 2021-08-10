@@ -14,18 +14,15 @@ namespace ChefsKiss.Web.Areas.Identity.Services
         private readonly RecipesDbContext data;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly RoleManager<ApplicationRole> rolesManager;
 
         public UsersService(
             RecipesDbContext data,
             SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager,
-            RoleManager<ApplicationRole> rolesManager)
+            UserManager<ApplicationUser> userManager)
         {
             this.data = data;
             this.signInManager = signInManager;
             this.userManager = userManager;
-            this.rolesManager = rolesManager;
         }
 
         public async Task<IdentityResult> RegisterAsync(string email, string password)

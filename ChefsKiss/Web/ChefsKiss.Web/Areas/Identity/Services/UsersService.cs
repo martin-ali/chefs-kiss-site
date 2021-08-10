@@ -1,22 +1,28 @@
 namespace ChefsKiss.Web.Areas.Identity.Services
 {
+    using System.Linq;
     using System.Threading.Tasks;
-
+    using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
 
     using Microsoft.AspNetCore.Identity;
 
+    using static ChefsKiss.Common.WebConstants;
+
     public class UsersService : IUsersService
     {
+        private readonly RecipesDbContext data;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<ApplicationRole> rolesManager;
 
         public UsersService(
+            RecipesDbContext data,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> rolesManager)
         {
+            this.data = data;
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.rolesManager = rolesManager;
@@ -31,6 +37,8 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             };
 
             var result = await this.userManager.CreateAsync(user, password);
+
+            await this.userManager.AddToRoleAsync(user, UserRoleName);
 
             if (result.Succeeded == false)
             {

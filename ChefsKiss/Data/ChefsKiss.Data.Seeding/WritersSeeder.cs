@@ -316,7 +316,7 @@ namespace ChefsKiss.Data.Seeding
             "Roberts",
         };
 
-        private const int WritersCount = 20;
+        private const int WritersCount = 40;
 
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {
@@ -328,13 +328,14 @@ namespace ChefsKiss.Data.Seeding
                 var firstName = FirstNames[random.Next(0, FirstNames.Length)];
                 var lastName = LastNames[random.Next(0, LastNames.Length)];
                 var user = users[random.Next(0, users.Count)];
+                var isApproved = i % 2 == 0;
 
                 var writer = new Writer
                 {
                     FirstName = firstName,
                     LastName = lastName,
                     User = user,
-                    IsApproved = true,
+                    IsApproved = isApproved,
                 };
 
                 dbContext.Writers.Add(writer);

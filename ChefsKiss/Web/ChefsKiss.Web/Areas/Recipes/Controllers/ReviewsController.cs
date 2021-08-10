@@ -13,6 +13,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
     [Area(RecipesArea)]
@@ -40,7 +41,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             {
                 return this.RedirectToAction(
                     nameof(RecipesController.Details),
-                    Helpers.GetControllerName<RecipesController>(),
+                    GetControllerName<RecipesController>(),
                     new { id = input.RecipeId });
             }
 
@@ -61,7 +62,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             return this.RedirectToAction(
                 nameof(RecipesController.Details),
-                Helpers.GetControllerName<RecipesController>(),
+                GetControllerName<RecipesController>(),
                 new { id = input.RecipeId });
         }
 

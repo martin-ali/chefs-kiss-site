@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChefsKiss.Data.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20210717162508_Initial")]
-    partial class Initial
+    [Migration("20210810200037_Reset")]
+    partial class Reset
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -203,7 +203,10 @@ namespace ChefsKiss.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AuthorId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -219,14 +222,14 @@ namespace ChefsKiss.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("AuthorId1");
 
                     b.HasIndex("ImageId");
 
@@ -266,7 +269,7 @@ namespace ChefsKiss.Data.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("RecipeIngredient");
+                    b.ToTable("RecipeIngredients");
                 });
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Review", b =>
@@ -281,8 +284,8 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -303,6 +306,42 @@ namespace ChefsKiss.Data.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("ChefsKiss.Data.Models.Writer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Writers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -393,12 +432,7 @@ namespace ChefsKiss.Data.Migrations
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("RoleId");
 
@@ -426,9 +460,9 @@ namespace ChefsKiss.Data.Migrations
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
                 {
-                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", "Author")
+                    b.HasOne("ChefsKiss.Data.Models.Writer", "Author")
                         .WithMany("Recipes")
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("AuthorId1");
 
                     b.HasOne("ChefsKiss.Data.Models.Image", "Image")
                         .WithMany()
@@ -485,6 +519,15 @@ namespace ChefsKiss.Data.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("ChefsKiss.Data.Models.Writer", b =>
+                {
+                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("ChefsKiss.Data.Models.ApplicationRole", null)
@@ -522,10 +565,6 @@ namespace ChefsKiss.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("ChefsKiss.Data.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
@@ -554,11 +593,7 @@ namespace ChefsKiss.Data.Migrations
 
                     b.Navigation("Logins");
 
-                    b.Navigation("Recipes");
-
                     b.Navigation("Reviews");
-
-                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
@@ -566,6 +601,11 @@ namespace ChefsKiss.Data.Migrations
                     b.Navigation("RecipeIngredients");
 
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("ChefsKiss.Data.Models.Writer", b =>
+                {
+                    b.Navigation("Recipes");
                 });
 #pragma warning restore 612, 618
         }

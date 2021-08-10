@@ -1,9 +1,11 @@
 namespace ChefsKiss.Web.Areas.Identity.Services
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Mapping;
 
     public class WritersService : IWritersService
     {
@@ -26,6 +28,16 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             this.data.Writers.Add(writer);
 
             this.data.SaveChanges();
+        }
+
+        public IEnumerable<T> GetAllUnapproved<T>()
+        {
+            var writers = this.data.Writers
+                .Where(x => x.IsApproved == false)
+                .MapTo<T>()
+                .ToList();
+
+            return writers;
         }
 
         public bool IsWriter(string userId)

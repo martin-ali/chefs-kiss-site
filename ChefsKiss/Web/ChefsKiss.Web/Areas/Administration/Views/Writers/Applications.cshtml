@@ -1,1 +1,10 @@
-﻿
+﻿@using ChefsKiss.Web.Areas.Identity.Models.Writers;
+
+@model IEnumerable<WriterServiceModel>
+
+<div class="row">
+    @foreach (var writer in Model)
+    {
+        <div>@writer.Username</div>
+    }
+</div>

@@ -9,6 +9,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
     [Area(IdentityArea)]
@@ -40,7 +41,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             this.writersService.Create(userId, input.FirstName, input.LastName);
 
-            return this.RedirectToAction(nameof(HomeController.Index), Helpers.GetControllerName<HomeController>());
+            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace ChefsKiss.Common.Attributes
+namespace ChefsKiss.Web.Infrastructure.Attributes
 {
     using System.ComponentModel.DataAnnotations;
     using System.Linq;

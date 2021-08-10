@@ -37,6 +37,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Identity" asp-controller="Writers" asp-action="Apply">Become a writer</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Administrators" asp-action="Become">Become an admin</a>
+                            </li>
+                            @if (User.IsInRole("Administrator"))
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Writers" asp-action="Applications">Writer applications</a>
+                                </li>
+                        }
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>
@@ -45,7 +54,7 @@
         </header>
         <div class="container">
             <main role="main" class="pb-3">
-                @RenderBody()
+            @RenderBody()
             </main>
         </div>
 
@@ -57,7 +66,7 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
     </body>
 
 </html>

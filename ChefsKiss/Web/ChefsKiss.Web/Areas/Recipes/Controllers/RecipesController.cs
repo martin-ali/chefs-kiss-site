@@ -19,15 +19,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     public class RecipesController : Controller
     {
         private readonly IRecipesService recipes;
+        private readonly IWritersService writers;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IMeasurementUnitsService measurementUnits;
 
         public RecipesController(
             IRecipesService recipes,
+            IWritersService writers,
             UserManager<ApplicationUser> userManager,
             IMeasurementUnitsService measurementUnits)
         {
             this.recipes = recipes;
+            this.writers = writers;
             this.userManager = userManager;
             this.measurementUnits = measurementUnits;
         }
@@ -50,6 +53,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             }
 
             var userId = this.userManager.GetUserId(this.User);
+
+            if (this.writers.IsWriter(userId) == false)
+            {
+                return this.Unauthorized();
+            }
 
             var recipeId = await this.recipes.CreateAsync(input, userId);
 

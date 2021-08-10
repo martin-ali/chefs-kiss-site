@@ -24,9 +24,6 @@ namespace ChefsKiss.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -46,8 +43,6 @@ namespace ChefsKiss.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -461,13 +456,6 @@ namespace ChefsKiss.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ChefsKiss.Data.Models.ApplicationRole", b =>
-                {
-                    b.HasOne("ChefsKiss.Data.Models.ApplicationUser", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>
                 {
                     b.HasOne("ChefsKiss.Data.Models.Writer", "Author")
@@ -604,8 +592,6 @@ namespace ChefsKiss.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Reviews");
-
-                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("ChefsKiss.Data.Models.Recipe", b =>

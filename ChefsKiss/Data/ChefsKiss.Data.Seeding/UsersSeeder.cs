@@ -1,13 +1,15 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using ChefsKiss.Data.Models;
-
-using static ChefsKiss.Common.WebConstants;
-
 namespace ChefsKiss.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using ChefsKiss.Data.Models;
+
+    using Microsoft.AspNetCore.Identity;
+
+    using static ChefsKiss.Common.WebConstants;
+
     public class UsersSeeder : IDataSeeder
     {
         private const int UsersCount = 100;
@@ -15,7 +17,7 @@ namespace ChefsKiss.Data.Seeding
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {
             var random = new Random();
-            var userRole = dbContext.Roles.First(x => x.Name == UserRoleName);
+            var userManager = (UserManager<ApplicationUser>)serviceProvider.GetService(typeof(UserManager<ApplicationUser>));
 
             for (int i = 0; i < UsersCount; i++)
             {
@@ -26,9 +28,9 @@ namespace ChefsKiss.Data.Seeding
                     UserName = username,
                 };
 
-                user.Roles.Add(userRole);
+                await userManager.CreateAsync(user, "123456");
 
-                dbContext.Users.Add(user);
+                await userManager.AddToRoleAsync(user, UserRoleName);
             }
 
             await dbContext.SaveChangesAsync();

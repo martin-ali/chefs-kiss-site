@@ -1,4 +1,4 @@
-namespace ChefsKiss.Common.Extensions
+namespace ChefsKiss.Web.Infrastructure.Extensions
 {
     using System.Collections.Generic;
     using System.Linq;

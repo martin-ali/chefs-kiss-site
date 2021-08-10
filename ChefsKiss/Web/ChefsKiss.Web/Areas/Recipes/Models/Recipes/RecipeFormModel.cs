@@ -5,10 +5,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
     using AutoMapper;
 
-    using ChefsKiss.Common.Attributes;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
+    using ChefsKiss.Web.Infrastructure.Attributes;
 
     using Microsoft.AspNetCore.Http;
 

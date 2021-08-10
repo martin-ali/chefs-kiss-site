@@ -5,9 +5,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
     using AutoMapper;
 
-    using ChefsKiss.Common.Extensions;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Web.Infrastructure.Extensions;
 
     public class RecipeBaseViewModel : IMapFrom<Recipe>, IHaveCustomMappings
     {

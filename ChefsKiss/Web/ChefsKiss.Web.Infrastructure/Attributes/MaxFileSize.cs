@@ -1,6 +1,9 @@
-namespace ChefsKiss.Common.Attributes
+namespace ChefsKiss.Web.Infrastructure.Attributes
 {
     using System.ComponentModel.DataAnnotations;
+
+    using ChefsKiss.Common;
+
     using Microsoft.AspNetCore.Http;
 
     public class MaxFileSize : ValidationAttribute

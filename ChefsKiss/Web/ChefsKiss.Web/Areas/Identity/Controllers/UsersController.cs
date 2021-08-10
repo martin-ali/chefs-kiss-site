@@ -11,6 +11,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     using static ChefsKiss.Common.WebConstants;
+    using static ChefsKiss.Common.Helpers;
 
     [Area(IdentityArea)]
     public class UsersController : Controller
@@ -30,7 +31,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
         private IActionResult RedirectToHome()
         {
-            return this.RedirectToAction(nameof(HomeController.Index), Helpers.GetControllerName<HomeController>());
+            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
         }
 
         [HttpPost]

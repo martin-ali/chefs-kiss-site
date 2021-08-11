@@ -35,6 +35,7 @@
 - [ ] Caching
 - [ ] Admins approve writer applications
 - [ ] Fix redirects to wrong register/login
+- [ ] Fix password complexity
 
 ## Optional
 

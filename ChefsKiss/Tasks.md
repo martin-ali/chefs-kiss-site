@@ -36,6 +36,8 @@
 - [ ] Admins approve writer applications
 - [ ] Fix redirects to wrong register/login
 - [ ] Fix password complexity
+- [ ] Broken comment form on mobile
+- [ ] Editing image final take
 
 ## Optional
 

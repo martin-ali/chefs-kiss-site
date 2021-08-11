@@ -16,11 +16,11 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     [Area(IdentityArea)]
     public class UsersController : Controller
     {
-        private readonly IUsersService usersService;
+        private readonly IUsersService users;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUsersService users)
         {
-            this.usersService = usersService;
+            this.users = users;
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            var result = await this.usersService.RegisterAsync(input.Email, input.Password);
+            var result = await this.users.RegisterAsync(input.Email, input.Password);
 
             if (result.Succeeded == false)
             {
@@ -71,7 +71,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            var result = await this.usersService.LoginAsync(input.Email, input.Password, input.RememberMe);
+            var result = await this.users.LoginAsync(input.Email, input.Password, input.RememberMe);
 
             if (result.Succeeded == false)
             {
@@ -87,7 +87,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await this.usersService.LogoutAsync();
+            await this.users.LogoutAsync();
 
             return this.RedirectToHome();
         }

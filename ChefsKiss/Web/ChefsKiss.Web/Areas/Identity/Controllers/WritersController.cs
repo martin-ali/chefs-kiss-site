@@ -15,11 +15,11 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     [Area(IdentityArea)]
     public class WritersController : Controller
     {
-        private readonly IWritersService writersService;
+        private readonly IWritersService writers;
 
-        public WritersController(IWritersService writersService)
+        public WritersController(IWritersService writers)
         {
-            this.writersService = writersService;
+            this.writers = writers;
         }
 
         [Authorize]
@@ -39,7 +39,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             var userId = this.User.Id();
 
-            this.writersService.Create(userId, input.FirstName, input.LastName);
+            this.writers.Create(userId, input.FirstName, input.LastName);
 
             return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
         }

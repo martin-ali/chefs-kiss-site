@@ -13,8 +13,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public override void CreateMappings(IProfileExpression configuration)
         {
-            configuration
-                .CreateMap<Recipe, RecipeListModel>()
+            configuration.CreateMap<Recipe, RecipeListModel>()
                 .ForMember(vm => vm.Summary, cfg => cfg.MapFrom(m => m.Content.Substring(0, RecipeSummaryLength)));
         }
     }

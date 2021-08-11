@@ -15,8 +15,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 
         public override void CreateMappings(IProfileExpression configuration)
         {
-            configuration
-            .CreateMap<Review, ReviewListViewModel>()
+            configuration.CreateMap<Review, ReviewListViewModel>()
             .ForMember(vm => vm.Summary, cfg => cfg.MapFrom(m => m.Content.Substring(0, ReviewSummaryLength)));
         }
     }

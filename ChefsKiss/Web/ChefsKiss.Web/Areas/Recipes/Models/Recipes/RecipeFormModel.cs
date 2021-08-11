@@ -40,8 +40,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration
-            .CreateMap<Recipe, RecipeFormModel>()
+            configuration.CreateMap<Recipe, RecipeFormModel>()
             .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients))
             .ForMember(vm => vm.Image, cfg => cfg.Ignore());
         }

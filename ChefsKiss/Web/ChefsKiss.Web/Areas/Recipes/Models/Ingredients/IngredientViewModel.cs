@@ -16,8 +16,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration
-            .CreateMap<RecipeIngredient, IngredientViewModel>()
+            configuration.CreateMap<RecipeIngredient, IngredientViewModel>()
             .ForMember(vm => vm.MeasurementUnit, cfg => cfg.MapFrom(m => m.MeasurementUnit.Name))
             .ForMember(vm => vm.Name, cfg => cfg.MapFrom(m => m.Ingredient.Name))
             .ForMember(vm => vm.Id, cfg => cfg.MapFrom(m => m.IngredientId));

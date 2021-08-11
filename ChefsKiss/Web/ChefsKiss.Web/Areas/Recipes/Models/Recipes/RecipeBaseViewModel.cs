@@ -25,8 +25,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public virtual void CreateMappings(IProfileExpression configuration)
         {
-            configuration
-                .CreateMap<Recipe, RecipeBaseViewModel>()
+            configuration.CreateMap<Recipe, RecipeBaseViewModel>()
                 .ForMember(vm => vm.ImageUrl, cfg => cfg.MapFrom(m => Path.Combine(@"\images", $"{m.Image.Name}.{m.Image.Extension}")))
                 .ForMember(vm => vm.AuthorFullName, cfg => cfg.MapFrom(m => $"{m.Author.FirstName} {m.Author.LastName}"))
                 .ForMember(vm => vm.Rating, cfg => cfg.MapFrom(m => (int)m.Reviews.Select(x => x.Rating).AverageOrDefault())) // NOTE: .Average() does not like empty collections

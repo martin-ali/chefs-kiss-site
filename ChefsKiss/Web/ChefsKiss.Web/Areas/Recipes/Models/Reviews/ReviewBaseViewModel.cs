@@ -21,8 +21,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 
         public virtual void CreateMappings(IProfileExpression configuration)
         {
-            configuration
-            .CreateMap<Review, ReviewBaseViewModel>()
+            configuration.CreateMap<Review, ReviewBaseViewModel>()
             .IncludeAllDerived();
         }
     }

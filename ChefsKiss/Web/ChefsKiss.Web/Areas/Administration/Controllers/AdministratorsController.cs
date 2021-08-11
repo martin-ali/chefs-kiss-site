@@ -4,6 +4,7 @@ namespace ChefsKiss.Web.Areas.Administration.Controllers
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Home.Controllers;
+    using ChefsKiss.Web.Areas.Identity.Controllers;
     using ChefsKiss.Web.Infrastructure.Extensions;
 
     using Microsoft.AspNetCore.Authorization;
@@ -30,10 +31,7 @@ namespace ChefsKiss.Web.Areas.Administration.Controllers
 
             var result = await this.userManager.AddToRoleAsync(user, AdministratorRoleName);
 
-            var x = await this.userManager.IsInRoleAsync(user, AdministratorRoleName);
-            var y = this.User.IsAdmin();
-
-            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
+            return this.RedirectToAction(nameof(UsersController.Logout), GetControllerName<HomeController>());
         }
     }
 }

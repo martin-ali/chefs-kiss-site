@@ -1,5 +1,6 @@
 @using ChefsKiss.Web.Areas.Recipes.Models.Recipes
 @using ChefsKiss.Web.Areas.Recipes.Models.Reviews
+@using ChefsKiss.Web.Infrastructure.Extensions;
 
 @model RecipeDetailsViewModel
 
@@ -41,15 +42,21 @@
         </div>
     </div>
     <br>
-    @* @if (User.IsInRole("Administrator"))
-        {
-        <div class="row">
-        @await Html.PartialAsync("_AdminPanel", Model)
-        </div>
-        } *@
     <div class="row">
         @Model.Content
     </div>
+
+    @if (Model.UserIsAuthor || User.IsAdmin())
+    {
+        <br>
+        <div class="row">
+            <div class="edit-panel card card-body border border-success flex-row p-1 col-4 mx-auto">
+                <a class="btn btn-primary fa fa-edit col-6" asp-action="Edit" asp-route-id="@Model.Id"></a>
+                <a class="btn btn-danger fa fa-trash col-6" asp-action="Delete" asp-route-id="@Model.Id"></a>
+            </div>
+        </div>
+    }
+
     <br>
     <div class="row">
         @if (User.Identity.IsAuthenticated && @Model.UserHasPostedReview == false)

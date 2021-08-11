@@ -11,5 +11,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
         bool IsWriter(string userId);
 
         void Approve(int id);
+
+        void Deny(int id);
     }
 }

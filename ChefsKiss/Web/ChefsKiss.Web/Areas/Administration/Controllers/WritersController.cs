@@ -1,7 +1,8 @@
 namespace ChefsKiss.Web.Areas.Administration.Controllers
 {
-    using ChefsKiss.Web.Areas.Identity.Models.Writers;
+    using ChefsKiss.Web.Areas.Administration.Models.Writers;
     using ChefsKiss.Web.Areas.Identity.Services;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -20,15 +21,21 @@ namespace ChefsKiss.Web.Areas.Administration.Controllers
 
         public IActionResult Applications()
         {
-            var unapprovedWriters = this.writers.GetAllUnapproved<WriterServiceModel>();
+            var unapprovedWriters = this.writers.GetAllUnapproved<WriterViewModel>();
 
             return this.View(unapprovedWriters);
         }
 
-        [HttpPost]
-        public IActionResult Approve(int writerId)
+        public IActionResult Approve(int id)
         {
-            this.writers.Approve(writerId);
+            this.writers.Approve(id);
+
+            return this.RedirectToAction(nameof(this.Applications));
+        }
+
+        public IActionResult Deny(int id)
+        {
+            this.writers.Deny(id);
 
             return this.RedirectToAction(nameof(this.Applications));
         }

@@ -52,9 +52,18 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
         public void Approve(int id)
         {
-            var application = this.data.Writers.Find(id);
+            var writer = this.data.Writers.Find(id);
 
-            application.IsApproved = true;
+            writer.IsApproved = true;
+
+            this.data.SaveChanges();
+        }
+
+        public void Deny(int id)
+        {
+            var writer = this.data.Writers.Find(id);
+
+            this.data.Writers.Remove(writer);
 
             this.data.SaveChanges();
         }

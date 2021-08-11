@@ -37,15 +37,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Identity" asp-controller="Writers" asp-action="Apply">Become a writer</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Administrators" asp-action="Become">Become an admin</a>
-                            </li>
                             @if (User.IsInRole("Administrator"))
-                        {
+                            {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Writers" asp-action="Applications">Writer applications</a>
+                                    <a class="nav-link text-primary" asp-area="Administration" asp-controller="Writers" asp-action="Applications">Writer applications</a>
                                 </li>
-                        }
+                            }
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>

@@ -1,10 +1,33 @@
-﻿@using ChefsKiss.Web.Areas.Identity.Models.Writers;
+﻿@using ChefsKiss.Web.Areas.Administration.Models.Writers;
 
-@model IEnumerable<WriterServiceModel>
+@model IEnumerable<WriterViewModel>
 
-<div class="row">
-    @foreach (var writer in Model)
-    {
-        <div>@writer.Username</div>
-    }
-</div>
+<h2 class="text-center m-3">Writer applications</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Full name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var writer in Model)
+        {
+            <tr>
+                <td>@writer.FullName</td>
+                <td>
+                    <a asp-area="Identity" asp-controller="Users" asp-action="Profile" asp-route-id="@writer.UserId">
+                        @writer.Username
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-primary fa fa-eye" asp-area="Identity" asp-controller="Users" asp-action="Profile" asp-route-id="@writer.UserId"> </a>
+                    <a class="btn btn-success fa fa-check" asp-action="Approve" asp-route-id="@writer.Id"></a>
+                    <a class="btn btn-danger fa fa-ban" asp-action="Deny" asp-route-id="@writer.Id"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

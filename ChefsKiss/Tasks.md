@@ -38,6 +38,8 @@
 - [ ] Fix password complexity
 - [ ] Broken comment form on mobile
 - [ ] Editing image final take
+- [ ] Only one writer application per user
+- [ ] Fix ingredient details ajax is loading wrong recipes
 
 ## Optional
 

@@ -13,6 +13,9 @@ namespace ChefsKiss.Data.Seeding
     public class UsersSeeder : IDataSeeder
     {
         private const int UsersCount = 100;
+        private const string AdminEmail = "b@b.com";
+        private const string UserPassword = "123456";
+        private const string AdminPassword = "123456aA*";
 
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {
@@ -28,12 +31,27 @@ namespace ChefsKiss.Data.Seeding
                     UserName = username,
                 };
 
-                await userManager.CreateAsync(user, "123456");
+                await userManager.CreateAsync(user, UserPassword);
 
                 await userManager.AddToRoleAsync(user, UserRoleName);
             }
 
+            await SeedAdmin(userManager, AdminEmail, AdminPassword);
+
             await dbContext.SaveChangesAsync();
+        }
+
+        private static async Task SeedAdmin(UserManager<ApplicationUser> userManager, string email, string password)
+        {
+            var admin = new ApplicationUser
+            {
+                UserName = email,
+                Email = email,
+            };
+
+            await userManager.CreateAsync(admin, password);
+
+            await userManager.AddToRoleAsync(admin, AdministratorRoleName);
         }
     }
 }

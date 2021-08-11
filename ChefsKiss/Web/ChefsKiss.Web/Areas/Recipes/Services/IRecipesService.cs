@@ -21,6 +21,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         Task EditAsync(int id, RecipeFormModel input);
 
+        void Remove(int id);
+
         T GetRandom<T>();
     }
 }

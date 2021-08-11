@@ -142,5 +142,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
             this.data.SaveChanges();
         }
+
+        public void Remove(int id)
+        {
+            var recipe = this.data.Recipes.Find(id);
+
+            this.data.Recipes.Remove(recipe);
+
+            this.data.SaveChanges();
+        }
     }
 }

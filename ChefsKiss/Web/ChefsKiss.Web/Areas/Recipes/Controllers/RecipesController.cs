@@ -83,9 +83,12 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             var recipe = this.recipes.ById<RecipeDetailsViewModel>(id);
 
-            var userId = this.User.Id();
-            recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
-            recipe.UserIsAuthor = userId == recipe.AuthorId;
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var userId = this.User.Id();
+                recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
+                recipe.UserIsAuthor = userId == recipe.AuthorId;
+            }
 
             return this.View(recipe);
         }
@@ -98,10 +101,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
             var recipe = this.recipes.ById<RecipeFormModel>(id);
-
             var userIsAuthor = recipe.AuthorId != this.User.Id();
             if (userIsAuthor == false || this.User.IsAdmin() == false)
             {
@@ -122,7 +124,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             }
 
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
-
             var userIsAuthor = recipe.AuthorId != this.User.Id();
             if (userIsAuthor == false || this.User.IsAdmin() == false)
             {
@@ -135,9 +136,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var recipe = this.recipes.ById<RecipeFormModel>(id);
+            var recipe = this.recipes.ById<RecipeDeleteModel>(id);
 
             var userIsAuthor = recipe.AuthorId != this.User.Id();
             if (userIsAuthor == false || this.User.IsAdmin() == false)
@@ -151,7 +152,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         // FIXME: I'm passing a web model to a service. Refactor it
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Delete(int id, RecipeFormModel model)
+        public IActionResult Delete(int id, RecipeFormModel model)
         {
             if (this.ModelState.IsValid == false)
             {
@@ -159,14 +160,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             }
 
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
-
             var userIsAuthor = recipe.AuthorId != this.User.Id();
             if (userIsAuthor == false || this.User.IsAdmin() == false)
             {
                 return this.Unauthorized(NotAuthorized);
             }
 
-            await this.recipes.EditAsync(id, model);
+            this.recipes.Remove(id);
 
             return this.RedirectToAction(nameof(this.Details), new { id = id });
         }

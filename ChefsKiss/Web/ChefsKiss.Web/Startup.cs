@@ -34,8 +34,8 @@ namespace ChefsKiss.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RecipesDbContext>(options =>
-                options.UseSqlServer(
-                    this.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options =>

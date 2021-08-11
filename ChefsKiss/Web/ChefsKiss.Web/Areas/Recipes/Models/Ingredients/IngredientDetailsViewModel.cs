@@ -4,10 +4,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
 
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
 
-    public class IngredientDetailsModel
+    public class IngredientDetailsViewModel
     {
         public string Name { get; init; }
 
-        public IEnumerable<RecipeListModel> Recipes { get; init; }
+        public IEnumerable<RecipeListViewModel> Recipes { get; init; }
     }
 }

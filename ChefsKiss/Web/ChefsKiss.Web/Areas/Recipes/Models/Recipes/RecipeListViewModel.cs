@@ -7,13 +7,13 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
     using static ChefsKiss.Common.WebConstants;
 
-    public class RecipeListModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
+    public class RecipeListViewModel : RecipeBaseViewModel, IMapFrom<Recipe>, IHaveCustomMappings
     {
         public string Summary { get; init; }
 
         public override void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Recipe, RecipeListModel>()
+            configuration.CreateMap<Recipe, RecipeListViewModel>()
                 .ForMember(vm => vm.Summary, cfg => cfg.MapFrom(m => m.Content.Substring(0, RecipeSummaryLength)));
         }
     }

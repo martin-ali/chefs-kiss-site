@@ -50,9 +50,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         public IActionResult Details(int id)
         {
             var ingredient = this.ingredients.ById<IngredientServiceModel>(id);
-            var recipes = this.recipes.ByIngredientId<RecipeListModel>(id);
+            var recipes = this.recipes.ByIngredientId<RecipeListViewModel>(id);
 
-            var model = new IngredientDetailsModel
+            var model = new IngredientDetailsViewModel
             {
                 Name = ingredient.Name,
                 Recipes = recipes,

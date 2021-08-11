@@ -1,0 +1,36 @@
+﻿@using ChefsKiss.Web.Areas.Identity.Models.Users;
+
+@model UserDetailsViewModel
+
+<h2 class="text-center">Profile of @Model.UserName</h2>
+
+@if (Model.RecipesCount == 0)
+{
+    <h3 class="text-center">No recipes written yet</h3>
+}
+else
+{
+    <h3 class="text-center">Written recipes (@Model.Recipes.Count())</h3>
+    <div class="row">
+        @* <div id="recipes-list" class="row mx-auto"> *@
+        @foreach (var recipe in @Model.Recipes)
+        {
+            <partial name="_RecipeListPartial" model="recipe" />
+        }
+    </div>
+}
+
+@if (Model.ReviewsCount == 0)
+{
+    <h3 class="text-center">No reviews posted yet</h3>
+}
+else
+{
+    <h3 class="text-center">Posted reviews (@Model.Reviews.Count())</h3>
+    <div class="row">
+        @foreach (var review in @Model.Reviews)
+        {
+            <partial name="_ReviewsListPartial" model="review" />
+        }
+    </div>
+}

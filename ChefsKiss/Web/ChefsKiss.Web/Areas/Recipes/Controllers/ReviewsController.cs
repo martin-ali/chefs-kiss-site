@@ -47,7 +47,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var recipe = this.recipes.GetById<RecipeServiceModel>(input.RecipeId);
+            var recipe = this.recipes.ById<RecipeServiceModel>(input.RecipeId);
             var reviews = this.reviews.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
 
             var userHasCommented = reviews.Any(x => x.AuthorId == user.Id);

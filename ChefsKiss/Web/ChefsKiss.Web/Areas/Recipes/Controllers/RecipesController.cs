@@ -66,21 +66,21 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         public IActionResult List()
         {
-            var recipes = this.recipes.GetPaged<RecipeListViewModel>(0, RecipesPerPage);
+            var recipes = this.recipes.Paged<RecipeListViewModel>(0, RecipesPerPage);
 
             return this.View(recipes);
         }
 
         public IActionResult Page(int id = 0) // FIXME: Parameter name id makes no sense in this context
         {
-            var recipes = this.recipes.GetPaged<RecipeListViewModel>(id, RecipesPerPage);
+            var recipes = this.recipes.Paged<RecipeListViewModel>(id, RecipesPerPage);
 
             return this.PartialView("_PagePartial", recipes);
         }
 
         public IActionResult Details(int id)
         {
-            var recipe = this.recipes.GetById<RecipeDetailsViewModel>(id);
+            var recipe = this.recipes.ById<RecipeDetailsViewModel>(id);
 
             var userId = this.userManager.GetUserId(this.User);
             recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
@@ -98,7 +98,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            var recipe = this.recipes.GetById<RecipeFormModel>(id);
+            var recipe = this.recipes.ById<RecipeFormModel>(id);
 
             var user = await this.userManager.GetUserAsync(this.User);
 
@@ -119,7 +119,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(model);
             }
 
-            var recipe = this.recipes.GetById<Recipe>(id);
+            var recipe = this.recipes.ById<Recipe>(id);
             var userId = this.userManager.GetUserId(this.User);
 
             if (recipe.AuthorId != userId)

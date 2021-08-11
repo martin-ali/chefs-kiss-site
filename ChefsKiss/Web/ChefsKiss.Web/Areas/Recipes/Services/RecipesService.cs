@@ -52,7 +52,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipe.Id;
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public IEnumerable<T> All<T>()
         {
             var recipes = this.data.Recipes
                 .MapTo<T>()
@@ -61,7 +61,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        public IEnumerable<T> GetPaged<T>(int page, int itemsPerPage)
+        public IEnumerable<T> Paged<T>(int page, int itemsPerPage)
         {
             var itemsToSkip = page * itemsPerPage;
             var recipes = this.data.Recipes
@@ -83,7 +83,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        public T GetById<T>(int id)
+        public T ById<T>(int id)
         {
             var recipe = this.data.Recipes
                 .Where(x => x.Id == id)
@@ -93,10 +93,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipe;
         }
 
-        public IEnumerable<T> GetByAuthorId<T>(string authorId)
+        public IEnumerable<T> ByAuthorId<T>(string authorId)
         {
             var recipes = this.data.Recipes
-                .Where(x => x.AuthorId == authorId)
+                .Where(x => x.Author.UserId == authorId)
                 .MapTo<T>()
                 .ToList();
 

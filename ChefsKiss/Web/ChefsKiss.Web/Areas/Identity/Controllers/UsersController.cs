@@ -1,12 +1,15 @@
 namespace ChefsKiss.Web.Areas.Identity.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ChefsKiss.Common;
     using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Users;
     using ChefsKiss.Web.Areas.Identity.Services;
-
+    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
+    using ChefsKiss.Web.Areas.Recipes.Services;
+    using ChefsKiss.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -17,13 +20,14 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     public class UsersController : Controller
     {
         private readonly IUsersService users;
+        private readonly IRecipesService recipes;
 
-        public UsersController(IUsersService users)
+        public UsersController(IUsersService users, IRecipesService recipes)
         {
+            this.recipes = recipes;
             this.users = users;
         }
 
-        [HttpGet]
         public IActionResult Register()
         {
             return this.View();
@@ -57,7 +61,6 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             return this.RedirectToHome();
         }
 
-        [HttpGet]
         public IActionResult Login()
         {
             return this.View();
@@ -83,7 +86,6 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             return this.RedirectToHome();
         }
 
-        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Logout()
         {
@@ -92,11 +94,21 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             return this.RedirectToHome();
         }
 
-        [HttpGet]
         [Authorize]
         public IActionResult Profile()
         {
-            return this.View();
+            return this.Details(this.User.Id());
+        }
+
+        public IActionResult Details(string id)
+        {
+            var recipes = this.recipes.ByAuthorId<RecipeListViewModel>(id);
+            var model = this.users.GetDetails<UserDetailsViewModel>(id);
+
+            model.RecipesCount = recipes.Count();
+            model.Recipes = recipes;
+
+            return this.View(model);
         }
     }
 }

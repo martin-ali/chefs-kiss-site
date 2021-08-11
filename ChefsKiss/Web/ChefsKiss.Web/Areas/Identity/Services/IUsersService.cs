@@ -10,6 +10,8 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
         Task<SignInResult> LoginAsync(string email, string password, bool rememberMe);
 
+        T GetDetails<T>(string id);
+
         Task LogoutAsync();
     }
 }

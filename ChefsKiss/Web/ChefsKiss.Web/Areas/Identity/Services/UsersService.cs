@@ -4,7 +4,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     using System.Threading.Tasks;
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
-
+    using ChefsKiss.Services.Mapping;
     using Microsoft.AspNetCore.Identity;
 
     using static ChefsKiss.Common.WebConstants;
@@ -49,6 +49,16 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             var result = await this.signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: false);
 
             return result;
+        }
+
+        public T GetDetails<T>(string id)
+        {
+            var user = this.data.Users
+                .Where(x => x.Id == id)
+                .MapTo<T>()
+                .First();
+
+            return user;
         }
 
         public async Task LogoutAsync()

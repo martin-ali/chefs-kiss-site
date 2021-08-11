@@ -13,6 +13,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
@@ -55,7 +56,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             if (userHasCommented || userIsRecipeAuthor)
             {
-                return this.Unauthorized();
+                return this.Unauthorized(NotAuthorized);
             }
 
             this.reviews.Create(input, user.Id);

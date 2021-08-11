@@ -104,12 +104,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             if (recipe.AuthorId != user.Id)
             {
-                return this.RedirectToAction(nameof(this.Details), new { id = id });
+                return this.Unauthorized(NotAuthorized);
+                // return this.RedirectToAction(nameof(this.Details), new { id = id });
             }
 
             return this.View(recipe);
         }
 
+        // FIXME: I'm passing a web model to a service. Refactor it
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Edit(int id, RecipeFormModel model)
@@ -119,7 +121,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(model);
             }
 
-            var recipe = this.recipes.ById<Recipe>(id);
+            var recipe = this.recipes.ById<RecipeServiceModel>(id);
             var userId = this.userManager.GetUserId(this.User);
 
             if (recipe.AuthorId != userId)

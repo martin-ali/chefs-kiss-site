@@ -5,6 +5,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
     public class RecipeServiceModel : IMapFrom<Recipe>
     {
+        public int Id { get; init; }
+
         public string AuthorId { get; init; }
     }
 }

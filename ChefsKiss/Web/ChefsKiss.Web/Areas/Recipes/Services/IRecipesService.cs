@@ -17,7 +17,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         IEnumerable<T> ByAuthorId<T>(string authorId);
 
-        Task<int> CreateAsync(RecipeFormModel input, string authorId);
+        Task<int> CreateAsync(RecipeFormModel input, string userId);
 
         Task EditAsync(int id, RecipeFormModel input);
 

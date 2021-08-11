@@ -29,9 +29,12 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.imagesService = imagesService;
         }
 
-        public async Task<int> CreateAsync(RecipeFormModel input, string authorId)
+        public async Task<int> CreateAsync(RecipeFormModel input, string userId)
         {
             var image = await this.imagesService.CreateImageAsync(input.Image);
+            var writer = this.data.Writers
+                .Where(x => x.UserId == userId)
+                .First();
 
             var ingredients = this.ingredientsService.EnsureAll(input.Ingredients.Select(i => i.Name));
 
@@ -39,7 +42,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             {
                 Title = input.Title,
                 Content = input.Content,
-                AuthorId = authorId,
+                Writer = writer,
                 Image = image,
             };
 
@@ -93,10 +96,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipe;
         }
 
-        public IEnumerable<T> ByAuthorId<T>(string authorId)
+        public IEnumerable<T> ByAuthorId<T>(string id)
         {
             var recipes = this.data.Recipes
-                .Where(x => x.Author.UserId == authorId)
+                .Where(x => x.Writer.UserId == id)
                 .MapTo<T>()
                 .ToList();
 

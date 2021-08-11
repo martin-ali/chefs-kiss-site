@@ -10,9 +10,9 @@
     public class Recipe : BaseModel<int>
     {
         // [Required]
-        public string AuthorId { get; init; }
+        public int WriterId { get; init; }
 
-        public Writer Author { get; init; }
+        public Writer Writer { get; init; }
 
         [Required]
         [MinLength(Recipes.TitleMinLength)]

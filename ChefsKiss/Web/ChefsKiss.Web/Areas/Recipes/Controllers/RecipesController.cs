@@ -7,6 +7,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
+    using ChefsKiss.Web.Infrastructure.Extensions;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -82,15 +83,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             var recipe = this.recipes.ById<RecipeDetailsViewModel>(id);
 
-            var userId = this.userManager.GetUserId(this.User);
+            var userId = this.User.Id();
             recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
+            recipe.UserIsAuthor = userId == recipe.AuthorId;
 
             return this.View(recipe);
         }
 
         public IActionResult Random()
         {
-            var recipeId = this.recipes.GetRandom<RecipeDetailsViewModel>().Id;
+            var recipeId = this.recipes.GetRandom<RecipeServiceModel>().Id;
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
@@ -100,12 +102,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             var recipe = this.recipes.ById<RecipeFormModel>(id);
 
-            var user = await this.userManager.GetUserAsync(this.User);
-
-            if (recipe.AuthorId != user.Id)
+            var userIsAuthor = recipe.AuthorId != this.User.Id();
+            if (userIsAuthor == false || this.User.IsAdmin() == false)
             {
                 return this.Unauthorized(NotAuthorized);
-                // return this.RedirectToAction(nameof(this.Details), new { id = id });
             }
 
             return this.View(recipe);
@@ -122,9 +122,46 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             }
 
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
-            var userId = this.userManager.GetUserId(this.User);
 
-            if (recipe.AuthorId != userId)
+            var userIsAuthor = recipe.AuthorId != this.User.Id();
+            if (userIsAuthor == false || this.User.IsAdmin() == false)
+            {
+                return this.Unauthorized(NotAuthorized);
+            }
+
+            await this.recipes.EditAsync(id, model);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = id });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var recipe = this.recipes.ById<RecipeFormModel>(id);
+
+            var userIsAuthor = recipe.AuthorId != this.User.Id();
+            if (userIsAuthor == false || this.User.IsAdmin() == false)
+            {
+                return this.Unauthorized(NotAuthorized);
+            }
+
+            return this.View(recipe);
+        }
+
+        // FIXME: I'm passing a web model to a service. Refactor it
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id, RecipeFormModel model)
+        {
+            if (this.ModelState.IsValid == false)
+            {
+                return this.View(model);
+            }
+
+            var recipe = this.recipes.ById<RecipeServiceModel>(id);
+
+            var userIsAuthor = recipe.AuthorId != this.User.Id();
+            if (userIsAuthor == false || this.User.IsAdmin() == false)
             {
                 return this.Unauthorized(NotAuthorized);
             }

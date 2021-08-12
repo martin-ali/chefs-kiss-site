@@ -41,7 +41,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            var userIsWriter = this.writers.IsWriter(User.Id());
+            var userIsWriter = this.writers.IsWriter(this.User.Id());
             if (userIsWriter == false)
             {
                 return this.Unauthorized(MustBeWriter);

@@ -25,7 +25,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         [Authorize]
         public IActionResult Apply()
         {
-            var userHasApplied = this.writers.HasApplied(User.Id());
+            var userHasApplied = this.writers.HasApplied(this.User.Id());
             if (userHasApplied)
             {
                 return this.BadRequest(AlreadyAppliedForWriter);

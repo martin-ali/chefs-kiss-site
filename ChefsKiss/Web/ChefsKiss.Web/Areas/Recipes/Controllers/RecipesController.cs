@@ -4,6 +4,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
@@ -14,6 +15,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     using static ChefsKiss.Common.ErrorMessages;
+    using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
     [Area(RecipesArea)]
@@ -152,13 +154,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         // FIXME: I'm passing a web model to a service. Refactor it
         [HttpPost]
         [Authorize]
-        public IActionResult Delete(int id, RecipeFormModel model)
+        [ActionName(nameof(Delete))]
+        public IActionResult DeletePost(int id)
         {
-            if (this.ModelState.IsValid == false)
-            {
-                return this.View(model);
-            }
-
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
             var userIsAuthor = recipe.AuthorId != this.User.Id();
             if (userIsAuthor == false || this.User.IsAdmin() == false)
@@ -168,7 +166,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             this.recipes.Remove(id);
 
-            return this.RedirectToAction(nameof(this.Details), new { id = id });
+            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>(), new { area = HomeArea });
         }
     }
 }

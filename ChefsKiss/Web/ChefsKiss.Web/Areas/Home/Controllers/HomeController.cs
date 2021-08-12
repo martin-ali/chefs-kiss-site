@@ -1,4 +1,4 @@
-﻿namespace ChefsKiss.Web.Areas.Home.Controllers
+namespace ChefsKiss.Web.Areas.Home.Controllers
 {
     using System.Diagnostics;
 
@@ -22,12 +22,6 @@
         [HttpGet("/")]
         [HttpGet("Index")]
         public IActionResult Index()
-        {
-            return this.View();
-        }
-
-        [HttpGet]
-        public IActionResult Privacy()
         {
             return this.View();
         }

@@ -24,26 +24,26 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="List">List</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="List">List</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-controller="Writers" asp-action="Apply">Become a writer</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Writers" asp-action="Apply">Become a writer</a>
                             </li>
                             @if (User.IsInRole("Administrator"))
-                            {
+                        {
                                 <li class="nav-item">
-                                    <a class="nav-link text-primary" asp-area="Administration" asp-controller="Writers" asp-action="Applications">Writer applications</a>
+                                    <a class="animate-zoom-md nav-link text-primary" asp-area="Administration" asp-controller="Writers" asp-action="Applications">Writer applications</a>
                                 </li>
-                            }
+                        }
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>

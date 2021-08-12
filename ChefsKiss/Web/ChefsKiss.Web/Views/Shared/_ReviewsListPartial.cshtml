@@ -3,7 +3,7 @@
 @model ReviewListViewModel
 
 <div class="col-sm-12 col-md-6 col-lg-4 p-0">
-    <article class="card-selectable-outline card card-body m-1">
+    <article class="animate-outline card card-body m-1">
         <partial name="_RatingBarPartial" model="@Model.Rating" />
         <p>@Model.Summary...
             <a asp-area="recipes" asp-controller="reviews" asp-action="details" asp-route-id="@Model.Id"> Read More</a>

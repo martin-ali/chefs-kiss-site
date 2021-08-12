@@ -8,6 +8,8 @@ namespace ChefsKiss.Common
 
         public const string NotAuthorized = "You are not authorized to access this resource.";
 
+        public const string AlreadyAppliedForWriter = "You have already submitted a writer application.";
+
         public static string LengthBetween(int minLength, int maxLength, string parameterName) => $"{parameterName} must be between {minLength} and {maxLength} characters long.";
 
         public static string LengthMin(int minLength, string parameterName) => $"{parameterName} cannot be less than {minLength} characters long.";

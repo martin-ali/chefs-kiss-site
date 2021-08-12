@@ -9,6 +9,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     using static ChefsKiss.Common.Helpers;
+    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.WebConstants;
 
     [Area(IdentityArea)]
@@ -24,6 +25,12 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         [Authorize]
         public IActionResult Apply()
         {
+            var userHasApplied = this.writers.HasApplied(User.Id());
+            if (userHasApplied)
+            {
+                return this.BadRequest(AlreadyAppliedForWriter);
+            }
+
             return this.View();
         }
 
@@ -31,12 +38,18 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         [Authorize]
         public IActionResult Apply(WriterFormModel input)
         {
+            var userId = this.User.Id();
+
+            var userHasApplied = this.writers.HasApplied(userId);
+            if (userHasApplied)
+            {
+                return this.BadRequest(AlreadyAppliedForWriter);
+            }
+
             if (this.ModelState.IsValid == false)
             {
                 return this.View(input);
             }
-
-            var userId = this.User.Id();
 
             this.writers.Create(userId, input.FirstName, input.LastName);
 

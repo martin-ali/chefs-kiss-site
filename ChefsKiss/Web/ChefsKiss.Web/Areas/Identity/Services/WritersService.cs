@@ -50,6 +50,15 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             return isWriter;
         }
 
+        public bool HasApplied(string userId)
+        {
+            var isWriter = this.data.Writers
+                .Where(x => x.UserId == userId)
+                .Any();
+
+            return isWriter;
+        }
+
         public void Approve(int id)
         {
             var writer = this.data.Writers.Find(id);

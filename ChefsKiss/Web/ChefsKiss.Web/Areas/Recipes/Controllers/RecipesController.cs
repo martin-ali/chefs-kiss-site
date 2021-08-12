@@ -41,6 +41,12 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public IActionResult Create()
         {
+            var userIsWriter = this.writers.IsWriter(User.Id());
+            if (userIsWriter == false)
+            {
+                return this.Unauthorized(MustBeWriter);
+            }
+
             var model = new RecipeFormModel();
 
             return this.View(model);
@@ -50,16 +56,17 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public async Task<IActionResult> Create(RecipeFormModel input)
         {
+            var userId = this.userManager.GetUserId(this.User);
+
+            var userIsWriter = this.writers.IsWriter(userId);
+            if (userIsWriter == false)
+            {
+                return this.Unauthorized(MustBeWriter);
+            }
+
             if (this.ModelState.IsValid == false)
             {
                 return this.View(input);
-            }
-
-            var userId = this.userManager.GetUserId(this.User);
-
-            if (this.writers.IsWriter(userId) == false)
-            {
-                return this.Unauthorized();
             }
 
             var recipeId = await this.recipes.CreateAsync(input, userId);

@@ -2,7 +2,8 @@
 
 @model UserDetailsViewModel
 
-<h2 class="text-center">Profile of @Model.UserName</h2>
+<h2 class="text-center">@Model.UserName</h2>
+<hr>
 
 @if (Model.RecipesCount == 0)
 {
@@ -19,6 +20,8 @@ else
         }
     </div>
 }
+
+<br>
 
 @if (Model.ReviewsCount == 0)
 {

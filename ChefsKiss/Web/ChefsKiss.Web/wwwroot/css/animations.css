@@ -1,0 +1,49 @@
+﻿:root {
+    --color-success: rgb(33, 136, 56);
+}
+
+/* Animate navbar */
+.navbar-light .navbar-nav .nav-item .nav-link {
+    transition: transform 250ms ease;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link:hover {
+    transform: scale(1.2);
+    /* Removed until can be made without using !important */
+    /* color: var(--color-success) !important; */
+}
+
+/* Animate writer applications table */
+.writer-action {
+    transition: transform 250ms ease;
+}
+
+.writer-action:hover {
+    transform: scale(1.2);
+}
+
+table.writer-applications tr {
+    background: white;
+    transition: background-color 200ms ease;
+}
+
+table.writer-applications tr:hover {
+    background-color: lightblue;
+}
+
+/*  */
+.card-selectable-zoom {
+    transition: all 250ms ease;
+}
+
+.card-selectable-zoom:hover {
+    transform: scale(1.05);
+}
+
+.card-selectable-outline {
+    transition: all 250ms ease;
+}
+
+.card-selectable-outline:hover {
+    border-color: var(--color-success);
+}

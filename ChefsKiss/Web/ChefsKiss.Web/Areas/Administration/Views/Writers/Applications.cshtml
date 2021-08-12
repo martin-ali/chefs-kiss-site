@@ -4,7 +4,7 @@
 
 <h2 class="text-center m-3">Writer applications</h2>
 
-<table class="table table-hover">
+<table class="table writer-applications">
     <thead>
         <tr>
             <th scope="col">Full name</th>
@@ -23,9 +23,9 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-primary fa fa-eye" asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@writer.UserId"> </a>
-                    <a class="btn btn-success fa fa-check" asp-action="Approve" asp-route-id="@writer.Id"></a>
-                    <a class="btn btn-danger fa fa-ban" asp-action="Deny" asp-route-id="@writer.Id"></a>
+                    <a class="writer-action btn btn-primary fa fa-eye" asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@writer.UserId"> </a>
+                    <a class="writer-action btn btn-success fa fa-check" asp-action="Approve" asp-route-id="@writer.Id"></a>
+                    <a class="writer-action btn btn-danger fa fa-ban" asp-action="Deny" asp-route-id="@writer.Id"></a>
                 </td>
             </tr>
         }

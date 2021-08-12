@@ -61,10 +61,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             this.reviews.Create(input, user.Id);
 
-            return this.RedirectToAction(
-                nameof(RecipesController.Details),
-                GetControllerName<RecipesController>(),
-                new { id = input.RecipeId });
+            return this.RedirectToAction(nameof(RecipesController.Details), GetControllerName<RecipesController>(), new { id = input.RecipeId });
         }
 
         public IActionResult Details(int id)

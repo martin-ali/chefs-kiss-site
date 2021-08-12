@@ -3,7 +3,6 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
     using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Users;
     using ChefsKiss.Web.Areas.Identity.Services;
@@ -35,7 +34,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
         private IActionResult RedirectToHome()
         {
-            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
+            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>(), new { area = HomeArea });
         }
 
         [HttpPost]

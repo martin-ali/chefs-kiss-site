@@ -1,6 +1,5 @@
 namespace ChefsKiss.Web.Areas.Identity.Controllers
 {
-    using ChefsKiss.Common;
     using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Writers;
     using ChefsKiss.Web.Areas.Identity.Services;
@@ -41,7 +40,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             this.writers.Create(userId, input.FirstName, input.LastName);
 
-            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>());
+            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>(), new { area = HomeArea });
         }
     }
 }

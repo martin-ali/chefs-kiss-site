@@ -2,18 +2,24 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
+    using Microsoft.AspNetCore.Identity;
+
+    using static ChefsKiss.Common.WebConstants;
+
     public class WritersService : IWritersService
     {
         private readonly RecipesDbContext data;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public WritersService(RecipesDbContext data)
+        public WritersService(RecipesDbContext data, UserManager<ApplicationUser> userManager)
         {
             this.data = data;
+            this.userManager = userManager;
         }
 
         public void Create(string userId, string firstName, string lastName)
@@ -59,11 +65,14 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             return isWriter;
         }
 
-        public void Approve(int id)
+        public async Task Approve(int id)
         {
             var writer = this.data.Writers.Find(id);
 
             writer.IsApproved = true;
+
+            var user = this.data.Users.Find(writer.UserId);
+            var result = await this.userManager.AddToRoleAsync(user, WriterRoleName);
 
             this.data.SaveChanges();
         }

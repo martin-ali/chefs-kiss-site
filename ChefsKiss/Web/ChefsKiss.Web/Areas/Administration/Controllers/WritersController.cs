@@ -1,5 +1,7 @@
 namespace ChefsKiss.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
     using ChefsKiss.Web.Areas.Administration.Models.Writers;
     using ChefsKiss.Web.Areas.Identity.Services;
 
@@ -26,9 +28,9 @@ namespace ChefsKiss.Web.Areas.Administration.Controllers
             return this.View(unapprovedWriters);
         }
 
-        public IActionResult Approve(int id)
+        public async Task<IActionResult> Approve(int id)
         {
-            this.writers.Approve(id);
+            await this.writers.Approve(id);
 
             return this.RedirectToAction(nameof(this.Applications));
         }

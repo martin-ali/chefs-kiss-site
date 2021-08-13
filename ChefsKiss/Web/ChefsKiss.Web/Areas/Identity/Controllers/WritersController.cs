@@ -8,8 +8,8 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.ErrorMessages;
+    using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
     [Area(IdentityArea)]

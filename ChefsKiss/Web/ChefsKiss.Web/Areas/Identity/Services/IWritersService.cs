@@ -1,6 +1,7 @@
 namespace ChefsKiss.Web.Areas.Identity.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IWritersService
     {
@@ -12,7 +13,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
         bool HasApplied(string userId);
 
-        void Approve(int id);
+        Task Approve(int id);
 
         void Deny(int id);
     }

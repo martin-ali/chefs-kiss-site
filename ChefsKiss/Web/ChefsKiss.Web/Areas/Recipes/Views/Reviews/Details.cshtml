@@ -7,7 +7,7 @@
         <partial name="_RatingBarPartial" model="@Model.Rating" />
         <p>@Model.Content </p>
         <h6>
-            <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+            <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
                 @Model.AuthorUsername
             </a>
             <span class="text-secondary">posted on: @Model.CreatedOn.ToString("dd/MM/yyyy")</span>

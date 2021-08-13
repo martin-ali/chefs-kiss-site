@@ -21,7 +21,7 @@
                         @foreach (var ingredient in Model.Ingredients)
                         {
                             <li class="p-1 m-1">
-                                <a asp-controller="ingredients" asp-action="details" asp-route-id="@ingredient.Id">
+                                <a asp-controller="ingredients" asp-action="details" asp-route-id="@ingredient.Id" class="animate-underline">
                                     @ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit
                                 </a>
                             </li>
@@ -33,7 +33,7 @@
             <div class="row">
                 <p class="card-text">
                     <span class="span"> Written by:
-                        <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId">
+                        <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
                             <span> @Model.AuthorFullName (@Model.AuthorUsername) </span>
                         </a>
                     </span>

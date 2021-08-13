@@ -8,19 +8,19 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-controller="Users" asp-action="Profile" title="Profile">Hello @User.Identity.Name!</a>
+            <a class="nav-link text-dark animate-zoom-md" asp-area="Identity" asp-controller="Users" asp-action="Profile" title="Profile">Hello @User.Identity.Name!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-controller="Users" asp-action="Logout">Logout</a>
+            <a class="nav-link text-dark animate-zoom-md" asp-area="Identity" asp-controller="Users" asp-action="Logout">Logout</a>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-controller="Users" asp-action="Register">Register</a>
+            <a class="nav-link text-dark animate-zoom-md" asp-area="Identity" asp-controller="Users" asp-action="Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-controller="Users" asp-action="Login">Login</a>
+            <a class="nav-link text-dark animate-zoom-md" asp-area="Identity" asp-controller="Users" asp-action="Login">Login</a>
         </li>
     }
 </ul>

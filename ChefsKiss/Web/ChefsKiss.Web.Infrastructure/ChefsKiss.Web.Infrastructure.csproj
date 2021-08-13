@@ -2,6 +2,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ChefsKiss.Common\ChefsKiss.Common.csproj" />
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Common\ChefsKiss.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data.Seeding\ChefsKiss.Data.Seeding.csproj" />
+    <ProjectReference Include="..\..\Data\ChefsKiss.Data\ChefsKiss.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.7" />
   </ItemGroup>
 
   <PropertyGroup>

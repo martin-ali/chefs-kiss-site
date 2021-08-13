@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web
 {
+    using System.IO;
     using System.Reflection;
 
     using ChefsKiss.Data;
@@ -10,6 +11,7 @@ namespace ChefsKiss.Web
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
+    using ChefsKiss.Web.Infrastructure.Extensions;
     using ChefsKiss.Web.Models;
 
     using Microsoft.AspNetCore.Builder;
@@ -20,6 +22,8 @@ namespace ChefsKiss.Web
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using static ChefsKiss.Common.WebConstants;
 
     public class Startup
     {
@@ -33,24 +37,12 @@ namespace ChefsKiss.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<RecipesDbContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<RecipesDbContext>(options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<ApplicationUser>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 1;
-                options.Password.RequiredUniqueChars = 0;
-
-                options.SignIn.RequireConfirmedEmail = false;
-                options.SignIn.RequireConfirmedAccount = false;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-            })
+            services
+            .AddIdentity()
             .AddRoles<ApplicationRole>()
             .AddEntityFrameworkStores<RecipesDbContext>();
 
@@ -58,8 +50,6 @@ namespace ChefsKiss.Web
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
-
-            // services.Configure<IdentityOptions>(options => { });
 
             // Application services
             services.AddTransient<IRecipesService, RecipesService>();
@@ -80,26 +70,9 @@ namespace ChefsKiss.Web
                 typeof(ErrorViewModel).GetTypeInfo().Assembly,
                 typeof(RecipeFormModel).GetTypeInfo().Assembly);
 
-            // Seed data on application startup
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetRequiredService<RecipesDbContext>();
-
-                if (env.IsDevelopment())
-                {
-                    dbContext.Database.EnsureDeleted();
-                }
-
-                dbContext.Database.Migrate();
-
-                new ApplicationDbContextSeeder()
-                    .SeedAsync(dbContext, serviceScope.ServiceProvider)
-                    .GetAwaiter()
-                    .GetResult();
-            }
-
             if (env.IsDevelopment())
             {
+                app.ReseedDatabase();
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
@@ -117,13 +90,12 @@ namespace ChefsKiss.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(
-               endpoints =>
-                   {
-                       endpoints.MapControllerRoute("areasRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                       endpoints.MapControllerRoute("defaultRoute", "{controller=Home}/{action=Index}/{id?}");
-                       endpoints.MapRazorPages();
-                   });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("areasRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("defaultRoute", "{controller=Recipes}/{action=List}/{id?}");
+                endpoints.MapRazorPages();
+            });
         }
     }
 }

@@ -55,3 +55,8 @@
     background-size: 100% 1px;
     color: var(--color-select);
 }
+
+/* Animate everything. Might break something */
+* {
+    transition: all 250ms ease;
+}

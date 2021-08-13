@@ -10,7 +10,7 @@
 - [x] Model constraints
 - [x] Persistence
 - [x] Registration and login
-- [ ] Views
+- [x] Views
 - [x] Automapping
 - [x] Services
 - [x] Authentication
@@ -22,7 +22,7 @@
 - [x] Review system
 - [ ] Fix hard-coded connection string
 - [x] Favicon
-- [ ] Roles - User, Administrator, Writer
+- [x] Roles - User, Administrator, Writer
 - [x] AJAX
 - [x] Infinite scrolling
 - [ ] Rating with showcase
@@ -33,7 +33,8 @@
 - [ ] Remove all web models from the services
 - [ ] Profile picture
 - [ ] Caching
-- [ ] Admins approve writer applications
+- [x] Admins approve writer applications
+- [x] Actions with no particular view to redirect to should default to index
 - [ ] Fix redirects to wrong register/login
 - [ ] Fix password complexity
 - [ ] Broken comment form on mobile
@@ -42,6 +43,10 @@
 - [ ] Fix ingredient details ajax is loading wrong recipes
 - [ ] Roles, security, and results checks
 - [ ] Add GitHub issues
+- [ ] Deal with exceptions (missing id, user, etc...)
+- [ ] Unit tests - >=65%
+- [ ] Order recipes
+- [ ] Proper error page
 
 ## Optional
 
@@ -50,12 +55,11 @@
 - [ ] Integrate a Bootstrap theme
 - [x] Do something with the ingredients now that they're separate
 - [ ] SmarterASP.NET or Azure deployment/hosting
-- [ ] Unit tests - >=65%
 - [ ] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
 - [ ] Caching
 - [ ] Breadcrumbs
 - [ ] Responsive design
-- [ ] File storage API
+- [x] File storage API
 - [ ] HTML5 features - geolocation, local storage, SGV, Canvas
 - [ ] Re-implement CSS star rating system with :not()
 

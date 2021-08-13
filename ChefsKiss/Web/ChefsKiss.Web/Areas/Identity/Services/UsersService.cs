@@ -51,7 +51,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             return result;
         }
 
-        public T GetDetails<T>(string id)
+        public T Details<T>(string id)
         {
             var user = this.data.Users
                 .Where(x => x.Id == id)

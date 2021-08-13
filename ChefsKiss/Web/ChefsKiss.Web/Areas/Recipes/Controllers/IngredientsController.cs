@@ -37,7 +37,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.BadRequest();
             }
 
-            var units = this.measurementUnits.GetAll<MeasurementUnitViewModel>();
+            var units = this.measurementUnits.All<MeasurementUnitViewModel>();
             var ingredient = new IngredientFormModel
             {
                 Index = id,

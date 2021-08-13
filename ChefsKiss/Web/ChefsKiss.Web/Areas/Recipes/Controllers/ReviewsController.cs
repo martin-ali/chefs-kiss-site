@@ -3,7 +3,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
@@ -42,14 +41,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             {
                 return this.RedirectToAction(
                     nameof(RecipesController.Details),
-                    GetControllerName<RecipesController>(),
+                    ControllerName<RecipesController>(),
                     new { id = input.RecipeId });
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
 
             var recipe = this.recipes.ById<RecipeServiceModel>(input.RecipeId);
-            var reviews = this.reviews.GetByRecipeId<ReviewServiceModel>(input.RecipeId);
+            var reviews = this.reviews.ByRecipeId<ReviewServiceModel>(input.RecipeId);
 
             var userHasCommented = reviews.Any(x => x.AuthorId == user.Id);
             var userIsRecipeAuthor = recipe.AuthorId == user.Id;
@@ -59,19 +58,19 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.Unauthorized(NotAuthorized);
             }
 
-            this.reviews.Create(input, user.Id);
+            this.reviews.Create(input.RecipeId, input.Content, input.Rating, user.Id);
 
-            return this.RedirectToAction(nameof(RecipesController.Details), GetControllerName<RecipesController>(), new { id = input.RecipeId });
+            return this.RedirectToAction(nameof(RecipesController.Details), ControllerName<RecipesController>(), new { id = input.RecipeId });
         }
 
         public IActionResult Details(int id)
         {
-            var review = this.reviews.GetById<ReviewDetailsViewModel>(id);
+            var review = this.reviews.ById<ReviewDetailsViewModel>(id);
 
             return this.View(review);
         }
 
-        [Authorize(Roles = WebConstants.AdministratorRoleName)]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete()
         {
             return this.View();

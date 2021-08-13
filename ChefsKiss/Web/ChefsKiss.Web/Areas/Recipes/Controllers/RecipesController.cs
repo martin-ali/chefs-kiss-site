@@ -4,8 +4,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     using System.Threading.Tasks;
 
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Services;
+    using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Infrastructure.Extensions;
@@ -41,8 +43,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            var userIsWriter = this.writers.IsWriter(this.User.Id());
-            if (userIsWriter == false)
+            var isAuthorized = this.writers.IsWriter(this.User.Id()) || User.IsAdmin();
+            if (isAuthorized == false)
             {
                 return this.Unauthorized(MustBeWriter);
             }
@@ -58,8 +60,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             var userId = this.userManager.GetUserId(this.User);
 
-            var userIsWriter = this.writers.IsWriter(userId);
-            if (userIsWriter == false)
+            var isAuthorized = this.writers.IsWriter(userId) || User.IsAdmin();
+            if (isAuthorized == false)
             {
                 return this.Unauthorized(MustBeWriter);
             }
@@ -69,7 +71,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(input);
             }
 
-            var recipeId = await this.recipes.CreateAsync(input, userId);
+            var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>();
+            var recipeId = await this.recipes.CreateAsync(userId, input.Title, input.Content, ingredients, input.Image);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
@@ -104,7 +107,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         public IActionResult Random()
         {
-            var recipeId = this.recipes.GetRandom<RecipeServiceModel>().Id;
+            var recipeId = this.recipes.Random<RecipeServiceModel>().Id;
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
@@ -113,8 +116,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         public IActionResult Edit(int id)
         {
             var recipe = this.recipes.ById<RecipeFormModel>(id);
-            var userIsAuthor = recipe.AuthorId != this.User.Id();
-            if (userIsAuthor == false || this.User.IsAdmin() == false)
+
+            var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
+            if (isAuthorized == false)
             {
                 return this.Unauthorized(NotAuthorized);
             }
@@ -125,21 +129,25 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         // FIXME: I'm passing a web model to a service. Refactor it
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, RecipeFormModel model)
+        public async Task<IActionResult> Edit(int id, RecipeFormModel input)
         {
             if (this.ModelState.IsValid == false)
             {
-                return this.View(model);
+                return this.View(input);
             }
 
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
-            var userIsAuthor = recipe.AuthorId != this.User.Id();
-            if (userIsAuthor == false || this.User.IsAdmin() == false)
+            var userId = this.User.Id();
+
+            var isAuthorized = recipe.AuthorId == userId || this.User.IsAdmin();
+            if (isAuthorized == false)
             {
                 return this.Unauthorized(NotAuthorized);
             }
 
-            await this.recipes.EditAsync(id, model);
+            // FIXME: AsQueryable is an oddity here. Find a more streamlined way
+            var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>();
+            await this.recipes.EditAsync(id, userId, input.Title, input.Content, ingredients, input.Image);
 
             return this.RedirectToAction(nameof(this.Details), new { id = id });
         }
@@ -149,8 +157,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             var recipe = this.recipes.ById<RecipeDeleteModel>(id);
 
-            var userIsAuthor = recipe.AuthorId != this.User.Id();
-            if (userIsAuthor == false || this.User.IsAdmin() == false)
+            var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
+            if (isAuthorized == false)
             {
                 return this.Unauthorized(NotAuthorized);
             }
@@ -165,15 +173,15 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         public IActionResult DeletePost(int id)
         {
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
-            var userIsAuthor = recipe.AuthorId != this.User.Id();
-            if (userIsAuthor == false || this.User.IsAdmin() == false)
+            var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
+            if (isAuthorized == false)
             {
                 return this.Unauthorized(NotAuthorized);
             }
 
             this.recipes.Remove(id);
 
-            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>(), new { area = HomeArea });
+            return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>(), new { area = HomeArea });
         }
     }
 }

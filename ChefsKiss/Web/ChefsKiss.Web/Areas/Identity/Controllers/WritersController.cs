@@ -53,7 +53,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             this.writers.Create(userId, input.FirstName, input.LastName);
 
-            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>(), new { area = HomeArea });
+            return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>(), new { area = HomeArea });
         }
     }
 }

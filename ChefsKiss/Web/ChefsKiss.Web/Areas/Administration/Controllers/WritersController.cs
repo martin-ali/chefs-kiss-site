@@ -23,7 +23,7 @@ namespace ChefsKiss.Web.Areas.Administration.Controllers
 
         public IActionResult Applications()
         {
-            var unapprovedWriters = this.writers.GetAllUnapproved<WriterViewModel>();
+            var unapprovedWriters = this.writers.AllUnapproved<WriterViewModel>();
 
             return this.View(unapprovedWriters);
         }

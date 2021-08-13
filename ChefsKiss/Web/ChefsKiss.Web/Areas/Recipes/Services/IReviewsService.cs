@@ -7,10 +7,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public interface IReviewsService
     {
-        void Create(ReviewFormModel input, string authorId);
+        void Create(int recipeId, string content, int rating, string authorId);
 
-        IEnumerable<T> GetByRecipeId<T>(int id);
+        IEnumerable<T> ByRecipeId<T>(int id);
 
-        T GetById<T>(int id);
+        T ById<T>(int id);
     }
 }

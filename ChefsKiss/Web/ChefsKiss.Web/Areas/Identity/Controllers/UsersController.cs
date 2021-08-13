@@ -34,7 +34,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
         private IActionResult RedirectToHome()
         {
-            return this.RedirectToAction(nameof(HomeController.Index), GetControllerName<HomeController>(), new { area = HomeArea });
+            return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>(), new { area = HomeArea });
         }
 
         [HttpPost]
@@ -102,7 +102,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         public IActionResult Details(string id)
         {
             var recipes = this.recipes.ByAuthorId<RecipeListViewModel>(id);
-            var model = this.users.GetDetails<UserDetailsViewModel>(id);
+            var model = this.users.Details<UserDetailsViewModel>(id);
 
             model.RecipesCount = recipes.Count();
             model.Recipes = recipes;

@@ -5,7 +5,7 @@ namespace ChefsKiss.Common
     public class Helpers
     {
         // TODO: This is ugly code. Make it better
-        public static string GetControllerName<ControllerType>()
+        public static string ControllerName<ControllerType>()
         {
             var type = typeof(ControllerType).Name;
             var controllerName = type.Replace("Controller", string.Empty);
@@ -13,7 +13,7 @@ namespace ChefsKiss.Common
             return controllerName;
         }
 
-        public static string GetReadableFileSize(int bytes)
+        public static string ReadableFileSize(int bytes)
         {
             var data = bytes;
             var units = new string[] { "B", "KB", "MB", "GB", "TB" };

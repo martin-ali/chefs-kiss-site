@@ -17,21 +17,21 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.data = data;
         }
 
-        public void Create(ReviewFormModel input, string authorId)
+        public void Create(int recipeId, string content, int rating, string authorId)
         {
             var review = new Review
             {
                 AuthorId = authorId,
-                RecipeId = input.RecipeId,
-                Content = input.Content,
-                Rating = input.Rating,
+                RecipeId = recipeId,
+                Content = content,
+                Rating = rating,
             };
 
             this.data.Add(review);
             this.data.SaveChanges();
         }
 
-        public IEnumerable<T> GetByRecipeId<T>(int id)
+        public IEnumerable<T> ByRecipeId<T>(int id)
         {
             var reviews = this.data.Reviews
                 .Where(x => x.RecipeId == id)
@@ -41,7 +41,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return reviews;
         }
 
-        public T GetById<T>(int id)
+        public T ById<T>(int id)
         {
             var review = this.data.Reviews
                 .Where(x => x.Id == id)

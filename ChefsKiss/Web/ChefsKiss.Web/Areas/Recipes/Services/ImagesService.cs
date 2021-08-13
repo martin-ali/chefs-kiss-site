@@ -18,9 +18,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         private readonly RecipesDbContext data;
         private readonly IImageOperator imageOperator;
 
-        public ImagesService(
-            RecipesDbContext data,
-            IImageOperator imageOperator)
+        public ImagesService(RecipesDbContext data, IImageOperator imageOperator)
         {
             this.data = data;
             this.imageOperator = imageOperator;
@@ -55,15 +53,15 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.data.SaveChanges();
         }
 
-        public string GetImagePath(int imageId)
+        public string ImagePath(int imageId)
         {
-            string fileName = this.GetFileName(imageId);
+            string fileName = this.FileName(imageId);
             var path = Path.Combine(ImagesDirectory, fileName);
 
             return path;
         }
 
-        private string GetFileName(int imageId)
+        private string FileName(int imageId)
         {
             var extension = this.data.Images
                 .Where(i => i.Id == imageId)

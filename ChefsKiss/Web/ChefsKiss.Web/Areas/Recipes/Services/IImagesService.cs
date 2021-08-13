@@ -12,6 +12,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         void Delete(int imageId);
 
-        string GetImagePath(int imageId);
+        string ImagePath(int imageId);
     }
 }

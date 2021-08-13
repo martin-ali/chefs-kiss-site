@@ -18,7 +18,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         public IEnumerable<RecipeIngredient> Create(
             IEnumerable<Ingredient> ingredients,
-            IEnumerable<IngredientFormModel> ingredientModels,
+            IEnumerable<IngredientServiceModel> ingredientModels,
             Recipe recipe)
         {
             var recipeIngredients = new List<RecipeIngredient>();

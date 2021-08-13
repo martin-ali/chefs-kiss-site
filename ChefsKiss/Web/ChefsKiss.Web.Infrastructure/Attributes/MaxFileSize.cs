@@ -15,7 +15,7 @@ namespace ChefsKiss.Web.Infrastructure.Attributes
         {
             this.maxAllowedBytes = bytes;
 
-            var size = Helpers.GetReadableFileSize(bytes);
+            var size = Helpers.ReadableFileSize(bytes);
             this.ErrorMessage = $"File size has exceeded the allowed maximum of {size}";
         }
 

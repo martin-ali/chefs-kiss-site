@@ -18,7 +18,7 @@
 
         public IViewComponentResult Invoke(int selected = 0)
         {
-            var items = this.measurementUnitsService.GetAll<MeasurementUnitViewModel>();
+            var items = this.measurementUnitsService.All<MeasurementUnitViewModel>();
             var model = new MeasurementUnitsComponentModel
             {
                 Selected = selected,

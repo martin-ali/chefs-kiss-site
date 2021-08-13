@@ -4,6 +4,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public interface IMeasurementUnitsService
     {
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<T> All<T>();
     }
 }

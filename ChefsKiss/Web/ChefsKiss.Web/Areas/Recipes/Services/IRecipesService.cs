@@ -3,7 +3,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
+
+    using Microsoft.AspNetCore.Http;
 
     public interface IRecipesService
     {
@@ -17,12 +20,12 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         IEnumerable<T> ByAuthorId<T>(string authorId);
 
-        Task<int> CreateAsync(RecipeFormModel input, string userId);
+        Task<int> CreateAsync(string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image);
 
-        Task EditAsync(int id, RecipeFormModel input);
+        Task EditAsync(int id, string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image);
 
         void Remove(int id);
 
-        T GetRandom<T>();
+        T Random<T>();
     }
 }

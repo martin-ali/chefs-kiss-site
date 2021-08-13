@@ -7,7 +7,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     {
         void Create(string userId, string firstName, string lastName);
 
-        IEnumerable<T> GetAllUnapproved<T>();
+        IEnumerable<T> AllUnapproved<T>();
 
         bool IsWriter(string userId);
 

@@ -36,7 +36,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             this.data.SaveChanges();
         }
 
-        public IEnumerable<T> GetAllUnapproved<T>()
+        public IEnumerable<T> AllUnapproved<T>()
         {
             var writers = this.data.Writers
                 .Where(x => x.IsApproved == false)

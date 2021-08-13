@@ -8,7 +8,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
+
+    using Microsoft.AspNetCore.Http;
 
     public class RecipesService : IRecipesService
     {
@@ -29,24 +32,24 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.imagesService = imagesService;
         }
 
-        public async Task<int> CreateAsync(RecipeFormModel input, string userId)
+        public async Task<int> CreateAsync(string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
         {
-            var image = await this.imagesService.CreateImageAsync(input.Image);
+            var imageEntity = await this.imagesService.CreateImageAsync(image);
             var writer = this.data.Writers
                 .Where(x => x.UserId == userId)
                 .First();
 
-            var ingredients = this.ingredientsService.EnsureAll(input.Ingredients.Select(i => i.Name));
+            var ingredientsEntities = this.ingredientsService.EnsureAll(ingredients.Select(i => i.Name));
 
             var recipe = new Recipe
             {
-                Title = input.Title,
-                Content = input.Content,
+                Title = title,
+                Content = content,
                 Writer = writer,
-                Image = image,
+                Image = imageEntity,
             };
 
-            var recipeIngredients = this.recipeIngredientsService.Create(ingredients, input.Ingredients, recipe);
+            var recipeIngredients = this.recipeIngredientsService.Create(ingredientsEntities, ingredients, recipe);
             recipe.RecipeIngredients = recipeIngredients;
 
             this.data.Recipes.Add(recipe);
@@ -107,7 +110,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         }
 
         // FIXME: Should work even when recipes are deleted
-        public T GetRandom<T>()
+        public T Random<T>()
         {
             var randomRecipe = this.data.Recipes
                 .OrderBy(o => Guid.NewGuid())
@@ -117,24 +120,24 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return randomRecipe;
         }
 
-        public async Task EditAsync(int id, RecipeFormModel input)
+        public async Task EditAsync(int id, string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
         {
             var recipe = this.data.Recipes.Find(id);
 
             // Re-generate members
-            var image = await this.imagesService.CreateImageAsync(input.Image);
+            var imageEntity = await this.imagesService.CreateImageAsync(image);
 
             var oldRecipeIngredients = this.data.RecipeIngredients
                 .Where(x => x.RecipeId == recipe.Id);
             this.recipeIngredientsService.DeleteAll(oldRecipeIngredients);
 
-            var ingredients = this.ingredientsService.EnsureAll(input.Ingredients.Select(i => i.Name));
-            var recipeIngredients = this.recipeIngredientsService.Create(ingredients, input.Ingredients, recipe);
+            var ingredientEntities = this.ingredientsService.EnsureAll(ingredients.Select(i => i.Name));
+            var recipeIngredients = this.recipeIngredientsService.Create(ingredientEntities, ingredients, recipe);
 
             // Re-fill all necessary members
-            recipe.Title = input.Title;
-            recipe.Content = input.Content;
-            recipe.Image = image;
+            recipe.Title = title;
+            recipe.Content = content;
+            recipe.Image = imageEntity;
             recipe.RecipeIngredients = recipeIngredients;
 
             // Delete old image because it is no longer used

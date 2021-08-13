@@ -14,6 +14,7 @@ namespace ChefsKiss.Data.Seeding
     {
         private const int UsersCount = 100;
         private const string AdminEmail = "b@b.com";
+        private const string RegularUserEmail = "a@a.com";
         private const string UserPassword = "123456";
         private const string AdminPassword = "123456aA*";
 
@@ -24,7 +25,7 @@ namespace ChefsKiss.Data.Seeding
 
             for (int i = 0; i < UsersCount; i++)
             {
-                var username = $"User-{i}@seeded.com";
+                var username = $"User{i}@seeded.com";
 
                 var user = new ApplicationUser
                 {
@@ -37,6 +38,7 @@ namespace ChefsKiss.Data.Seeding
             }
 
             await SeedAdmin(userManager, AdminEmail, AdminPassword);
+            await SeedRegularUser(userManager, RegularUserEmail, AdminPassword);
 
             await dbContext.SaveChangesAsync();
         }
@@ -50,8 +52,19 @@ namespace ChefsKiss.Data.Seeding
             };
 
             await userManager.CreateAsync(admin, password);
-
             await userManager.AddToRoleAsync(admin, AdministratorRoleName);
+        }
+
+        private static async Task SeedRegularUser(UserManager<ApplicationUser> userManager, string email, string password)
+        {
+            var user = new ApplicationUser
+            {
+                UserName = email,
+                Email = email,
+            };
+
+            await userManager.CreateAsync(user, password);
+            await userManager.AddToRoleAsync(user, UserRoleName);
         }
     }
 }

@@ -180,7 +180,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             this.recipes.Remove(id);
 
-            return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>(), new { area = HomeArea });
+            return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>());
         }
     }
 }

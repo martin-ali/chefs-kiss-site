@@ -1,22 +1,31 @@
-namespace ChefsKiss.Web.Areas.Home.Controllers
+﻿namespace ChefsKiss.Web.Areas.Home.Controllers
 {
     using System.Diagnostics;
-
+    using ChefsKiss.Web.Areas.Identity.Services;
+    using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Models;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
 
     using static ChefsKiss.Common.WebConstants;
 
-    [Area(HomeArea)]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> logger;
+        private readonly IRecipesService recipes;
+        private readonly IReviewsService reviews;
+        private readonly IWritersService writers;
+        private readonly IUsersService users;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            IRecipesService recipes,
+            IReviewsService reviews,
+            IWritersService writers,
+            IUsersService users)
         {
-            this.logger = logger;
+            this.recipes = recipes;
+            this.reviews = reviews;
+            this.writers = writers;
+            this.users = users;
         }
 
         [HttpGet("/")]

@@ -126,7 +126,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.View(recipe);
         }
 
-        // FIXME: I'm passing a web model to a service. Refactor it
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Edit(int id, RecipeFormModel input)

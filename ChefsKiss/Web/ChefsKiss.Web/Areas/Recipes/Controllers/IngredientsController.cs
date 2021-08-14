@@ -30,13 +30,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public IActionResult IngredientAddForm(int id)
         {
-            // FIXME: WTF is this validation? Temporary
-            var idIsValid = 0 <= id && id <= int.MaxValue;
-            if (idIsValid == false)
-            {
-                return this.BadRequest();
-            }
-
             var units = this.measurementUnits.All<MeasurementUnitViewModel>();
             var ingredient = new IngredientFormModel
             {

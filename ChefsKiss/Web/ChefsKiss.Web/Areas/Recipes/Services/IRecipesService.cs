@@ -1,8 +1,11 @@
 namespace ChefsKiss.Web.Areas.Recipes.Services
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
+    using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
     using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
 
@@ -12,7 +15,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     {
         IEnumerable<T> All<T>();
 
-        IEnumerable<T> Paged<T>(int page, int itemsPerPage);
+        IEnumerable<T> PagedAll<T>(int page, int itemsPerPage);
+
+        IEnumerable<T> PagedByIngredientId<T>(int page, int itemsPerPage, int ingredientId);
+
+        IEnumerable<T> PagedWhere<T>(int page, int itemsPerPage, Expression<Func<Recipe, bool>> predicate);
 
         T ById<T>(int id);
 

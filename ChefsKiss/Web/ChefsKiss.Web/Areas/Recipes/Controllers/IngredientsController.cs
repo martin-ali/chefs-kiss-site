@@ -42,14 +42,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         public IActionResult Details(int id)
         {
-            var ingredient = this.ingredients.ById<IngredientServiceModel>(id);
-            var recipes = this.recipes.ByIngredientId<RecipeListViewModel>(id);
-
-            var model = new IngredientDetailsViewModel
-            {
-                Name = ingredient.Name,
-                Recipes = recipes,
-            };
+            var model = this.ingredients.ById<IngredientDetailsViewModel>(id);
+            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(0, ItemsPerPage, id);
+            model.Recipes = recipes;
 
             return this.View(model);
         }

@@ -1,18 +1,20 @@
-﻿(function () {
+﻿function ConfigureInfiniteScroll(action, startingPage, parameters) {
     const bottomLenience = 200;
     const debounceTimeout = 100;
     const processChange = debounce(() => AlertMe());
     const container = "#recipes-list";
-    let index = 1;
+    let page = startingPage;
 
     function AlertMe() {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - bottomLenience) {
-            console.log(index);
-            const url = `/Recipes/Recipes/Page/${index++}`;
+            console.log(page);
+            const url = `/Recipes/Recipes/${action}/${page++}`;
 
-            $.get(url, function (data) {
-                $(container).append(data);
-            });
+            $.get(url, parameters)
+                .done(function (data) {
+                    console.log(parameters);
+                    $(container).append(data);
+                });
         }
     }
 
@@ -27,4 +29,4 @@
     $(window).scroll(function () {
         processChange();
     });
-})();
+};

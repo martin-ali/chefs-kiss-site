@@ -3,6 +3,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using ChefsKiss.Data;
@@ -67,10 +68,28 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        public IEnumerable<T> Paged<T>(int page, int itemsPerPage)
+        public IEnumerable<T> PagedAll<T>(int page, int itemsPerPage)
+        {
+            var itemsToSkip = page * itemsPerPage;
+            var recipes = this.PagedWhere<T>(page, itemsPerPage, x => true);
+
+            return recipes;
+        }
+
+        public IEnumerable<T> PagedByIngredientId<T>(int page, int itemsPerPage, int id)
+        {
+            var itemsToSkip = page * itemsPerPage;
+            var recipes = this.PagedWhere<T>(page, itemsPerPage, r => r.RecipeIngredients.Any(i => i.IngredientId == id));
+
+            return recipes;
+        }
+
+        public IEnumerable<T> PagedWhere<T>(int page, int itemsPerPage, Expression<Func<Recipe, bool>> predicate)
         {
             var itemsToSkip = page * itemsPerPage;
             var recipes = this.data.Recipes
+                .Where(predicate)
+                .OrderBy(x => x.CreatedOn)
                 .Skip(itemsToSkip)
                 .Take(itemsPerPage)
                 .MapTo<T>()

@@ -77,16 +77,23 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
 
-        public IActionResult List()
+        public IActionResult All()
         {
-            var recipes = this.recipes.Paged<RecipeListViewModel>(0, RecipesPerPage);
+            var recipes = this.recipes.PagedAll<RecipeListViewModel>(0, ItemsPerPage);
 
             return this.View(recipes);
         }
 
-        public IActionResult Page(int id = 0) // FIXME: Parameter name id makes no sense in this context
+        public IActionResult Paged(int page) // FIXME: Parameter name id makes no sense in this context
         {
-            var recipes = this.recipes.Paged<RecipeListViewModel>(id, RecipesPerPage);
+            var recipes = this.recipes.PagedAll<RecipeListViewModel>(page, ItemsPerPage);
+
+            return this.PartialView("_PagePartial", recipes);
+        }
+
+        public IActionResult PagedByIngredientId(int id, int recipeId) // FIXME: Parameter name id makes no sense in this context
+        {
+            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, recipeId);
 
             return this.PartialView("_PagePartial", recipes);
         }

@@ -8,7 +8,7 @@ namespace ChefsKiss.Data.Seeding
 
     public class IngredientsSeeder : IDataSeeder
     {
-        private const int IngredientsCount = 100;
+        private const int IngredientsCount = 50;
 
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {

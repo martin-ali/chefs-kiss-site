@@ -13,10 +13,9 @@ else
 {
     <h3 class="text-center">Written recipes (@Model.Recipes.Count())</h3>
     <div class="row">
-        @* <div id="recipes-list" class="row mx-auto"> *@
         @foreach (var recipe in @Model.Recipes)
         {
-            <partial name="_RecipeListPartial" model="recipe" />
+            <partial name="_RecipeListPartialCard" model="recipe" />
         }
     </div>
 }

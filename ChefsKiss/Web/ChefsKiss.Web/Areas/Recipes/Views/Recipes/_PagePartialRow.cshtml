@@ -1,0 +1,8 @@
+﻿@using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
+
+@model IEnumerable<RecipeListViewModel>
+
+@foreach (var recipe in Model)
+{
+    <partial name="_RecipeListPartialRow" model="recipe" />
+}

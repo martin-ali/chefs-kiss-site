@@ -5,8 +5,7 @@
 
 /* Backgrounds */
 .animate-background {
-    background: white;
-    transition: background-color 200ms ease;
+    transition: all 250ms ease;
 }
 
 .animate-background:hover {
@@ -36,7 +35,8 @@
 }
 
 .animate-outline:hover {
-    border-color: var(--color-select);
+    /* Find better solution without !important */
+    border-color: var(--color-select) !important;
 }
 
 /* Underlines */

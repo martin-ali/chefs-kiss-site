@@ -15,7 +15,7 @@
     <tbody>
         @foreach (var writer in Model)
         {
-            <tr class="animate-background">
+            <tr class="animate-zoom-sm animate-background">
                 <td>@writer.FullName</td>
                 <td>
                     <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@writer.UserId" class="animate-underline">

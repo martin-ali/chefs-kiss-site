@@ -1,6 +1,7 @@
 ﻿namespace ChefsKiss.Web.Areas.Home.Controllers
 {
     using System.Diagnostics;
+
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Models;

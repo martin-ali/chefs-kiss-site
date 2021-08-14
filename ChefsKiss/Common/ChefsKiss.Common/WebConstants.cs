@@ -20,7 +20,7 @@
 
         public const string HomeArea = "Home";
 
-        public const int RecipesPerPage = 8;
+        public const int ItemsPerPage = 8;
 
         public const int RecipeSummaryLength = 70;
 

@@ -1,7 +1,7 @@
 namespace ChefsKiss.Web.Infrastructure.Extensions
 {
     using ChefsKiss.Data.Models;
-
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +25,20 @@ namespace ChefsKiss.Web.Infrastructure.Extensions
             });
 
             return builder;
+        }
+
+        public static IServiceCollection ConfigureCustomLoginRoute(this IServiceCollection services)
+        {
+            services.PostConfigure<CookieAuthenticationOptions>(
+                IdentityConstants.ApplicationScheme,
+                opt =>
+                {
+                    // FIXME: Hard-coded
+                    opt.LoginPath = "/Identity/Users/Login";
+                    opt.LogoutPath = "/Identity/Users/Logout";
+                });
+
+            return services;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ChefsKiss.Web
     using ChefsKiss.Web.Areas.Recipes.Services;
     using ChefsKiss.Web.Infrastructure.Extensions;
     using ChefsKiss.Web.Models;
-
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -45,6 +45,8 @@ namespace ChefsKiss.Web
             .AddIdentity()
             .AddRoles<ApplicationRole>()
             .AddEntityFrameworkStores<RecipesDbContext>();
+
+            services.ConfigureCustomLoginRoute();
 
             services.AddControllersWithViews(options =>
             {
@@ -93,7 +95,7 @@ namespace ChefsKiss.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("areasRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute("defaultRoute", "{controller=Recipes}/{action=List}/{id?}");
+                endpoints.MapControllerRoute("defaultRoute", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

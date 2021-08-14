@@ -84,9 +84,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.View(recipes);
         }
 
-        public IActionResult Paged(int page) // FIXME: Parameter name id makes no sense in this context
+        public IActionResult Paged(int id) // FIXME: Parameter name id makes no sense in this context
         {
-            var recipes = this.recipes.PagedAll<RecipeListViewModel>(page, ItemsPerPage);
+            var recipes = this.recipes.PagedAll<RecipeListViewModel>(id, ItemsPerPage);
 
             return this.PartialView("_PagePartial", recipes);
         }

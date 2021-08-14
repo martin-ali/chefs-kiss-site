@@ -8,12 +8,14 @@
     function AlertMe() {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - bottomLenience) {
             console.log(page);
-            const url = `/Recipes/Recipes/${action}/${page++}`;
+            const url = `/Recipes/Recipes/${action}/${page}`;
 
             $.get(url, parameters)
                 .done(function (data) {
-                    console.log(parameters);
-                    $(container).append(data);
+                    if (data.trim() != 0) {
+                        $(container).append(data);
+                        page++;
+                    }
                 });
         }
     }

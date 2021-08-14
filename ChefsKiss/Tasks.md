@@ -30,26 +30,32 @@
 - [x] Image size limit
 - [ ] Decouple the ingredient form add JS script
 - [x] Author shouldn't be able to review their own recipe
-- [ ] Remove all web models from the services
-- [ ] Profile picture
+- [x] Remove all web models from the services
 - [ ] Caching
 - [x] Admins approve writer applications
 - [x] Actions with no particular view to redirect to should default to index
-- [ ] Fix redirects to wrong register/login
+- [x] Fix redirects to wrong register/login
 - [ ] Fix password complexity
-- [ ] Broken comment form on mobile
+- [ ] Broken writer applications panel on mobile
 - [ ] Editing image final take
-- [ ] Only one writer application per user
-- [ ] Fix ingredient details ajax is loading wrong recipes
-- [ ] Roles, security, and results checks
+- [x] Only one writer application per user
+- [x] Fix ingredient details ajax is loading wrong recipes
+- [x] Roles, security, and results checks
 - [ ] Add GitHub issues
-- [ ] Deal with exceptions (missing id, user, etc...)
+- [x] Deal with exceptions (missing id, user, etc...)
 - [ ] Unit tests - >=65%
-- [ ] Order recipes
-- [ ] Proper error page
+- [x] Order recipes
+- [x] Functional error page
+- [ ] Review edit/delete
+- [ ] *Home*
+- [ ] *Search*
+- [ ] *Categories*
+- [ ] *Explore*
+- [ ] *Configure image*
 
 ## Optional
 
+- [ ] Profile picture
 - [ ] Soft delete?
 - [ ] Forgotten password?
 - [ ] Integrate a Bootstrap theme
@@ -58,7 +64,7 @@
 - [ ] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
 - [ ] Caching
 - [ ] Breadcrumbs
-- [ ] Responsive design
+- [x] Responsive design
 - [x] File storage API
 - [ ] HTML5 features - geolocation, local storage, SGV, Canvas
 - [ ] Re-implement CSS star rating system with :not()

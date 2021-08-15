@@ -5,7 +5,9 @@
 <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
     <article class="animate-zoom-sm animate-outline card p-0">
         <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
-            <img style="width: 100%; height: 200px; overflow: hidden;" class="card-img-top img-fluid" src="@Model.ImageUrl" alt="Recipe image">
+            <div class="embed-responsive embed-responsive-16by9">
+                <img class="card-img-top embed-responsive-item" src="@Model.ImageUrl" alt="Recipe image">
+            </div>
         </a>
         <div class="card-body">
             <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">

@@ -79,3 +79,8 @@ body {
 .edit-panel {
     font-size: 2rem;
 }
+
+/* Image zoom instead of stretching */
+.embed-responsive .card-img-top {
+    object-fit: cover;
+}

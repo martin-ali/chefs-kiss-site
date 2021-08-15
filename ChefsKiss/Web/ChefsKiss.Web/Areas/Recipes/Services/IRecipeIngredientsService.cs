@@ -7,11 +7,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
     public interface IRecipeIngredientsService
     {
-        void DeleteAll(IEnumerable<RecipeIngredient> recipeIngredients);
-
         IEnumerable<RecipeIngredient> Create(
             IEnumerable<Ingredient> ingredients,
             IEnumerable<IngredientServiceModel> ingredientModels,
             Recipe recipe);
+
+        void DeleteAll(IEnumerable<RecipeIngredient> recipeIngredients);
     }
 }

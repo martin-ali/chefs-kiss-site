@@ -98,16 +98,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        public IEnumerable<T> ByIngredientId<T>(int id)
-        {
-            var recipes = this.data.Recipes
-                .Where(x => x.RecipeIngredients.Any(y => y.IngredientId == id))
-                .MapTo<T>()
-                .ToList();
-
-            return recipes;
-        }
-
         public T ById<T>(int id)
         {
             var recipe = this.data.Recipes
@@ -128,7 +118,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
-        // FIXME: Should work even when recipes are deleted
+        public IEnumerable<T> ByIngredientId<T>(int id)
+        {
+            var recipes = this.data.Recipes
+                .Where(x => x.RecipeIngredients.Any(y => y.IngredientId == id))
+                .MapTo<T>()
+                .ToList();
+
+            return recipes;
+        }
+
         public T Random<T>()
         {
             var randomRecipe = this.data.Recipes

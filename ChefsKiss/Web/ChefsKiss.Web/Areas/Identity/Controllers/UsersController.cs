@@ -27,14 +27,14 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             this.users = users;
         }
 
-        public IActionResult Register()
-        {
-            return this.View();
-        }
-
         private IActionResult RedirectToHome()
         {
             return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>());
+        }
+
+        public IActionResult Register()
+        {
+            return this.View();
         }
 
         [HttpPost]
@@ -86,14 +86,6 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Logout()
-        {
-            await this.users.LogoutAsync();
-
-            return this.RedirectToHome();
-        }
-
-        [Authorize]
         public IActionResult Profile()
         {
             return this.Details(this.User.Id());
@@ -109,5 +101,14 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             return this.View(model);
         }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await this.users.LogoutAsync();
+
+            return this.RedirectToHome();
+        }
+
     }
 }

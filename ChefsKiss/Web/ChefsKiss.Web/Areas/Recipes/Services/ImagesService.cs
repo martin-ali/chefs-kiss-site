@@ -24,6 +24,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.imageOperator = imageOperator;
         }
 
+        private string FileName(int imageId)
+        {
+            var extension = this.data.Images
+                .Where(i => i.Id == imageId)
+                .Select(i => $"{i.Id}.{i.Extension}")
+                .First();
+
+            return extension;
+        }
+
         public async Task<Image> CreateImageAsync(IFormFile input)
         {
             var extension = Path.GetExtension(input.FileName).TrimStart('.');
@@ -42,6 +52,14 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return image;
         }
 
+        public string ImagePath(int imageId)
+        {
+            string fileName = this.FileName(imageId);
+            var path = Path.Combine(ImagesDirectory, fileName);
+
+            return path;
+        }
+
         public void Delete(int imageId)
         {
             var image = this.data.Images
@@ -51,24 +69,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.imageOperator.Delete(image.Name, image.Extension);
 
             this.data.SaveChanges();
-        }
-
-        public string ImagePath(int imageId)
-        {
-            string fileName = this.FileName(imageId);
-            var path = Path.Combine(ImagesDirectory, fileName);
-
-            return path;
-        }
-
-        private string FileName(int imageId)
-        {
-            var extension = this.data.Images
-                .Where(i => i.Id == imageId)
-                .Select(i => $"{i.Id}.{i.Extension}")
-                .First();
-
-            return extension;
         }
     }
 }

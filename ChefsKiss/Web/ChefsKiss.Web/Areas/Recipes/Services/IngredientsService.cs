@@ -16,16 +16,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             this.data = data;
         }
 
-        public T ById<T>(int id)
-        {
-            var ingredient = this.data.Ingredients
-                .Where(x => x.Id == id)
-                .MapTo<T>()
-                .First();
-
-            return ingredient;
-        }
-
         public IEnumerable<Ingredient> EnsureAll(IEnumerable<string> ingredientNames)
         {
             var ingredients = this.data.Ingredients
@@ -47,6 +37,16 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             }
 
             return ingredients;
+        }
+
+        public T ById<T>(int id)
+        {
+            var ingredient = this.data.Ingredients
+                .Where(x => x.Id == id)
+                .MapTo<T>()
+                .First();
+
+            return ingredient;
         }
     }
 }

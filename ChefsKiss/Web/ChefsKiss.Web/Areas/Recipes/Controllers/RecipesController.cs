@@ -40,6 +40,20 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             this.measurementUnits = measurementUnits;
         }
 
+        public IActionResult Paged(int id) // FIXME: Parameter name id makes no sense in this context
+        {
+            var recipes = this.recipes.PagedAll<RecipeListViewModel>(id, ItemsPerPage);
+
+            return this.PartialView("_PagePartialCard", recipes);
+        }
+
+        public IActionResult PagedByIngredientId(int id, int recipeId) // FIXME: Parameter name id makes no sense in this context
+        {
+            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, recipeId);
+
+            return this.PartialView("_PagePartialRow", recipes);
+        }
+
         [Authorize]
         public IActionResult Create()
         {
@@ -82,20 +96,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var recipes = this.recipes.PagedAll<RecipeListViewModel>(0, ItemsPerPage);
 
             return this.View(recipes);
-        }
-
-        public IActionResult Paged(int id) // FIXME: Parameter name id makes no sense in this context
-        {
-            var recipes = this.recipes.PagedAll<RecipeListViewModel>(id, ItemsPerPage);
-
-            return this.PartialView("_PagePartialCard", recipes);
-        }
-
-        public IActionResult PagedByIngredientId(int id, int recipeId) // FIXME: Parameter name id makes no sense in this context
-        {
-            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, recipeId);
-
-            return this.PartialView("_PagePartialRow", recipes);
         }
 
         public IActionResult Details(int id)

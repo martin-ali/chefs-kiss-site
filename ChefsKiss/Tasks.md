@@ -17,12 +17,12 @@
 - [x] Validation groundwork
 - [x] Inline validation
 - [x] Ingredient validation
-- [ ] Validation with user-friendly messages
+- [x] Validation with user-friendly messages
 - [x] Controllers
 - [x] Review system
 - [ ] Fix hard-coded connection string
 - [x] Favicon
-- [x] Roles - User, Administrator, Writer
+- [x] Roles - User, Administrator, Author
 - [x] AJAX
 - [x] Infinite scrolling
 - [ ] Rating with showcase
@@ -36,7 +36,7 @@
 - [x] Actions with no particular view to redirect to should default to index
 - [x] Fix redirects to wrong register/login
 - [ ] Fix password complexity
-- [ ] Broken writer applications panel on mobile
+- [x] Broken writer applications panel on mobile
 - [ ] Editing image final take
 - [x] Only one writer application per user
 - [x] Fix ingredient details ajax is loading wrong recipes
@@ -46,12 +46,13 @@
 - [ ] Unit tests - >=65%
 - [x] Order recipes
 - [x] Functional error page
-- [ ] Review edit/delete
+- [x] Review delete
+- [ ] Viewimports
 - [ ] *Home*
-- [ ] *Search*
+- [x] *Search*
 - [ ] *Categories*
 - [ ] *Explore*
-- [ ] *Configure image*
+- [x] *Configure image*
 
 ## Optional
 
@@ -68,6 +69,7 @@
 - [x] File storage API
 - [ ] HTML5 features - geolocation, local storage, SGV, Canvas
 - [ ] Re-implement CSS star rating system with :not()
+- [ ] Bug with outline animation, causes right border to go 1px to the right on hover
 
 ## Pages
 

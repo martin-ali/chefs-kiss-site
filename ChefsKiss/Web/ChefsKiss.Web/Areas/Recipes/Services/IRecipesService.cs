@@ -21,6 +21,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
         IEnumerable<T> PagedByIngredientId<T>(int page, int itemsPerPage, int ingredientId);
 
+        IEnumerable<T> PagedBySearchTerm<T>(int page, int itemsPerPage, string searchTerm);
+
         IEnumerable<T> PagedWhere<T>(int page, int itemsPerPage, Expression<Func<Recipe, bool>> predicate);
 
         T ById<T>(int id);

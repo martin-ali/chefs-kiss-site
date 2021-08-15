@@ -47,11 +47,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult PagedByIngredientId(int id, int recipeId) // FIXME: Parameter name id makes no sense in this context
+        public IActionResult PagedByIngredientId(int id, int recipeId)
         {
             var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, recipeId);
 
             return this.PartialView("_PagePartialRow", recipes);
+        }
+
+        public IActionResult PagedBySearchTerm(int id, string searchTerm)
+        {
+            var recipes = this.recipes.PagedBySearchTerm<RecipeListViewModel>(id, ItemsPerPage, searchTerm);
+
+            return this.PartialView("_PagePartialCard", recipes);
         }
 
         [Authorize]
@@ -85,7 +92,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
                 return this.View(input);
             }
 
-            var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>();
+            var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>(); // FIXME: AsQueryable should not be necessary
             var recipeId = await this.recipes.CreateAsync(userId, input.Title, input.Content, ingredients, input.Image);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
@@ -96,6 +103,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
             var recipes = this.recipes.PagedAll<RecipeListViewModel>(0, ItemsPerPage);
 
             return this.View(recipes);
+        }
+
+        public IActionResult Search(string searchTerm)
+        {
+            var recipes = this.recipes.PagedBySearchTerm<RecipeListViewModel>(0, ItemsPerPage, searchTerm);
+            var model = new RecipesSearchViewModel
+            {
+                SearchTerm = searchTerm,
+                Recipes = recipes,
+            };
+
+            return this.View(model);
         }
 
         public IActionResult Details(int id)

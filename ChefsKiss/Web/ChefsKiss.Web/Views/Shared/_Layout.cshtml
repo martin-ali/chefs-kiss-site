@@ -16,7 +16,7 @@
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container">
-                    <a class="navbar-brand animate-zoom-md" asp-area="Home" asp-controller="Home" asp-action="Index">ChefsKiss.Web</a>
+                    <a class="navbar-brand animate-zoom-md" asp-area="Home" asp-controller="Home" asp-action="Index">ChefsKiss</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -24,15 +24,12 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-area="Home" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="All">All</a>
                             </li>
                             <li class="nav-item">
                                 <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
                             </li>
-                            @if (User.IsAuthor())
+                        @if (User.IsAuthor())
                         {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
@@ -50,6 +47,14 @@
                                     <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Authors" asp-action="Applications">Author applications</a>
                                 </li>
                         }
+                            <li class="nav-item">
+                                <form method="GET" enctype="application/x-www-form-urlencoded" asp-area="Recipes" asp-controller="Recipes" asp-action="Search">
+                                <div class="row ml-2">
+                                    <input class="nav-link form-control col-8" name="searchTerm" type="text" placeholder="Search recipes">
+                                    <button class="btn btn-primary fa fa-paper-plane animate-zoom-sm col-3 ml-1" type="submit"></button>
+                                </div>
+                                </form>
+                            </li>
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>

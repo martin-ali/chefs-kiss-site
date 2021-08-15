@@ -84,6 +84,15 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             return recipes;
         }
 
+        public IEnumerable<T> PagedBySearchTerm<T>(int page, int itemsPerPage, string searchTerm)
+        {
+            var term = searchTerm.ToLower();
+            var itemsToSkip = page * itemsPerPage;
+            var recipes = this.PagedWhere<T>(page, itemsPerPage, r => r.Title.ToLower().Contains(term));
+
+            return recipes;
+        }
+
         public IEnumerable<T> PagedWhere<T>(int page, int itemsPerPage, Expression<Func<Recipe, bool>> predicate)
         {
             var itemsToSkip = page * itemsPerPage;

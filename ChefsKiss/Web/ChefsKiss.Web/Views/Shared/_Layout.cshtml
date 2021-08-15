@@ -29,24 +29,24 @@
                             <li class="nav-item">
                                 <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
                             </li>
-                        @if (User.IsAuthor())
-                        {
+                            @if (User.IsAuthor())
+                            {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
                                 </li>
-                        }
-                        @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
-                        {
+                            }
+                            @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
+                            {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Authors" asp-action="Apply">Become an author</a>
                                 </li>
-                        }
-                        @if (User.IsInRole("Administrator"))
-                        {
+                            }
+                            @if (User.IsInRole("Administrator"))
+                            {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Authors" asp-action="Applications">Author applications</a>
                                 </li>
-                        }
+                            }
                             <li class="nav-item">
                                 <form method="GET" enctype="application/x-www-form-urlencoded" asp-area="Recipes" asp-controller="Recipes" asp-action="Search">
                                 <div class="row ml-2">

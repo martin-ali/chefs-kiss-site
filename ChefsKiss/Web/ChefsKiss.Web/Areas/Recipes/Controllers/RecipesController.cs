@@ -24,18 +24,18 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
     public class RecipesController : Controller
     {
         private readonly IRecipesService recipes;
-        private readonly IWritersService writers;
+        private readonly IAuthorsService authors;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IMeasurementUnitsService measurementUnits;
 
         public RecipesController(
             IRecipesService recipes,
-            IWritersService writers,
+            IAuthorsService authors,
             UserManager<ApplicationUser> userManager,
             IMeasurementUnitsService measurementUnits)
         {
             this.recipes = recipes;
-            this.writers = writers;
+            this.authors = authors;
             this.userManager = userManager;
             this.measurementUnits = measurementUnits;
         }
@@ -43,10 +43,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            var isAuthorized = this.writers.IsWriter(this.User.Id()) || User.IsAdmin();
-            if (isAuthorized == false)
+            var isAuthor = this.authors.IsAuthor(this.User.Id());
+            if (isAuthor == false)
             {
-                return this.Unauthorized(MustBeWriter);
+                return this.Unauthorized(MustBeAuthor);
             }
 
             var model = new RecipeFormModel();
@@ -60,10 +60,10 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         {
             var userId = this.userManager.GetUserId(this.User);
 
-            var isAuthorized = this.writers.IsWriter(userId) || User.IsAdmin();
-            if (isAuthorized == false)
+            var isAuthor = this.authors.IsAuthor(userId);
+            if (isAuthor == false)
             {
-                return this.Unauthorized(MustBeWriter);
+                return this.Unauthorized(MustBeAuthor);
             }
 
             if (this.ModelState.IsValid == false)

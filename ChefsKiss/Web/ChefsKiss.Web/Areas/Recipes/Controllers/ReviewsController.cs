@@ -55,7 +55,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
             if (userHasCommented || userIsRecipeAuthor)
             {
-                return this.Unauthorized(NotAuthorized);
+                return this.BadRequest(AuthorsCantReviewOwnRecipes);
             }
 
             this.reviews.Create(input.RecipeId, input.Content, input.Rating, user.Id);

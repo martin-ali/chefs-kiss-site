@@ -32,22 +32,22 @@
                             <li class="nav-item">
                                 <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
                             </li>
-                            @if (User.IsWriter())
+                            @if (User.IsAuthor())
                         {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
                                 </li>
                         }
-                        @if (User.Identity.IsAuthenticated && User.IsWriter() == false)
+                        @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
                         {
                                 <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Writers" asp-action="Apply">Become a writer</a>
+                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Authors" asp-action="Apply">Become an author</a>
                                 </li>
                         }
                         @if (User.IsInRole("Administrator"))
                         {
                                 <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Writers" asp-action="Applications">Writer applications</a>
+                                    <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Authors" asp-action="Applications">Author applications</a>
                                 </li>
                         }
                         </ul>

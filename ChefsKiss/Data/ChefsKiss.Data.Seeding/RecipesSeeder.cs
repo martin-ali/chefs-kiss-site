@@ -8,7 +8,9 @@ namespace ChefsKiss.Data.Seeding
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.IO;
+
     using Microsoft.AspNetCore.Hosting;
+
     using static ChefsKiss.Common.DataConstants;
 
     public class RecipesSeeder : IDataSeeder
@@ -25,18 +27,18 @@ namespace ChefsKiss.Data.Seeding
             }
 
             var random = new Random();
-            var writers = dbContext.Writers.Where(x => x.IsApproved).ToList();
+            var authors = dbContext.Authors.Where(x => x.IsApproved).ToList();
             var images = await GetImages(random, serviceProvider);
 
             for (int i = 0; i < RecipesCount; i++)
             {
                 var recipeIngredients = CreateRandomRecipeIngredients(dbContext, random);
-                var writer = writers[random.Next(0, writers.Count)];
+                var author = authors[random.Next(0, authors.Count)];
                 var image = images[i % images.Count];
 
                 var recipe = new Recipe
                 {
-                    Writer = writer,
+                    Author = author,
                     Title = $"Recipe with title {i}",
                     Content = $"{i} - {RecipeContent}",
                     Image = image,

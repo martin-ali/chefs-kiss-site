@@ -28,7 +28,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
             configuration.CreateMap<Recipe, RecipeDeleteModel>()
               .ForMember(vm => vm.ImageUrl, cfg => cfg.MapFrom(m => Path.Combine(@"\images", $"{m.Image.Name}.{m.Image.Extension}")))
               .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients))
-              .ForMember(vm => vm.AuthorId, cfg => cfg.MapFrom(m => m.Writer.UserId));
+              .ForMember(vm => vm.AuthorId, cfg => cfg.MapFrom(m => m.Author.UserId));
         }
     }
 }

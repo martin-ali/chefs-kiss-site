@@ -10,6 +10,6 @@ namespace ChefsKiss.Web.Infrastructure.Extensions
 
         public static bool IsAdmin(this ClaimsPrincipal user) => user.IsInRole(AdministratorRoleName);
 
-        public static bool IsWriter(this ClaimsPrincipal user) => user.IsInRole(WriterRoleName);
+        public static bool IsAuthor(this ClaimsPrincipal user) => user.IsInRole(AuthorRoleName);
     }
 }

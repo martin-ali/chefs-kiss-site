@@ -1,7 +1,7 @@
 namespace ChefsKiss.Web.Areas.Identity.Controllers
 {
     using ChefsKiss.Web.Areas.Home.Controllers;
-    using ChefsKiss.Web.Areas.Identity.Models.Writers;
+    using ChefsKiss.Web.Areas.Identity.Models.Authors;
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Infrastructure.Extensions;
 
@@ -13,22 +13,22 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using static ChefsKiss.Common.WebConstants;
 
     [Area(IdentityArea)]
-    public class WritersController : Controller
+    public class AuthorsController : Controller
     {
-        private readonly IWritersService writers;
+        private readonly IAuthorsService authors;
 
-        public WritersController(IWritersService writers)
+        public AuthorsController(IAuthorsService authors)
         {
-            this.writers = writers;
+            this.authors = authors;
         }
 
         [Authorize]
         public IActionResult Apply()
         {
-            var userHasApplied = this.writers.HasApplied(this.User.Id());
+            var userHasApplied = this.authors.HasApplied(this.User.Id());
             if (userHasApplied)
             {
-                return this.BadRequest(AlreadyAppliedForWriter);
+                return this.BadRequest(AlreadyAppliedForAuthor);
             }
 
             return this.View();
@@ -36,14 +36,14 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Apply(WriterFormModel input)
+        public IActionResult Apply(AuthorFormModel input)
         {
             var userId = this.User.Id();
 
-            var userHasApplied = this.writers.HasApplied(userId);
+            var userHasApplied = this.authors.HasApplied(userId);
             if (userHasApplied)
             {
-                return this.BadRequest(AlreadyAppliedForWriter);
+                return this.BadRequest(AlreadyAppliedForAuthor);
             }
 
             if (this.ModelState.IsValid == false)
@@ -51,7 +51,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
                 return this.View(input);
             }
 
-            this.writers.Create(userId, input.FirstName, input.LastName);
+            this.authors.Create(userId, input.FirstName, input.LastName);
 
             return this.RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>());
         }

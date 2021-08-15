@@ -1,0 +1,33 @@
+﻿@using ChefsKiss.Web.Areas.Administration.Models.Authors;
+
+@model IEnumerable<AuthorViewModel>
+
+<h2 class="text-center m-3">Author applications</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Full name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr class="animate-zoom-sm animate-background">
+                <td>@author.FullName</td>
+                <td>
+                    <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@author.UserId" class="animate-underline">
+                        @author.Username
+                    </a>
+                </td>
+                <td>
+                    <a class="animate-zoom-md btn btn-primary fa fa-eye" asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@author.UserId"> </a>
+                    <a class="animate-zoom-md btn btn-success fa fa-check" asp-action="Approve" asp-route-id="@author.Id"></a>
+                    <a class="animate-zoom-md btn btn-danger fa fa-ban" asp-action="Deny" asp-route-id="@author.Id"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

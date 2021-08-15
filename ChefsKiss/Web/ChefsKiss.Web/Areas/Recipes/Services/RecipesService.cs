@@ -36,7 +36,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public async Task<int> CreateAsync(string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
         {
             var imageEntity = await this.imagesService.CreateImageAsync(image);
-            var writer = this.data.Writers
+            var author = this.data.Authors
                 .Where(x => x.UserId == userId)
                 .First();
 
@@ -46,7 +46,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
             {
                 Title = title,
                 Content = content,
-                Writer = writer,
+                Author = author,
                 Image = imageEntity,
             };
 
@@ -121,7 +121,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
         public IEnumerable<T> ByAuthorId<T>(string id)
         {
             var recipes = this.data.Recipes
-                .Where(x => x.Writer.UserId == id)
+                .Where(x => x.Author.UserId == id)
                 .MapTo<T>()
                 .ToList();
 

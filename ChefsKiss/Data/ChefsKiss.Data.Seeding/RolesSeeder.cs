@@ -13,7 +13,7 @@ namespace ChefsKiss.Data.Seeding
     {
         static readonly string[] roles = new[]{
             AdministratorRoleName,
-            WriterRoleName,
+            AuthorRoleName,
             UserRoleName,
         };
 

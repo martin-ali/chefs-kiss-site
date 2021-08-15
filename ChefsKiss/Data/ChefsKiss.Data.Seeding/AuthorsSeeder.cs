@@ -1,11 +1,16 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ChefsKiss.Data.Models;
-
 namespace ChefsKiss.Data.Seeding
 {
-    public class WritersSeeder : IDataSeeder
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using ChefsKiss.Data.Models;
+
+    using Microsoft.AspNetCore.Identity;
+
+    using static ChefsKiss.Common.WebConstants;
+
+    public class AuthorsSeeder : IDataSeeder
     {
         private static readonly string[] FirstNames = new[]
         {
@@ -296,21 +301,22 @@ namespace ChefsKiss.Data.Seeding
             "Roberts",
         };
 
-        private const int WritersCount = 40;
+        private const int AuthorsCount = 40;
 
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {
             var random = new Random();
             var users = dbContext.Users.ToList();
+            var userManager = (UserManager<ApplicationUser>)serviceProvider.GetService(typeof(UserManager<ApplicationUser>));
 
-            for (int i = 0; i < WritersCount; i++)
+            for (int i = 0; i < AuthorsCount; i++)
             {
                 var firstName = FirstNames[random.Next(0, FirstNames.Length)];
                 var lastName = LastNames[random.Next(0, LastNames.Length)];
                 var user = users[random.Next(0, users.Count)];
                 var isApproved = i % 2 == 0;
 
-                var writer = new Writer
+                var author = new Author
                 {
                     FirstName = firstName,
                     LastName = lastName,
@@ -318,7 +324,8 @@ namespace ChefsKiss.Data.Seeding
                     IsApproved = isApproved,
                 };
 
-                dbContext.Writers.Add(writer);
+                dbContext.Authors.Add(author);
+                await userManager.AddToRoleAsync(user, AuthorRoleName);
             }
 
             await dbContext.SaveChangesAsync();

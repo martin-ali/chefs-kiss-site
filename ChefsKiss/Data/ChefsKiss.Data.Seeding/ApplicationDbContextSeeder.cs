@@ -29,7 +29,7 @@ namespace ChefsKiss.Data.Seeding
             {
                 new RolesSeeder(),
                 new UsersSeeder(),
-                new WritersSeeder(),
+                new AuthorsSeeder(),
                 new MeasurementUnitsSeeder(),
                 new IngredientsSeeder(),
                 new RecipesSeeder(),

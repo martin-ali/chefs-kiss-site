@@ -1,11 +1,11 @@
-namespace ChefsKiss.Web.Areas.Administration.Models.Writers
+namespace ChefsKiss.Web.Areas.Administration.Models.Authors
 {
     using AutoMapper;
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
 
-    public class WriterViewModel : IMapFrom<Writer>, IHaveCustomMappings
+    public class AuthorViewModel : IMapFrom<Author>, IHaveCustomMappings
     {
         public int Id { get; init; }
 
@@ -17,7 +17,7 @@ namespace ChefsKiss.Web.Areas.Administration.Models.Writers
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Writer, WriterViewModel>()
+            configuration.CreateMap<Author, AuthorViewModel>()
                 .ForMember(vm => vm.Username, cgf => cgf.MapFrom(m => m.User.UserName))
                 .ForMember(vm => vm.FullName, cgf => cgf.MapFrom(m => $"{m.FirstName} {m.LastName}"));
         }

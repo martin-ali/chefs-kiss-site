@@ -11,12 +11,12 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
     using static ChefsKiss.Common.WebConstants;
 
-    public class WritersService : IWritersService
+    public class AuthorsService : IAuthorsService
     {
         private readonly RecipesDbContext data;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public WritersService(RecipesDbContext data, UserManager<ApplicationUser> userManager)
+        public AuthorsService(RecipesDbContext data, UserManager<ApplicationUser> userManager)
         {
             this.data = data;
             this.userManager = userManager;
@@ -24,64 +24,64 @@ namespace ChefsKiss.Web.Areas.Identity.Services
 
         public void Create(string userId, string firstName, string lastName)
         {
-            var writer = new Writer
+            var author = new Author
             {
                 UserId = userId,
                 FirstName = firstName,
                 LastName = lastName,
             };
 
-            this.data.Writers.Add(writer);
+            this.data.Authors.Add(author);
 
             this.data.SaveChanges();
         }
 
         public IEnumerable<T> AllUnapproved<T>()
         {
-            var writers = this.data.Writers
+            var authors = this.data.Authors
                 .Where(x => x.IsApproved == false)
                 .MapTo<T>()
                 .ToList();
 
-            return writers;
+            return authors;
         }
 
-        public bool IsWriter(string userId)
+        public bool IsAuthor(string userId)
         {
-            var isWriter = this.data.Writers
+            var isAuthor = this.data.Authors
                 .Where(x => x.UserId == userId)
                 .Where(x => x.IsApproved)
                 .Any();
 
-            return isWriter;
+            return isAuthor;
         }
 
         public bool HasApplied(string userId)
         {
-            var isWriter = this.data.Writers
+            var isAuthor = this.data.Authors
                 .Where(x => x.UserId == userId)
                 .Any();
 
-            return isWriter;
+            return isAuthor;
         }
 
         public async Task Approve(int id)
         {
-            var writer = this.data.Writers.Find(id);
+            var author = this.data.Authors.Find(id);
 
-            writer.IsApproved = true;
+            author.IsApproved = true;
 
-            var user = this.data.Users.Find(writer.UserId);
-            var result = await this.userManager.AddToRoleAsync(user, WriterRoleName);
+            var user = this.data.Users.Find(author.UserId);
+            var result = await this.userManager.AddToRoleAsync(user, AuthorRoleName);
 
             this.data.SaveChanges();
         }
 
         public void Deny(int id)
         {
-            var writer = this.data.Writers.Find(id);
+            var author = this.data.Authors.Find(id);
 
-            this.data.Writers.Remove(writer);
+            this.data.Authors.Remove(author);
 
             this.data.SaveChanges();
         }

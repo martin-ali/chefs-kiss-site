@@ -8,11 +8,13 @@ namespace ChefsKiss.Common
 
         public const string NotAuthorized = "You are not authorized to access this resource.";
 
-        public const string MustBeWriter = "Only writers are able to access this page.";
+        public const string MustBeAuthor = "Only authors are able to access this page.";
+
+        public const string AuthorsCantReviewOwnRecipes = "Authors cannot review their own recipe.";
 
         public const string MustBeAdmin = "Only admins are able to access this page.";
 
-        public const string AlreadyAppliedForWriter = "You have already submitted a writer application.";
+        public const string AlreadyAppliedForAuthor = "You have already submitted an author application.";
 
         public static string LengthBetween(int minLength, int maxLength, string parameterName) => $"{parameterName} must be between {minLength} and {maxLength} characters long.";
 

@@ -3,13 +3,13 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IWritersService
+    public interface IAuthorsService
     {
         void Create(string userId, string firstName, string lastName);
 
         IEnumerable<T> AllUnapproved<T>();
 
-        bool IsWriter(string userId);
+        bool IsAuthor(string userId);
 
         bool HasApplied(string userId);
 

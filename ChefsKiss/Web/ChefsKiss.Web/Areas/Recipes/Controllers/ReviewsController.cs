@@ -71,9 +71,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult Delete()
+        public IActionResult Delete(int id, int recipeId)
         {
-            return this.View();
+            this.reviews.Delete(id);
+
+            return this.RedirectToAction(nameof(RecipesController.Details), ControllerName<RecipesController>(), new { id = recipeId });
         }
     }
 }

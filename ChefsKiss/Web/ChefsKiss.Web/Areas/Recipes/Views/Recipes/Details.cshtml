@@ -4,72 +4,68 @@
 
 @model RecipeDetailsViewModel
 
-<div class="recipe-heading m-3 rounded">
-    <h2 class="text-center mx-auto display-4">
-        @Model.Title
-    </h2>
-    <div class="text-center col-12">
-        <span class="span"> Written by:
-            <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
-                <span> @Model.AuthorFullName</span>
-            </a>
-        </span>
-        @if (Model.UserIsAuthor || User.IsAdmin())
-        {
-            @* <br>
-                <span class="btn-group">
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Actions
-                </button>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-                <a class="dropdown-item" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+<div class="recipe-container">
+    <div class="recipe-heading m-3 rounded">
+        <h2 class="text-center mx-auto display-4">
+            @Model.Title
+        </h2>
+        <div class="text-center col-12">
+            <span class="span"> Written by:
+                <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
+                    <span> @Model.AuthorFullName</span>
+                </a>
+            </span>
+            @if (Model.UserIsAuthor || User.IsAdmin())
+            {
+                <div class="edit-panel mx-auto">
+                    <a class="btn btn-primary fa fa-edit animate-zoom-sm col-lg-1 col-md-3" asp-action="Edit" asp-route-id="@Model.Id"></a>
+                    <a class="btn btn-danger fa fa-trash animate-zoom-sm col-lg-1 col-md-3" asp-action="Delete" asp-route-id="@Model.Id"></a>
                 </div>
-                </span> *@
+            }
+        </div>
+    </div>
 
-            <div class="edit-panel mx-auto">
-                <a class="btn btn-primary fa fa-edit animate-zoom-sm col-lg-1 col-md-3" asp-action="Edit" asp-route-id="@Model.Id"></a>
-                <a class="btn btn-danger fa fa-trash animate-zoom-sm col-lg-1 col-md-3" asp-action="Delete" asp-route-id="@Model.Id"></a>
+    <div class="recipe-ingredients">
+        <img class="col-12" src="@Model.ImageUrl">
+        <hr>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 ">
+                <h3>Ingredients</h3>
+                <ol>
+                    @foreach (var ingredient in Model.Ingredients)
+                    {
+                        <li class="p-2 m-1">
+                            <a asp-controller="ingredients" asp-action="details" asp-route-id="@ingredient.Id" class="animate-underline">
+                                @ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit
+                            </a>
+                        </li>
+                    }
+                </ol>
             </div>
+            <div class="col-lg-6 col-md-12">
+                <h3>Preparation</h3>
+                <p>
+                    @Model.Content
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (User.Identity.IsAuthenticated && @Model.UserHasPostedReview == false && @Model.UserIsAuthor == false)
+        {
+            <partial name="_ReviewFormPartial" model=@(new ReviewFormModel{ RecipeId = Model.Id }) />
+        }
+        @foreach (var review in Model.Reviews)
+        {
+            <partial name="_ReviewsListPartial" model="review" />
         }
     </div>
 </div>
 
-
-
-<div class="recipe-ingredients">
-    <img class="col-12" src="@Model.ImageUrl">
-    <hr>
-    <div class="row">
-        <div class="col-lg-6 col-md-12 ">
-            <h3>Ingredients</h3>
-            <ol>
-                @foreach (var ingredient in Model.Ingredients)
-                {
-                    <li class="p-2 m-1">
-                        <a asp-controller="ingredients" asp-action="details" asp-route-id="@ingredient.Id" class="animate-underline">
-                            @ingredient.Name - @ingredient.Quantity @ingredient.MeasurementUnit
-                        </a>
-                    </li>
-                }
-            </ol>
-        </div>
-        <div class="col-lg-6 col-md-12">
-            <h3>Preparation</h3>
-            <p>
-                @Model.Content
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    @if (User.Identity.IsAuthenticated && @Model.UserHasPostedReview == false && @Model.UserIsAuthor == false)
-    {
-        <partial name="_ReviewFormPartial" model=@(new ReviewFormModel{ RecipeId = Model.Id }) />
-    }
-    @foreach (var review in Model.Reviews)
-    {
-        <partial name="_ReviewsListPartial" model="review" />
-    }
-</div>
+@section scripts{
+<partial name="_ConfirmationDialogScriptsPartial" />
+<script>
+    setupConfirmationDialog('.recipe-container', 'delete-review');
+</script>
+}

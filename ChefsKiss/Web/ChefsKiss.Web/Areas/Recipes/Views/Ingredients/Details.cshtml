@@ -13,7 +13,7 @@
 </div>
 
 @section Scripts{
-<script src="~/js/infinite-scrolling.js" asp-append-version="true"></script>
+<partial name="_InfiniteScrollScriptsPartial" />
 <script>
     ConfigureInfiniteScroll('PagedByIngredientId', 1, { recipeId: @Model.Id });
 </script>

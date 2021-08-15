@@ -6,7 +6,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
 
     public class ReviewsService : IReviewsService
     {
@@ -49,6 +48,15 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                 .First();
 
             return review;
+        }
+
+        public void Delete(int id)
+        {
+            var review = this.data.Reviews.Find(id);
+
+            this.data.Reviews.Remove(review);
+
+            this.data.SaveChanges();
         }
     }
 }

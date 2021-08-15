@@ -8,8 +8,9 @@
     transition: all 250ms ease;
 }
 
-.animate-background:hover {
-    background-color: lightblue;
+.animate-background:hover,
+.animate-background:focus {
+    background-color: lightgreen;
 }
 
 /* Zooms */
@@ -17,7 +18,8 @@
     transition: all 250ms ease;
 }
 
-.animate-zoom-sm:hover {
+.animate-zoom-sm:hover,
+.animate-zoom-sm:focus {
     transform: scale(1.05);
 }
 
@@ -25,7 +27,8 @@
     transition: all 250ms ease;
 }
 
-.animate-zoom-md:hover {
+.animate-zoom-md:hover,
+.animate-zoom-md:focus {
     transform: scale(1.2);
 }
 
@@ -34,7 +37,8 @@
     transition: all 250ms ease;
 }
 
-.animate-outline:hover {
+.animate-outline:hover,
+.animate-outline:focus {
     /* Find better solution without !important */
     border-color: var(--color-select) !important;
 }

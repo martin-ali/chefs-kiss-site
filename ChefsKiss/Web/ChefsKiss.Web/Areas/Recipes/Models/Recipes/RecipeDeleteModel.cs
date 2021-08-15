@@ -17,7 +17,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
 
         public string Title { get; init; }
 
-        public string ImageUrl { get; init; }
+        public string ImageSrc { get; init; }
 
         public string Content { get; init; }
 
@@ -26,7 +26,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, RecipeDeleteModel>()
-              .ForMember(vm => vm.ImageUrl, cfg => cfg.MapFrom(m => Path.Combine(@"\images", $"{m.Image.Name}.{m.Image.Extension}")))
+              .ForMember(vm => vm.ImageSrc, cfg => cfg.MapFrom(m => Path.Combine(@"\images", $"{m.Image.Name}.{m.Image.Extension}")))
               .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients))
               .ForMember(vm => vm.AuthorId, cfg => cfg.MapFrom(m => m.Author.UserId));
         }

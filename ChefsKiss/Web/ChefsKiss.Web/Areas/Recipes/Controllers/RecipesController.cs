@@ -56,6 +56,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         public IActionResult PagedBySearchTerm(int id, string searchTerm)
         {
+            if (searchTerm == null)
+            {
+                return this.BadRequest(InvalidSearchTerm);
+            }
+
             var recipes = this.recipes.PagedBySearchTerm<RecipeListViewModel>(id, ItemsPerPage, searchTerm);
 
             return this.PartialView("_PagePartialCard", recipes);
@@ -107,6 +112,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Controllers
 
         public IActionResult Search(string searchTerm)
         {
+            if (searchTerm == null)
+            {
+                return this.BadRequest(InvalidSearchTerm);
+            }
+
             var recipes = this.recipes.PagedBySearchTerm<RecipeListViewModel>(0, ItemsPerPage, searchTerm);
             var model = new RecipesSearchViewModel
             {

@@ -1,7 +1,5 @@
 namespace ChefsKiss.Common
 {
-    using static DataConstants;
-
     public class ErrorMessages
     {
         public const string NoIngredients = "Ingredients must be present.";
@@ -12,9 +10,11 @@ namespace ChefsKiss.Common
 
         public const string AuthorsCantReviewOwnRecipes = "Authors cannot review their own recipe.";
 
+        public const string AlreadyAppliedForAuthor = "You have already submitted an author application.";
+
         public const string MustBeAdmin = "Only admins are able to access this page.";
 
-        public const string AlreadyAppliedForAuthor = "You have already submitted an author application.";
+        public const string InvalidSearchTerm = "The search term is invalid.";
 
         public static string LengthBetween(int minLength, int maxLength, string parameterName) => $"{parameterName} must be between {minLength} and {maxLength} characters long.";
 

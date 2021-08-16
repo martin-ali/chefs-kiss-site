@@ -13,7 +13,7 @@
             <label for="rating@(rating)" class="rating-element fa fa-star"></label>
         }
     </h5>
-    <textarea asp-for="Content" placeholder="Type your review here" rows="3" class="w-100 border-0"></textarea>
+    <textarea asp-for="Content" placeholder="Type your review here" rows="3" class="form-control w-100 border-0"></textarea>
     <input type="hidden" name="RecipeId" value="@Model.RecipeId" />
     <span asp-validation-for="Content" class="text-danger"></span>
     <div class="row user-indicator">

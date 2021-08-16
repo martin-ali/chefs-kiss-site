@@ -87,6 +87,7 @@ body {
 
 /* Input outlines */
 textarea:focus,
+select:focus,
 textarea.form-control:focus,
 input.form-control:focus,
 input[type=text]:focus,
@@ -94,6 +95,7 @@ input[type=password]:focus,
 input[type=email]:focus,
 input[type=number]:focus,
 select:focus,
+select.form-control:focus,
 [type=text].form-control:focus,
 [type=password].form-control:focus,
 [type=email].form-control:focus,

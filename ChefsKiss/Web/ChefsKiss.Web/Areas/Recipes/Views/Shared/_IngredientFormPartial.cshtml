@@ -4,9 +4,9 @@
 
 <div class="row ingredient pb-2">
     <input type="hidden" name="ingredients.Index" value="@Model.Index">
-    <input name="ingredients[@Model.Index].Name" class="form-control col-6" placeholder="Ingredient" asp-for="Name" />
-    <input name="ingredients[@Model.Index].Quantity" class="form-control col-2 ml-1" placeholder="Quantity" asp-for="Quantity" />
-    <select name="ingredients[@Model.Index].MeasurementUnitId" class="form-control col-2 ml-1" asp-for="MeasurementUnitId">
+    <input name="ingredients[@Model.Index].Name" class="form-control animate-outline col-6" placeholder="Ingredient" asp-for="Name" />
+    <input name="ingredients[@Model.Index].Quantity" class="form-control animate-outline col-2 ml-1" placeholder="Quantity" asp-for="Quantity" />
+    <select name="ingredients[@Model.Index].MeasurementUnitId" class="form-control animate-outline col-2 ml-1" asp-for="MeasurementUnitId">
         <vc:measurement-units-list selected="@Model.MeasurementUnitId"></vc:measurement-units-list>
     </select>
     <button type="button" class="fa fa-times remove-ingredient btn btn-danger ml-1"></button>

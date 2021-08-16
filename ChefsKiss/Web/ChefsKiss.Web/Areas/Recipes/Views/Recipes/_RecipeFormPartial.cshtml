@@ -18,17 +18,17 @@
         <form method="post" enctype="multipart/form-data" class="col-md-12">
             <div class="row">
                 <label asp-for="Title"></label>
-                <input asp-for="Title" class="form-control w-100" placeholder="Enter the name here" />
+                <input asp-for="Title" class="form-control w-100 animate-outline" placeholder="Enter the name here" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="row">
                 <label asp-for="Content"></label>
-                <textarea rows="10" asp-for="Content" class="form-control" placeholder="Enter the content here"></textarea>
+                <textarea rows="10" asp-for="Content" class="form-control animate-outline" placeholder="Enter the content here"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="row">
                 <label asp-for="Image"></label>
-                <input id="image-upload" asp-for="Image" accept="image/jpeg, image/png" class="form-control" />
+                <input id="image-upload" asp-for="Image" accept="image/jpeg, image/png" class="form-control animate-outline" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="row">

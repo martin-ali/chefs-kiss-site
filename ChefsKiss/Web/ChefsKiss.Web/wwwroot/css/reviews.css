@@ -37,3 +37,7 @@
 .rating-parent input {
     display: none;
 }
+
+.rating-element {
+    font-size: 1.5rem !important;
+}

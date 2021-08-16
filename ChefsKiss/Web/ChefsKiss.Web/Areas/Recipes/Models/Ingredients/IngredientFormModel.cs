@@ -1,10 +1,14 @@
 namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
 {
     using System.ComponentModel.DataAnnotations;
+
     using AutoMapper;
+
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
+
     using static ChefsKiss.Common.DataConstants;
+    using static ChefsKiss.Common.ErrorMessages;
 
     public class IngredientFormModel : IMapFrom<RecipeIngredient>, IHaveCustomMappings
     {
@@ -12,8 +16,7 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Ingredients
         public int Index { get; set; }
 
         [Required]
-        [MinLength(Ingredients.NameMinLength)]
-        [MaxLength(Ingredients.NameMaxLength)]
+        [StringLength(Ingredients.NameMaxLength, MinimumLength = Ingredients.NameMinLength, ErrorMessage = LengthBetween)]
         public string Name { get; init; }
 
         [Required]

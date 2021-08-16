@@ -109,6 +109,5 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             return this.RedirectToHome();
         }
-
     }
 }

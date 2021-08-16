@@ -11,7 +11,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
     {
         public int Id { get; init; }
 
-
         public int RecipeId { get; init; }
 
         public string AuthorId { get; init; }

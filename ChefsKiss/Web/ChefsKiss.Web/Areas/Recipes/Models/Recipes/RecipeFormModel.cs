@@ -20,13 +20,11 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Recipes
         public string AuthorId { get; init; }
 
         [Required]
-        [MinLength(Recipes.TitleMinLength)]
-        [MaxLength(Recipes.TitleMaxLength)]
+        [StringLength(Recipes.TitleMaxLength, MinimumLength = Recipes.TitleMinLength, ErrorMessage = LengthBetween)]
         public string Title { get; init; }
 
         [Required]
-        [MinLength(Recipes.ContentMinLength)]
-        [MaxLength(Recipes.ContentMaxLength)]
+        [StringLength(Recipes.ContentMaxLength, MinimumLength = Recipes.ContentMinLength, ErrorMessage = LengthBetween)]
         public string Content { get; init; }
 
         [Required]

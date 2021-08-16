@@ -2,6 +2,8 @@ namespace ChefsKiss.Web.Areas.Identity.Models.Users
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static ChefsKiss.Common.ErrorMessages;
+
     public class UserRegisterFormModel
     {
         [Required]
@@ -10,7 +12,7 @@ namespace ChefsKiss.Web.Areas.Identity.Models.Users
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = LengthBetween)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

@@ -9,6 +9,9 @@ namespace ChefsKiss.Web.Areas.Recipes.Models.Reviews
 
     public class ReviewBaseViewModel : IMapFrom<Review>, IHaveCustomMappings
     {
+        public int Id { get; init; }
+
+
         public int RecipeId { get; init; }
 
         public string AuthorId { get; init; }

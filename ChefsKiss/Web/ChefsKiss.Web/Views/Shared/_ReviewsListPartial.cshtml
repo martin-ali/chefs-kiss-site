@@ -15,10 +15,8 @@
             <p>@Model.Summary...
                 <a asp-area="recipes" asp-controller="reviews" asp-action="details" asp-route-id="@Model.Id" class="animate-underline">Read More </a>
             </p>
-
             <hr>
-
-            <span class="">
+            <span>
                 <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
                     @Model.AuthorUsername
                 </a>

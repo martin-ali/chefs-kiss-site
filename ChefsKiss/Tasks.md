@@ -45,14 +45,15 @@
 - [x] Deal with exceptions (missing id, user, etc...)
 - [ ] Unit tests - >=65%
 - [x] Order recipes
-- [x] Functional error page
+- [ ] Functional error page
 - [x] Review delete
-- [ ] Viewimports
-- [ ] *Home*
+- [x] Viewimports
+- [x] *Home*
 - [x] *Search*
 - [ ] *Categories*
 - [ ] *Explore*
 - [x] *Configure image*
+- [x] *Readme*
 
 ## Optional
 
@@ -62,7 +63,7 @@
 - [ ] Integrate a Bootstrap theme
 - [x] Do something with the ingredients now that they're separate
 - [ ] SmarterASP.NET or Azure deployment/hosting
-- [ ] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
+- [x] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
 - [ ] Caching
 - [ ] Breadcrumbs
 - [x] Responsive design

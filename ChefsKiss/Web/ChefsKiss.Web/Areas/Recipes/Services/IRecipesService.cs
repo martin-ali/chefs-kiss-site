@@ -19,7 +19,6 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
 
 		IEnumerable<T> Popular<T>(int count);
 
-
 		IEnumerable<T> PagedAll<T>(int page, int itemsPerPage);
 
 		IEnumerable<T> PagedByIngredientId<T>(int page, int itemsPerPage, int ingredientId);

@@ -52,6 +52,8 @@
         {
             <partial name="_ReviewFormPartial" model=@(new ReviewFormModel{ RecipeId = Model.Id }) />
         }
+    </div>
+    <div class="row reviews-container">
         @foreach (var review in Model.Reviews)
         {
             <partial name="_ReviewsListPartial" model="review" />
@@ -63,6 +65,6 @@
 <partial name="_ValidationScriptsPartial" />
 <partial name="_ConfirmationDialogScriptsPartial" />
 <script>
-    setupConfirmationDialog('.recipe-container', 'delete-review');
+    setupConfirmationDialog('.reviews-container', 'delete-review');
 </script>
 }

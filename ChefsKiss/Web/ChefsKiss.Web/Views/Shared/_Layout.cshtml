@@ -24,37 +24,37 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="All">All</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
-                            </li>
-                            @if (User.IsAuthor())
-                            {
-                                <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
-                                </li>
-                            }
-                            @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
-                            {
-                                <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Authors" asp-action="Apply">Become an author</a>
-                                </li>
-                            }
-                            @if (User.IsInRole("Administrator"))
-                            {
-                                <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Authors" asp-action="Applications">Author applications</a>
-                                </li>
-                            }
-                            <li class="nav-item">
-                                <form method="GET" enctype="application/x-www-form-urlencoded" asp-area="Recipes" asp-controller="Recipes" asp-action="Search" class="input-group ml-2">
+                                <form method="GET" enctype="application/x-www-form-urlencoded" asp-area="Recipes" asp-controller="Recipes" asp-action="Search" class="input-group mr-2">
                                     <input class="nav-link form-control animate-outline" name="searchTerm" type="text" placeholder="Search recipes">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary fa fa-search input-group-text" type="submit"></button>
                                     </div>
                                 </form>
                             </li>
+                            <li class="nav-item">
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="All">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
+                            </li>
+                            @if (User.IsAuthor())
+                        {
+                                <li class="nav-item">
+                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
+                                </li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
+                        {
+                                <li class="nav-item">
+                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Authors" asp-action="Apply">Become an author</a>
+                                </li>
+                        }
+                        @if (User.IsInRole("Administrator"))
+                        {
+                                <li class="nav-item">
+                                    <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Authors" asp-action="Applications">Author applications</a>
+                                </li>
+                        }
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>

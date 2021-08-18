@@ -4,38 +4,36 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    var active = "active";
+    var activeCarouselItem = "active";
+    var activeCarouselIndicator = "active";
 }
 
-<div class="jumbotron">
-    <h1 class="display-4">Welcome to Chef's Kiss, the recipe sharing site for your needs!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Explore!</a>
-    </p>
-</div>
+<h1 class="display-3 text-center">Welcome to Chef's Kiss!</h1>
+<h2 class="display-4 text-center">Enjoy some of our most popular recipes</h2>
 
 @* Most popular *@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide shadow" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        @for (int current = 0; current < Model.Count(); current++)
+        {
+            <li data-target="#carouselExampleIndicators" data-slide-to="@current" class="@activeCarouselIndicator"></li>
+            activeCarouselIndicator = string.Empty;
+        }
     </ol>
     <div class="carousel-inner">
         @foreach (var recipe in Model)
         {
-            <div class="carousel-item @active">
-                <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
-                <div class="carousel-caption">
-                    <h5>@recipe.Title</h5>
-                    <p class="d-md-block d-none">@recipe.Summary</p>
-                </div>
+            <div class="carousel-item @activeCarouselItem">
+                <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">
+                    <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
+                    <div class="carousel-caption">
+                        <h5>@recipe.Title</h5>
+                        <p class="d-md-block d-none">@recipe.Summary</p>
+                    </div>
+                </a>
             </div>
 
-            active = string.Empty;
+            activeCarouselItem = string.Empty;
         }
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -27,6 +27,7 @@ Chef's Kiss is a recipe sharing site where almost everyone can apply to be a rec
 - JavaScript is used for additional functionality and AJAX.
 - Images stored on the file system.
 - Data will be reseeded in debug mode only
+- Caching used in home page
 
 ## License
 

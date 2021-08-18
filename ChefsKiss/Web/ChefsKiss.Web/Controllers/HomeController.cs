@@ -31,7 +31,7 @@
         }
 
         [HttpGet("/")]
-        [HttpGet("Index")]
+        [HttpGet("/Index")]
         public IActionResult Index()
         {
             var recipes = this.recipes

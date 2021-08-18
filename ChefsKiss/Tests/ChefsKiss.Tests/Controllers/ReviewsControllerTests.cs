@@ -16,7 +16,7 @@ namespace ChefsKiss.Tests.Controllers
 	public class ReviewsControllerTests
 	{
 		[Fact]
-		public void Create()
+		public void CreateShouldReturnCorrectViewWithCorrectModel()
 		{
 			MyMvc
 			.Pipeline()
@@ -30,7 +30,7 @@ namespace ChefsKiss.Tests.Controllers
 		}
 
 		[Fact]
-		public void Details()
+		public void DetailsShouldReturnCorrectViewWithCorrectModel()
 		{
 			MyMvc
 			.Pipeline()
@@ -42,7 +42,7 @@ namespace ChefsKiss.Tests.Controllers
 		}
 
 		[Fact]
-		public void Delete()
+		public void DeleteShouldReturnCorrectViewWithCorrectModel()
 		{
 			// MyController<ReviewsController>
 			// .Instance()

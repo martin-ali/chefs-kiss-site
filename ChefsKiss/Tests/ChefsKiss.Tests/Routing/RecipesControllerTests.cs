@@ -8,6 +8,8 @@ namespace ChefsKiss.Tests.Routing
 
 	using Microsoft.AspNetCore.Http;
 
+	using Moq;
+
 	using MyTested.AspNetCore.Mvc;
 
 	using Xunit;
@@ -15,6 +17,11 @@ namespace ChefsKiss.Tests.Routing
 	public class RecipesControllerTests
 	{
 		private const string SearchTerm = "Term";
+		private readonly RecipeFormModel recipeForm = new RecipeFormModel
+		{
+			Image = new Mock<IFormFile>().Object,
+			Ingredients = new List<IngredientFormModel> { With.Any<IngredientFormModel>() },
+		};
 
 		[Fact]
 		public void PagedRouteShouldBeMapped()
@@ -61,13 +68,14 @@ namespace ChefsKiss.Tests.Routing
 		[Fact]
 		public void CreatePostRouteShouldBeMapped()
 		{
+			// Validation attribute fails. Need to find a way
 			MyRouting
 			   .Configuration()
 				.ShouldMap(r => r
 					.WithPath("/Recipes/Recipes/Create")
 					.WithMethod(HttpMethod.Post)
 					.WithUser())
-			   .To<RecipesController>(c => c.Create(With.Any<RecipeFormModel>()));
+			   .To<RecipesController>(c => c.Create(recipeForm));
 		}
 
 

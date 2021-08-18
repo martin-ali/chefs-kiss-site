@@ -21,7 +21,7 @@ namespace ChefsKiss.Tests.Controllers
 			MyMvc
 			.Pipeline()
 			.ShouldMap("/Recipes/Reviews/Create")
-			.To<ReviewsController>(x => x.Details(0))
+			.To<ReviewsController>(x => x.Create(With.Any<ReviewFormModel>()))
 			.Which(controller => controller.WithData(TenItems<Review>()))
 			.ShouldReturn()
 			.View(view => view

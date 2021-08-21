@@ -32,15 +32,18 @@
                                 </form>
                             </li>
                             <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-controller="Recipes" asp-action="All">All</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="All">All</a>
                             </li>
                             <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-controller="Recipes" asp-action="Random">Random</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Random">Random</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Explore">Explore</a>
                             </li>
                             @if (User.IsAuthor())
                         {
                                 <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-dark" asp-controller="Recipes" asp-action="Create">Create</a>
+                                    <a class="animate-zoom-md nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Create">Create</a>
                                 </li>
                         }
                         @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)

@@ -6,9 +6,15 @@
             @Model.Title
         </h2>
         <div class="text-center col-12">
-            <span class="span"> Written by:
-                <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
-                    <span> @Model.AuthorFullName</span>
+            <span class="span">
+                Written by:
+                <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="text-decoration-none">
+                    <span class="animate-underline"> @Model.AuthorFullName</span>
+                </a>
+                |
+                In category:
+                <a asp-controller="Categories" asp-action="Details" asp-route-id="@Model.CategoryId" class="text-decoration-none">
+                    <span class="animate-underline"> @Model.Category</span>
                 </a>
             </span>
             @if (Model.UserIsAuthor || User.IsAdmin())

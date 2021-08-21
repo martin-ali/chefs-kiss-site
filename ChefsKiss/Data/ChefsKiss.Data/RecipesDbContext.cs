@@ -24,6 +24,7 @@
         public DbSet<Ingredient> Ingredients { get; init; }
         public DbSet<Review> Reviews { get; init; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; init; }
+        public DbSet<Category> Categories { get; init; }
         public DbSet<Recipe> Recipes { get; init; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

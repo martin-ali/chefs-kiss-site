@@ -28,12 +28,14 @@ namespace ChefsKiss.Data.Seeding
 
             var random = new Random();
             var authors = dbContext.Authors.Where(x => x.IsApproved).ToList();
+            var categories = dbContext.Categories.ToList();
             var images = await GetImages(random, serviceProvider);
 
             for (int i = 0; i < RecipesCount; i++)
             {
                 var recipeIngredients = CreateRandomRecipeIngredients(dbContext, random);
                 var author = authors[random.Next(0, authors.Count)];
+                var category = categories[random.Next(0, categories.Count)];
                 var image = images[i % images.Count];
 
                 var recipe = new Recipe
@@ -42,6 +44,7 @@ namespace ChefsKiss.Data.Seeding
                     Title = $"Recipe with title {i}",
                     Content = $"{i} - {RecipeContent}",
                     Image = image,
+                    Category = category,
                     RecipeIngredients = recipeIngredients,
                 };
 

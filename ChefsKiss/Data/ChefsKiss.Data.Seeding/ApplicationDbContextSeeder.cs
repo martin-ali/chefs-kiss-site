@@ -32,6 +32,7 @@ namespace ChefsKiss.Data.Seeding
                 new AuthorsSeeder(),
                 new MeasurementUnitsSeeder(),
                 new IngredientsSeeder(),
+                new CategoriesSeeder(),
                 new RecipesSeeder(),
                 new ReviewsSeeder(),
             };

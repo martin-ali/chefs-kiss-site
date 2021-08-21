@@ -9,11 +9,6 @@
 
     public class Recipe : BaseModel<int>
     {
-        // [Required]
-        public int AuthorId { get; init; }
-
-        public Author Author { get; init; }
-
         [Required]
         [MinLength(Recipes.TitleMinLength)]
         [MaxLength(Recipes.TitleMaxLength)]
@@ -23,6 +18,16 @@
         [MinLength(Recipes.ContentMinLength)]
         [MaxLength(Recipes.ContentMaxLength)]
         public string Content { get; set; }
+
+        // [Required]
+        public int AuthorId { get; init; }
+
+        public Author Author { get; init; }
+
+        // [Required]
+        public int CategoryId { get; init; }
+
+        public Category Category { get; init; }
 
         // [Required]
         public int ImageId { get; set; }

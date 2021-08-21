@@ -86,10 +86,18 @@ namespace ChefsKiss.Web.Services
             return recipes;
         }
 
-        public IEnumerable<T> PagedByIngredientId<T>(int page, int itemsPerPage, int id)
+        public IEnumerable<T> PagedByIngredientId<T>(int page, int itemsPerPage, int ingredientId)
         {
             var itemsToSkip = page * itemsPerPage;
-            var recipes = this.PagedWhere<T>(page, itemsPerPage, r => r.RecipeIngredients.Any(i => i.IngredientId == id));
+            var recipes = this.PagedWhere<T>(page, itemsPerPage, r => r.RecipeIngredients.Any(i => i.IngredientId == ingredientId));
+
+            return recipes;
+        }
+
+        public IEnumerable<T> PagedByCategoryId<T>(int page, int itemsPerPage, int categoryId)
+        {
+            var itemsToSkip = page * itemsPerPage;
+            var recipes = this.PagedWhere<T>(page, itemsPerPage, r => r.CategoryId == categoryId);
 
             return recipes;
         }

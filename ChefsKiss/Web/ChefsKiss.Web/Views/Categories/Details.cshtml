@@ -1,0 +1,17 @@
+﻿@model CategoryDetailsViewModel
+
+<h2 class="text-center display-4">Recipes with category: @Model.Name</h2>
+<hr>
+<div id="recipes-list" class="mx-auto">
+    @foreach (var recipe in Model.Recipes)
+    {
+        <partial name="_RecipeListPartialRow" model="recipe" />
+    }
+</div>
+
+@section Scripts{
+<partial name="_InfiniteScrollScriptsPartial" />
+<script>
+    ConfigureInfiniteScroll('/Recipes/PagedBycategoryId', 1, { recipeId: @Model.Id });
+</script>
+}

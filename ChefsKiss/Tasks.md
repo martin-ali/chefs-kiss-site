@@ -28,16 +28,16 @@
 - [ ] Rating with showcase
 - [x] Only one review per person
 - [x] Image size limit
-- [ ] Decouple the ingredient form add JS script
+- [x] Decouple the ingredient form add JS script
 - [x] Author shouldn't be able to review their own recipe
 - [x] Remove all web models from the services
-- [ ] Caching
+- [x] Caching
 - [x] Admins approve writer applications
 - [x] Actions with no particular view to redirect to should default to index
 - [x] Fix redirects to wrong register/login
 - [ ] Fix password complexity
 - [x] Broken writer applications panel on mobile
-- [ ] Editing image final take
+- [x] Editing image final take
 - [x] Only one writer application per user
 - [x] Fix ingredient details ajax is loading wrong recipes
 - [x] Roles, security, and results checks

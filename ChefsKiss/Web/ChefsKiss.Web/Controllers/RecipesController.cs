@@ -56,7 +56,7 @@ namespace ChefsKiss.Web.Controllers
         {
             var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(id, ItemsPerPage, categoryId);
 
-            return this.PartialView("_PagePartialRow", recipes);
+            return this.PartialView("_PagePartialCard", recipes);
         }
 
         public IActionResult PagedBySearchTerm(int id, string searchTerm)

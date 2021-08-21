@@ -32,7 +32,9 @@ namespace ChefsKiss.Web.Controllers
         // Caching
         public IActionResult Explore()
         {
-            return this.View();
+            var model = this.categories.All<CategoryCarouselViewModel>();
+
+            return this.View(model);
         }
     }
 }

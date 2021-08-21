@@ -2,16 +2,16 @@
 
 <h2 class="text-center display-4">Recipes with category: @Model.Name</h2>
 <hr>
-<div id="recipes-list" class="mx-auto">
+<div id="recipes-list" class="row mx-auto">
     @foreach (var recipe in Model.Recipes)
     {
-        <partial name="_RecipeListPartialRow" model="recipe" />
+        <partial name="_RecipeListPartialCard" model="recipe" />
     }
 </div>
 
 @section Scripts{
 <partial name="_InfiniteScrollScriptsPartial" />
 <script>
-    ConfigureInfiniteScroll('/Recipes/PagedBycategoryId', 1, { recipeId: @Model.Id });
+    ConfigureInfiniteScroll('/Recipes/PagedByCategoryId', 1, { categoryId: @Model.Id });
 </script>
 }

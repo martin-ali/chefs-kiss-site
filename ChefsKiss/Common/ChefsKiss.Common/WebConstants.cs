@@ -22,6 +22,8 @@
 
         public const int ItemsPerPage = 8;
 
+        public const int RecipesPerCategory = 5;
+
         public const int RecipeSummaryLength = 70;
 
         public const int ReviewSummaryLength = 100;

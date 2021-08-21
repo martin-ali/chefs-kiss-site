@@ -14,7 +14,7 @@ namespace ChefsKiss.Data.Seeding
             "Desserts",
             "Pasta",
             "Pizza",
-            "Main course",
+            "Main courses",
             "Soups",
             "Salads",
             "Appetizers",

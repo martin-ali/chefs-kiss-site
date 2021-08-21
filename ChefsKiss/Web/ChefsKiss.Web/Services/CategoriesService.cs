@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web.Services
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using ChefsKiss.Data;
@@ -23,6 +24,16 @@ namespace ChefsKiss.Web.Services
                 .First();
 
             return category;
+        }
+
+        public IEnumerable<T> All<T>()
+        {
+            var categories = this.data.Categories
+                .OrderBy(x => x.Name)
+                .MapTo<T>()
+                .ToList();
+
+            return categories;
         }
     }
 }

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CategoryCarouselViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var carouselIndex = 0;
+}
+
+<h1 class="display-3 text-center">Explore our categories!</h1>
+<hr>
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        var activeCarouselItem = "active";
+        var activeCarouselIndicator = "active";
+        var carouselName = $"carousel-{carouselIndex}";
+        carouselIndex++;
+
+        <div class="col-md-4 col-sm-12 p-2">
+            <div id="@carouselName" class="carousel slide border-dark border animate-outline" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @for (int current = 0; current < Model.Count(); current++)
+                    {
+                        <li data-target="#@carouselName" data-slide-to="@current" class="@activeCarouselIndicator"></li>
+                        activeCarouselIndicator = string.Empty;
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @foreach (var recipe in category.Recipes)
+                    {
+                        <div class="carousel-item @activeCarouselItem">
+                            <a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">
+                                <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
+                                <div class="carousel-caption">
+                                    <h5>@category.Name</h5>
+                                    <p class="d-md-block d-none">@recipe.Title</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        activeCarouselItem = string.Empty;
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#@carouselName" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#@carouselName" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    }
+</div>

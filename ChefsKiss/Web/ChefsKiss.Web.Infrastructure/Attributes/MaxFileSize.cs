@@ -21,6 +21,11 @@ namespace ChefsKiss.Web.Infrastructure.Attributes
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
+
             var file = (IFormFile)value;
 
             if (file.Length > this.maxAllowedBytes)

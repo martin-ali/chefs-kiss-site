@@ -16,6 +16,11 @@ namespace ChefsKiss.Web.Infrastructure.Attributes
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
+
             var file = (IFormFile)value;
             var contentType = file.ContentType.ToLower();
             var contentData = contentType.Split('/');

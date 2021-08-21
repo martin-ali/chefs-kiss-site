@@ -162,8 +162,6 @@ namespace ChefsKiss.Web.Services
             var recipe = this.data.Recipes.Find(id);
 
             // Re-generate members
-            var imageEntity = await this.imagesService.CreateImageAsync(image);
-
             var oldRecipeIngredients = this.data.RecipeIngredients
                 .Where(x => x.RecipeId == recipe.Id);
             this.recipeIngredientsService.DeleteAll(oldRecipeIngredients);
@@ -175,11 +173,16 @@ namespace ChefsKiss.Web.Services
             // Re-fill all necessary members
             recipe.Title = title;
             recipe.Content = content;
-            recipe.Image = imageEntity;
             recipe.RecipeIngredients = recipeIngredients;
 
-            // Delete old image because it is no longer used
-            this.imagesService.Delete(recipe.ImageId);
+            if (image != null)
+            {
+                var imageEntity = await this.imagesService.CreateImageAsync(image);
+                recipe.Image = imageEntity;
+
+                // Delete old image because it is no longer used
+                this.imagesService.Delete(recipe.ImageId);
+            }
 
             this.data.SaveChanges();
         }

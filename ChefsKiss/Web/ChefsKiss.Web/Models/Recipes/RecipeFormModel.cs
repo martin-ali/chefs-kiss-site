@@ -15,7 +15,7 @@ namespace ChefsKiss.Web.Models.Recipes
     using static ChefsKiss.Common.DataConstants;
     using static ChefsKiss.Common.ErrorMessages;
 
-    public class RecipeFormModel : IMapFrom<Recipe>, IHaveCustomMappings
+    public abstract class RecipeFormModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
         public string AuthorId { get; init; }
 
@@ -27,20 +27,20 @@ namespace ChefsKiss.Web.Models.Recipes
         [StringLength(Recipes.ContentMaxLength, MinimumLength = Recipes.ContentMinLength, ErrorMessage = LengthBetween)]
         public string Content { get; init; }
 
-        [Required]
         [ImagesOnly]
         [MaxFileSize(Images.MaxSizeBytes)]
-        public IFormFile Image { get; init; }
+        public virtual IFormFile Image { get; init; }
 
         [Required]
         [NotEmptyCollection(ErrorMessage = NoIngredients)]
         public IEnumerable<IngredientFormModel> Ingredients { get; init; } = new List<IngredientFormModel>();
 
-        public void CreateMappings(IProfileExpression configuration)
+        public virtual void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, RecipeFormModel>()
             .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients))
-            .ForMember(vm => vm.Image, cfg => cfg.Ignore());
+            .ForMember(vm => vm.Image, cfg => cfg.Ignore())
+            .IncludeAllDerived();
         }
     }
 }

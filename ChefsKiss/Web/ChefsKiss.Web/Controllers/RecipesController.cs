@@ -73,14 +73,14 @@ namespace ChefsKiss.Web.Controllers
                 return this.Unauthorized(MustBeAuthor);
             }
 
-            var model = new RecipeFormModel();
+            var model = new RecipeCreateFormModel();
 
             return this.View(model);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(RecipeFormModel input)
+        public async Task<IActionResult> Create(RecipeCreateFormModel input)
         {
             var userId = this.userManager.GetUserId(this.User);
 
@@ -149,7 +149,7 @@ namespace ChefsKiss.Web.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
-            var recipe = this.recipes.ById<RecipeFormModel>(id);
+            var recipe = this.recipes.ById<RecipeEditFormModel>(id);
 
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
             if (isAuthorized == false)
@@ -162,7 +162,7 @@ namespace ChefsKiss.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, RecipeFormModel input)
+        public async Task<IActionResult> Edit(int id, RecipeEditFormModel input)
         {
             if (this.ModelState.IsValid == false)
             {

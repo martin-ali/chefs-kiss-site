@@ -16,7 +16,7 @@
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container">
-                    <a class="navbar-brand animate-zoom-md" asp-area="Home" asp-controller="Home" asp-action="Index">ChefsKiss</a>
+                    <a class="navbar-brand animate-zoom-md" asp-controller="Home" asp-action="Index">ChefsKiss</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <form method="GET" enctype="application/x-www-form-urlencoded" asp-area="Recipes" asp-controller="Recipes" asp-action="Search" class="input-group mr-2">
+                                <form method="GET" enctype="application/x-www-form-urlencoded" asp-controller="Recipes" asp-action="Search" class="input-group mr-2">
                                     <input class="nav-link form-control animate-outline" name="searchTerm" type="text" placeholder="Search recipes">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary fa fa-search input-group-text" type="submit"></button>
@@ -32,29 +32,29 @@
                                 </form>
                             </li>
                             <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="All">All</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-controller="Recipes" asp-action="All">All</a>
                             </li>
                             <li class="nav-item">
-                                <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Random">Random</a>
+                                <a class="animate-zoom-md nav-link text-dark" asp-controller="Recipes" asp-action="Random">Random</a>
                             </li>
                             @if (User.IsAuthor())
-                            {
+                        {
                                 <li class="nav-item">
-                                    <a class="animate-zoom-md nav-link text-dark" asp-area="Recipes" asp-controller="Recipes" asp-action="Create">Create</a>
+                                    <a class="animate-zoom-md nav-link text-dark" asp-controller="Recipes" asp-action="Create">Create</a>
                                 </li>
-                            }
-                            @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
-                            {
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsAuthor() == false)
+                        {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-dark" asp-area="Identity" asp-controller="Authors" asp-action="Apply">Become an author</a>
                                 </li>
-                            }
-                            @if (User.IsInRole("Administrator"))
-                            {
+                        }
+                        @if (User.IsInRole("Administrator"))
+                        {
                                 <li class="nav-item">
                                     <a class="animate-zoom-md nav-link text-danger" asp-area="Administration" asp-controller="Authors" asp-action="Applications">Author applications</a>
                                 </li>
-                            }
+                        }
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>
@@ -69,7 +69,7 @@
 
         <footer class="border-top footer text-muted">
             <div class="container">
-                &copy; 2021 - ChefsKiss.Web - <a asp-area="Home" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                &copy; 2021 - ChefsKiss.Web - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>

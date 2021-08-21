@@ -1,21 +1,19 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
-
-@model RecipeListViewModel
+﻿@model RecipeListViewModel
 
 <div class="col-12 mb-3">
     <article class="animate-zoom-sm border animate-outline p-0 row">
-        <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="col-md-6 col-sm-12">
+        <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="col-md-6 col-sm-12">
             <div class="embed-responsive embed-responsive-21by9">
                 <img class="card-img-top embed-responsive-item" src="@Model.ImageSrc" alt="Recipe image">
             </div>
         </a>
         <div class="col-md-6 col-sm-12">
-            <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
+            <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">
                 <h4 class="card-title text-body">@Model.Title</h4>
             </a>
             <partial name="_RatingBarPartial" model="@Model.Rating" />
             <p class="card-text text-body text-danger">@Model.Summary...
-                <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="animate-underline">Read More</a>
+                <a asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Id" class="animate-underline">Read More</a>
             </p>
             <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline card-subtitle">By @Model.AuthorFullName</a>
         </div>

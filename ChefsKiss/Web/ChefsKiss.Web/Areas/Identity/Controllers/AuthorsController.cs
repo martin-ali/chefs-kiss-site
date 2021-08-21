@@ -1,8 +1,8 @@
 namespace ChefsKiss.Web.Areas.Identity.Controllers
 {
-    using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Authors;
     using ChefsKiss.Web.Areas.Identity.Services;
+    using ChefsKiss.Web.Controllers;
     using ChefsKiss.Web.Infrastructure.Extensions;
 
     using Microsoft.AspNetCore.Authorization;

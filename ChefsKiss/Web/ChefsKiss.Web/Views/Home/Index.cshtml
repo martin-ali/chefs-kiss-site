@@ -1,6 +1,4 @@
-﻿@using ChefsKiss.Web.Areas.Recipes.Models.Recipes
-
-@model IEnumerable<RecipeListViewModel>
+﻿@model IEnumerable<RecipeListViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -24,7 +22,7 @@
         @foreach (var recipe in Model)
         {
             <div class="carousel-item @activeCarouselItem">
-                <a asp-area="Recipes" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">
+                <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">
                     <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
                     <div class="carousel-caption">
                         <h5>@recipe.Title</h5>

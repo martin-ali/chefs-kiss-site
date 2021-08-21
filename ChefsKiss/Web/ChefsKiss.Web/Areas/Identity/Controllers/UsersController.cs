@@ -3,12 +3,13 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Web.Areas.Home.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Users;
     using ChefsKiss.Web.Areas.Identity.Services;
-    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
-    using ChefsKiss.Web.Areas.Recipes.Services;
+    using ChefsKiss.Web.Controllers;
     using ChefsKiss.Web.Infrastructure.Extensions;
+    using ChefsKiss.Web.Models.Recipes;
+    using ChefsKiss.Web.Services;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 

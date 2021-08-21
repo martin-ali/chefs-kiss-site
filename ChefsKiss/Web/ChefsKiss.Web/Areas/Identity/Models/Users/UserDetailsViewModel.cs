@@ -2,12 +2,13 @@ namespace ChefsKiss.Web.Areas.Identity.Models.Users
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using AutoMapper;
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
-    using ChefsKiss.Web.Areas.Recipes.Models.Recipes;
-    using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
+    using ChefsKiss.Web.Models.Recipes;
+    using ChefsKiss.Web.Models.Reviews;
 
     public class UserDetailsViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
     {

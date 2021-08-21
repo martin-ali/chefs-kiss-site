@@ -1,0 +1,30 @@
+﻿@model ReviewDetailsViewModel
+
+<article class="card">
+    <div class="card-header">
+        <partial name="_RatingBarPartial" model="@Model.Rating" />
+        @if (User.IsAdmin())
+        {
+            <a class="btn btn-danger fa fa-trash delete-review pull-right animate-zoom-sm" asp-controller="Reviews" asp-action="Delete" asp-route-id="@Model.Id" asp-route-recipeId="@Model.RecipeId"></a>
+        }
+    </div>
+    <div class="card-body">
+        <p>@Model.Content </p>
+        <hr>
+        <span>
+            <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="animate-underline">
+                @Model.AuthorUsername
+            </a>
+            <span class="text-secondary">posted on: @Model.CreatedOn.ToString("dd/MM/yyyy")</span>
+        </span>
+    </div>
+</article>
+
+<a class="btn btn-primary my-1 animate-zoom-sm" asp-controller="recipes" asp-action="details" asp-route-id="@Model.RecipeId">Back to recipe</a>
+
+@section scripts{
+<partial name="_ConfirmationDialogScriptsPartial" />
+<script>
+    setupConfirmationDialog('.card-header', 'delete-review');
+</script>
+}

@@ -31,9 +31,8 @@ namespace ChefsKiss.Web.Areas.Recipes.Services
                     ingredient = new Ingredient { Name = ingredientName };
 
                     this.data.Ingredients.Add(ingredient);
+                    ingredients.Add(ingredient);
                 }
-
-                ingredients.Add(ingredient);
             }
 
             return ingredients;

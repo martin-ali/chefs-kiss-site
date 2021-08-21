@@ -5,7 +5,7 @@
         let index = $('#ingredients-count').val();
 
         function addNewIngredientForm() {
-            const url = `/Recipes/Ingredients/IngredientAddForm/${index++}`;
+            const url = `/Ingredients/IngredientAddForm/${index++}`;
 
             $.get(url, function (data) {
                 $(container).append(data);

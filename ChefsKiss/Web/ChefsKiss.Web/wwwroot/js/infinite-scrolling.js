@@ -1,4 +1,4 @@
-﻿function ConfigureInfiniteScroll(action, startingPage, parameters) {
+﻿function ConfigureInfiniteScroll(url, startingPage, parameters) {
     const bottomLenience = 200;
     const debounceTimeout = 100;
     const processChange = debounce(() => AlertMe());
@@ -8,7 +8,7 @@
     function AlertMe() {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - bottomLenience) {
             console.log(page);
-            const url = `/Recipes/Recipes/${action}/${page}`;
+            const url = `/${url}/${page}`;
 
             $.get(url, parameters)
                 .done(function (data) {

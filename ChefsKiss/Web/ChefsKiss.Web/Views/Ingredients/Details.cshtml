@@ -12,6 +12,6 @@
 @section Scripts{
 <partial name="_InfiniteScrollScriptsPartial" />
 <script>
-    ConfigureInfiniteScroll('PagedByIngredientId', 1, { recipeId: @Model.Id });
+    ConfigureInfiniteScroll('/Recipes/PagedByIngredientId', 1, { recipeId: @Model.Id });
 </script>
 }

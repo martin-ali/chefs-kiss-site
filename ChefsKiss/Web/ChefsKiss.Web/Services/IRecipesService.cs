@@ -25,7 +25,7 @@ namespace ChefsKiss.Web.Services
 
         IEnumerable<T> PagedByCategoryId<T>(int page, int itemsPerPage, int categoryId);
 
-        IEnumerable<T> PagedBySearchQuery<T>(int page, int itemsPerPage, string searchTerm, int categoryId, SortBy sortBy);
+        IEnumerable<T> PagedBySearchQuery<T>(int page, int itemsPerPage, string searchTerm, int categoryId, RecipesSortBy sortBy);
 
         IEnumerable<T> PagedWhere<T>(int page, int itemsPerPage, Expression<Func<Recipe, bool>> predicate);
 

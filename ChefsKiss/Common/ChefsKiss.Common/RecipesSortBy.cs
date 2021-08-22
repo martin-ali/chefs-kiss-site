@@ -1,9 +1,9 @@
 namespace ChefsKiss.Common
 {
-    public enum SortBy
+    public enum RecipesSortBy
     {
         Newest,
-        Popular,
+        Popularity,
         Rating,
     }
 }

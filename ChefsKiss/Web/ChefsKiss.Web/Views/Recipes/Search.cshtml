@@ -24,7 +24,7 @@
 
         <div class="input-group col-md-4 col-sm-12">
             <label class="form-control input-group-prepend input-group-text" for="SortBy">Sort by</label>
-            <select asp-for="SortBy" class="form-control animate-outline" id="SortBy" asp-items="Html.GetEnumSelectList<SortBy>()">
+            <select asp-for="SortBy" class="form-control animate-outline" id="SortBy" asp-items="Html.GetEnumSelectList<RecipesSortBy>()">
             </select>
         </div>
     </div>

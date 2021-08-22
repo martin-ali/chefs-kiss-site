@@ -15,7 +15,7 @@ namespace ChefsKiss.Web.Models.Recipes
 
         public int CategoryId { get; init; }
 
-        public SortBy SortBy { get; init; }
+        public RecipesSortBy SortBy { get; init; }
 
         public bool HasBeenQueried { get; set; }
 

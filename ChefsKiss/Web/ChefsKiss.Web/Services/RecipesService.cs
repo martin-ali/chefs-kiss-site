@@ -104,7 +104,7 @@ namespace ChefsKiss.Web.Services
             return recipes;
         }
 
-        public IEnumerable<T> PagedBySearchQuery<T>(int page, int itemsPerPage, string searchTerm, int categoryId, SortBy sortBy)
+        public IEnumerable<T> PagedBySearchQuery<T>(int page, int itemsPerPage, string searchTerm, int categoryId, RecipesSortBy sortBy)
         {
             var termLowerCase = searchTerm.ToLower();
             var itemsToSkip = page * itemsPerPage;
@@ -118,9 +118,9 @@ namespace ChefsKiss.Web.Services
 
             recipesQuery = sortBy switch
             {
-                SortBy.Rating => recipesQuery.OrderByDescending(r => r.Reviews.Average(x => x.Rating)),
-                SortBy.Popular => recipesQuery.OrderByDescending(r => r.Reviews.Count()),
-                SortBy.Newest or _ => recipesQuery.OrderByDescending(r => r.CreatedOn),
+                RecipesSortBy.Rating => recipesQuery.OrderByDescending(r => r.Reviews.Average(x => x.Rating)),
+                RecipesSortBy.Popularity => recipesQuery.OrderByDescending(r => r.Reviews.Count()),
+                RecipesSortBy.Newest or _ => recipesQuery.OrderByDescending(r => r.CreatedOn),
             };
 
             var recipes = recipesQuery

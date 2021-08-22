@@ -64,7 +64,7 @@ namespace ChefsKiss.Web.Controllers
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult PagedBySearchQuery(int id, string searchTerm, int categoryId, SortBy sortBy)
+        public IActionResult PagedBySearchQuery(int id, string searchTerm, int categoryId, RecipesSortBy sortBy)
         {
             if (searchTerm == null)
             {

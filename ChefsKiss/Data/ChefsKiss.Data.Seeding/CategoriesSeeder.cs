@@ -17,6 +17,7 @@ namespace ChefsKiss.Data.Seeding
             "Soups",
             "Salads",
             "Appetizers",
+            "Exotic",
             "Others",
         };
 

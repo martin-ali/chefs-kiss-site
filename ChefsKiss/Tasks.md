@@ -25,7 +25,6 @@
 - [x] Roles - User, Administrator, Author
 - [x] AJAX
 - [x] Infinite scrolling
-- [ ] Rating with showcase
 - [x] Only one review per person
 - [x] Image size limit
 - [x] Decouple the ingredient form add JS script
@@ -35,7 +34,6 @@
 - [x] Admins approve writer applications
 - [x] Actions with no particular view to redirect to should default to index
 - [x] Fix redirects to wrong register/login
-- [ ] Fix password complexity
 - [x] Broken writer applications panel on mobile
 - [x] Editing image final take
 - [x] Only one writer application per user
@@ -48,12 +46,15 @@
 - [ ] Functional error page
 - [x] Review delete
 - [x] Viewimports
-- [x] *Home*
-- [x] *Search*
-- [ ] *Categories*
-- [ ] *Explore*
-- [x] *Configure image*
-- [x] *Readme*
+- [x] Home
+- [x] Search
+- [x] Categories
+- [x] Category search (or some other sophisticated search)
+- [x] Explore
+- [ ] Top recipes/weekly, etc...
+- [x] Area bug in recipes links (like random)
+- [x] Configure image
+- [x] Readme
 
 ## Optional
 

@@ -132,25 +132,20 @@ namespace ChefsKiss.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(int id, string searchTerm, int categoryId, SortBy sortBy)
+        public IActionResult Search(int id, RecipesSearchModel query)
         {
-            if (searchTerm == null)
+            if (this.ModelState.IsValid == false)
             {
-                return this.BadRequest(InvalidSearchTerm);
+                return this.View(query);
             }
 
-            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(0, ItemsPerPage, searchTerm, categoryId, sortBy);
+            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(0, ItemsPerPage, query.SearchTerm, query.CategoryId, query.SortBy);
             var categories = this.categories.All<CategorySelectViewModel>();
-            var model = new RecipesSearchModel
-            {
-                SearchTerm = searchTerm,
-                Recipes = recipes,
-                Categories = categories,
-                CategoryId = categoryId,
-                SortBy = sortBy,
-            };
 
-            return this.View(model);
+            query.Recipes = recipes;
+            query.Categories = categories;
+
+            return this.View(query);
         }
 
         public IActionResult Details(int id)

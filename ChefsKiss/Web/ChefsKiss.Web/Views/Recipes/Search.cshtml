@@ -30,6 +30,8 @@
     </div>
 </form>
 
+<div asp-validation-summary="All" class="text-danger text-center"></div>
+
 @if (string.IsNullOrWhiteSpace(Model.SearchTerm) == false)
 {
     <br>
@@ -39,6 +41,11 @@
 <hr>
 
 <div id="recipes-list" class="row mx-auto">
+    @if (Model.Recipes.Count() == 0)
+    {
+        <h2 class="mx-auto">No results found</h2>
+    }
+
     @foreach (var recipe in Model.Recipes)
     {
         <partial name="_RecipeListPartialCard" model="recipe" />

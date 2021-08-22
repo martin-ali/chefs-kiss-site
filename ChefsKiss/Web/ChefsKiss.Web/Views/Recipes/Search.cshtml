@@ -41,7 +41,7 @@
 <hr>
 
 <div id="recipes-list" class="row mx-auto">
-    @if (Model.Recipes.Count() == 0)
+    @if (Model.Recipes.Count() == 0 && Model.HasBeenQueried)
     {
         <h2 class="mx-auto">No results found</h2>
     }

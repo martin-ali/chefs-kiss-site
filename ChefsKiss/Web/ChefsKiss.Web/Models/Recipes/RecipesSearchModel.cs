@@ -17,6 +17,8 @@ namespace ChefsKiss.Web.Models.Recipes
 
         public SortBy SortBy { get; init; }
 
+        public bool HasBeenQueried { get; set; }
+
         public IEnumerable<CategorySelectViewModel> Categories { get; set; } = new List<CategorySelectViewModel>();
 
         public IEnumerable<RecipeListViewModel> Recipes { get; set; } = new List<RecipeListViewModel>();

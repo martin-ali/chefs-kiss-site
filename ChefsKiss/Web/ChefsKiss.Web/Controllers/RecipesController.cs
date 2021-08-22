@@ -144,6 +144,7 @@ namespace ChefsKiss.Web.Controllers
 
             query.Recipes = recipes;
             query.Categories = categories;
+            query.HasBeenQueried = true;
 
             return this.View(query);
         }

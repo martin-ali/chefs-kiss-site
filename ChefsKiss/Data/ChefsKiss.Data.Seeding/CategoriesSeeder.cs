@@ -10,7 +10,6 @@ namespace ChefsKiss.Data.Seeding
             "Vegan",
             "Vegetarian",
             "Fish",
-            "No meat",
             "Desserts",
             "Pasta",
             "Pizza",

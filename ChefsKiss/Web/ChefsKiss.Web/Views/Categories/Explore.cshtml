@@ -7,7 +7,6 @@
 
 <h1 class="display-4 text-center">Categories</h1>
 <hr>
-
 <div class="row">
     @foreach (var category in Model)
     {
@@ -33,7 +32,8 @@
                                 <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
                                 <div class="carousel-caption">
                                     <h1 class="text-outline">@category.Name</h1>
-                                    <h3 class="text-outline">@recipe.Title</h3>
+                                    <h3 class="text-outline">@category.TotalRecipesCount recipes</h3>
+                                    <p class="text-outline">@recipe.Title</p>
                                 </div>
                             </a>
                         </div>

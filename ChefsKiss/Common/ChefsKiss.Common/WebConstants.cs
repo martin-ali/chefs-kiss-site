@@ -31,6 +31,8 @@
         public class Cache
         {
             public const string PopularRecipesCacheKey = nameof(PopularRecipesCacheKey);
+
+            public const string CategoriesExploreCacheKey = nameof(CategoriesExploreCacheKey);
         }
     }
 }

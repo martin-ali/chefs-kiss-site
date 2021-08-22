@@ -11,10 +11,13 @@ namespace ChefsKiss.Web.Models.Categories
 
     public class CategoryCarouselViewModel : CategoryDetailsViewModel, IMapFrom<Category>, IHaveCustomMappings
     {
+        public int TotalRecipesCount { get; init; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Category, CategoryCarouselViewModel>()
-            .ForMember(vm => vm.Recipes, cfg => cfg.MapFrom(m => m.Recipes.Take(RecipesPerCategory)));
+            .ForMember(vm => vm.Recipes, cfg => cfg.MapFrom(m => m.Recipes.Take(RecipesPerCategory)))
+            .ForMember(vm => vm.TotalRecipesCount, cfg => cfg.MapFrom(m => m.Recipes.Count()));
         }
     }
 }

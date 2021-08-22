@@ -43,39 +43,6 @@ namespace ChefsKiss.Web.Controllers
             this.categories = categories;
         }
 
-        public IActionResult Paged(int id) // FIXME: Parameter name id makes no sense in this context
-        {
-            var recipes = this.recipes.PagedAll<RecipeListViewModel>(id, ItemsPerPage);
-
-            return this.PartialView("_PagePartialCard", recipes);
-        }
-
-        public IActionResult PagedByIngredientId(int id, int recipeId)
-        {
-            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, recipeId);
-
-            return this.PartialView("_PagePartialRow", recipes);
-        }
-
-        public IActionResult PagedByCategoryId(int id, int categoryId)
-        {
-            var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(id, ItemsPerPage, categoryId);
-
-            return this.PartialView("_PagePartialCard", recipes);
-        }
-
-        public IActionResult PagedBySearchQuery(int id, string searchTerm, int categoryId, RecipesSortBy sortBy)
-        {
-            if (searchTerm == null)
-            {
-                return this.BadRequest(InvalidSearchTerm);
-            }
-
-            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(id, ItemsPerPage, searchTerm, categoryId, sortBy);
-
-            return this.PartialView("_PagePartialCard", recipes);
-        }
-
         [Authorize]
         public IActionResult Create()
         {

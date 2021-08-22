@@ -46,7 +46,7 @@ namespace ChefsKiss.Web.Controllers
                 model = this.categories.All<CategoryCarouselViewModel>();
                 var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1));
 
-                this.cache.Set(PopularRecipesCacheKey, model, cacheOptions);
+                this.cache.Set(CategoriesExploreCacheKey, model, cacheOptions);
             }
 
             return this.View(model);

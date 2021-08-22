@@ -1,7 +1,43 @@
-﻿@model RecipesSearchViewModel;
+﻿@using ChefsKiss.Common
 
-<h2 class="text-center display-4">Recipes containing "@Model.SearchTerm"</h2>
+@model RecipesSearchModel;
+
+<form method="POST" enctype="application/x-www-form-urlencoded" asp-controller="Recipes" asp-action="Search">
+    <div class="row">
+        <div class="input-group col-md-4 col-sm-12">
+            <input asp-for="SearchTerm" class="form-control animate-outline" type="text" placeholder="Search recipes" value="@Model.SearchTerm">
+            <div class="input-group-append">
+                <button class="btn btn-primary fa fa-search" type="submit"></button>
+            </div>
+        </div>
+
+        <div class="input-group col-md-4 col-sm-12">
+            <label class="form-control input-group-prependv input-group-text" for="CategoryId">Category</label>
+            <select asp-for="CategoryId" class="form-control animate-outline" id="CategoryId">
+                <option value="0">Any</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group col-md-4 col-sm-12">
+            <label class="form-control input-group-prepend input-group-text" for="SortBy">Sort by</label>
+            <select asp-for="SortBy" class="form-control animate-outline" id="SortBy" asp-items="Html.GetEnumSelectList<SortBy>()">
+            </select>
+        </div>
+    </div>
+</form>
+
+@if (string.IsNullOrWhiteSpace(Model.SearchTerm) == false)
+{
+    <br>
+    <h4 class="text-center">Recipes containing "@Model.SearchTerm"</h4>
+}
+
 <hr>
+
 <div id="recipes-list" class="row mx-auto">
     @foreach (var recipe in Model.Recipes)
     {
@@ -12,6 +48,10 @@
 @section Scripts{
 <partial name="_InfiniteScrollScriptsPartial" />
 <script>
-    ConfigureInfiniteScroll('/Recipes/PagedBySearchTerm', 1, { searchTerm: '@Model.SearchTerm' });
+    ConfigureInfiniteScroll('/Recipes/PagedBySearchQuery', 1, {
+        searchTerm: '@Model.SearchTerm',
+        categoryId: '@Model.CategoryId',
+        sortBy: '@Model.SortBy',
+    });
 </script>
 }

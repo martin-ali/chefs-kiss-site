@@ -24,12 +24,7 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <form method="GET" enctype="application/x-www-form-urlencoded" asp-controller="Recipes" asp-action="Search" class="input-group mr-2">
-                                    <input class="nav-link form-control animate-outline" name="searchTerm" type="text" placeholder="Search recipes">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary fa fa-search input-group-text" type="submit"></button>
-                                    </div>
-                                </form>
+                                <a class="animate-zoom-md nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Search">Search</a>
                             </li>
                             <li class="nav-item">
                                 <a class="animate-zoom-md nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="All">All</a>

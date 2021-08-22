@@ -3,10 +3,12 @@ namespace ChefsKiss.Web.Controllers
     using System.Linq;
     using System.Threading.Tasks;
 
+    using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Infrastructure.Extensions;
+    using ChefsKiss.Web.Models.Categories;
     using ChefsKiss.Web.Models.Ingredients;
     using ChefsKiss.Web.Models.Recipes;
     using ChefsKiss.Web.Services;
@@ -25,17 +27,20 @@ namespace ChefsKiss.Web.Controllers
         private readonly IAuthorsService authors;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IMeasurementUnitsService measurementUnits;
+        private readonly ICategoriesService categories;
 
         public RecipesController(
             IRecipesService recipes,
             IAuthorsService authors,
             UserManager<ApplicationUser> userManager,
-            IMeasurementUnitsService measurementUnits)
+            IMeasurementUnitsService measurementUnits,
+            ICategoriesService categories)
         {
             this.recipes = recipes;
             this.authors = authors;
             this.userManager = userManager;
             this.measurementUnits = measurementUnits;
+            this.categories = categories;
         }
 
         public IActionResult Paged(int id) // FIXME: Parameter name id makes no sense in this context
@@ -59,14 +64,14 @@ namespace ChefsKiss.Web.Controllers
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult PagedBySearchTerm(int id, string searchTerm)
+        public IActionResult PagedBySearchQuery(int id, string searchTerm, int categoryId, SortBy sortBy)
         {
             if (searchTerm == null)
             {
                 return this.BadRequest(InvalidSearchTerm);
             }
 
-            var recipes = this.recipes.PagedBySearchTerm<RecipeListViewModel>(id, ItemsPerPage, searchTerm);
+            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(id, ItemsPerPage, searchTerm, categoryId, sortBy);
 
             return this.PartialView("_PagePartialCard", recipes);
         }
@@ -115,18 +120,34 @@ namespace ChefsKiss.Web.Controllers
             return this.View(recipes);
         }
 
-        public IActionResult Search(string searchTerm)
+        public IActionResult Search()
+        {
+            var categories = this.categories.All<CategorySelectViewModel>();
+            var model = new RecipesSearchModel
+            {
+                Categories = categories,
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Search(int id, string searchTerm, int categoryId, SortBy sortBy)
         {
             if (searchTerm == null)
             {
                 return this.BadRequest(InvalidSearchTerm);
             }
 
-            var recipes = this.recipes.PagedBySearchTerm<RecipeListViewModel>(0, ItemsPerPage, searchTerm);
-            var model = new RecipesSearchViewModel
+            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(0, ItemsPerPage, searchTerm, categoryId, sortBy);
+            var categories = this.categories.All<CategorySelectViewModel>();
+            var model = new RecipesSearchModel
             {
                 SearchTerm = searchTerm,
                 Recipes = recipes,
+                Categories = categories,
+                CategoryId = categoryId,
+                SortBy = sortBy,
             };
 
             return this.View(model);

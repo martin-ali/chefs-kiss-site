@@ -6,10 +6,12 @@ namespace ChefsKiss.Web.Services
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
+    using ChefsKiss.Common;
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Models.Ingredients;
+
     using Microsoft.AspNetCore.Http;
 
     public class RecipesService : IRecipesService
@@ -102,11 +104,30 @@ namespace ChefsKiss.Web.Services
             return recipes;
         }
 
-        public IEnumerable<T> PagedBySearchTerm<T>(int page, int itemsPerPage, string searchTerm)
+        public IEnumerable<T> PagedBySearchQuery<T>(int page, int itemsPerPage, string searchTerm, int categoryId, SortBy sortBy)
         {
-            var term = searchTerm.ToLower();
+            var termLowerCase = searchTerm.ToLower();
             var itemsToSkip = page * itemsPerPage;
-            var recipes = this.PagedWhere<T>(page, itemsPerPage, r => r.Title.ToLower().Contains(term));
+            var recipesQuery = this.data.Recipes
+                .Where(r => r.Title.ToLower().Contains(termLowerCase));
+
+            if (categoryId != 0)
+            {
+                recipesQuery = recipesQuery.Where(r => r.CategoryId == categoryId);
+            }
+
+            recipesQuery = sortBy switch
+            {
+                SortBy.Rating => recipesQuery.OrderByDescending(r => r.Reviews.Average(x => x.Rating)),
+                SortBy.Popular => recipesQuery.OrderByDescending(r => r.Reviews.Count()),
+                SortBy.Newest or _ => recipesQuery.OrderByDescending(r => r.CreatedOn),
+            };
+
+            var recipes = recipesQuery
+                .Skip(itemsToSkip)
+                .Take(itemsPerPage)
+                .MapTo<T>()
+                .ToList();
 
             return recipes;
         }

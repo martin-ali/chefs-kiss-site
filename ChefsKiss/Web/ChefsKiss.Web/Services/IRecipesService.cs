@@ -5,6 +5,7 @@ namespace ChefsKiss.Web.Services
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
+    using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Models.Ingredients;
 
@@ -24,7 +25,7 @@ namespace ChefsKiss.Web.Services
 
         IEnumerable<T> PagedByCategoryId<T>(int page, int itemsPerPage, int categoryId);
 
-        IEnumerable<T> PagedBySearchTerm<T>(int page, int itemsPerPage, string searchTerm);
+        IEnumerable<T> PagedBySearchQuery<T>(int page, int itemsPerPage, string searchTerm, int categoryId, SortBy sortBy);
 
         IEnumerable<T> PagedWhere<T>(int page, int itemsPerPage, Expression<Func<Recipe, bool>> predicate);
 

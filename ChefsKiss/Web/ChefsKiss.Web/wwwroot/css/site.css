@@ -1,6 +1,10 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+:root {
+    --text-stroke-color: black;
+}
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -83,6 +87,17 @@ body {
 /* Image zoom instead of stretching */
 .embed-responsive .card-img-top {
     object-fit: cover;
+}
+
+.text-outline {
+    text-shadow: -1px -1px 0 var(--text-stroke-color),
+        1px -1px 0 var(--text-stroke-color),
+        -1px 1px 0 var(--text-stroke-color),
+        1px 1px 0 var(--text-stroke-color);
+}
+
+.carousel-caption {
+    color: lightsalmon;
 }
 
 /* Input outlines */

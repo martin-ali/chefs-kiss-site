@@ -5,7 +5,7 @@
     var carouselIndex = 0;
 }
 
-<h1 class="display-3 text-center">Explore our categories!</h1>
+<h1 class="display-4 text-center">Categories</h1>
 <hr>
 
 <div class="row">
@@ -16,10 +16,10 @@
         var carouselName = $"carousel-{carouselIndex}";
         carouselIndex++;
 
-        <div class="col-md-4 col-sm-12 p-2">
-            <div id="@carouselName" class="carousel slide border-dark border animate-outline" data-ride="carousel">
+        <div class="col-md-4 col-sm-12 p-3">
+            <div id="@carouselName" class="carousel slide border-dark border animate-outline animate-zoom-sm" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    @for (int current = 0; current < Model.Count(); current++)
+                    @for (int current = 0; current < category.Recipes.Count(); current++)
                     {
                         <li data-target="#@carouselName" data-slide-to="@current" class="@activeCarouselIndicator"></li>
                         activeCarouselIndicator = string.Empty;
@@ -32,8 +32,8 @@
                             <a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">
                                 <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
                                 <div class="carousel-caption">
-                                    <h5>@category.Name</h5>
-                                    <p class="d-md-block d-none">@recipe.Title</p>
+                                    <h1 class="text-outline">@category.Name</h1>
+                                    <h3 class="text-outline">@recipe.Title</h3>
                                 </div>
                             </a>
                         </div>

@@ -39,7 +39,7 @@
 
 .animate-outline:hover,
 .animate-outline:focus {
-    /* Find better solution without !important */
+    /* FIXME: Find better solution without !important */
     border-color: var(--color-select) !important;
 }
 

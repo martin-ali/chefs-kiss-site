@@ -23,7 +23,7 @@
         {
             <div class="carousel-item @activeCarouselItem">
                 <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">
-                    <img style="height: 600px; width:100%;" class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
+                    <img class="d-block w-100" src="@recipe.ImageSrc" alt="First slide">
                     <div class="carousel-caption">
                         <h5 class="text-outline">@recipe.Title</h5>
                         <p class="text-outline" class="d-md-block d-none">@recipe.Summary</p>

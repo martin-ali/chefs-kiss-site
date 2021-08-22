@@ -100,6 +100,15 @@ body {
     color: white;
 }
 
+.rating-parent {
+    font-size: 1.4rem;
+}
+
+.carousel-item img {
+    height: 600px;
+    width: 100%;
+}
+
 /* Input outlines */
 textarea:focus,
 select:focus,

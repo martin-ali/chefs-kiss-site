@@ -14,10 +14,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+    <!-- <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    </PackageReference> -->
   </ItemGroup>
 
   <ItemGroup>
@@ -34,11 +34,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Areas\Recipes\Controllers\" />
-    <Folder Include="Areas\Recipes\Services\" />
-    <Folder Include="Areas\Recipes\Models\" />
-    <Folder Include="Areas\Recipes\ViewComponents\" />
-    <Folder Include="Areas\Recipes\Views\" />
     <Folder Include="Areas\Identity\Controllers\" />
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Areas\Identity\Models\" />

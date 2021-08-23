@@ -9,6 +9,7 @@ namespace ChefsKiss.Tests.Controllers
 
     using Xunit;
 
+    using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Tests.Data.Items;
 
 
@@ -48,7 +49,8 @@ namespace ChefsKiss.Tests.Controllers
                 .RestrictingForHttpMethod(HttpMethod.Post))
             .AndAlso()
             .ShouldReturn()
-            .Redirect(r => r.To<HomeController>(c => c.Index()));
+            .RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>(),
+                    new { area = "" });
         }
     }
 }

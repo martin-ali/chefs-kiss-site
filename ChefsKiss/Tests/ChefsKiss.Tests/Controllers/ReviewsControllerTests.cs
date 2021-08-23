@@ -36,7 +36,7 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<ReviewsController>
             .Instance()
-            .WithData(ModelMocks<Review>(10))
+            .WithData(MockModels<Review>(10))
             .Calling(c => c.Details(1))
             .ShouldReturn()
             .View(v => v.WithModelOfType<ReviewDetailsViewModel>());
@@ -49,7 +49,7 @@ namespace ChefsKiss.Tests.Controllers
             MyController<ReviewsController>
             .Instance()
             .WithUser(u => u.InRoles(AdministratorRoleName))
-            .WithData(ModelMocks<Review>(10))
+            .WithData(MockModels<Review>(10))
             .Calling(c => c.Delete(reviewId, 1))
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests(AdministratorRoleName))

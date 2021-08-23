@@ -21,7 +21,7 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<RecipesPagingController>
             .Instance()
-            .WithData(ModelMocks<Recipe>(10))
+            .WithData(MockModels<Recipe>(10))
             .Calling(c => c.All(0))
             .ShouldReturn()
             .PartialView(v => v
@@ -33,7 +33,7 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<RecipesPagingController>
             .Instance()
-            .WithData(ModelMocks<Recipe>(10))
+            .WithData(MockModels<Recipe>(10))
             .Calling(c => c.ByIngredientId(1, 1))
             .ShouldReturn()
             .PartialView(v => v
@@ -46,7 +46,7 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<RecipesPagingController>
             .Instance()
-            .WithData(ModelMocks<Recipe>(10)
+            .WithData(MockModels<Recipe>(10)
                 .Select(r =>
                 {
                     r.CategoryId = categoryId;
@@ -71,7 +71,7 @@ namespace ChefsKiss.Tests.Controllers
 
             MyController<RecipesPagingController>
             .Instance()
-            .WithData(ModelMocks<Recipe>(10)
+            .WithData(MockModels<Recipe>(10)
                 .Select(r =>
                 {
                     r.CategoryId = categoryId;

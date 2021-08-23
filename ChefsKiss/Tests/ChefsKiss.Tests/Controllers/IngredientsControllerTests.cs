@@ -33,7 +33,7 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<IngredientsController>
             .Instance()
-            .WithData(ModelMocks<Ingredient>(10))
+            .WithData(MockModels<Ingredient>(10))
             .Calling(c => c.Details(1))
             .ShouldReturn()
             .View(v => v.WithModelOfType<IngredientDetailsViewModel>());

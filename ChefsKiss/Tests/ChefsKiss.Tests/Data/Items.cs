@@ -9,7 +9,7 @@ namespace ChefsKiss.Tests.Data
 
     public class Items
     {
-        public static IEnumerable<T> ModelMocks<T>(int count) where T : new()
+        public static IEnumerable<T> MockModels<T>(int count) where T : new()
         {
             var recipes = Enumerable
                 .Range(0, count)

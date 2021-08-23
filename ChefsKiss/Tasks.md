@@ -20,7 +20,7 @@
 - [x] Validation with user-friendly messages
 - [x] Controllers
 - [x] Review system
-- [ ] Fix hard-coded connection string
+- [x] Fix hard-coded connection string
 - [x] Favicon
 - [x] Roles - User, Administrator, Author
 - [x] AJAX
@@ -55,6 +55,7 @@
 - [x] Area bug in recipes links (like random)
 - [x] Configure image
 - [x] Readme
+- [ ] Search takes a model, yet paging uses parameters instead
 
 ## Optional
 
@@ -65,7 +66,7 @@
 - [x] Do something with the ingredients now that they're separate
 - [ ] SmarterASP.NET or Azure deployment/hosting
 - [x] Protect from SQL injection, XSS, CSRF, parameter tampering, etc...
-- [ ] Caching
+- [x] Caching
 - [ ] Breadcrumbs
 - [x] Responsive design
 - [x] File storage API

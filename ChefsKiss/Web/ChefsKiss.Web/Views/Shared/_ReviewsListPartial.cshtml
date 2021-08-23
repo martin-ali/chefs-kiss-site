@@ -6,12 +6,12 @@
             <partial name="_RatingBarPartial" model="@Model.Rating" />
             @if (User.IsAdmin())
             {
-                <a class="btn btn-danger fa fa-trash delete-review pull-right animate-zoom-sm" asp-controller="Reviews" asp-action="Delete" asp-route-id="@Model.Id" asp-route-recipeId="@Model.RecipeId"></a>
+                <a class="btn btn-danger fa fa-trash delete-review pull-right animate-zoom-sm" asp-area="" asp-controller="Reviews" asp-action="Delete" asp-route-id="@Model.Id" asp-route-recipeId="@Model.RecipeId"></a>
             }
         </div>
         <div class="card-body">
             <p>@Model.Summary...
-                <a asp-controller="Reviews" asp-action="Details" asp-route-id="@Model.Id" class="animate-underline">Read More </a>
+                <a asp-area="" asp-controller="Reviews" asp-action="Details" asp-route-id="@Model.Id" class="animate-underline">Read More </a>
             </p>
             <hr>
             <span>

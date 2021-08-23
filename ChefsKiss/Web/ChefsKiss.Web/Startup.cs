@@ -1,11 +1,9 @@
 namespace ChefsKiss.Web
 {
-    using System.IO;
     using System.Reflection;
 
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Data.Seeding;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Identity.Services;
@@ -14,17 +12,13 @@ namespace ChefsKiss.Web
     using ChefsKiss.Web.Models.Recipes;
     using ChefsKiss.Web.Services;
 
-    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-
-    using static ChefsKiss.Common.WebConstants;
 
     public class Startup
     {

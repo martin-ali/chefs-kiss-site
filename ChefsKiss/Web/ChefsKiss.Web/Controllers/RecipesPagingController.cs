@@ -55,14 +55,14 @@ namespace ChefsKiss.Web.Controllers
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult BySearchQuery(int id, string searchTerm, int categoryId, RecipesSortBy sortBy)
+        public IActionResult BySearchQuery(int id, RecipesQueryModel query)
         {
-            if (searchTerm == null)
+            if (this.ModelState.IsValid == false)
             {
                 return this.BadRequest(InvalidSearchTerm);
             }
 
-            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(id, ItemsPerPage, searchTerm, categoryId, sortBy);
+            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(id, ItemsPerPage, query.SearchTerm, query.CategoryId, query.SortBy);
 
             return this.PartialView("_PagePartialCard", recipes);
         }

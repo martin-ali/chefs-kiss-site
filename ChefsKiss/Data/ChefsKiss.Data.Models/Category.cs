@@ -8,6 +8,6 @@ namespace ChefsKiss.Data.Models
     {
         public string Name { get; init; }
 
-        public IEnumerable<Recipe> Recipes { get; init; }
+        public IEnumerable<Recipe> Recipes { get; init; } = new List<Recipe>();
     }
 }

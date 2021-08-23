@@ -7,7 +7,7 @@ namespace ChefsKiss.Web.Models.Recipes
     using ChefsKiss.Common;
     using ChefsKiss.Web.Models.Categories;
 
-    public class RecipesSearchModel
+    public class RecipesQueryModel
     {
         [Required(AllowEmptyStrings = false)]
         [DisplayName("Search term")]

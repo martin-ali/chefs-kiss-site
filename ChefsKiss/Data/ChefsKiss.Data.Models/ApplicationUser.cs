@@ -13,8 +13,6 @@ namespace ChefsKiss.Data.Models
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Claims = new HashSet<IdentityUserClaim<string>>();
-            this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
         // Audit info
@@ -22,9 +20,9 @@ namespace ChefsKiss.Data.Models
 
         public DateTime? ModifiedOn { get; set; }
 
-        public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+        public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; } = new HashSet<IdentityUserClaim<string>>();
 
-        public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+        public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; } = new HashSet<IdentityUserLogin<string>>();
 
         public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
     }

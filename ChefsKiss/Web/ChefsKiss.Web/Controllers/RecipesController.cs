@@ -93,7 +93,7 @@ namespace ChefsKiss.Web.Controllers
         public IActionResult Search()
         {
             var categories = this.categories.All<CategorySelectViewModel>();
-            var model = new RecipesSearchModel
+            var model = new RecipesQueryModel
             {
                 Categories = categories,
             };
@@ -102,7 +102,7 @@ namespace ChefsKiss.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(int id, RecipesSearchModel query)
+        public IActionResult Search(RecipesQueryModel query)
         {
             if (this.ModelState.IsValid == false)
             {

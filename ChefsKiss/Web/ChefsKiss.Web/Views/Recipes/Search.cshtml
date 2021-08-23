@@ -1,6 +1,6 @@
 ﻿@using ChefsKiss.Common
 
-@model RecipesSearchModel;
+@model RecipesQueryModel;
 
 <form method="POST" enctype="application/x-www-form-urlencoded" asp-controller="Recipes" asp-action="Search">
     <div class="row">
@@ -17,7 +17,7 @@
                 <option value="0">Any</option>
                 @foreach (var category in Model.Categories)
                 {
-                    <option value="@category.Id">@category.Name</option>
+                        <option value="@category.Id">@category.Name</option>
                 }
             </select>
         </div>
@@ -34,8 +34,8 @@
 
 @if (string.IsNullOrWhiteSpace(Model.SearchTerm) == false)
 {
-    <br>
-    <h4 class="text-center">Recipes containing "@Model.SearchTerm"</h4>
+        <br>
+        <h4 class="text-center">Recipes containing "@Model.SearchTerm"</h4>
 }
 
 <hr>
@@ -43,12 +43,12 @@
 <div id="recipes-list" class="row mx-auto">
     @if (Model.Recipes.Count() == 0 && Model.HasBeenQueried)
     {
-        <h2 class="mx-auto">No results found</h2>
+            <h2 class="mx-auto">No results found</h2>
     }
 
     @foreach (var recipe in Model.Recipes)
     {
-        <partial name="_RecipeListPartialCard" model="recipe" />
+            <partial name="_RecipeListPartialCard" model="recipe" />
     }
 </div>
 

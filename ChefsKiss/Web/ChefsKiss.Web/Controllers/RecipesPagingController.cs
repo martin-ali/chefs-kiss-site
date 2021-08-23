@@ -40,9 +40,9 @@ namespace ChefsKiss.Web.Controllers
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult ByIngredientId(int id, int recipeId)
+        public IActionResult ByIngredientId(int id, int ingredientId)
         {
-            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, recipeId);
+            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, ingredientId);
 
             return this.PartialView("_PagePartialRow", recipes);
         }

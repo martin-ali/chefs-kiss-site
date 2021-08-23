@@ -8,6 +8,7 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.WebConstants;
 
     public class IngredientsController : Controller
@@ -41,11 +42,17 @@ namespace ChefsKiss.Web.Controllers
 
         public IActionResult Details(int id)
         {
-            var model = this.ingredients.ById<IngredientDetailsViewModel>(id);
-            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(0, ItemsPerPage, id);
-            model.Recipes = recipes;
+            var ingredient = this.ingredients.ById<IngredientDetailsViewModel>(id);
 
-            return this.View(model);
+            if (ingredient == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(ingredient)));
+            }
+
+            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(0, ItemsPerPage, id);
+            ingredient.Recipes = recipes;
+
+            return this.View(ingredient);
         }
     }
 }

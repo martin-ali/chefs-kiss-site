@@ -20,8 +20,10 @@ namespace ChefsKiss.Common
 
         public static string LengthBetweenWithParameters(string parameterName, int minLength, int maxLength) => string.Format(LengthBetween, parameterName, maxLength, minLength);
 
-        public static string LengthMin(int minLength, string parameterName) => $"{parameterName} cannot be less than {minLength} characters long.";
+        public static string LengthMin(int minLength, string parameter) => $"{parameter} cannot be less than {minLength} characters long.";
 
-        public static string LengthMax(int maxLength, string parameterName) => $"{parameterName} cannot be more than {maxLength} characters long.";
+        public static string LengthMax(int maxLength, string parameter) => $"{parameter} cannot be more than {maxLength} characters long.";
+
+        public static string InvalidParameter(string parameter) => $"This {parameter} is invalid.";
     }
 }

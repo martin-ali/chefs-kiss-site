@@ -30,6 +30,13 @@ namespace ChefsKiss.Web.Services
             this.data.SaveChanges();
         }
 
+        public bool Exists(int id)
+        {
+            var reviewExists = this.data.Reviews.Any(r => r.Id == id);
+
+            return reviewExists;
+        }
+
         public IEnumerable<T> ByRecipeId<T>(int id)
         {
             var reviews = this.data.Reviews
@@ -45,7 +52,7 @@ namespace ChefsKiss.Web.Services
             var review = this.data.Reviews
                 .Where(x => x.Id == id)
                 .MapTo<T>()
-                .First();
+                .FirstOrDefault();
 
             return review;
         }

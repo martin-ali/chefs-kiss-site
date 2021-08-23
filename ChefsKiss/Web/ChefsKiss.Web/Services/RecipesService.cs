@@ -152,7 +152,7 @@ namespace ChefsKiss.Web.Services
             var recipe = this.data.Recipes
                 .Where(x => x.Id == id)
                 .MapTo<T>()
-                .First();
+                .FirstOrDefault();
 
             return recipe;
         }

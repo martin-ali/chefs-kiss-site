@@ -1,5 +1,6 @@
 namespace ChefsKiss.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -43,6 +44,15 @@ namespace ChefsKiss.Web.Controllers
             this.categories = categories;
         }
 
+        private IEnumerable<SelectListItem> CategoryOptions()
+        {
+            var options = this.categories
+                .All<CategorySelectViewModel>()
+                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
+
+            return options;
+        }
+
         [Authorize]
         public IActionResult Create()
         {
@@ -52,10 +62,7 @@ namespace ChefsKiss.Web.Controllers
                 return this.Unauthorized(MustBeAuthor);
             }
 
-            var categories = this.categories
-                .All<CategorySelectViewModel>()
-                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
-            var model = new RecipeCreateFormModel { Categories = categories };
+            var model = new RecipeCreateFormModel { Categories = CategoryOptions() };
 
             return this.View(model);
         }
@@ -74,6 +81,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (this.ModelState.IsValid == false)
             {
+                input.Categories = CategoryOptions();
+
                 return this.View(input);
             }
 
@@ -123,6 +132,11 @@ namespace ChefsKiss.Web.Controllers
         {
             var recipe = this.recipes.ById<RecipeDetailsViewModel>(id);
 
+            if (recipe == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(recipe)));
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var userId = this.User.Id();
@@ -144,10 +158,16 @@ namespace ChefsKiss.Web.Controllers
         public IActionResult Edit(int id)
         {
 
+            var recipe = this.recipes.ById<RecipeEditFormModel>(id);
+
+            if (recipe == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(recipe)));
+            }
+
             var categories = this.categories
                 .All<CategorySelectViewModel>()
                 .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
-            var recipe = this.recipes.ById<RecipeEditFormModel>(id);
             recipe.Categories = categories;
 
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
@@ -169,6 +189,12 @@ namespace ChefsKiss.Web.Controllers
             }
 
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
+
+            if (recipe == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(recipe)));
+            }
+
             var userId = this.User.Id();
 
             var isAuthorized = recipe.AuthorId == userId || this.User.IsAdmin();
@@ -189,6 +215,11 @@ namespace ChefsKiss.Web.Controllers
         {
             var recipe = this.recipes.ById<RecipeDeleteModel>(id);
 
+            if (recipe == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(recipe)));
+            }
+
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
             if (isAuthorized == false)
             {
@@ -205,6 +236,12 @@ namespace ChefsKiss.Web.Controllers
         public IActionResult DeletePost(int id)
         {
             var recipe = this.recipes.ById<RecipeServiceModel>(id);
+
+            if (recipe == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(recipe)));
+            }
+
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
             if (isAuthorized == false)
             {

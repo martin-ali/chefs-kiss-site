@@ -10,6 +10,7 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
 
+    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.WebConstants;
     using static ChefsKiss.Common.WebConstants.Cache;
 
@@ -29,27 +30,33 @@ namespace ChefsKiss.Web.Controllers
 
         public IActionResult Details(int id)
         {
-            var model = this.categories.ById<CategoryDetailsViewModel>(id);
-            var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(0, ItemsPerPage, id);
-            model.Recipes = recipes;
+            var categories = this.categories.ById<CategoryDetailsViewModel>(id);
 
-            return this.View(model);
+            if (categories == null)
+            {
+                return this.BadRequest(InvalidParameter("category"));
+            }
+
+            var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(0, ItemsPerPage, id);
+            categories.Recipes = recipes;
+
+            return this.View(categories);
         }
 
         // Caching
         public IActionResult Explore()
         {
-            var model = this.cache.Get<IEnumerable<CategoryCarouselViewModel>>(CategoriesExploreCacheKey);
+            var categories = this.cache.Get<IEnumerable<CategoryCarouselViewModel>>(CategoriesExploreCacheKey);
 
-            if (model == null)
+            if (categories == null)
             {
-                model = this.categories.All<CategoryCarouselViewModel>();
+                categories = this.categories.All<CategoryCarouselViewModel>();
                 var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1));
 
-                this.cache.Set(CategoriesExploreCacheKey, model, cacheOptions);
+                this.cache.Set(CategoriesExploreCacheKey, categories, cacheOptions);
             }
 
-            return this.View(model);
+            return this.View(categories);
         }
     }
 }

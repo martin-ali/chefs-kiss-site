@@ -13,6 +13,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
@@ -95,12 +96,17 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
         public IActionResult Details(string id)
         {
             var recipes = this.recipes.ByAuthorId<RecipeListViewModel>(id);
-            var model = this.users.Details<UserDetailsViewModel>(id);
+            var user = this.users.Details<UserDetailsViewModel>(id);
 
-            model.RecipesCount = recipes.Count();
-            model.Recipes = recipes;
+            if (user == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(user)));
+            }
 
-            return this.View(model);
+            user.RecipesCount = recipes.Count();
+            user.Recipes = recipes;
+
+            return this.View(user);
         }
 
         [Authorize]

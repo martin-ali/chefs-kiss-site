@@ -56,7 +56,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             var user = this.data.Users
                 .Where(x => x.Id == id)
                 .MapTo<T>()
-                .First();
+                .FirstOrDefault();
 
             return user;
         }

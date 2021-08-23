@@ -47,6 +47,12 @@ namespace ChefsKiss.Web.Controllers
             var user = await this.userManager.GetUserAsync(this.User);
 
             var recipe = this.recipes.ById<RecipeServiceModel>(input.RecipeId);
+
+            if (recipe == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(recipe)));
+            }
+
             var reviews = this.reviews.ByRecipeId<ReviewServiceModel>(input.RecipeId);
 
             var userHasCommented = reviews.Any(x => x.AuthorId == user.Id);
@@ -66,12 +72,23 @@ namespace ChefsKiss.Web.Controllers
         {
             var review = this.reviews.ById<ReviewDetailsViewModel>(id);
 
+            if (review == null)
+            {
+                return this.BadRequest(InvalidParameter(nameof(review)));
+            }
+
             return this.View(review);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(int id, int recipeId)
         {
+            var reviewExists = this.reviews.Exists(id);
+            if (reviewExists == false)
+            {
+                return this.BadRequest(InvalidParameter("review"));
+            }
+
             this.reviews.Delete(id);
 
             return this.RedirectToAction(nameof(RecipesController.Details), ControllerName<RecipesController>(), new { id = recipeId });

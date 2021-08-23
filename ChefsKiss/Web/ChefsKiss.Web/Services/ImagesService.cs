@@ -11,8 +11,6 @@ namespace ChefsKiss.Web.Services
 
     using Microsoft.AspNetCore.Http;
 
-    using static ChefsKiss.Common.WebConstants;
-
     public class ImagesService : IImagesService
     {
         private readonly RecipesDbContext data;
@@ -22,16 +20,6 @@ namespace ChefsKiss.Web.Services
         {
             this.data = data;
             this.imageOperator = imageOperator;
-        }
-
-        private string FileName(int imageId)
-        {
-            var extension = this.data.Images
-                .Where(i => i.Id == imageId)
-                .Select(i => $"{i.Id}.{i.Extension}")
-                .First();
-
-            return extension;
         }
 
         public async Task<Image> CreateImageAsync(IFormFile input)
@@ -50,14 +38,6 @@ namespace ChefsKiss.Web.Services
             this.data.SaveChanges();
 
             return image;
-        }
-
-        public string ImagePath(int imageId)
-        {
-            string fileName = this.FileName(imageId);
-            var path = Path.Combine(ImagesDirectory, fileName);
-
-            return path;
         }
 
         public void Delete(int imageId)

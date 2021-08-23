@@ -6,6 +6,8 @@ namespace ChefsKiss.Web.Services
     {
         void Create(int recipeId, string content, int rating, string authorId);
 
+        bool Exists(int id);
+
         IEnumerable<T> ByRecipeId<T>(int id);
 
         T ById<T>(int id);

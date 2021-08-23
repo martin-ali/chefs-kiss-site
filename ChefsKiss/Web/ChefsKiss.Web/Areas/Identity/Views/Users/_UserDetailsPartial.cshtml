@@ -1,15 +1,16 @@
 ﻿@model UserDetailsViewModel
 
 <h2 class="text-center">@Model.UserName</h2>
-<hr>
+<br>
 
+<h3 class="text-center">Written recipes (@Model.Recipes.Count())</h3>
+<hr>
 @if (Model.RecipesCount == 0)
 {
     <h3 class="text-center">No recipes written yet</h3>
 }
 else
 {
-    <h3 class="text-center">Written recipes (@Model.Recipes.Count())</h3>
     <div class="row">
         @foreach (var recipe in @Model.Recipes)
         {
@@ -20,13 +21,14 @@ else
 
 <br>
 
+<h3 class="text-center">Posted reviews (@Model.Reviews.Count())</h3>
+<hr>
 @if (Model.ReviewsCount == 0)
 {
     <h3 class="text-center">No reviews posted yet</h3>
 }
 else
 {
-    <h3 class="text-center">Posted reviews (@Model.Reviews.Count())</h3>
     <div class="row reviews-container">
         @foreach (var review in @Model.Reviews)
         {

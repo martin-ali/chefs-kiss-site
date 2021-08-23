@@ -21,7 +21,7 @@ namespace ChefsKiss.Web.Services
             var category = this.data.Categories
                 .Where(x => x.Id == id)
                 .MapTo<T>()
-                .First();
+                .FirstOrDefault();
 
             return category;
         }

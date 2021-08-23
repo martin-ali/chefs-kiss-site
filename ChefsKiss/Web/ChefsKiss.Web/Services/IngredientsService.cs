@@ -43,7 +43,7 @@ namespace ChefsKiss.Web.Services
             var ingredient = this.data.Ingredients
                 .Where(x => x.Id == id)
                 .MapTo<T>()
-                .First();
+                .FirstOrDefault();
 
             return ingredient;
         }

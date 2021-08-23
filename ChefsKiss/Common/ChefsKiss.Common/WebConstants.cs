@@ -20,7 +20,7 @@
 
         public const int PopularRecipesCount = 5;
 
-        public const int ItemsPerPage = 8;
+        public const int ItemsPerPage = 6;
 
         public const int RecipesPerCategory = 5;
 

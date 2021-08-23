@@ -7,7 +7,9 @@ namespace ChefsKiss.Web.Models.Recipes
 
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
+    using ChefsKiss.Web.Models.Categories;
     using ChefsKiss.Web.Models.Ingredients;
+
 
     public class RecipeDeleteModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
@@ -21,6 +23,7 @@ namespace ChefsKiss.Web.Models.Recipes
 
         public string Content { get; init; }
 
+        public CategorySelectViewModel Category { get; init; }
         public IEnumerable<IngredientViewModel> Ingredients { get; init; } = new List<IngredientViewModel>();
 
         public void CreateMappings(IProfileExpression configuration)

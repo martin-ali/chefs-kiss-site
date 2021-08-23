@@ -11,6 +11,7 @@ namespace ChefsKiss.Web.Models.Recipes
     using ChefsKiss.Web.Models.Ingredients;
 
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     using static ChefsKiss.Common.DataConstants;
     using static ChefsKiss.Common.ErrorMessages;
@@ -30,6 +31,12 @@ namespace ChefsKiss.Web.Models.Recipes
         [ImagesOnly]
         [MaxFileSize(Images.MaxSizeBytes)]
         public virtual IFormFile Image { get; init; }
+
+        [Required]
+        [Display(Name = "Category")]
+        public int CategoryId { get; init; }
+
+        public IEnumerable<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
 
         [Required]
         [NotEmptyCollection(ErrorMessage = NoIngredients)]

@@ -19,6 +19,12 @@
                 <textarea disabled rows="10" asp-for="Content" class="form-control" placeholder="Enter the content here"></textarea>
             </div>
             <div class="row">
+                <label asp-for="Category"></label>
+                <select disabled asp-for="Category" class="form-control">
+                    <option value="@Model.Category.Id">@Model.Category.Name</option>
+                </select>
+            </div>
+            <div class="row">
                 <label asp-for="Ingredients"></label>
                 <div id="ingredients-container" class="col-12">
                     @foreach (var ingredient in Model.Ingredients)

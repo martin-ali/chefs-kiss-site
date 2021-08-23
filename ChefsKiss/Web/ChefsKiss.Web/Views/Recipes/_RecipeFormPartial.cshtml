@@ -25,6 +25,11 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="row">
+                <label asp-for="CategoryId"></label>
+                <select asp-for="CategoryId" asp-items="@Model.Categories" class="form-control animate-outline"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="row">
                 <label asp-for="Image"></label>
                 <input id="image-upload" asp-for="Image" accept="image/jpeg, image/png" class="form-control animate-outline" />
                 <span asp-validation-for="Image" class="text-danger"></span>

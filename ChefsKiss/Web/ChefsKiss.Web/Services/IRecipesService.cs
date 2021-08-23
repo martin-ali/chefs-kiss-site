@@ -13,7 +13,7 @@ namespace ChefsKiss.Web.Services
 
     public interface IRecipesService
     {
-        Task<int> CreateAsync(string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image);
+        Task<int> CreateAsync(string userId, string title, string content, int categoryId, IEnumerable<IngredientServiceModel> ingredients, IFormFile image);
 
         IEnumerable<T> All<T>();
 
@@ -37,7 +37,7 @@ namespace ChefsKiss.Web.Services
 
         T Random<T>();
 
-        Task EditAsync(int id, string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image);
+        Task EditAsync(int id, string userId, string title, string content, int categoryId, IEnumerable<IngredientServiceModel> ingredients, IFormFile image);
 
         void Remove(int id);
     }

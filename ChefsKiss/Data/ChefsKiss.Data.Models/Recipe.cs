@@ -25,9 +25,9 @@
         public Author Author { get; init; }
 
         // [Required]
-        public int CategoryId { get; init; }
+        public int CategoryId { get; set; }
 
-        public Category Category { get; init; }
+        public Category Category { get; set; }
 
         // [Required]
         public int ImageId { get; set; }

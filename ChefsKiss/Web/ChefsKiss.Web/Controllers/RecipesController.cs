@@ -16,7 +16,7 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
@@ -52,7 +52,10 @@ namespace ChefsKiss.Web.Controllers
                 return this.Unauthorized(MustBeAuthor);
             }
 
-            var model = new RecipeCreateFormModel();
+            var categories = this.categories
+                .All<CategorySelectViewModel>()
+                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
+            var model = new RecipeCreateFormModel { Categories = categories };
 
             return this.View(model);
         }
@@ -75,7 +78,7 @@ namespace ChefsKiss.Web.Controllers
             }
 
             var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>(); // FIXME: AsQueryable should not be necessary
-            var recipeId = await this.recipes.CreateAsync(userId, input.Title, input.Content, ingredients, input.Image);
+            var recipeId = await this.recipes.CreateAsync(userId, input.Title, input.Content, input.CategoryId, ingredients, input.Image);
 
             return this.RedirectToAction(nameof(this.Details), new { id = recipeId });
         }
@@ -140,7 +143,12 @@ namespace ChefsKiss.Web.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
+
+            var categories = this.categories
+                .All<CategorySelectViewModel>()
+                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
             var recipe = this.recipes.ById<RecipeEditFormModel>(id);
+            recipe.Categories = categories;
 
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
             if (isAuthorized == false)
@@ -171,7 +179,7 @@ namespace ChefsKiss.Web.Controllers
 
             // FIXME: AsQueryable is an oddity here. Find a more streamlined way
             var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>();
-            await this.recipes.EditAsync(id, userId, input.Title, input.Content, ingredients, input.Image);
+            await this.recipes.EditAsync(id, userId, input.Title, input.Content, input.CategoryId, ingredients, input.Image);
 
             return this.RedirectToAction(nameof(this.Details), new { id = id });
         }

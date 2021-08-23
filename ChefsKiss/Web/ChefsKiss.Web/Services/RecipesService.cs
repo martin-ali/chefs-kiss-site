@@ -33,7 +33,7 @@ namespace ChefsKiss.Web.Services
             this.imagesService = imagesService;
         }
 
-        public async Task<int> CreateAsync(string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
+        public async Task<int> CreateAsync(string userId, string title, string content, int categoryId, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
         {
             var imageEntity = await this.imagesService.CreateImageAsync(image);
             var author = this.data.Authors
@@ -47,6 +47,7 @@ namespace ChefsKiss.Web.Services
                 Title = title,
                 Content = content,
                 Author = author,
+                CategoryId = categoryId,
                 Image = imageEntity,
             };
 
@@ -186,7 +187,7 @@ namespace ChefsKiss.Web.Services
             return randomRecipe;
         }
 
-        public async Task EditAsync(int id, string userId, string title, string content, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
+        public async Task EditAsync(int id, string userId, string title, string content, int categoryId, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
         {
             var recipe = this.data.Recipes.Find(id);
 
@@ -203,6 +204,7 @@ namespace ChefsKiss.Web.Services
             recipe.Title = title;
             recipe.Content = content;
             recipe.RecipeIngredients = recipeIngredients;
+            recipe.CategoryId = categoryId;
 
             if (image != null)
             {

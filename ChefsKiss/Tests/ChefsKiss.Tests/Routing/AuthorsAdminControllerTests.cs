@@ -1,7 +1,6 @@
 namespace ChefsKiss.Tests.Routing
 {
     using ChefsKiss.Web.Areas.Administration.Controllers;
-    using ChefsKiss.Web.Areas.Home.Controllers;
 
     using MyTested.AspNetCore.Mvc;
 

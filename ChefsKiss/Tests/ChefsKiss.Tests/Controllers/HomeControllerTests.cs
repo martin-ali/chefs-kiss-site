@@ -1,7 +1,10 @@
 namespace ChefsKiss.Tests.Controllers
 {
-    using ChefsKiss.Web.Areas.Home.Controllers;
+    using System.Collections.Generic;
+
+    using ChefsKiss.Web.Controllers;
     using ChefsKiss.Web.Models;
+    using ChefsKiss.Web.Models.Recipes;
 
     using MyTested.AspNetCore.Mvc;
 
@@ -18,7 +21,7 @@ namespace ChefsKiss.Tests.Controllers
             .To<HomeController>(c => c.Index())
             .Which()
             .ShouldReturn()
-            .View();
+            .View(v => v.WithModelOfType<IEnumerable<RecipeListViewModel>>());
         }
 
         [Fact]

@@ -3,7 +3,6 @@ namespace ChefsKiss.Tests.Services
     using ChefsKiss.Data.Models;
     using ChefsKiss.Tests.Mocks;
     using ChefsKiss.Web.Areas.Identity.Services;
-    using ChefsKiss.Web.Areas.Recipes.Services;
 
     public class AuthorsServiceTests
     {

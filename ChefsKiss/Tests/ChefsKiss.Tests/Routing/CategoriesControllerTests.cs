@@ -6,28 +6,30 @@ namespace ChefsKiss.Tests.Routing
 
     using Xunit;
 
-    public class IngredientsControllerTests
-    {
-        [Fact]
-        public void IngredientAddFormRouteShouldBeMapped()
-        {
-            MyRouting
-               .Configuration()
-                .ShouldMap(r => r
-                    .WithPath("/Ingredients/IngredientAddForm/1")
-                    .WithUser())
-               .To<IngredientsController>(c => c.IngredientAddForm(1));
-        }
 
+    public class CategoriesControllerTests
+    {
         [Fact]
         public void DetailsRouteShouldBeMapped()
         {
             MyRouting
                .Configuration()
-               .ShouldMap(r => r
-                    .WithPath("/Ingredients/Details/1")
+                .ShouldMap(r => r
+                    .WithPath("/Categories/Details/1")
                     .WithUser())
-               .To<IngredientsController>(c => c.Details(1));
+               .To<CategoriesController>(c => c.Details(1));
+        }
+
+        [Fact]
+        public void ExplorePostRouteShouldBeMapped()
+        {
+            MyRouting
+               .Configuration()
+               .ShouldMap(r => r
+                    .WithPath("/Categories/Explore")
+                    .WithMethod(HttpMethod.Post)
+                    .WithUser())
+               .To<CategoriesController>(c => c.Explore());
         }
     }
 }

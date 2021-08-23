@@ -1,41 +1,42 @@
 namespace ChefsKiss.Tests.Controllers
 {
-	using ChefsKiss.Data.Models;
-	using ChefsKiss.Web.Areas.Recipes.Controllers;
-	using ChefsKiss.Web.Areas.Recipes.Models.Ingredients;
+    using ChefsKiss.Data.Models;
+    using ChefsKiss.Web.Controllers;
+    using ChefsKiss.Web.Models.Ingredients;
 
-	using MyTested.AspNetCore.Mvc;
+    using MyTested.AspNetCore.Mvc;
 
-	using Xunit;
+    using Xunit;
 
-	public class IngredientsControllerTests
-	{
-		private readonly Ingredient ingredient = new Ingredient { Id = 1 };
+    using static ChefsKiss.Tests.Data.Items;
 
-		[Fact]
-		public void IngredientAddFormShouldReturnCorrectPartialViewWithCorrectModel()
-		{
-			MyMvc
-			.Pipeline()
-			.ShouldMap(request => request
-				.WithPath("/Recipes/Ingredients/IngredientAddForm/1")
-				.WithUser())
-			.To<IngredientsController>(c => c.IngredientAddForm(1))
-			.Which()
-			.ShouldReturn()
-			.PartialView(v => v.WithModelOfType<IngredientFormModel>());
-		}
+    public class IngredientsControllerTests
+    {
+        private readonly Ingredient ingredient = new Ingredient { Id = 1 };
 
-		[Fact]
-		public void IngredientDetailsShouldReturnCorrectViewWithCorrectModel()
-		{
-			// MyMvc
-			// .Pipeline()
-			// .ShouldMap("Recipes/Ingredients/Details/1")
-			// .To<IngredientsController>(c => c.Details(1))
-			// .Which()
-			// .ShouldReturn()
-			// .View(v => v.WithModelOfType<IngredientDetailsViewModel>());
-		}
-	}
+        [Fact]
+        public void AddFormShouldReturnCorrectPartialViewWithCorrectModel()
+        {
+            MyMvc
+            .Pipeline()
+            .ShouldMap(request => request
+                .WithPath("/Ingredients/IngredientAddForm/1")
+                .WithUser())
+            .To<IngredientsController>(c => c.IngredientAddForm(1))
+            .Which()
+            .ShouldReturn()
+            .PartialView(v => v.WithModelOfType<IngredientFormModel>());
+        }
+
+        [Fact]
+        public void DetailsShouldReturnCorrectViewWithCorrectModel()
+        {
+            MyController<IngredientsController>
+            .Instance()
+            .WithData(ModelMocks<Ingredient>(10))
+            .Calling(c => c.Details(1))
+            .ShouldReturn()
+            .View(v => v.WithModelOfType<IngredientDetailsViewModel>());
+        }
+    }
 }

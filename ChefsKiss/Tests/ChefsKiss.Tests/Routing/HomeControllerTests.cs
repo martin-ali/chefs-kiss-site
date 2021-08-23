@@ -1,6 +1,6 @@
 namespace ChefsKiss.Tests.Routing
 {
-    using ChefsKiss.Web.Areas.Home.Controllers;
+    using ChefsKiss.Web.Controllers;
 
     using MyTested.AspNetCore.Mvc;
 
@@ -10,6 +10,15 @@ namespace ChefsKiss.Tests.Routing
     {
         [Fact]
         public void IndexRouteShouldBeMapped()
+        {
+            MyRouting
+               .Configuration()
+               .ShouldMap("/Index")
+               .To<HomeController>(c => c.Index());
+        }
+
+        [Fact]
+        public void SlashRouteShouldBeMapped()
         {
             MyRouting
                .Configuration()

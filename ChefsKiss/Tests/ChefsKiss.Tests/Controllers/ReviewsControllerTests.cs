@@ -1,67 +1,66 @@
 namespace ChefsKiss.Tests.Controllers
 {
-	using ChefsKiss.Data.Models;
-	using ChefsKiss.Web.Areas.Recipes.Controllers;
-	using ChefsKiss.Web.Areas.Recipes.Models.Reviews;
+    using System.Linq;
 
-	using FluentAssertions;
+    using ChefsKiss.Data.Models;
+    using ChefsKiss.Web.Models.Reviews;
+    using ChefsKiss.Web.Controllers;
 
-	using MyTested.AspNetCore.Mvc;
+    using FluentAssertions;
 
-	using Xunit;
+    using MyTested.AspNetCore.Mvc;
 
-	using static ChefsKiss.Tests.Data.Items;
-	using static ChefsKiss.Common.WebConstants;
+    using Xunit;
 
-	public class ReviewsControllerTests
-	{
-		[Fact]
-		public void CreateShouldReturnCorrectViewWithCorrectModel()
-		{
-			MyMvc
-			.Pipeline()
-			.ShouldMap("/Recipes/Reviews/Create")
-			.To<ReviewsController>(x => x.Create(With.Any<ReviewFormModel>()))
-			.Which(controller => controller.WithData(TenItems<Review>()))
-			.ShouldReturn()
-			.View(view => view
-				.WithModelOfType<ReviewDetailsViewModel>()
-				.Passing(m => m.Should().BeOfType<ReviewDetailsViewModel>()));
-		}
+    using static ChefsKiss.Tests.Data.Items;
+    using static ChefsKiss.Common.WebConstants;
 
-		[Fact]
-		public void DetailsShouldReturnCorrectViewWithCorrectModel()
-		{
-			MyMvc
-			.Pipeline()
-			.ShouldMap("/Recipes/Reviews/Details/1")
-			.To<ReviewsController>(x => x.Details(1))
-			.Which(controller => controller.WithData(TenItems<Review>()))
-			.ShouldReturn()
-			.View(view => view.WithModelOfType<ReviewDetailsViewModel>());
-		}
+    public class ReviewsControllerTests
+    {
+        [Fact]
+        public void CreateShouldAuthorizeUsersShouldReturnCorrectView()
+        {
+            MyController<ReviewsController>
+            .Instance()
+            .WithUser()
+            .Calling(c => c.Create(With.Default<ReviewFormModel>()))
+            .ShouldHave()
+            .ActionAttributes(c => c.RestrictingForAuthorizedRequests())
+            .AndAlso()
+            .ShouldReturn()
+            .Redirect(r => r.To<RecipesController>(c => c.Details(0)));
+        }
 
-		[Fact]
-		public void DeleteShouldReturnCorrectViewWithCorrectModel()
-		{
-			// MyController<ReviewsController>
-			// .Instance()
-			// .WithData(x => x.WithSet<Review>())
-			// .WithUser()
-			// .Calling(c => c.Delete(1, 1))
-			// .ShouldReturn()
-			// .Redirect(redirect => redirect.To<RecipesController>(c => c.Details(1)));
+        [Fact]
+        public void DetailsShouldReturnCorrectViewWithCorrectModel()
+        {
+            MyController<ReviewsController>
+            .Instance()
+            .WithData(ModelMocks<Review>(10))
+            .Calling(c => c.Details(1))
+            .ShouldReturn()
+            .View(v => v.WithModelOfType<ReviewDetailsViewModel>());
+        }
 
-			// MyMvc
-			// .Pipeline()
-			// .ShouldMap(r => r
-			//     .WithPath("/Recipes/Reviews/Del~ete/1")
-			//     .WithQuery("recipeId", "1")
-			//     .WithUser(new[] { AdministratorRoleName }))
-			// .To<ReviewsController>(x => x.Delete(1, 1))
-			// .Which(controller => controller.WithData(TenItems<Review>()))
-			// .ShouldReturn()
-			// .Redirect(redirect => redirect.To<RecipesController>(c => c.Details(1)));
-		}
-	}
+        [Theory]
+        [InlineData(1)]
+        public void DeleteShouldAuthorizeAdministratorsAndReturnCorrectViewWithCorrectModel(int reviewId)
+        {
+            MyController<ReviewsController>
+            .Instance()
+            .WithUser(u => u.InRoles(AdministratorRoleName))
+            .WithData(ModelMocks<Review>(10))
+            .Calling(c => c.Delete(reviewId, 1))
+            .ShouldHave()
+            .ActionAttributes(c => c.RestrictingForAuthorizedRequests(AdministratorRoleName))
+            .AndAlso()
+            .ShouldHave()
+            .Data(data => data.WithSet<Review>(set =>
+            {
+                var review = set.SingleOrDefault(a => a.Id == reviewId);
+
+                review.Should().BeNull();
+            }));
+        }
+    }
 }

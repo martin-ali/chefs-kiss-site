@@ -1,6 +1,5 @@
 namespace ChefsKiss.Web.Controllers
 {
-    using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Identity.Services;
     using ChefsKiss.Web.Models.Recipes;

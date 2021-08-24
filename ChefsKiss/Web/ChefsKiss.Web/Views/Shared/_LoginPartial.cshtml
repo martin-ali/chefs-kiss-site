@@ -11,6 +11,9 @@
             <a class="nav-link text-dark animate-zoom-md" asp-area="Identity" asp-controller="Users" asp-action="Profile" title="Profile">Hello @User.Identity.Name!</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link text-dark animate-zoom-md" asp-area="" asp-controller="Favorites" asp-action="Mine">Favorites</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-dark animate-zoom-md" asp-area="Identity" asp-controller="Users" asp-action="Logout">Logout</a>
         </li>
     }

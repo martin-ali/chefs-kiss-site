@@ -16,6 +16,8 @@ namespace ChefsKiss.Common
 
         public const string InvalidSearchTerm = "The search term is invalid.";
 
+        public const string InvalidRequest = "The request is invalid.";
+
         public const string LengthBetween = "{0} must be between {2} and {1} characters long.";
 
         public static string LengthBetweenWithParameters(string parameterName, int minLength, int maxLength) => string.Format(LengthBetween, parameterName, maxLength, minLength);

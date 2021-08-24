@@ -25,7 +25,6 @@ namespace ChefsKiss.Web.Controllers
             this.categories = categories;
             this.recipes = recipes;
             this.cache = cache;
-
         }
 
         public IActionResult Details(int id)
@@ -43,7 +42,6 @@ namespace ChefsKiss.Web.Controllers
             return this.View(categories);
         }
 
-        // Caching
         public IActionResult Explore()
         {
             var categories = this.cache.Get<IEnumerable<CategoryCarouselViewModel>>(CategoriesExploreCacheKey);

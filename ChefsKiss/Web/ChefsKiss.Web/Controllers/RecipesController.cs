@@ -29,19 +29,22 @@ namespace ChefsKiss.Web.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IMeasurementUnitsService measurementUnits;
         private readonly ICategoriesService categories;
+        private readonly IFavoritesService favorites;
 
         public RecipesController(
             IRecipesService recipes,
             IAuthorsService authors,
             UserManager<ApplicationUser> userManager,
             IMeasurementUnitsService measurementUnits,
-            ICategoriesService categories)
+            ICategoriesService categories,
+            IFavoritesService favorites)
         {
             this.recipes = recipes;
             this.authors = authors;
             this.userManager = userManager;
             this.measurementUnits = measurementUnits;
             this.categories = categories;
+            this.favorites = favorites;
         }
 
         private IEnumerable<SelectListItem> CategoryOptions()
@@ -142,6 +145,7 @@ namespace ChefsKiss.Web.Controllers
                 var userId = this.User.Id();
                 recipe.UserHasPostedReview = recipe.Reviews.Any(x => x.AuthorId == userId);
                 recipe.UserIsAuthor = userId == recipe.AuthorId;
+                recipe.IsFavorited = this.favorites.IsFavorited(this.User.Id(), id);
             }
 
             return this.View(recipe);
@@ -157,7 +161,6 @@ namespace ChefsKiss.Web.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
-
             var recipe = this.recipes.ById<RecipeEditFormModel>(id);
 
             if (recipe == null)

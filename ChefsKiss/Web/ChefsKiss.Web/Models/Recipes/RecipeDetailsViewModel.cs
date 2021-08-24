@@ -20,6 +20,8 @@ namespace ChefsKiss.Web.Models.Recipes
 
         public bool UserIsAuthor { get; set; }
 
+        public bool IsFavorited { get; set; }
+
         public IEnumerable<ReviewListViewModel> Reviews { get; init; } = new List<ReviewListViewModel>();
 
         public IEnumerable<IngredientViewModel> Ingredients { get; init; } = new List<IngredientViewModel>();

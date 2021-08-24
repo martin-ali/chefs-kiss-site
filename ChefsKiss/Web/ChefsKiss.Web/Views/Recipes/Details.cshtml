@@ -4,6 +4,17 @@
     <div class="recipe-heading m-3 rounded">
         <h2 class="text-center mx-auto display-4">
             @Model.Title
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (Model.IsFavorited)
+                {
+                    <a title="Remove from favorites" class="fa fa-bookmark btn btn-danger" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
+                }
+                else
+                {
+                    <a title="Add to favorites" class="fa fa-bookmark btn btn-success" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
+                }
+            }
         </h2>
         <div class="text-center col-12">
             <span class="span">

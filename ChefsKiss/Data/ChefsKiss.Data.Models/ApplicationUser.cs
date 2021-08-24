@@ -24,6 +24,8 @@ namespace ChefsKiss.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; } = new HashSet<IdentityUserLogin<string>>();
 
-        public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
+        public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
+
+        public virtual ICollection<Review> Reviews { get; init; } = new List<Review>();
     }
 }

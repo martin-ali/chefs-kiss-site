@@ -61,6 +61,7 @@ namespace ChefsKiss.Web
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IAuthorsService, AuthorsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IFavoritesService, FavoritesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

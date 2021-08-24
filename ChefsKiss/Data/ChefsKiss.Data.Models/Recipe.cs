@@ -37,5 +37,7 @@
         public IEnumerable<Review> Reviews { get; init; } = new List<Review>();
 
         public IEnumerable<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
+
+        public IEnumerable<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 }

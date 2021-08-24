@@ -46,3 +46,4 @@ Comments (top-level only, this isn't a discussion site)
 - Recipes - Search
 - Recipes - Generate
 - Reviews - Details
+- Favorites - Mine

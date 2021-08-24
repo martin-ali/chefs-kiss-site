@@ -13,7 +13,7 @@
 
     public class RecipesDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-        // public RecipesDbContext() { }
+        public RecipesDbContext() { }
 
         public RecipesDbContext(DbContextOptions<RecipesDbContext> options)
             : base(options) { }
@@ -26,14 +26,15 @@
         public DbSet<RecipeIngredient> RecipeIngredients { get; init; }
         public DbSet<Category> Categories { get; init; }
         public DbSet<Recipe> Recipes { get; init; }
+        public DbSet<Favorite> Favorites { get; init; }
 
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     if (!optionsBuilder.IsConfigured)
-        //     {
-        //         optionsBuilder.UseSqlServer("Server=.;Database=ChefsKiss;Integrated Security=true;");
-        //     }
-        // }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=.;Database=ChefsKiss;Integrated Security=true;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

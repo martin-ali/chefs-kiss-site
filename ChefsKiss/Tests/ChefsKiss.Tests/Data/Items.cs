@@ -123,5 +123,25 @@ namespace ChefsKiss.Tests.Data
 
             return categories;
         }
+
+        public static Favorite FavoriteWithData(string userId, int recipeId)
+        {
+            var favorites = new Favorite
+            {
+                UserId = userId,
+                RecipeId = recipeId,
+            };
+
+            return favorites;
+        }
+
+        public static IEnumerable<Favorite> FavoritesWithData(int count, string userId, int recipeId)
+        {
+            var favorites = Enumerable
+                .Range(0, count)
+                .Select(r => FavoriteWithData(userId, recipeId));
+
+            return favorites;
+        }
     }
 }

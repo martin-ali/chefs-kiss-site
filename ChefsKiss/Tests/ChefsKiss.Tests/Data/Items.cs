@@ -6,6 +6,7 @@ namespace ChefsKiss.Tests.Data
 
     using ChefsKiss.Data.Common.Models;
     using ChefsKiss.Data.Models;
+    using MyTested.AspNetCore.Mvc;
 
     public class Items
     {
@@ -23,6 +24,27 @@ namespace ChefsKiss.Tests.Data
             var recipes = Enumerable
                 .Range(0, count)
                 .Select(x => new Author { User = new ApplicationUser() });
+
+            return recipes;
+        }
+
+        public static Recipe RecipeWithDefaultData()
+        {
+            var recipe = new Recipe
+            {
+                Category = With.Default<Category>(),
+                Image = With.Default<Image>(),
+                Author = With.Default<Author>(),
+            };
+
+            return recipe;
+        }
+
+        public static IEnumerable<Recipe> RecipesWithDefaultData(int count)
+        {
+            var recipes = Enumerable
+                .Range(0, count)
+                .Select(r => RecipeWithDefaultData());
 
             return recipes;
         }

@@ -26,7 +26,7 @@ namespace ChefsKiss.Tests.Routing
                .Configuration()
                 .ShouldMap(r => r
                     .WithPath("/RecipesPaging/ByIngredientId/1")
-                    .WithQuery("recipeId", "1"))
+                    .WithQuery("ingredientId", "1"))
                .To<RecipesPagingController>(c => c.ByIngredientId(1, 1));
         }
 

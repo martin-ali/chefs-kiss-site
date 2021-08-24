@@ -5,6 +5,7 @@ namespace ChefsKiss.Tests.Controllers
     using ChefsKiss.Data.Models;
     using ChefsKiss.Tests.Data;
     using ChefsKiss.Web.Controllers;
+    using ChefsKiss.Web.Models.Ingredients;
     using ChefsKiss.Web.Models.Recipes;
 
     using MyTested.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace ChefsKiss.Tests.Controllers
             MyController<RecipesController>
             .Instance()
             .WithUser()
-            .WithData(new Author { })
+            .WithData(With.Default<Author>())
             .Calling(c => c.Create())
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests())
@@ -56,7 +57,7 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<RecipesController>
             .Instance()
-            .WithData(new Recipe())
+            .WithData(RecipeWithDefaultData())
             .Calling(c => c.Details(1))
             .ShouldReturn()
             .View(v => v.WithModelOfType<RecipeDetailsViewModel>());
@@ -67,18 +68,19 @@ namespace ChefsKiss.Tests.Controllers
         {
             MyController<RecipesController>
             .Instance()
-            .WithData(new Recipe())
+            .WithData(RecipeWithDefaultData())
             .Calling(c => c.Random())
             .ShouldReturn()
             .Redirect(r => r.To<RecipesController>(c => c.Details(With.Any<int>())));
         }
 
         [Fact]
-        public void EditGetShouldReturnCorrectViewWithCorrectModel()
+        public void EditGetShouldReturnCorrectViewWithCorrectModelWhenAdmin()
         {
             MyController<RecipesController>
             .Instance()
-            .WithData(new Recipe())
+            .WithUser(u => u.InRoles(AdministratorRoleName))
+            .WithData(RecipeWithDefaultData())
             .Calling(c => c.Edit(1))
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests())
@@ -88,14 +90,21 @@ namespace ChefsKiss.Tests.Controllers
         }
 
         [Fact]
-        public void EditPostShouldReturnCorrectViewWithCorrectModel()
+        public void EditPostShouldReturnCorrectViewWithCorrectModelWhenAdmin()
         {
-            var model = new RecipeEditFormModel { Title = "Edited" };
+            var editForm = new RecipeEditFormModel
+            {
+                Title = "Title",
+                Content = "Content",
+                CategoryId = 1,
+                Ingredients = new List<IngredientFormModel> { With.Default<IngredientFormModel>() },
+            };
 
             MyController<RecipesController>
             .Instance()
-            .WithData(new Recipe())
-            .Calling(c => c.Edit(1, model))
+            .WithUser(u => u.InRoles(AdministratorRoleName))
+            .WithData(RecipeWithDefaultData())
+            .Calling(c => c.Edit(1, editForm))
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests())
             .AndAlso()
@@ -104,11 +113,12 @@ namespace ChefsKiss.Tests.Controllers
         }
 
         [Fact]
-        public void DeleteGetShouldReturnCorrectViewWithCorrectModel()
+        public void DeleteGetShouldReturnCorrectViewWithCorrectModelWhenAdmin()
         {
             MyController<RecipesController>
             .Instance()
-            .WithData(new Recipe())
+            .WithUser(u => u.InRoles(AdministratorRoleName))
+            .WithData(RecipeWithDefaultData())
             .Calling(c => c.Delete(1))
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests())
@@ -118,13 +128,12 @@ namespace ChefsKiss.Tests.Controllers
         }
 
         [Fact]
-        public void DeletePostShouldReturnCorrectViewWithCorrectModel()
+        public void DeletePostShouldReturnCorrectViewWithCorrectModelWhenAdmin()
         {
-            var model = new RecipeEditFormModel { Title = "Edited" };
-
             MyController<RecipesController>
             .Instance()
-            .WithData(new Recipe())
+            .WithUser(u => u.InRoles(AdministratorRoleName))
+            .WithData(RecipeWithDefaultData())
             .Calling(c => c.DeletePost(1))
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests())

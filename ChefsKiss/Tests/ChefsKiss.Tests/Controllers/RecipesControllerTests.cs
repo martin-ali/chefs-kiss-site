@@ -92,13 +92,7 @@ namespace ChefsKiss.Tests.Controllers
         [Fact]
         public void EditPostShouldReturnCorrectViewWithCorrectModelWhenAdmin()
         {
-            var editForm = new RecipeEditFormModel
-            {
-                Title = "Title",
-                Content = "Content",
-                CategoryId = 1,
-                Ingredients = new List<IngredientFormModel> { With.Default<IngredientFormModel>() },
-            };
+            var editForm = RecipeEditFormWithData();
 
             MyController<RecipesController>
             .Instance()

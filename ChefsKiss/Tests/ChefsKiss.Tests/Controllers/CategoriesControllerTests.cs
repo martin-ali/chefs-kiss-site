@@ -20,7 +20,7 @@ namespace ChefsKiss.Tests.Controllers
             MyController<CategoriesController>
             .Instance()
             .WithUser()
-            .WithData(MockModels<Category>(10))
+            .WithData(Models<Category>(10))
             .Calling(c => c.Details(1))
             .ShouldReturn()
             .View(v => v.WithModelOfType<CategoryDetailsViewModel>());
@@ -32,7 +32,7 @@ namespace ChefsKiss.Tests.Controllers
             MyController<CategoriesController>
             .Instance()
             .WithUser()
-            .WithData(MockModels<Category>(10))
+            .WithData(Models<Category>(10))
             .Calling(c => c.Explore())
             .ShouldReturn()
             .View(v => v.WithModelOfType<IEnumerable<CategoryCarouselViewModel>>());

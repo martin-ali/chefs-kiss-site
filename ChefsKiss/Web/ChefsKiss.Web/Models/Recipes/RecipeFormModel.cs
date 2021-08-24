@@ -46,6 +46,7 @@ namespace ChefsKiss.Web.Models.Recipes
         {
             configuration.CreateMap<Recipe, RecipeFormModel>()
             .ForMember(vm => vm.Ingredients, cfg => cfg.MapFrom(m => m.RecipeIngredients))
+            .ForMember(vm => vm.AuthorId, cfg => cfg.MapFrom(m => m.Author.UserId))
             .ForMember(vm => vm.Image, cfg => cfg.Ignore())
             .IncludeAllDerived();
         }

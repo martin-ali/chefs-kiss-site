@@ -4,7 +4,7 @@ namespace ChefsKiss.Web.Models.Favorites
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Models.Recipes;
 
-    public class FavoritesListViewModel : IMapFrom<Favorite>
+    public class FavoriteListViewModel : IMapFrom<Favorite>
     {
         public RecipeListViewModel Recipe { get; init; }
     }

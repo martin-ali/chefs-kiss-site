@@ -41,12 +41,12 @@ namespace ChefsKiss.Web.Services
 
         public IEnumerable<T> ByUserId<T>(string id)
         {
-            var recipes = this.data.Favorites
+            var favorites = this.data.Favorites
                 .Where(f => f.UserId == id)
                 .MapTo<T>()
                 .ToList();
 
-            return recipes;
+            return favorites;
         }
 
         public bool CanFavorite(string userId, int recipeId)

@@ -38,7 +38,7 @@ namespace ChefsKiss.Web.Controllers
         {
             var userId = this.User.Id();
 
-            var favorites = this.favorites.ByUserId<FavoritesListViewModel>(userId);
+            var favorites = this.favorites.ByUserId<FavoriteListViewModel>(userId);
 
             return View(favorites);
         }

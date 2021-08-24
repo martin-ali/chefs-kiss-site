@@ -36,17 +36,21 @@ namespace ChefsKiss.Tests.Controllers
         [Fact]
         public void ApproveShouldApproveAuthorAndRedirectCorrectly()
         {
+            var authorRole = new ApplicationRole { Name = AuthorRoleName };
+
             MyController<AuthorsController>
             .Instance()
             .WithUser(u => u.InRole(AdministratorRoleName))
-            .WithData()
             .WithData(AuthorsWithUsers(10))
             .Calling(c => c.Approve(1))
             .ShouldHave()
             .Data(data => data
                 .WithSet<Author>(authors => authors
                     .Any(a => a.Id == 1 && a.IsApproved)
-                ));
+                ))
+            .AndAlso()
+            .ShouldReturn()
+            .Redirect(r => r.To<AuthorsController>(c => c.Applications()));
         }
     }
 }

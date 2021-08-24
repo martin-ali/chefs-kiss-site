@@ -17,13 +17,22 @@ namespace ChefsKiss.Tests.Controllers
 
     public class RecipesControllerTests
     {
-        [Fact]
-        public void CreateShouldAllowAuthorizedAndReturnCorrectViewWithCorrectModel()
+        [Theory]
+        [InlineData("userId")]
+        public void CreateShouldAllowAuthorizedAndReturnCorrectViewWithCorrectModel(string userId)
         {
+            var author = new Author
+            {
+                FirstName = "fname",
+                LastName = "lname",
+                UserId = userId,
+                IsApproved = true,
+            };
+
             MyController<RecipesController>
             .Instance()
-            .WithUser()
-            .WithData(With.Default<Author>())
+            .WithUser(userId, "username")
+            .WithData(author)
             .Calling(c => c.Create())
             .ShouldHave()
             .ActionAttributes(c => c.RestrictingForAuthorizedRequests())

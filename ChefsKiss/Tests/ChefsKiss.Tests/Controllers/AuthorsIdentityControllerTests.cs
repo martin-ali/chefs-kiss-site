@@ -49,8 +49,7 @@ namespace ChefsKiss.Tests.Controllers
                 .RestrictingForHttpMethod(HttpMethod.Post))
             .AndAlso()
             .ShouldReturn()
-            .RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>(),
-                    new { area = "" });
+            .RedirectToAction(nameof(HomeController.Index), ControllerName<HomeController>());
         }
     }
 }

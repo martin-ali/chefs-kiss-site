@@ -32,7 +32,9 @@ namespace ChefsKiss.Tests.Controllers
             MyController<CategoriesController>
             .Instance()
             .WithUser()
-            .WithData(Models<Category>(10))
+            .WithData(CategoriesWithDefaultData(2))
+            .WithData(RecipesWithDefaultDataAndCategoryId(10, 1))
+            .WithData(RecipesWithDefaultDataAndCategoryId(10, 2))
             .Calling(c => c.Explore())
             .ShouldReturn()
             .View(v => v.WithModelOfType<IEnumerable<CategoryCarouselViewModel>>());

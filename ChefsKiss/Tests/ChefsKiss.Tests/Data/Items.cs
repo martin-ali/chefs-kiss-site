@@ -53,6 +53,29 @@ namespace ChefsKiss.Tests.Data
             return recipes;
         }
 
+        public static Recipe RecipeWithDefaultDataAndCategoryId(int categoryId)
+        {
+            var recipe = new Recipe
+            {
+                Title = "recipe",
+                Content = new string('*', Recipes.ContentMinLength),
+                CategoryId = categoryId,
+                Image = With.Default<Image>(),
+                Author = With.Default<Author>(),
+            };
+
+            return recipe;
+        }
+
+        public static IEnumerable<Recipe> RecipesWithDefaultDataAndCategoryId(int count, int categoryId)
+        {
+            var recipes = Enumerable
+                .Range(0, count)
+                .Select(r => RecipeWithDefaultDataAndCategoryId(categoryId));
+
+            return recipes;
+        }
+
         public static IngredientFormModel IngredientFormWithDefaultData()
         {
             var ingredient = new IngredientFormModel
@@ -86,6 +109,19 @@ namespace ChefsKiss.Tests.Data
             };
 
             return recipe;
+        }
+
+        public static IEnumerable<Category> CategoriesWithDefaultData(int count)
+        {
+            var index = 1;
+            var categories = Enumerable
+                .Range(0, count)
+                .Select(r => new Category
+                {
+                    Name = $"cat-{index}"
+                });
+
+            return categories;
         }
     }
 }

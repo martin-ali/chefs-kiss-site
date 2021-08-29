@@ -137,7 +137,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(recipe)));
+                var errorMessage = InvalidParameter(nameof(recipe));
+                return this.NotFound(errorMessage);
             }
 
             if (this.User.Identity.IsAuthenticated)
@@ -165,7 +166,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(recipe)));
+                var errorMessage = InvalidParameter(nameof(recipe));
+                return this.NotFound(errorMessage);
             }
 
             var categories = this.categories
@@ -195,7 +197,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(recipe)));
+                var errorMessage = InvalidParameter(nameof(recipe));
+                return this.NotFound(errorMessage);
             }
 
             var userId = this.User.Id();
@@ -220,7 +223,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(recipe)));
+                var errorMessage = InvalidParameter(nameof(recipe));
+                return this.BadRequest(errorMessage);
             }
 
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();
@@ -242,7 +246,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(recipe)));
+                var errorMessage = InvalidParameter(nameof(recipe));
+                return this.BadRequest(errorMessage);
             }
 
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();

@@ -33,7 +33,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (categories == null)
             {
-                return this.BadRequest(InvalidParameter("category"));
+                var errorMessage = InvalidParameter("category");
+                return this.NotFound(errorMessage);
             }
 
             var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(0, ItemsPerPage, id);

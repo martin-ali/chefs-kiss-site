@@ -50,7 +50,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(recipe)));
+                var errorMessage = InvalidParameter(nameof(recipe));
+                return this.BadRequest(errorMessage);
             }
 
             var reviews = this.reviews.ByRecipeId<ReviewServiceModel>(input.RecipeId);
@@ -74,7 +75,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (review == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(review)));
+                var errorMessage = InvalidParameter(nameof(review));
+                return this.BadRequest(errorMessage);
             }
 
             return this.View(review);
@@ -86,7 +88,8 @@ namespace ChefsKiss.Web.Controllers
             var reviewExists = this.reviews.Exists(id);
             if (reviewExists == false)
             {
-                return this.BadRequest(InvalidParameter("review"));
+                var errorMessage = InvalidParameter("review");
+                return this.BadRequest(errorMessage);
             }
 
             this.reviews.Delete(id);

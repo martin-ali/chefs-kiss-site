@@ -31,10 +31,7 @@ namespace ChefsKiss.Web.Controllers
         public IActionResult IngredientAddForm(int id)
         {
             var units = this.measurementUnits.All<MeasurementUnitViewModel>();
-            var ingredient = new IngredientFormModel
-            {
-                Index = id,
-            };
+            var ingredient = new IngredientFormModel { Index = id, };
 
             // FIXME: Hard-coded
             return this.PartialView("_IngredientFormPartial", ingredient);
@@ -46,7 +43,8 @@ namespace ChefsKiss.Web.Controllers
 
             if (ingredient == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(ingredient)));
+                var errorMessage = InvalidParameter(nameof(ingredient));
+                return this.BadRequest(errorMessage);
             }
 
             var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(0, ItemsPerPage, id);

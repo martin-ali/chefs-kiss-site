@@ -47,3 +47,33 @@ Comments (top-level only, this isn't a discussion site)
 - Recipes - Generate
 - Reviews - Details
 - Favorites - Mine
+
+## Controllers
+
+- Categories
+- Favorites
+- Home
+- Ingredients
+- Recipes
+- RecipesPaging
+- Reviews
+- Writers (Administration)
+- Writers (Identity)
+- Users
+
+## Functionality
+
+- Recipe creation/editing/deletion/bookmarking
+- Writer role
+- Admin panel
+- ViewComponent
+- CSS animations
+- JavaScript
+- Custom attributes
+- File system
+- Helpers
+- Seeding
+- Automapping
+- Extensions
+- Cache
+- Responsive/mobile

@@ -8,11 +8,11 @@
             {
                 if (Model.IsFavorited)
                 {
-                    <a title="Remove from favorites" class="fa fa-bookmark btn btn-danger" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
+                    <a title="Remove from favorites" class="fa fa-bookmark btn btn-danger animate-zoom-sm" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
                 }
                 else
                 {
-                    <a title="Add to favorites" class="fa fa-bookmark btn btn-success" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
+                    <a title="Add to favorites" class="fa fa-bookmark btn btn-success animate-zoom-sm" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
                 }
             }
         </h2>

@@ -16,8 +16,6 @@
 
         public const string IdentityArea = "Identity";
 
-        public const string HomeArea = "Home";
-
         public const int PopularRecipesCount = 5;
 
         public const int ItemsPerPage = 6;

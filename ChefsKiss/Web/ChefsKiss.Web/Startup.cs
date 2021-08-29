@@ -7,6 +7,7 @@ namespace ChefsKiss.Web
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Identity.Services;
+    using ChefsKiss.Web.Controllers;
     using ChefsKiss.Web.Infrastructure.Extensions;
     using ChefsKiss.Web.Models;
     using ChefsKiss.Web.Models.Recipes;
@@ -19,6 +20,8 @@ namespace ChefsKiss.Web
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using static ChefsKiss.Common.Helpers;
 
     public class Startup
     {
@@ -95,6 +98,14 @@ namespace ChefsKiss.Web
             {
                 endpoints.MapControllerRoute("areasRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("defaultRoute", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                      name: "unmappedRoute",
+                      pattern: "{*url}",
+                      defaults: new
+                      {
+                          controller = ControllerName<HomeController>(),
+                          action = nameof(HomeController.Error),
+                      });
                 endpoints.MapRazorPages();
             });
         }

@@ -79,10 +79,7 @@ body {
     /* Vertically center the text there */
 }
 
-/* Edit panel icons */
-.edit-panel {
-    font-size: 2rem;
-}
+/* Custom */
 
 /* Image zoom instead of stretching */
 .embed-responsive .card-img-top {
@@ -126,4 +123,19 @@ select.form-control:focus,
 [type=tel].form-control:focus,
 [contenteditable].form-control:focus {
     box-shadow: none;
+}
+
+/* Media queries */
+
+/* Edit panel icons */
+@media (min-width: 350px) {
+    .edit-panel {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    .edit-panel {
+        font-size: 1.2rem;
+    }
 }

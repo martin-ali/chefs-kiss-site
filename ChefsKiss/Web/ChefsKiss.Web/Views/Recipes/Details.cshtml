@@ -4,36 +4,45 @@
     <div class="recipe-heading m-3 rounded">
         <h2 class="text-center mx-auto display-4">
             @Model.Title
-            @if (User.Identity.IsAuthenticated)
-            {
-                if (Model.IsFavorited)
-                {
-                    <a title="Remove from favorites" class="fa fa-bookmark btn btn-danger animate-zoom-sm" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
-                }
-                else
-                {
-                    <a title="Add to favorites" class="fa fa-bookmark btn btn-success animate-zoom-sm" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
-                }
-            }
         </h2>
         <div class="text-center col-12">
             <span class="span">
-                Written by:
-                <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="text-decoration-none">
-                    <span class="animate-underline"> @Model.AuthorFullName</span>
-                </a>
-                |
-                In category:
-                <a asp-controller="Categories" asp-action="Details" asp-route-id="@Model.CategoryId" class="text-decoration-none">
-                    <span class="animate-underline"> @Model.Category</span>
-                </a>
+                <span class="d-md-inline d-block">
+                    Written by:
+                    <a asp-area="Identity" asp-controller="Users" asp-action="Details" asp-route-id="@Model.AuthorId" class="text-decoration-none">
+                        <span class="animate-underline"> @Model.AuthorFullName</span>
+                    </a>
+                </span>
+                <span class="d-none d-md-inline">
+                    |
+                </span>
+                <span class="d-md-inline d-block">
+                    In category:
+                    <a asp-controller="Categories" asp-action="Details" asp-route-id="@Model.CategoryId" class="text-decoration-none">
+                        <span class="animate-underline"> @Model.Category</span>
+                    </a>
+                </span>
             </span>
-            @if (Model.UserIsAuthor || User.IsAdmin())
+            @if (User.Identity.IsAuthenticated)
             {
-                <div class="edit-panel mx-auto">
-                    <a class="btn btn-primary fa fa-edit animate-zoom-sm col-lg-1 col-md-3" asp-action="Edit" asp-route-id="@Model.Id"></a>
-                    <a class="btn btn-danger fa fa-trash animate-zoom-sm col-lg-1 col-md-3" asp-action="Delete" asp-route-id="@Model.Id"></a>
-                </div>
+                <span class="d-none d-lg-inline">
+                    |
+                </span>
+                <span class="edit-panel mx-auto d-block d-lg-inline">
+                    @if (Model.UserIsAuthor || User.IsAdmin())
+                    {
+                        <a class="btn btn-primary fa fa-edit animate-zoom-sm col-lg-1 col-md-3" asp-action="Edit" asp-route-id="@Model.Id"></a>
+                        <a class="btn btn-danger fa fa-trash animate-zoom-sm col-lg-1 col-md-3" asp-action="Delete" asp-route-id="@Model.Id"></a>
+                    }
+                    @if (Model.IsFavorited)
+                    {
+                        <a class="btn btn-warning fa fa-bookmark animate-zoom-sm col-lg-1 col-md-3" title="Remove from favorites" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-success fa fa-bookmark animate-zoom-sm col-lg-1 col-md-3" title="Add to favorites" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
+                    }
+                </span>
             }
         </div>
     </div>

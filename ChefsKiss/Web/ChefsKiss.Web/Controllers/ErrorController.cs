@@ -5,9 +5,10 @@ namespace ChefsKiss.Web.Controllers
 
     using ChefsKiss.Web.Models;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ErrorsController : Controller
+    public class ErrorController : Controller
     {
         private readonly Dictionary<int, string> MessageByStatusCode = new Dictionary<int, string>
         {
@@ -61,19 +62,18 @@ namespace ChefsKiss.Web.Controllers
             [599] = "Network Connect Timeout Error",
         };
 
-        [HttpGet]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Index(int id)
+        public IActionResult Index(int statusCode = StatusCodes.Status500InternalServerError)
         {
             var error = new ErrorViewModel
             {
-                StatusCode = id,
+                StatusCode = statusCode,
                 RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier,
             };
 
-            if (this.MessageByStatusCode.ContainsKey(id))
+            if (this.MessageByStatusCode.ContainsKey(statusCode))
             {
-                error.Message = this.MessageByStatusCode[id];
+                error.Message = this.MessageByStatusCode[statusCode];
             }
 
             return this.View(error);

@@ -8,7 +8,6 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.WebConstants;
 
     public class RecipesPagingController : Controller
@@ -33,35 +32,35 @@ namespace ChefsKiss.Web.Controllers
             this.categories = categories;
         }
 
-        public IActionResult All(int id) // FIXME: Parameter name id makes no sense in this context
+        public IActionResult All(int pageNumber) // FIXME: Parameter name id makes no sense in this context
         {
-            var recipes = this.recipes.PagedAll<RecipeListViewModel>(id, ItemsPerPage);
+            var recipes = this.recipes.PagedAll<RecipeListViewModel>(pageNumber, ItemsPerPage);
 
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult ByIngredientId(int id, int ingredientId)
+        public IActionResult ByIngredientId(int pageNumber, int ingredientId)
         {
-            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(id, ItemsPerPage, ingredientId);
+            var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(pageNumber, ItemsPerPage, ingredientId);
 
             return this.PartialView("_PagePartialRow", recipes);
         }
 
-        public IActionResult ByCategoryId(int id, int categoryId)
+        public IActionResult ByCategoryId(int pageNumber, int categoryId)
         {
-            var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(id, ItemsPerPage, categoryId);
+            var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(pageNumber, ItemsPerPage, categoryId);
 
             return this.PartialView("_PagePartialCard", recipes);
         }
 
-        public IActionResult BySearchQuery(int id, RecipesQueryModel query)
+        public IActionResult BySearchQuery(int pageNumber, RecipesQueryModel query)
         {
             if (this.ModelState.IsValid == false)
             {
                 return this.BadRequest();
             }
 
-            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(id, ItemsPerPage, query.SearchTerm, query.CategoryId, query.SortBy);
+            var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(pageNumber, ItemsPerPage, query.SearchTerm, query.CategoryId, query.SortBy);
 
             return this.PartialView("_PagePartialCard", recipes);
         }

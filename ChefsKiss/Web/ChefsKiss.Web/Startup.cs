@@ -82,11 +82,11 @@ namespace ChefsKiss.Web
             }
             else
             {
-                app.UseExceptionHandler("/Errors/Index");
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/Errors/Index/{0}");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -98,16 +98,16 @@ namespace ChefsKiss.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("areasRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute("defaultRoute", "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                      name: "unmappedRoute",
-                      pattern: "{*url}",
-                      defaults: new
-                      {
-                          controller = ControllerName<HomeController>(),
-                          action = nameof(ErrorsController.Index),
-                      });
+                // Specific
+                endpoints.MapControllerRoute("recipesPaging", "RecipesPaging/{action}/{pageNumber?}", new { controller = ControllerName<RecipesPagingController>() });
+                endpoints.MapControllerRoute("error", "Error/{statusCode?}", new { controller = ControllerName<ErrorController>(), action = nameof(ErrorController.Index) });
+
+                // General
+                endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
+                // Other
+                endpoints.MapControllerRoute("unmapped", "{*url}", new { controller = ControllerName<ErrorController>(), action = nameof(ErrorController.Index) });
                 endpoints.MapRazorPages();
             });
         }

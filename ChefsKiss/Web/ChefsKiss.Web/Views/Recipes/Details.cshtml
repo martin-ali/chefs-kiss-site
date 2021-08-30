@@ -36,11 +36,11 @@
                     }
                     @if (Model.IsFavorited)
                     {
-                        <a class="btn btn-warning fa fa-bookmark animate-zoom-sm col-lg-1 col-md-3" title="Remove from favorites" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
+                        <a class="btn btn-success fa fa-heart animate-zoom-sm col-lg-1 col-md-3" title="Remove from favorites" asp-area="" asp-controller="Favorites" asp-action="Remove" asp-route-recipeId="@Model.Id"></a>
                     }
                     else
                     {
-                        <a class="btn btn-success fa fa-bookmark animate-zoom-sm col-lg-1 col-md-3" title="Add to favorites" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
+                        <a class="btn btn-info fa fa-heart animate-zoom-sm col-lg-1 col-md-3" title="Add to favorites" asp-area="" asp-controller="Favorites" asp-action="Add" asp-route-recipeId="@Model.Id"></a>
                     }
                 </span>
             }

@@ -12,7 +12,6 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
@@ -50,8 +49,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (recipe == null)
             {
-                var errorMessage = InvalidParameter(nameof(recipe));
-                return this.BadRequest(errorMessage);
+                return this.BadRequest();
             }
 
             var reviews = this.reviews.ByRecipeId<ReviewServiceModel>(input.RecipeId);
@@ -61,7 +59,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (userHasCommented || userIsRecipeAuthor)
             {
-                return this.BadRequest(AuthorsCantReviewOwnRecipes);
+                return this.BadRequest();
             }
 
             this.reviews.Create(input.RecipeId, input.Content, input.Rating, user.Id);
@@ -75,8 +73,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (review == null)
             {
-                var errorMessage = InvalidParameter(nameof(review));
-                return this.BadRequest(errorMessage);
+                return this.BadRequest();
             }
 
             return this.View(review);
@@ -88,8 +85,7 @@ namespace ChefsKiss.Web.Controllers
             var reviewExists = this.reviews.Exists(id);
             if (reviewExists == false)
             {
-                var errorMessage = InvalidParameter("review");
-                return this.BadRequest(errorMessage);
+                return this.BadRequest();
             }
 
             this.reviews.Delete(id);

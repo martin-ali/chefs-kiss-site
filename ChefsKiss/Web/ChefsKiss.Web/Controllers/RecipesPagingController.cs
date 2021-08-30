@@ -58,7 +58,7 @@ namespace ChefsKiss.Web.Controllers
         {
             if (this.ModelState.IsValid == false)
             {
-                return this.BadRequest(InvalidSearchTerm);
+                return this.BadRequest();
             }
 
             var recipes = this.recipes.PagedBySearchQuery<RecipeListViewModel>(id, ItemsPerPage, query.SearchTerm, query.CategoryId, query.SortBy);

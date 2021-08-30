@@ -7,7 +7,6 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.Helpers;
 
     [Authorize]
@@ -26,7 +25,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (this.favorites.CanFavorite(userId, recipeId) == false)
             {
-                return this.BadRequest(InvalidRequest);
+                return this.BadRequest();
             }
 
             this.favorites.Add(userId, recipeId);
@@ -49,7 +48,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (this.favorites.CanUnfavorite(userId, recipeId) == false)
             {
-                return this.BadRequest(InvalidRequest);
+                return this.BadRequest();
             }
 
             this.favorites.Remove(userId, recipeId);

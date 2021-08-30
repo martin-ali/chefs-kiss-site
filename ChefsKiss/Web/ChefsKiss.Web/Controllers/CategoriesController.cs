@@ -10,7 +10,6 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
 
-    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.WebConstants;
     using static ChefsKiss.Common.WebConstants.Cache;
 
@@ -33,8 +32,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (categories == null)
             {
-                var errorMessage = InvalidParameter("category");
-                return this.NotFound(errorMessage);
+                return this.NotFound();
             }
 
             var recipes = this.recipes.PagedByCategoryId<RecipeListViewModel>(0, ItemsPerPage, id);

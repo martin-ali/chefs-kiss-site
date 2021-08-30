@@ -82,9 +82,11 @@ namespace ChefsKiss.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Errors/Index");
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithReExecute("/Errors/Index/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -104,7 +106,7 @@ namespace ChefsKiss.Web
                       defaults: new
                       {
                           controller = ControllerName<HomeController>(),
-                          action = nameof(HomeController.Error),
+                          action = nameof(ErrorsController.Index),
                       });
                 endpoints.MapRazorPages();
             });

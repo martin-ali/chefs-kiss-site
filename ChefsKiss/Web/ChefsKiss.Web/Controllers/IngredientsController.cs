@@ -8,7 +8,6 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.WebConstants;
 
     public class IngredientsController : Controller
@@ -43,8 +42,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (ingredient == null)
             {
-                var errorMessage = InvalidParameter(nameof(ingredient));
-                return this.BadRequest(errorMessage);
+                return this.BadRequest();
             }
 
             var recipes = this.recipes.PagedByIngredientId<RecipeListViewModel>(0, ItemsPerPage, id);

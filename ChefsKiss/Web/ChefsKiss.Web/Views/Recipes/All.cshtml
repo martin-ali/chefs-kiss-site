@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<RecipeListViewModel>
 
-<h2 class="text-center">All recipes</h2>
+@{
+    ViewBag.Title = "All recipes";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
 <hr>
 
 <div id="recipes-list" class="row mx-auto">

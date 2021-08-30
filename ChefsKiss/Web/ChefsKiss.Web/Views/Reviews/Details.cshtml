@@ -1,5 +1,9 @@
 ﻿@model ReviewDetailsViewModel
 
+@{
+    ViewBag.Title = "Review details";
+}
+
 <article class="card">
     <div class="card-header">
         <partial name="_RatingBarPartial" model="@Model.Rating" />

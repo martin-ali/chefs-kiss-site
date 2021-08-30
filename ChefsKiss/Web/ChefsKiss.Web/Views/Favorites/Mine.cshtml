@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<FavoriteListViewModel>
 
-<h2 class="text-center">My favorites</h2>
+@{
+    ViewBag.Title = "My favorites";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
 <hr>
 
 <div id="recipes-list" class="row mx-auto">

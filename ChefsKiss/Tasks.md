@@ -20,7 +20,7 @@
 - [x] Validation with user-friendly messages
 - [x] Controllers
 - [x] Review system
-- [x] Fix hard-coded connection string
+- [ ] Fix hard-coded connection string
 - [x] Favicon
 - [x] Roles - User, Administrator, Author
 - [x] AJAX
@@ -55,7 +55,7 @@
 - [x] Area bug in recipes links (like random)
 - [x] Configure image
 - [x] Readme
-- [ ] Search takes a model, yet paging uses parameters instead
+- [x] Search takes a model, yet paging uses parameters instead
 
 ## Optional
 

@@ -3,12 +3,5 @@
     ViewData["Title"] = "Error";
 }
 
-@if (Model.StatusCode != 0)
-{
-    <h1 class="text-danger">Error code @Model.StatusCode</h1>
-    <h2 class="text-danger">@Model.Message.</h2>
-}
-else
-{
-    <h2 class="text-danger">An error occurred while processing your request</h2>
-}
+<h1 class="text-danger">Error code @Model.StatusCode</h1>
+<h2 class="text-danger">@Model.Message.</h2>

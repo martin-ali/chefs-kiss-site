@@ -65,14 +65,18 @@ namespace ChefsKiss.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index(int id)
         {
-            var message = this.MessageByStatusCode[id];
-
-            return this.View(new ErrorViewModel
+            var error = new ErrorViewModel
             {
                 StatusCode = id,
-                Message = message,
                 RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier,
-            });
+            };
+
+            if (this.MessageByStatusCode.ContainsKey(id))
+            {
+                error.Message = this.MessageByStatusCode[id];
+            }
+
+            return this.View(error);
         }
     }
 }

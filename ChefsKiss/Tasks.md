@@ -43,7 +43,7 @@
 - [x] Deal with exceptions (missing id, user, etc...)
 - [ ] Unit tests - >=65%
 - [x] Order recipes
-- [ ] Functional error page
+- [x] Functional error page
 - [x] Review delete
 - [x] Viewimports
 - [x] Home

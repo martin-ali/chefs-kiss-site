@@ -47,12 +47,14 @@ Comments (top-level only, this isn't a discussion site)
 - Recipes - Generate
 - Reviews - Details
 - Favorites - Mine
+- Error - Index
 
 ## Controllers
 
 - Categories
 - Favorites
 - Home
+- Error
 - Ingredients
 - Recipes
 - RecipesPaging
@@ -77,3 +79,5 @@ Comments (top-level only, this isn't a discussion site)
 - Extensions
 - Cache
 - Responsive/mobile
+- Error on unmapped view
+- Error pages with status code

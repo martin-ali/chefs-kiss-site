@@ -39,7 +39,7 @@ namespace ChefsKiss.Web.Controllers
 
             var favorites = this.favorites.ByUserId<FavoriteListViewModel>(userId);
 
-            return View(favorites);
+            return this.View(favorites);
         }
 
         public IActionResult Remove(int recipeId)

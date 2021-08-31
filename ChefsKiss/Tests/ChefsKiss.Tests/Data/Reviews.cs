@@ -7,7 +7,7 @@ namespace ChefsKiss.Tests.Data
 
     public class Reviews
     {
-        public IEnumerable<Review> GetReviews()
+        public static IEnumerable<Review> GetReviews()
         {
             var reviews = Enumerable
                .Range(0, 10)

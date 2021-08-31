@@ -3,7 +3,6 @@ namespace ChefsKiss.Tests.Controllers
     using System.Collections.Generic;
 
     using ChefsKiss.Web.Controllers;
-    using ChefsKiss.Web.Models;
     using ChefsKiss.Web.Models.Recipes;
 
     using MyTested.AspNetCore.Mvc;
@@ -24,16 +23,16 @@ namespace ChefsKiss.Tests.Controllers
             .View(v => v.WithModelOfType<IEnumerable<RecipeListViewModel>>());
         }
 
-        [Fact]
-        public void ErrorShouldReturnViewWithCorrectModel()
-        {
-            MyMvc
-            .Pipeline()
-            .ShouldMap("/Home/Error")
-            .To<HomeController>(c => c.Error())
-            .Which()
-            .ShouldReturn()
-            .View(v => v.WithModelOfType<ErrorViewModel>());
-        }
+        // [Fact]
+        // public void ErrorShouldReturnViewWithCorrectModel()
+        // {
+        //     MyMvc
+        //     .Pipeline()
+        //     .ShouldMap("/Home/Error")
+        //     .To<HomeController>(c => c.Error())
+        //     .Which()
+        //     .ShouldReturn()
+        //     .View(v => v.WithModelOfType<ErrorViewModel>());
+        // }
     }
 }

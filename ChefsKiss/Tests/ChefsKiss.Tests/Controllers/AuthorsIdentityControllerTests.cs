@@ -1,6 +1,5 @@
 namespace ChefsKiss.Tests.Controllers
 {
-    using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Areas.Identity.Controllers;
     using ChefsKiss.Web.Areas.Identity.Models.Authors;
     using ChefsKiss.Web.Controllers;
@@ -10,8 +9,6 @@ namespace ChefsKiss.Tests.Controllers
     using Xunit;
 
     using static ChefsKiss.Common.Helpers;
-    using static ChefsKiss.Tests.Data.Items;
-
 
     public class AuthorsIdentityControllerTests
     {

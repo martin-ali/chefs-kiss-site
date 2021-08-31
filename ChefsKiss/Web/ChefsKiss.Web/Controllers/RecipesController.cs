@@ -4,7 +4,6 @@ namespace ChefsKiss.Web.Controllers
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ChefsKiss.Common;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Identity.Services;
@@ -18,7 +17,7 @@ namespace ChefsKiss.Web.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using static ChefsKiss.Common.ErrorMessages;
+
     using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
@@ -65,7 +64,7 @@ namespace ChefsKiss.Web.Controllers
                 return this.Unauthorized();
             }
 
-            var model = new RecipeCreateFormModel { Categories = CategoryOptions() };
+            var model = new RecipeCreateFormModel { Categories = this.CategoryOptions() };
 
             return this.View(model);
         }
@@ -84,7 +83,7 @@ namespace ChefsKiss.Web.Controllers
 
             if (this.ModelState.IsValid == false)
             {
-                input.Categories = CategoryOptions();
+                input.Categories = this.CategoryOptions();
 
                 return this.View(input);
             }
@@ -210,7 +209,7 @@ namespace ChefsKiss.Web.Controllers
             var ingredients = input.Ingredients.AsQueryable().MapTo<IngredientServiceModel>();
             await this.recipes.EditAsync(id, userId, input.Title, input.Content, input.CategoryId, ingredients, input.Image);
 
-            return this.RedirectToAction(nameof(this.Details), new { id = id });
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
 
         [Authorize]
@@ -232,7 +231,6 @@ namespace ChefsKiss.Web.Controllers
             return this.View(recipe);
         }
 
-        // FIXME: I'm passing a web model to a service. Refactor it
         [HttpPost]
         [Authorize]
         [ActionName(nameof(Delete))]

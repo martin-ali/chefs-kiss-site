@@ -23,7 +23,7 @@ namespace ChefsKiss.Web.Infrastructure.Attributes
 
             if (textIsValid == false)
             {
-                var errorMessage = LengthBetweenWithParameters(validationContext.DisplayName, minLength, maxLength);
+                var errorMessage = LengthBetweenWithParameters(validationContext.DisplayName, this.minLength, this.maxLength);
                 return new ValidationResult(errorMessage);
             }
 

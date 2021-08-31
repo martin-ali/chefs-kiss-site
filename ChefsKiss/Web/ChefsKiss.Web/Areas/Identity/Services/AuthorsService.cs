@@ -72,7 +72,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             author.IsApproved = true;
 
             var user = this.data.Users.Find(author.UserId);
-            var result = await this.userManager.AddToRoleAsync(user, AuthorRoleName);
+            await this.userManager.AddToRoleAsync(user, AuthorRoleName);
 
             this.data.SaveChanges();
         }

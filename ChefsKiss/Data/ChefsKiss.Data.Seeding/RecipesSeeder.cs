@@ -29,7 +29,7 @@ namespace ChefsKiss.Data.Seeding
             var random = new Random();
             var authors = dbContext.Authors.Where(x => x.IsApproved).ToList();
             var categories = dbContext.Categories.ToList();
-            var images = await GetImages(random, serviceProvider);
+            var images = await GetImages(serviceProvider);
 
             for (int i = 0; i < RecipesCount; i++)
             {
@@ -53,7 +53,7 @@ namespace ChefsKiss.Data.Seeding
 
             await dbContext.SaveChangesAsync();
         }
-        private IEnumerable<RecipeIngredient> CreateRandomRecipeIngredients(RecipesDbContext dbContext, Random random)
+        private static IEnumerable<RecipeIngredient> CreateRandomRecipeIngredients(RecipesDbContext dbContext, Random random)
         {
             var measurementUnits = dbContext.MeasurementUnits.ToList();
             var ingredientsRandomized = dbContext.Ingredients
@@ -81,7 +81,7 @@ namespace ChefsKiss.Data.Seeding
             return recipeIngredients;
         }
 
-        private async Task<IList<Image>> GetImages(Random random, IServiceProvider serviceProvider)
+        private static async Task<IList<Image>> GetImages(IServiceProvider serviceProvider)
         {
             // Get all images for seeding
             var environment = (IWebHostEnvironment)serviceProvider.GetService(typeof(IWebHostEnvironment));
@@ -90,7 +90,7 @@ namespace ChefsKiss.Data.Seeding
             var filePaths = Directory.GetFiles(imagesDirectory);
 
             var fileWriter = (IImageOperator)serviceProvider.GetService(typeof(IImageOperator));
-            var filesCount = filePaths.Count();
+            var filesCount = filePaths.Length;
 
             var images = new List<Image>();
 

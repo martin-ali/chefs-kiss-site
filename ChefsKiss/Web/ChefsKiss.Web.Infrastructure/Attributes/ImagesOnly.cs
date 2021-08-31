@@ -2,6 +2,7 @@ namespace ChefsKiss.Web.Infrastructure.Attributes
 {
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+
     using Microsoft.AspNetCore.Http;
 
     public class ImagesOnly : ValidationAttribute
@@ -32,7 +33,7 @@ namespace ChefsKiss.Web.Infrastructure.Attributes
 
             var extension = contentData[1].Trim();
 
-            if (AllowedExtensions.Contains(extension))
+            if (this.AllowedExtensions.Contains(extension))
             {
                 return ValidationResult.Success;
             }

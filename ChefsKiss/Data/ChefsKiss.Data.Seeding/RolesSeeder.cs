@@ -11,7 +11,7 @@ namespace ChefsKiss.Data.Seeding
 
     public class RolesSeeder : IDataSeeder
     {
-        static readonly string[] roles = new[]{
+        private static readonly string[] roles = new[]{
             AdministratorRoleName,
             AuthorRoleName,
             UserRoleName,

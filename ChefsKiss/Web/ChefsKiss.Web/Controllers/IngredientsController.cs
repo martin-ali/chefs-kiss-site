@@ -1,7 +1,6 @@
 namespace ChefsKiss.Web.Controllers
 {
     using ChefsKiss.Web.Models.Ingredients;
-    using ChefsKiss.Web.Models.MeasurementUnits;
     using ChefsKiss.Web.Models.Recipes;
     using ChefsKiss.Web.Services;
 
@@ -12,16 +11,13 @@ namespace ChefsKiss.Web.Controllers
 
     public class IngredientsController : Controller
     {
-        private readonly IMeasurementUnitsService measurementUnits;
         private readonly IRecipesService recipes;
         private readonly IIngredientsService ingredients;
 
         public IngredientsController(
-            IMeasurementUnitsService measurementUnits,
             IRecipesService recipes,
             IIngredientsService ingredients)
         {
-            this.measurementUnits = measurementUnits;
             this.recipes = recipes;
             this.ingredients = ingredients;
         }
@@ -29,10 +25,8 @@ namespace ChefsKiss.Web.Controllers
         [Authorize]
         public IActionResult IngredientAddForm(int id)
         {
-            var units = this.measurementUnits.All<MeasurementUnitViewModel>();
             var ingredient = new IngredientFormModel { Index = id, };
 
-            // FIXME: Hard-coded
             return this.PartialView("_IngredientFormPartial", ingredient);
         }
 

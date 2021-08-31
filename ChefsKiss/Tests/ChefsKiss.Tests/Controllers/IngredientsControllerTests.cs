@@ -12,8 +12,6 @@ namespace ChefsKiss.Tests.Controllers
 
     public class IngredientsControllerTests
     {
-        private readonly Ingredient ingredient = new Ingredient { Id = 1 };
-
         [Fact]
         public void AddFormShouldReturnCorrectPartialViewWithCorrectModel()
         {

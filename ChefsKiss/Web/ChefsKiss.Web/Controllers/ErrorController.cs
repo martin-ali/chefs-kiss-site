@@ -10,7 +10,7 @@ namespace ChefsKiss.Web.Controllers
 
     public class ErrorController : Controller
     {
-        private readonly Dictionary<int, string> MessageByStatusCode = new Dictionary<int, string>
+        private readonly Dictionary<int, string> MessageByStatusCode = new()
         {
             // No code
             [0] = "Unknown error",

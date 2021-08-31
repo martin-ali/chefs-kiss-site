@@ -6,7 +6,7 @@ namespace ChefsKiss.Data.Seeding
 
     public class CategoriesSeeder : IDataSeeder
     {
-        static readonly string[] categories = new[]{
+        private static readonly string[] categories = new[]{
             "Vegan",
             "Vegetarian",
             "Fish",
@@ -21,7 +21,6 @@ namespace ChefsKiss.Data.Seeding
             "Others",
         };
 
-        //
         public async Task SeedAsync(RecipesDbContext dbContext, IServiceProvider serviceProvider)
         {
             foreach (var categoryName in categories)

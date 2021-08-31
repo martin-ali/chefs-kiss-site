@@ -1,9 +1,6 @@
 namespace ChefsKiss.Web.Infrastructure.Extensions
 {
-    using System;
     using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     using ChefsKiss.Data;
     using ChefsKiss.Data.Seeding;

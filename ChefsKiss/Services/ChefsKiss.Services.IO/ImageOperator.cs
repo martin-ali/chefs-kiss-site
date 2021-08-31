@@ -17,7 +17,7 @@ namespace ChefsKiss.Services.IO
         public ImageOperator(IWebHostEnvironment environment)
         {
             this.environment = environment;
-            // FIXME: This is so unit tests pass. But what does it even have to do with the HomeController???
+
             var webroot = environment.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
             this.imagesPath = Path.Combine(webroot, ImagesDirectory);
 

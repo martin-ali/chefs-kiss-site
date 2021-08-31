@@ -16,7 +16,7 @@ namespace ChefsKiss.Tests.Controllers
 
     public class FavoritesControllerTests
     {
-        private static ApplicationUser User = new ApplicationUser()
+        private static readonly ApplicationUser User = new()
         {
             Id = "TestId",
             UserName = "name",

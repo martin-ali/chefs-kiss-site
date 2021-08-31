@@ -1,6 +1,5 @@
 namespace ChefsKiss.Tests.Routing
 {
-    using ChefsKiss.Common;
     using ChefsKiss.Web.Controllers;
     using ChefsKiss.Web.Models.Recipes;
 

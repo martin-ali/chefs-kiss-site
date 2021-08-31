@@ -1,7 +1,6 @@
 namespace ChefsKiss.Web.Areas.Identity.Models.Users
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using AutoMapper;
 
@@ -27,7 +26,7 @@ namespace ChefsKiss.Web.Areas.Identity.Models.Users
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<ApplicationUser, UserDetailsViewModel>()
-            .ForMember(vm => vm.ReviewsCount, cfg => cfg.MapFrom(m => m.Reviews.Count()));
+            .ForMember(vm => vm.ReviewsCount, cfg => cfg.MapFrom(m => m.Reviews.Count));
         }
     }
 }

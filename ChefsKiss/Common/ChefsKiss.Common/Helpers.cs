@@ -1,7 +1,5 @@
 namespace ChefsKiss.Common
 {
-    using System;
-
     public class Helpers
     {
         // TODO: This is ugly code. Make it better

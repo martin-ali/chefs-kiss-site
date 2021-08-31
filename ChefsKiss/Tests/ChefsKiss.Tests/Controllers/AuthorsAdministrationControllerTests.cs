@@ -15,9 +15,6 @@ namespace ChefsKiss.Tests.Controllers
 
     public class AuthorsAdministrationControllerTests
     {
-        private readonly ApplicationUser User = new ApplicationUser { Id = "TestUser" };
-        // private readonly Author Author = new Author { Id = 1, IsApproved = false };
-
         [Fact]
         public void ApplicationsShouldReturnViewWithCorrectModel()
         {

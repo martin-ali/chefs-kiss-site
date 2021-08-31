@@ -3,9 +3,7 @@ namespace ChefsKiss.Tests.Controllers
     using System.Collections.Generic;
 
     using ChefsKiss.Data.Models;
-    using ChefsKiss.Tests.Data;
     using ChefsKiss.Web.Controllers;
-    using ChefsKiss.Web.Models.Ingredients;
     using ChefsKiss.Web.Models.Recipes;
 
     using MyTested.AspNetCore.Mvc;

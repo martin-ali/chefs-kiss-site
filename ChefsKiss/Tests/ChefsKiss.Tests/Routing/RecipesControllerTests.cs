@@ -1,15 +1,7 @@
 namespace ChefsKiss.Tests.Routing
 {
-    using System.Collections.Generic;
-
-    using ChefsKiss.Common;
     using ChefsKiss.Web.Controllers;
-    using ChefsKiss.Web.Models.Ingredients;
     using ChefsKiss.Web.Models.Recipes;
-
-    using Microsoft.AspNetCore.Http;
-
-    using Moq;
 
     using MyTested.AspNetCore.Mvc;
 
@@ -31,7 +23,6 @@ namespace ChefsKiss.Tests.Routing
         [Fact]
         public void CreatePostRouteShouldBeMapped()
         {
-            // Validation attribute fails. Need to find a way
             MyRouting
                .Configuration()
                 .ShouldMap(r => r

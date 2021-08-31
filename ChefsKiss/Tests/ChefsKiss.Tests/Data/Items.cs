@@ -3,7 +3,6 @@ namespace ChefsKiss.Tests.Data
     using System.Collections.Generic;
     using System.Linq;
 
-    using ChefsKiss.Data.Common.Models;
     using ChefsKiss.Data.Models;
     using ChefsKiss.Web.Models.Ingredients;
     using ChefsKiss.Web.Models.Recipes;

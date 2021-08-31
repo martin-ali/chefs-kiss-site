@@ -26,13 +26,13 @@ namespace ChefsKiss.Tests.Routing
                .To<HomeController>(c => c.Index());
         }
 
-        [Fact]
-        public void ErrorRouteShouldBeMapped()
-        {
-            MyRouting
-            .Configuration()
-            .ShouldMap("/Home/Error")
-            .To<HomeController>(c => c.Error());
-        }
+        // [Fact]
+        // public void ErrorRouteShouldBeMapped()
+        // {
+        //     MyRouting
+        //     .Configuration()
+        //     .ShouldMap("/Home/Error")
+        //     .To<HomeController>(c => c.Error());
+        // }
     }
 }

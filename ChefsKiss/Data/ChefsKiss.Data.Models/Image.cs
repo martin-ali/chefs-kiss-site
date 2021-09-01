@@ -11,9 +11,5 @@ namespace ChefsKiss.Data.Models
 
         [Required]
         public string Extension { get; init; }
-
-        public int RecipeId { get; }
-
-        public Recipe Recipe { get; }
     }
 }

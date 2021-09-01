@@ -11,5 +11,7 @@ namespace ChefsKiss.Web.Services
         Task<Image> CreateImageAsync(IFormFile input);
 
         void Remove(int imageId);
+
+        void RemoveFileOnly(int imageId);
     }
 }

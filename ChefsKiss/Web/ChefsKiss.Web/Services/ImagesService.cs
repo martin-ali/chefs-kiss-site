@@ -10,6 +10,7 @@ namespace ChefsKiss.Web.Services
     using ChefsKiss.Services.IO;
 
     using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
 
     public class ImagesService : IImagesService
     {
@@ -42,13 +43,19 @@ namespace ChefsKiss.Web.Services
 
         public void Remove(int imageId)
         {
-            var image = this.data.Images
-                .First(i => i.Id == imageId);
+            var image = this.data.Images.First(i => i.Id == imageId);
 
             this.data.Images.Remove(image);
             this.imageOperator.Remove(image.Name, image.Extension);
 
             this.data.SaveChanges();
+        }
+
+        public void RemoveFileOnly(int imageId)
+        {
+            var image = this.data.Images.First(i => i.Id == imageId);
+
+            this.imageOperator.Remove(image.Name, image.Extension);
         }
     }
 }

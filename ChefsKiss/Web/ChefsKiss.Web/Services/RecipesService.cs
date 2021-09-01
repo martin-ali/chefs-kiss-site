@@ -222,6 +222,7 @@ namespace ChefsKiss.Web.Services
             var recipe = this.data.Recipes.Find(id);
 
             this.data.Recipes.Remove(recipe);
+            this.images.RemoveFileOnly(recipe.ImageId);
 
             this.data.SaveChanges();
         }

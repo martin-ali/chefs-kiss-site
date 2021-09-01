@@ -10,6 +10,6 @@ namespace ChefsKiss.Services.IO
 
         Task WriteAsync(byte[] file, string name, string extension);
 
-        void Delete(string name, string extension);
+        void Remove(string name, string extension);
     }
 }

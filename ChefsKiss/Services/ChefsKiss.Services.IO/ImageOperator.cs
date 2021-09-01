@@ -39,7 +39,7 @@ namespace ChefsKiss.Services.IO
             await File.WriteAllBytesAsync(path, file);
         }
 
-        public void Delete(string name, string extension)
+        public void Remove(string name, string extension)
         {
             var fileName = $"{name}.{extension}";
             var path = Path.Combine(this.imagesPath, fileName);

@@ -57,7 +57,7 @@ namespace ChefsKiss.Web.Services
             return review;
         }
 
-        public void Delete(int id)
+        public void Remove(int id)
         {
             var review = this.data.Reviews.Find(id);
 

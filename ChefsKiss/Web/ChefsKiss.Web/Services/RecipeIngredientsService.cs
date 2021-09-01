@@ -42,7 +42,7 @@ namespace ChefsKiss.Web.Services
             return recipeIngredients;
         }
 
-        public void DeleteAll(IEnumerable<RecipeIngredient> recipeIngredients)
+        public void RemoveAll(IEnumerable<RecipeIngredient> recipeIngredients)
         {
             foreach (var recipeIngredient in recipeIngredients)
             {

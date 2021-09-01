@@ -17,30 +17,30 @@ namespace ChefsKiss.Web.Services
     public class RecipesService : IRecipesService
     {
         private readonly RecipesDbContext data;
-        private readonly IRecipeIngredientsService recipeIngredientsService;
-        private readonly IIngredientsService ingredientsService;
-        private readonly IImagesService imagesService;
+        private readonly IRecipeIngredientsService recipeIngredients;
+        private readonly IIngredientsService ingredients;
+        private readonly IImagesService images;
 
         public RecipesService(
             RecipesDbContext data,
-            IRecipeIngredientsService recipeIngredientsService,
-            IIngredientsService ingredientsService,
-            IImagesService imagesService)
+            IRecipeIngredientsService recipeIngredients,
+            IIngredientsService ingredients,
+            IImagesService images)
         {
             this.data = data;
-            this.recipeIngredientsService = recipeIngredientsService;
-            this.ingredientsService = ingredientsService;
-            this.imagesService = imagesService;
+            this.recipeIngredients = recipeIngredients;
+            this.ingredients = ingredients;
+            this.images = images;
         }
 
         public async Task<int> CreateAsync(string userId, string title, string content, int categoryId, IEnumerable<IngredientServiceModel> ingredients, IFormFile image)
         {
-            var imageEntity = await this.imagesService.CreateImageAsync(image);
+            var imageEntity = await this.images.CreateImageAsync(image);
             var author = this.data.Authors
                 .Where(x => x.UserId == userId)
                 .First();
 
-            var ingredientsEntities = this.ingredientsService.EnsureAll(ingredients.Select(i => i.Name));
+            var ingredientsEntities = this.ingredients.EnsureAll(ingredients.Select(i => i.Name));
 
             var recipe = new Recipe
             {
@@ -51,7 +51,7 @@ namespace ChefsKiss.Web.Services
                 Image = imageEntity,
             };
 
-            var recipeIngredients = this.recipeIngredientsService.Create(ingredientsEntities, ingredients, recipe);
+            var recipeIngredients = this.recipeIngredients.Create(ingredientsEntities, ingredients, recipe);
             recipe.RecipeIngredients = recipeIngredients;
 
             this.data.Recipes.Add(recipe);
@@ -192,13 +192,12 @@ namespace ChefsKiss.Web.Services
             var recipe = this.data.Recipes.Find(id);
 
             // Re-generate members
-            var oldRecipeIngredients = this.data.RecipeIngredients
-                .Where(x => x.RecipeId == recipe.Id);
-            this.recipeIngredientsService.DeleteAll(oldRecipeIngredients);
+            var oldRecipeIngredients = this.data.RecipeIngredients.Where(x => x.RecipeId == recipe.Id);
+            this.recipeIngredients.RemoveAll(oldRecipeIngredients);
 
             var ingredientNames = ingredients.Select(i => i.Name);
-            var ingredientEntities = this.ingredientsService.EnsureAll(ingredientNames);
-            var recipeIngredients = this.recipeIngredientsService.Create(ingredientEntities, ingredients, recipe);
+            var ingredientEntities = this.ingredients.EnsureAll(ingredientNames);
+            var recipeIngredients = this.recipeIngredients.Create(ingredientEntities, ingredients, recipe);
 
             // Re-fill all necessary members
             recipe.Title = title;
@@ -208,11 +207,11 @@ namespace ChefsKiss.Web.Services
 
             if (image != null)
             {
-                var imageEntity = await this.imagesService.CreateImageAsync(image);
+                var imageEntity = await this.images.CreateImageAsync(image);
                 recipe.Image = imageEntity;
 
                 // Delete old image because it is no longer used
-                this.imagesService.Delete(recipe.ImageId);
+                this.images.Remove(recipe.ImageId);
             }
 
             this.data.SaveChanges();

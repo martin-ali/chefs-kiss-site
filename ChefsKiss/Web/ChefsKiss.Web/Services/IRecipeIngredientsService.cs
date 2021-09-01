@@ -12,6 +12,6 @@ namespace ChefsKiss.Web.Services
             IEnumerable<IngredientServiceModel> ingredientModels,
             Recipe recipe);
 
-        void DeleteAll(IEnumerable<RecipeIngredient> recipeIngredients);
+        void RemoveAll(IEnumerable<RecipeIngredient> recipeIngredients);
     }
 }

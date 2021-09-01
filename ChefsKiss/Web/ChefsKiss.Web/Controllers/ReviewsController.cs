@@ -88,7 +88,7 @@ namespace ChefsKiss.Web.Controllers
                 return this.BadRequest();
             }
 
-            this.reviews.Delete(id);
+            this.reviews.Remove(id);
 
             return this.RedirectToAction(nameof(RecipesController.Details), ControllerName<RecipesController>(), new { id = recipeId });
         }

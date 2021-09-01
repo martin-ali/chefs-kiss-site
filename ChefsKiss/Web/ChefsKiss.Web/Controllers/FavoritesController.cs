@@ -28,7 +28,7 @@ namespace ChefsKiss.Web.Controllers
                 return this.BadRequest();
             }
 
-            this.favorites.Add(userId, recipeId);
+            this.favorites.Create(userId, recipeId);
 
             return this.RedirectToAction(nameof(RecipesController.Details), ControllerName<RecipesController>(), new { id = recipeId });
         }

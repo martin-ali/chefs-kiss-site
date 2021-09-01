@@ -4,7 +4,7 @@ namespace ChefsKiss.Web.Services
 {
     public interface IFavoritesService
     {
-        void Add(string userId, int recipeId);
+        void Create(string userId, int recipeId);
 
         bool IsFavorited(string userId, int recipeId);
 

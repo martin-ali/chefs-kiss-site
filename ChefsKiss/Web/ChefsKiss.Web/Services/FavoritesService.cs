@@ -16,7 +16,7 @@ namespace ChefsKiss.Web.Services
             this.data = data;
         }
 
-        public void Add(string userId, int recipeId)
+        public void Create(string userId, int recipeId)
         {
             var user = this.data.Users.Find(userId);
             var recipe = this.data.Recipes.Find(recipeId);
@@ -63,9 +63,9 @@ namespace ChefsKiss.Web.Services
         {
             var userIsValid = this.data.Users.Any(u => u.Id == userId);
             var recipeIsValid = this.data.Recipes.Any(u => u.Id == recipeId);
-            bool hasBeenFavorited = this.IsFavorited(userId, recipeId);
+            bool isFavorited = this.IsFavorited(userId, recipeId);
 
-            var canUnfavorite = userIsValid && recipeIsValid && hasBeenFavorited;
+            var canUnfavorite = userIsValid && recipeIsValid && isFavorited;
             return canUnfavorite;
         }
 

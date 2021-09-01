@@ -40,13 +40,13 @@ namespace ChefsKiss.Web.Services
             return image;
         }
 
-        public void Delete(int imageId)
+        public void Remove(int imageId)
         {
             var image = this.data.Images
                 .First(i => i.Id == imageId);
 
             this.data.Images.Remove(image);
-            this.imageOperator.Delete(image.Name, image.Extension);
+            this.imageOperator.Remove(image.Name, image.Extension);
 
             this.data.SaveChanges();
         }

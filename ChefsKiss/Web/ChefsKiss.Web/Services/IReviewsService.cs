@@ -12,6 +12,6 @@ namespace ChefsKiss.Web.Services
 
         T ById<T>(int id);
 
-        void Delete(int id);
+        void Remove(int id);
     }
 }

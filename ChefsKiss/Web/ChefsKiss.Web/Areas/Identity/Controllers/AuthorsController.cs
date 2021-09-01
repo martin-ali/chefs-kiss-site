@@ -8,7 +8,6 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ChefsKiss.Common.ErrorMessages;
     using static ChefsKiss.Common.Helpers;
     using static ChefsKiss.Common.WebConstants;
 
@@ -28,7 +27,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             var userHasApplied = this.authors.HasApplied(this.User.Id());
             if (userHasApplied)
             {
-                return this.BadRequest(AlreadyAppliedForAuthor);
+                return this.BadRequest();
             }
 
             return this.View();
@@ -43,7 +42,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
             var userHasApplied = this.authors.HasApplied(userId);
             if (userHasApplied)
             {
-                return this.BadRequest(AlreadyAppliedForAuthor);
+                return this.BadRequest();
             }
 
             if (this.ModelState.IsValid == false)

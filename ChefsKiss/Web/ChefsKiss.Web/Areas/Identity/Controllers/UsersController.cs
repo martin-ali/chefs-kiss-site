@@ -100,7 +100,7 @@ namespace ChefsKiss.Web.Areas.Identity.Controllers
 
             if (user == null)
             {
-                return this.BadRequest(InvalidParameter(nameof(user)));
+                return this.NotFound();
             }
 
             user.RecipesCount = recipes.Count();

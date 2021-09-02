@@ -59,6 +59,7 @@
 
 ## Optional
 
+- [x] Emails
 - [ ] Profile picture
 - [ ] Soft delete?
 - [ ] Forgotten password?

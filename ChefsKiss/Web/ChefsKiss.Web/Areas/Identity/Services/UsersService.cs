@@ -4,6 +4,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     using System.Threading.Tasks;
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Emails;
     using ChefsKiss.Services.Mapping;
     using Microsoft.AspNetCore.Identity;
 
@@ -14,15 +15,18 @@ namespace ChefsKiss.Web.Areas.Identity.Services
         private readonly RecipesDbContext data;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IEmailSender emails;
 
         public UsersService(
             RecipesDbContext data,
             SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IEmailSender emails)
         {
             this.data = data;
             this.signInManager = signInManager;
             this.userManager = userManager;
+            this.emails = emails;
         }
 
         public async Task<IdentityResult> RegisterAsync(string email, string password)
@@ -39,6 +43,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             {
                 await this.userManager.AddToRoleAsync(user, UserRoleName);
                 await this.signInManager.SignInAsync(user, false);
+                await this.emails.Welcome(user.Email, user.UserName);
             }
 
             return result;

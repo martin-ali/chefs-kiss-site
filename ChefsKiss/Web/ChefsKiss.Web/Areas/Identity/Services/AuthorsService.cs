@@ -5,6 +5,7 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     using System.Threading.Tasks;
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Emails;
     using ChefsKiss.Services.Mapping;
 
     using Microsoft.AspNetCore.Identity;
@@ -15,11 +16,15 @@ namespace ChefsKiss.Web.Areas.Identity.Services
     {
         private readonly RecipesDbContext data;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IEmailSender emails;
 
-        public AuthorsService(RecipesDbContext data, UserManager<ApplicationUser> userManager)
+        public AuthorsService(RecipesDbContext data,
+        UserManager<ApplicationUser> userManager,
+        IEmailSender emails)
         {
             this.data = data;
             this.userManager = userManager;
+            this.emails = emails;
         }
 
         public void Create(string userId, string firstName, string lastName)
@@ -32,6 +37,9 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             };
 
             this.data.Authors.Add(author);
+
+            var user = this.data.Users.Find(userId);
+            this.emails.AuthorApplied(user.Email, $"{firstName} {lastName}");
 
             this.data.SaveChanges();
         }
@@ -74,12 +82,17 @@ namespace ChefsKiss.Web.Areas.Identity.Services
             var user = this.data.Users.Find(author.UserId);
             await this.userManager.AddToRoleAsync(user, AuthorRoleName);
 
+            await this.emails.AuthorApproved(user.Email, $"{author.FirstName} {author.LastName}");
+
             this.data.SaveChanges();
         }
 
         public void Deny(int id)
         {
             var author = this.data.Authors.Find(id);
+            var user = this.data.Users.Find(author.UserId);
+
+            this.emails.AuthorDenied(user.Email, $"{author.FirstName} {author.LastName}");
 
             this.data.Authors.Remove(author);
 

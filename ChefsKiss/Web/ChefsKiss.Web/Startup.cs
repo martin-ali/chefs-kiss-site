@@ -4,6 +4,7 @@ namespace ChefsKiss.Web
 
     using ChefsKiss.Data;
     using ChefsKiss.Data.Models;
+    using ChefsKiss.Services.Emails;
     using ChefsKiss.Services.IO;
     using ChefsKiss.Services.Mapping;
     using ChefsKiss.Web.Areas.Identity.Services;
@@ -65,6 +66,7 @@ namespace ChefsKiss.Web
             services.AddTransient<IAuthorsService, AuthorsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IFavoritesService, FavoritesService>();
+            services.AddTransient<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

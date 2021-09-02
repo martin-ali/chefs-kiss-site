@@ -10,7 +10,6 @@ namespace ChefsKiss.Web.Services
     using ChefsKiss.Services.IO;
 
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
 
     public class ImagesService : IImagesService
     {

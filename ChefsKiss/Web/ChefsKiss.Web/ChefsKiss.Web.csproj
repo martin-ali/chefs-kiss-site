@@ -30,6 +30,7 @@
     <ProjectReference Include="..\..\Services\ChefsKiss.Services.Validation\ChefsKiss.Services.Validation.csproj" />
     <ProjectReference Include="..\..\Data\ChefsKiss.Data.Seeding\ChefsKiss.Data.Seeding.csproj" />
     <ProjectReference Include="..\ChefsKiss.Web.Infrastructure\ChefsKiss.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Services\ChefsKiss.Services.Emails\ChefsKiss.Services.Emails.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -41,7 +41,7 @@ namespace ChefsKiss.Services.Emails
         public async Task AuthorApproved(string email, string name)
         {
             var subject = "Application approved";
-            var plainTextContent = "Your application for a recipe author position has been approved! Congratulations!";
+            var plainTextContent = "Your application for the recipe author position has been approved! Congratulations!";
             var htmlContent = $"<h2>{plainTextContent}</h2>";
 
             await this.Send(email, name, subject, plainTextContent, htmlContent);

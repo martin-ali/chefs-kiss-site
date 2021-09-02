@@ -81,3 +81,4 @@ Comments (top-level only, this isn't a discussion site)
 - Responsive/mobile
 - Error on unmapped view
 - Error pages with status code
+- Emails

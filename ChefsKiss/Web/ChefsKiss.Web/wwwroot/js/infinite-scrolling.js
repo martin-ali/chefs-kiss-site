@@ -1,11 +1,4 @@
 ﻿function ConfigureInfiniteScroll(url, startingPage, parameters) {
-
-    const bottomLenience = 200;
-    const debounceTimeout = 100;
-    const processChange = debounce(() => Process());
-    const container = "#recipes-list";
-    let page = startingPage;
-
     function Process() {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - bottomLenience) {
 
@@ -34,6 +27,12 @@
                 timeout);
         };
     }
+
+    const bottomLenience = 200;
+    const debounceTimeout = 100;
+    const processChange = debounce(() => Process());
+    const container = "#recipes-list";
+    let page = startingPage;
 
     $(window).scroll(function () {
         processChange();

@@ -14,12 +14,12 @@ namespace ChefsKiss.Web.Services
     public class ImagesService : IImagesService
     {
         private readonly RecipesDbContext data;
-        private readonly IImageOperator imageOperator;
+        private readonly IImageOperator image;
 
-        public ImagesService(RecipesDbContext data, IImageOperator imageOperator)
+        public ImagesService(RecipesDbContext data, IImageOperator image)
         {
             this.data = data;
-            this.imageOperator = imageOperator;
+            this.image = image;
         }
 
         public async Task<Image> CreateImageAsync(IFormFile input)
@@ -32,7 +32,7 @@ namespace ChefsKiss.Web.Services
                 Extension = extension,
             };
 
-            await this.imageOperator.WriteAsync(input, image.Name, extension);
+            await this.image.WriteAsync(input, image.Name, extension);
             this.data.Images.Add(image);
 
             this.data.SaveChanges();
@@ -45,7 +45,7 @@ namespace ChefsKiss.Web.Services
             var image = this.data.Images.First(i => i.Id == imageId);
 
             this.data.Images.Remove(image);
-            this.imageOperator.Remove(image.Name, image.Extension);
+            this.image.Remove(image.Name, image.Extension);
 
             this.data.SaveChanges();
         }
@@ -54,7 +54,7 @@ namespace ChefsKiss.Web.Services
         {
             var image = this.data.Images.First(i => i.Id == imageId);
 
-            this.imageOperator.Remove(image.Name, image.Extension);
+            this.image.Remove(image.Name, image.Extension);
         }
     }
 }

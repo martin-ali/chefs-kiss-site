@@ -167,9 +167,7 @@ namespace ChefsKiss.Web.Controllers
                 return this.NotFound();
             }
 
-            var categories = this.categories
-                .All<CategorySelectViewModel>()
-                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
+            var categories = this.CategoryOptions();
             recipe.Categories = categories;
 
             var isAuthorized = recipe.AuthorId == this.User.Id() || this.User.IsAdmin();

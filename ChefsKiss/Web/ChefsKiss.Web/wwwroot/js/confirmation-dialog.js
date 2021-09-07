@@ -2,7 +2,6 @@
 
     document.querySelector(parentElement)
         .addEventListener('click', ev => {
-
                 const isCorrectElement = ev.target.classList.contains(eventTargetClass);
                 if (isCorrectElement) {
 

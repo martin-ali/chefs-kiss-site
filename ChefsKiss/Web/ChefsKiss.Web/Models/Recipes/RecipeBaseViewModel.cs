@@ -34,7 +34,7 @@ namespace ChefsKiss.Web.Models.Recipes
                 .ForMember(vm => vm.AuthorFullName, cfg => cfg.MapFrom(m => $"{m.Author.FirstName} {m.Author.LastName}"))
                 .ForMember(vm => vm.AuthorId, cfg => cfg.MapFrom(m => m.Author.UserId))
                 .ForMember(vm => vm.Rating, cfg => cfg.MapFrom(m => (int)m.Reviews.Select(x => x.Rating).AverageOrDefault())) // NOTE: .Average() does not like empty collections
-                .ForMember(vm => vm.Category, cfg => cfg.MapFrom(m => m.Category.Name)) // NOTE: .Average() does not like empty collections
+                .ForMember(vm => vm.Category, cfg => cfg.MapFrom(m => m.Category.Name))
                 .IncludeAllDerived();
         }
     }
